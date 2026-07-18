@@ -4,27 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
   <title>Dashboard – Smile AI Web Studio</title>
-  <meta name="description" content="Manage your AI websites, projects, and business dashboard at Smile AI Web Studio." />
   <meta name="robots" content="noindex, follow" />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Dashboard – Smile AI Web Studio" />
-  <meta property="og:description" content="Manage your AI websites, projects, and business dashboard." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://web.smilefinancialsolution.com/customer-dashboard.html" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Smile AI Web Studio",
-      "url": "https://web.smilefinancialsolution.com"
-    }
-  </script>
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -43,7 +23,6 @@
       --shadow-soft: 0 4px 24px rgba(0,0,0,0.04);
       --shadow-card: 0 8px 32px -8px rgba(0,0,0,0.06);
       --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      --glass-bg: rgba(255,255,255,0.12);
     }
     html { scroll-behavior: smooth; }
     body {
@@ -99,15 +78,17 @@
       margin-left: auto; background: var(--primary); color: white;
       padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
     }
-    .sidebar-nav .logout { margin-top: 16px; border-top: 1px solid #eef2f6; padding-top: 12px; color: #EF4444; }
+    .sidebar-nav .logout {
+      margin-top: 16px; border-top: 1px solid #eef2f6; padding-top: 12px; color: #EF4444;
+      cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      transition: var(--transition);
+    }
     .sidebar-nav .logout:hover { background: #fef2f2; color: #EF4444; }
+    .sidebar-nav .logout .icon { font-size: 1.2rem; width: 24px; text-align: center; }
 
     /* ===== MAIN CONTENT ===== */
-    .main-content {
-      margin-left: var(--sidebar-width);
-      min-height: 100vh;
-      padding: 0;
-    }
+    .main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
 
     /* ===== HEADER ===== */
     .top-header {
@@ -157,7 +138,6 @@
     /* ===== DASHBOARD CONTENT ===== */
     .dashboard-content { padding: 28px 32px; }
 
-    /* Hero */
     .dashboard-hero {
       background: linear-gradient(145deg, #2563EB, #1d4ed8);
       border-radius: var(--radius-lg); padding: 28px 32px;
@@ -171,10 +151,16 @@
     .dashboard-hero h1 { font-size: 1.8rem; font-weight: 800; position: relative; z-index: 1; }
     .dashboard-hero p { opacity: 0.85; position: relative; z-index: 1; }
     .dashboard-hero .hero-actions { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; position: relative; z-index: 1; }
-    .dashboard-hero .hero-actions .btn { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 8px 24px; font-size: 0.9rem; box-shadow: none; }
-    .dashboard-hero .hero-actions .btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.02); }
-    .dashboard-hero .hero-actions .btn-primary-solid { background: white; color: var(--primary); border: none; }
-    .dashboard-hero .hero-actions .btn-primary-solid:hover { background: #f8fafc; }
+    .dashboard-hero .hero-actions .btn {
+      padding: 8px 24px; border-radius: 60px; font-weight: 600; font-size: 0.9rem;
+      border: none; cursor: pointer; transition: var(--transition);
+    }
+    .dashboard-hero .hero-actions .btn-glass {
+      background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.2);
+    }
+    .dashboard-hero .hero-actions .btn-glass:hover { background: rgba(255,255,255,0.25); transform: scale(1.02); }
+    .dashboard-hero .hero-actions .btn-white { background: white; color: var(--primary); border: none; }
+    .dashboard-hero .hero-actions .btn-white:hover { background: #f8fafc; transform: scale(1.02); }
 
     /* Quick Actions */
     .quick-actions { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 28px; }
@@ -200,14 +186,12 @@
     .stat-card .value { font-size: 1.8rem; font-weight: 800; color: var(--primary); }
     .stat-card .label { font-size: 0.85rem; color: #475569; }
 
-    /* Section Title */
     .section-title {
       font-size: 1.2rem; font-weight: 700; margin-bottom: 16px;
       display: flex; align-items: center; justify-content: space-between;
     }
     .section-title a { font-size: 0.85rem; font-weight: 500; color: var(--primary); }
 
-    /* Recent Projects */
     .projects-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 16px; margin-bottom: 28px;
@@ -215,6 +199,7 @@
     .project-card {
       background: white; padding: 18px 20px; border-radius: var(--radius-lg);
       border: 1px solid #eef2f6; transition: var(--transition);
+      cursor: pointer;
     }
     .project-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); border-color: var(--primary); }
     .project-card .project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
@@ -234,10 +219,13 @@
       height: 100%; border-radius: 4px; background: var(--primary);
     }
     .project-card .project-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
-    .project-card .project-actions .btn-sm { padding: 4px 16px; font-size: 0.75rem; border-radius: 60px; border: 1px solid #eef2f6; background: transparent; cursor: pointer; transition: var(--transition); }
+    .project-card .project-actions .btn-sm {
+      padding: 4px 16px; font-size: 0.75rem; border-radius: 60px;
+      border: 1px solid #eef2f6; background: transparent; cursor: pointer;
+      transition: var(--transition);
+    }
     .project-card .project-actions .btn-sm:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
-    /* AI CTA */
     .ai-cta {
       background: linear-gradient(145deg, #10B981, #059669);
       border-radius: var(--radius-lg); padding: 24px 32px;
@@ -246,10 +234,9 @@
       margin-bottom: 28px;
     }
     .ai-cta h3 { font-size: 1.4rem; font-weight: 700; }
-    .ai-cta .btn { background: white; color: var(--primary); border: none; padding: 10px 32px; }
+    .ai-cta .btn { background: white; color: var(--primary); border: none; padding: 10px 32px; border-radius: 60px; font-weight: 600; cursor: pointer; transition: var(--transition); }
     .ai-cta .btn:hover { background: #f8fafc; transform: scale(1.02); }
 
-    /* Tables */
     .table-wrap { overflow-x: auto; background: white; border-radius: var(--radius-lg); border: 1px solid #eef2f6; margin-bottom: 28px; }
     table { width: 100%; border-collapse: collapse; }
     th, td { padding: 12px 20px; text-align: left; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; }
@@ -260,7 +247,6 @@
     td .status-badge.completed { background: #d1fae5; color: #065f46; }
     td .status-badge.rejected { background: #fef2f2; color: #991b1b; }
 
-    /* Activity & Notifications */
     .two-col {
       display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px;
     }
@@ -278,7 +264,6 @@
     .notif-item .content { font-size: 0.9rem; }
     .notif-item .content .time { font-size: 0.75rem; color: #94a3b8; }
 
-    /* Profile Summary */
     .profile-summary {
       background: white; padding: 20px; border-radius: var(--radius-lg);
       border: 1px solid #eef2f6; display: flex; align-items: center;
@@ -341,24 +326,16 @@
     <div class="logo">Smile<span>AI</span><small>Web Studio</small></div>
     <nav class="sidebar-nav">
       <div class="nav-label">Main</div>
-      <a href="#" class="active"><span class="icon">📊</span> Dashboard</a>
-      <a href="create-website.html"><span class="icon">✨</span> Create Website</a>
-      <a href="#"><span class="icon">🌐</span> My Websites <span class="badge">12</span></a>
-      <a href="#"><span class="icon">📋</span> Website Requests <span class="badge">3</span></a>
-      <a href="#"><span class="icon">🎨</span> Templates</a>
-      <a href="#"><span class="icon">🤖</span> AI Generator</a>
-      <a href="portfolio.html"><span class="icon">📁</span> Portfolio</a>
-
-      <div class="nav-label" style="margin-top:12px;">Account</div>
-      <a href="#"><span class="icon">📄</span> Invoices</a>
-      <a href="#"><span class="icon">💳</span> Billing</a>
-      <a href="#"><span class="icon">🔔</span> Notifications <span class="badge">5</span></a>
-      <a href="#"><span class="icon">💬</span> Messages <span class="badge">2</span></a>
-      <a href="#"><span class="icon">🛡️</span> Support</a>
-      <a href="#"><span class="icon">👤</span> Profile</a>
-      <a href="#"><span class="icon">⚙️</span> Settings</a>
-
-      <a href="login.html" class="logout"><span class="icon">🚪</span> Logout</a>
+      <a href="customer-dashboard.html" class="active"><span class="icon">📊</span> Dashboard</a>
+      <a href="create-project.html"><span class="icon">✨</span> Create Project</a>
+      <a href="my-projects.html"><span class="icon">🌐</span> My Projects <span class="badge">12</span></a>
+      <a href="project-details.html"><span class="icon">📋</span> Project Details</a>
+      <a href="website-preview.html"><span class="icon">👁️</span> Website Preview</a>
+      <a href="billing.html"><span class="icon">💳</span> Billing</a>
+      <a href="notifications.html"><span class="icon">🔔</span> Notifications <span class="badge">5</span></a>
+      <a href="profile.html"><span class="icon">👤</span> Profile</a>
+      <a href="settings.html"><span class="icon">⚙️</span> Settings</a>
+      <div class="logout" onclick="logoutUser()"><span class="icon">🚪</span> Logout</div>
     </nav>
   </aside>
 
@@ -374,13 +351,13 @@
         </div>
       </div>
       <div class="right">
-        <button class="btn-icon" aria-label="Theme"><span>🌙</span></button>
-        <button class="btn-icon" aria-label="Notifications"><span>🔔</span><span class="dot"></span></button>
-        <button class="btn-icon" aria-label="Messages"><span>💬</span><span class="dot"></span></button>
-        <div class="profile" id="profileDropdown">
+        <a href="settings.html" class="btn-icon" aria-label="Theme"><span>🌙</span></a>
+        <a href="notifications.html" class="btn-icon" aria-label="Notifications"><span>🔔</span><span class="dot"></span></a>
+        <a href="contact.html" class="btn-icon" aria-label="Messages"><span>💬</span></a>
+        <a href="profile.html" class="profile" id="profileDropdown">
           <span style="font-weight:600;font-size:0.9rem;">John</span>
           <div class="avatar">JD</div>
-        </div>
+        </a>
       </div>
     </header>
 
@@ -391,20 +368,18 @@
         <h1>👋 Welcome back, John!</h1>
         <p>Your AI-powered website dashboard. Manage your projects, websites, and business growth.</p>
         <div class="hero-actions">
-          <a href="create-website.html" class="btn btn-primary-solid">✨ Create New Website</a>
-          <a href="#" class="btn">📋 View All Projects</a>
-          <a href="contact.html" class="btn">💬 Support</a>
+          <a href="create-project.html" class="btn btn-white">✨ Create New Website</a>
+          <a href="my-projects.html" class="btn btn-glass">📋 View All Projects</a>
+          <a href="contact.html" class="btn btn-glass">💬 Support</a>
         </div>
       </div>
 
       <!-- Quick Actions -->
       <div class="quick-actions">
-        <div class="quick-action" onclick="location.href='create-website.html'"><span class="icon">✨</span><span class="label">Create Website</span></div>
-        <div class="quick-action" onclick="location.href='demo.html'"><span class="icon">🚀</span><span class="label">Landing Page</span></div>
-        <div class="quick-action" onclick="alert('SEO Generator')"><span class="icon">🔍</span><span class="label">Generate SEO</span></div>
-        <div class="quick-action" onclick="alert('AI Content')"><span class="icon">✍️</span><span class="label">AI Content</span></div>
-        <div class="quick-action" onclick="alert('Upload Logo')"><span class="icon">🖼️</span><span class="label">Upload Logo</span></div>
-        <div class="quick-action" onclick="location.href='contact.html'"><span class="icon">📞</span><span class="label">Book Consultation</span></div>
+        <a href="create-project.html" class="quick-action"><span class="icon">✨</span><span class="label">Create Website</span></a>
+        <a href="my-projects.html" class="quick-action"><span class="icon">📁</span><span class="label">My Projects</span></a>
+        <a href="billing.html" class="quick-action"><span class="icon">💳</span><span class="label">Billing</span></a>
+        <a href="profile.html" class="quick-action"><span class="icon">👤</span><span class="label">Profile</span></a>
       </div>
 
       <!-- Stats -->
@@ -420,10 +395,10 @@
       <!-- Recent Projects -->
       <div class="section-title">
         <span>📂 Recent Projects</span>
-        <a href="#">View All →</a>
+        <a href="my-projects.html">View All →</a>
       </div>
       <div class="projects-grid">
-        <div class="project-card">
+        <div class="project-card" onclick="window.location.href='project-details.html?id=PRJ-001'">
           <div class="project-header">
             <h4>Brand Pro Business</h4>
             <span class="status published">Published</span>
@@ -431,12 +406,12 @@
           <div class="project-meta">Last updated: 2 days ago • Business Website</div>
           <div class="progress-bar"><div class="fill" style="width:100%;"></div></div>
           <div class="project-actions">
-            <button class="btn-sm" onclick="alert('Opening project...')">Open</button>
-            <button class="btn-sm" onclick="window.open('demo.html?type=business','_blank')">Preview</button>
-            <button class="btn-sm" onclick="alert('Edit project')">Edit</button>
+            <button class="btn-sm" onclick="event.stopPropagation();window.location.href='project-details.html?id=PRJ-001'">Open</button>
+            <button class="btn-sm" onclick="event.stopPropagation();window.open('demo.html?type=business','_blank')">Preview</button>
+            <button class="btn-sm" onclick="event.stopPropagation();window.location.href='project-details.html?id=PRJ-001'">Edit</button>
           </div>
         </div>
-        <div class="project-card">
+        <div class="project-card" onclick="window.location.href='project-details.html?id=PRJ-002'">
           <div class="project-header">
             <h4>Flavors Restaurant</h4>
             <span class="status published">Published</span>
@@ -444,12 +419,12 @@
           <div class="project-meta">Last updated: 5 days ago • Restaurant Website</div>
           <div class="progress-bar"><div class="fill" style="width:100%;"></div></div>
           <div class="project-actions">
-            <button class="btn-sm" onclick="alert('Opening project...')">Open</button>
-            <button class="btn-sm" onclick="window.open('demo.html?type=restaurant','_blank')">Preview</button>
-            <button class="btn-sm" onclick="alert('Edit project')">Edit</button>
+            <button class="btn-sm" onclick="event.stopPropagation();window.location.href='project-details.html?id=PRJ-002'">Open</button>
+            <button class="btn-sm" onclick="event.stopPropagation();window.open('demo.html?type=restaurant','_blank')">Preview</button>
+            <button class="btn-sm" onclick="event.stopPropagation();window.location.href='project-details.html?id=PRJ-002'">Edit</button>
           </div>
         </div>
-        <div class="project-card">
+        <div class="project-card" onclick="window.location.href='project-details.html?id=PRJ-003'">
           <div class="project-header">
             <h4>WealthBridge Finance</h4>
             <span class="status draft">Draft</span>
@@ -457,12 +432,12 @@
           <div class="project-meta">Last updated: 1 week ago • Finance Website</div>
           <div class="progress-bar"><div class="fill" style="width:60%;"></div></div>
           <div class="project-actions">
-            <button class="btn-sm" onclick="alert('Opening project...')">Open</button>
-            <button class="btn-sm" onclick="window.open('demo.html?type=finance','_blank')">Preview</button>
-            <button class="btn-sm" onclick="alert('Edit project')">Edit</button>
+            <button class="btn-sm" onclick="event.stopPropagation();window.location.href='project-details.html?id=PRJ-003'">Open</button>
+            <button class="btn-sm" onclick="event.stopPropagation();window.open('demo.html?type=finance','_blank')">Preview</button>
+            <button class="btn-sm" onclick="event.stopPropagation();window.location.href='project-details.html?id=PRJ-003'">Edit</button>
           </div>
         </div>
-        <div class="project-card">
+        <div class="project-card" onclick="window.location.href='project-details.html?id=PRJ-004'">
           <div class="project-header">
             <h4>Dream Homes Realty</h4>
             <span class="status pending">Pending</span>
@@ -470,9 +445,9 @@
           <div class="project-meta">Last updated: 2 weeks ago • Real Estate</div>
           <div class="progress-bar"><div class="fill" style="width:30%;"></div></div>
           <div class="project-actions">
-            <button class="btn-sm" onclick="alert('Opening project...')">Open</button>
-            <button class="btn-sm" onclick="window.open('demo.html?type=realestate','_blank')">Preview</button>
-            <button class="btn-sm" onclick="alert('Edit project')">Edit</button>
+            <button class="btn-sm" onclick="event.stopPropagation();window.location.href='project-details.html?id=PRJ-004'">Open</button>
+            <button class="btn-sm" onclick="event.stopPropagation();window.open('demo.html?type=realestate','_blank')">Preview</button>
+            <button class="btn-sm" onclick="event.stopPropagation();window.location.href='project-details.html?id=PRJ-004'">Edit</button>
           </div>
         </div>
       </div>
@@ -483,7 +458,7 @@
           <h3>🤖 Generate a New Website with AI</h3>
           <p style="opacity:0.9;">Create a complete website in minutes using AI.</p>
         </div>
-        <a href="create-website.html" class="btn">✨ Create Website</a>
+        <a href="create-project.html" class="btn">✨ Create Website</a>
       </div>
 
       <!-- Website Requests Table -->
@@ -492,10 +467,34 @@
         <table>
           <thead><tr><th>Project</th><th>Type</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
           <tbody>
-            <tr><td>CityCare Clinic</td><td>Clinic</td><td>2025-01-12</td><td><span class="status-badge completed">Completed</span></td><td><button class="btn-sm" style="padding:2px 12px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;">View</button></td></tr>
-            <tr><td>Excel Academy</td><td>School</td><td>2025-01-10</td><td><span class="status-badge progress">In Progress</span></td><td><button class="btn-sm" style="padding:2px 12px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;">View</button></td></tr>
-            <tr><td>Royal Grand Hotel</td><td>Hotel</td><td>2025-01-08</td><td><span class="status-badge pending">Pending</span></td><td><button class="btn-sm" style="padding:2px 12px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;">View</button></td></tr>
-            <tr><td>ABC Corporate</td><td>Business</td><td>2025-01-05</td><td><span class="status-badge rejected">Rejected</span></td><td><button class="btn-sm" style="padding:2px 12px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;">View</button></td></tr>
+            <tr>
+              <td><a href="project-details.html?id=PRJ-005" style="color:var(--primary);">CityCare Clinic</a></td>
+              <td>Clinic</td>
+              <td>2025-01-12</td>
+              <td><span class="status-badge completed">Completed</span></td>
+              <td><a href="project-details.html?id=PRJ-005" class="btn-sm" style="padding:2px 12px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;display:inline-block;">View</a></td>
+            </tr>
+            <tr>
+              <td><a href="project-details.html?id=PRJ-006" style="color:var(--primary);">Excel Academy</a></td>
+              <td>School</td>
+              <td>2025-01-10</td>
+              <td><span class="status-badge progress">In Progress</span></td>
+              <td><a href="project-details.html?id=PRJ-006" class="btn-sm" style="padding:2px 12px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;display:inline-block;">View</a></td>
+            </tr>
+            <tr>
+              <td><a href="project-details.html?id=PRJ-007" style="color:var(--primary);">Royal Grand Hotel</a></td>
+              <td>Hotel</td>
+              <td>2025-01-08</td>
+              <td><span class="status-badge pending">Pending</span></td>
+              <td><a href="project-details.html?id=PRJ-007" class="btn-sm" style="padding:2px 12px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;display:inline-block;">View</a></td>
+            </tr>
+            <tr>
+              <td><a href="project-details.html?id=PRJ-008" style="color:var(--primary);">ABC Corporate</a></td>
+              <td>Business</td>
+              <td>2025-01-05</td>
+              <td><span class="status-badge rejected">Rejected</span></td>
+              <td><a href="project-details.html?id=PRJ-008" class="btn-sm" style="padding:2px 12px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;display:inline-block;">View</a></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -504,17 +503,29 @@
       <div class="two-col">
         <div class="activity-timeline">
           <h4 style="font-weight:700;margin-bottom:12px;">📋 Recent Activity</h4>
-          <div class="activity-item"><span class="time">2h ago</span><span class="desc">Website <strong>Brand Pro</strong> was published</span></div>
-          <div class="activity-item"><span class="time">4h ago</span><span class="desc">AI generated content for <strong>Flavors</strong></span></div>
-          <div class="activity-item"><span class="time">1d ago</span><span class="desc">New website request: <strong>Excel Academy</strong></span></div>
-          <div class="activity-item"><span class="time">2d ago</span><span class="desc">Updated SEO for <strong>WealthBridge</strong></span></div>
+          <div class="activity-item"><span class="time">2h ago</span><span class="desc">Website <a href="project-details.html?id=PRJ-001" style="color:var(--primary);"><strong>Brand Pro</strong></a> was published</span></div>
+          <div class="activity-item"><span class="time">4h ago</span><span class="desc">AI generated content for <a href="project-details.html?id=PRJ-002" style="color:var(--primary);"><strong>Flavors</strong></a></span></div>
+          <div class="activity-item"><span class="time">1d ago</span><span class="desc">New website request: <a href="project-details.html?id=PRJ-006" style="color:var(--primary);"><strong>Excel Academy</strong></a></span></div>
+          <div class="activity-item"><span class="time">2d ago</span><span class="desc">Updated SEO for <a href="project-details.html?id=PRJ-003" style="color:var(--primary);"><strong>WealthBridge</strong></a></span></div>
         </div>
         <div class="notifications-list">
           <h4 style="font-weight:700;margin-bottom:12px;">🔔 Notifications</h4>
-          <div class="notif-item"><span class="icon">✅</span><div class="content"><strong>Website approved</strong><div class="time">2 hours ago</div></div></div>
-          <div class="notif-item"><span class="icon">✨</span><div class="content"><strong>AI credits added</strong><div class="time">4 hours ago</div></div></div>
-          <div class="notif-item"><span class="icon">📩</span><div class="content"><strong>New message from support</strong><div class="time">1 day ago</div></div></div>
-          <div class="notif-item"><span class="icon">📋</span><div class="content"><strong>Website request approved</strong><div class="time">2 days ago</div></div></div>
+          <a href="notifications.html" class="notif-item" style="text-decoration:none;">
+            <span class="icon">✅</span>
+            <div class="content"><strong>Website approved</strong><div class="time">2 hours ago</div></div>
+          </a>
+          <a href="notifications.html" class="notif-item" style="text-decoration:none;">
+            <span class="icon">✨</span>
+            <div class="content"><strong>AI credits added</strong><div class="time">4 hours ago</div></div>
+          </a>
+          <a href="notifications.html" class="notif-item" style="text-decoration:none;">
+            <span class="icon">📩</span>
+            <div class="content"><strong>New message from support</strong><div class="time">1 day ago</div></div>
+          </a>
+          <a href="notifications.html" class="notif-item" style="text-decoration:none;">
+            <span class="icon">📋</span>
+            <div class="content"><strong>Website request approved</strong><div class="time">2 days ago</div></div>
+          </a>
         </div>
       </div>
 
@@ -528,8 +539,8 @@
         </div>
         <span class="badge-membership">⭐ Premium Member</span>
         <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;">
-          <a href="#" class="btn-sm" style="padding:4px 16px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;">Edit Profile</a>
-          <a href="#" class="btn-sm" style="padding:4px 16px;border-radius:60px;background:var(--primary);color:white;border:none;cursor:pointer;">Upgrade Plan</a>
+          <a href="profile.html" class="btn-sm" style="padding:4px 16px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;display:inline-block;">Edit Profile</a>
+          <a href="pricing.html" class="btn-sm" style="padding:4px 16px;border-radius:60px;background:var(--primary);color:white;border:none;cursor:pointer;display:inline-block;">Upgrade Plan</a>
         </div>
       </div>
     </div>
@@ -556,7 +567,6 @@
       overlay.classList.remove('active');
     });
 
-    // Close on Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         sidebar.classList.remove('open');
@@ -564,19 +574,25 @@
       }
     });
 
+    // ===== LOGOUT FUNCTION =====
+    function logoutUser() {
+      if (confirm('Are you sure you want to logout?')) {
+        window.location.href = 'login.html';
+      }
+    }
+
     // ============================================================
-    // 🔥 FIREBASE FIRESTORE INTEGRATION
+    // 🔥 FIREBASE FIRESTORE INTEGRATION (Ready)
     // ============================================================
     /*
     import { getAuth, onAuthStateChanged } from 'firebase/auth';
-    import { getFirestore, doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
+    import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
     const auth = getAuth();
     const db = getFirestore();
 
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        // Load user data
         const userDoc = await getDoc(doc(db, 'users', user.uid));
         if (userDoc.exists()) {
           const data = userDoc.data();
@@ -584,48 +600,14 @@
           document.querySelector('.profile-summary .info h3').textContent = data.name || 'User';
           document.querySelector('.profile-summary .info p').textContent = data.email || '';
         }
-
-        // Load websites
-        const websitesQuery = query(
-          collection(db, 'websites'),
-          where('userId', '==', user.uid)
-        );
-        const websitesSnap = await getDocs(websitesQuery);
-        // Update stats with websitesSnap.size
-
-        // Load notifications
-        const notifQuery = query(
-          collection(db, 'notifications'),
-          where('userId', '==', user.uid),
-          where('read', '==', false)
-        );
-        const notifSnap = await getDocs(notifQuery);
-        // Update notification badge count
       } else {
         window.location.href = 'login.html';
       }
     });
     */
 
-    // ============================================================
-    // ===== SMOOTH SCROLL FIX =====
-    // ============================================================
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      const href = link.getAttribute('href');
-      if (href && href.length > 1) {
-        link.addEventListener('click', function(e) {
-          const target = document.querySelector(href);
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      }
-    });
-
     console.log('🚀 customer-dashboard.html – Smile AI Web Studio');
-    console.log('📌 Firebase ready (commented)');
-    console.log('📌 Collections: users, websites, website_requests, notifications, billing, messages, projects');
+    console.log('📌 All navigation links fixed. Everything is clickable.');
   </script>
 </body>
 </html>
