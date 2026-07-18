@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>User Profile – Smile AI Web Studio</title>
+  <meta name="description" content="Manage your profile, business information, security settings, and documents at Smile AI Web Studio." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --sidebar-width: 260px;
+      --header-height: 64px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 4px 24px rgba(0,0,0,0.04);
+      --shadow-card: 0 8px 32px -8px rgba(0,0,0,0.06);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100%;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(0,0,0,0.04);
+      padding: 20px 16px; overflow-y: auto; z-index: 1000;
+      transition: transform var(--transition);
+    }
+    .sidebar .logo {
+      font-size: 1.4rem; font-weight: 800; color: var(--primary);
+      display: flex; align-items: center; gap: 8px; padding: 0 8px 20px;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .sidebar .logo span { color: var(--secondary); }
+    .sidebar .logo small { font-size: 0.55rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; }
+
+    .sidebar-nav { margin-top: 16px; }
+    .sidebar-nav .nav-label { font-size: 0.7rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      color: #475569; transition: var(--transition); margin-bottom: 2px;
+    }
+    .sidebar-nav a:hover { background: #f1f5f9; color: var(--primary); }
+    .sidebar-nav a.active { background: #eff6ff; color: var(--primary); font-weight: 600; }
+    .sidebar-nav a .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+    .sidebar-nav a .badge {
+      margin-left: auto; background: var(--primary); color: white;
+      padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+    }
+    .sidebar-nav .logout { margin-top: 16px; border-top: 1px solid #eef2f6; padding-top: 12px; color: #EF4444; }
+    .sidebar-nav .logout:hover { background: #fef2f2; color: #EF4444; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
+
+    /* ===== HEADER ===== */
+    .top-header {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(16px);
+      padding: 0 24px; height: var(--header-height);
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      flex-wrap: wrap;
+    }
+    .top-header .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    .top-header .left { display: flex; align-items: center; gap: 14px; }
+    .top-header .left h1 { font-size: 1.1rem; font-weight: 700; }
+    .top-header .right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .top-header .right .btn-sm {
+      padding: 6px 18px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+    }
+    .top-header .right .btn-sm:hover { border-color: var(--primary); color: var(--primary); }
+    .top-header .right .btn-sm.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .top-header .right .btn-sm.primary:hover { background: #1d4ed8; }
+    .top-header .right .profile {
+      display: flex; align-items: center; gap: 10px; cursor: pointer;
+      padding: 4px 12px 4px 4px; border-radius: 60px; transition: var(--transition);
+    }
+    .top-header .right .profile:hover { background: #f1f5f9; }
+    .top-header .right .profile .avatar {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--primary);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.8rem;
+    }
+
+    /* ===== CONTENT ===== */
+    .content { padding: 20px 24px; max-width: 1200px; margin: 0 auto; }
+
+    /* ===== PROFILE HEADER ===== */
+    .profile-header {
+      background: white; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; overflow: hidden; margin-bottom: 24px;
+    }
+    .profile-header .cover {
+      height: 120px; background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      position: relative;
+    }
+    .profile-header .cover .edit-cover {
+      position: absolute; bottom: 12px; right: 16px;
+      padding: 4px 16px; border-radius: 60px; border: none;
+      background: rgba(255,255,255,0.2); color: white;
+      cursor: pointer; font-size: 0.75rem; backdrop-filter: blur(4px);
+    }
+    .profile-header .cover .edit-cover:hover { background: rgba(255,255,255,0.3); }
+    .profile-header .profile-info {
+      display: flex; align-items: center; gap: 24px;
+      padding: 0 24px 24px; margin-top: -40px;
+      flex-wrap: wrap;
+    }
+    .profile-header .profile-info .avatar {
+      width: 80px; height: 80px; border-radius: 50%; background: var(--primary);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; font-weight: 700; border: 4px solid white;
+      box-shadow: var(--shadow-card); flex-shrink: 0;
+    }
+    .profile-header .profile-info .details { flex: 1; }
+    .profile-header .profile-info .details h2 { font-size: 1.4rem; font-weight: 800; }
+    .profile-header .profile-info .details .sub {
+      display: flex; gap: 12px; flex-wrap: wrap; font-size: 0.9rem; color: #475569;
+    }
+    .profile-header .profile-info .details .badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+    .profile-header .profile-info .details .badge {
+      padding: 2px 14px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+      background: #d1fae5; color: #065f46;
+    }
+    .profile-header .profile-info .details .badge.verified { background: #dbeafe; color: #1e40af; }
+    .profile-header .profile-info .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* ===== PROFILE GRID ===== */
+    .profile-grid {
+      display: grid; grid-template-columns: 2fr 1fr; gap: 20px;
+    }
+    @media (max-width: 1024px) {
+      .profile-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: white; border-radius: var(--radius-lg); border: 1px solid #eef2f6;
+      padding: 20px 24px; margin-bottom: 20px;
+    }
+    .card .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 14px;
+    }
+    .card .card-header h3 { font-weight: 700; font-size: 1rem; }
+    .card .card-header .edit-btn {
+      font-size: 0.8rem; color: var(--primary); cursor: pointer;
+    }
+    .card .card-header .edit-btn:hover { text-decoration: underline; }
+
+    /* ===== FORM ===== */
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      font-weight: 600; font-size: 0.8rem; display: block; margin-bottom: 4px; color: #1e293b;
+    }
+    .form-group input, .form-group select {
+      width: 100%; padding: 8px 14px; border-radius: 60px; border: 1px solid #eef2f6;
+      font-size: 0.9rem; transition: var(--transition); background: #fafcff;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+      background: white;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ===== DOCUMENTS ===== */
+    .doc-item {
+      display: flex; align-items: center; gap: 12px; padding: 8px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .doc-item:last-child { border-bottom: none; }
+    .doc-item .icon { font-size: 1.2rem; }
+    .doc-item .name { flex: 1; font-weight: 500; font-size: 0.9rem; }
+    .doc-item .status { font-size: 0.75rem; color: var(--secondary); }
+    .doc-item .upload-btn {
+      padding: 4px 16px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; font-size: 0.75rem; transition: var(--transition);
+    }
+    .doc-item .upload-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* ===== SOCIAL LINKS ===== */
+    .social-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    }
+    .social-input {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: #fafcff;
+    }
+    .social-input .icon { font-size: 1.1rem; }
+    .social-input input {
+      border: none; background: transparent; padding: 4px 0;
+      font-size: 0.85rem; width: 100%; outline: none;
+    }
+
+    /* ===== SECURITY ===== */
+    .security-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid #f1f5f9;
+    }
+    .security-item:last-child { border-bottom: none; }
+    .security-item .info .title { font-weight: 500; font-size: 0.9rem; }
+    .security-item .info .desc { font-size: 0.8rem; color: #94a3b8; }
+    .security-item .toggle {
+      width: 44px; height: 24px; border-radius: 12px; background: #e2e8f0;
+      cursor: pointer; position: relative; transition: var(--transition);
+    }
+    .security-item .toggle.active { background: var(--primary); }
+    .security-item .toggle .knob {
+      width: 20px; height: 20px; background: white; border-radius: 50%;
+      position: absolute; top: 2px; left: 2px; transition: var(--transition);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .security-item .toggle.active .knob { left: 22px; }
+
+    /* ===== ACTIONS ===== */
+    .profile-actions {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .profile-actions .btn-action {
+      padding: 8px 24px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; font-weight: 500; font-size: 0.85rem;
+      transition: var(--transition);
+    }
+    .profile-actions .btn-action:hover { border-color: var(--primary); color: var(--primary); }
+    .profile-actions .btn-action.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .profile-actions .btn-action.primary:hover { background: #1d4ed8; }
+    .profile-actions .btn-action.danger { border-color: #EF4444; color: #EF4444; }
+    .profile-actions .btn-action.danger:hover { background: #EF4444; color: white; }
+
+    /* ===== SIDEBAR OVERLAY ===== */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 999; backdrop-filter: blur(4px); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.active { display: block; }
+      .top-header .menu-toggle { display: block; }
+      .main-content { margin-left: 0; }
+      .top-header { padding: 0 16px; height: auto; gap: 10px; }
+      .top-header .right { width: 100%; }
+      .content { padding: 12px; }
+      .profile-header .profile-info { flex-direction: column; text-align: center; padding: 0 16px 16px; }
+      .profile-header .profile-info .details .sub { justify-content: center; }
+      .profile-header .profile-info .actions { justify-content: center; }
+      .social-grid { grid-template-columns: 1fr; }
+      .card { padding: 16px; }
+    }
+    @media (max-width: 480px) {
+      .top-header .left h1 { font-size: 0.9rem; }
+      .profile-header .profile-info .avatar { width: 60px; height: 60px; font-size: 1.5rem; }
+      .profile-actions .btn-action { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">Smile<span>AI</span><small>Web Studio</small></div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Main</div>
+      <a href="customer-dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a href="create-project.html"><span class="icon">✨</span> Create Website</a>
+      <a href="my-projects.html"><span class="icon">🌐</span> My Projects <span class="badge">12</span></a>
+      <a href="project-details.html"><span class="icon">📋</span> Project Details</a>
+      <a href="billing.html"><span class="icon">💳</span> Billing</a>
+      <a href="profile.html" class="active"><span class="icon">👤</span> Profile</a>
+      <a href="portfolio.html"><span class="icon">📁</span> Portfolio</a>
+      <div class="nav-label" style="margin-top:12px;">Account</div>
+      <a href="#"><span class="icon">🔔</span> Notifications <span class="badge">5</span></a>
+      <a href="#"><span class="icon">💬</span> Messages <span class="badge">2</span></a>
+      <a href="contact.html"><span class="icon">🛡️</span> Support</a>
+      <a href="#"><span class="icon">⚙️</span> Settings</a>
+      <a href="login.html" class="logout"><span class="icon">🚪</span> Logout</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- HEADER -->
+    <header class="top-header">
+      <div class="left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <h1>👤 User Profile</h1>
+      </div>
+      <div class="right">
+        <button class="btn-sm primary" onclick="saveProfile()">💾 Save Changes</button>
+        <button class="btn-sm" onclick="window.location.href='customer-dashboard.html'">📊 Dashboard</button>
+        <div class="profile">
+          <span style="font-weight:600;font-size:0.85rem;">John</span>
+          <div class="avatar">JD</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <!-- Profile Header -->
+      <div class="profile-header">
+        <div class="cover">
+          <button class="edit-cover" onclick="alert('Change cover image')">📷 Change Cover</button>
+        </div>
+        <div class="profile-info">
+          <div class="avatar" onclick="alert('Change profile picture')">JD</div>
+          <div class="details">
+            <h2>John Doe</h2>
+            <div class="sub">
+              <span>🏢 Brand Pro Solutions</span>
+              <span>🆔 CUS-2025-001</span>
+              <span>📅 Joined Jan 2025</span>
+            </div>
+            <div class="badges">
+              <span class="badge verified">✅ Verified</span>
+              <span class="badge">⭐ Premium Member</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn-sm" onclick="alert('Edit profile')">✏️ Edit</button>
+            <button class="btn-sm" onclick="downloadProfile()">📥 Download Profile</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Grid -->
+      <div class="profile-grid">
+        <!-- LEFT COLUMN -->
+        <div>
+          <!-- Personal Information -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📋 Personal Information</h3>
+              <span class="edit-btn" onclick="alert('Edit personal info')">✏️ Edit</span>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="fullName" value="John Doe" />
+              </div>
+              <div class="form-group">
+                <label>Business Name</label>
+                <input type="text" id="businessName" value="Brand Pro Solutions" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" value="john@example.com" />
+              </div>
+              <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="tel" id="mobile" value="+91 98765 43210" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" id="dob" value="1990-01-01" />
+              </div>
+              <div class="form-group">
+                <label>Gender</label>
+                <select id="gender">
+                  <option value="male" selected>Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Language</label>
+                <select id="language">
+                  <option value="en" selected>English</option>
+                  <option value="hi">Hindi</option>
+                  <option value="ta">Tamil</option>
+                  <option value="te">Telugu</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Timezone</label>
+                <select id="timezone">
+                  <option value="IST" selected>IST (UTC+5:30)</option>
+                  <option value="EST">EST (UTC-5)</option>
+                  <option value="PST">PST (UTC-8)</option>
+                  <option value="GMT">GMT (UTC+0)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Business Information -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🏢 Business Information</h3>
+              <span class="edit-btn" onclick="alert('Edit business info')">✏️ Edit</span>
+            </div>
+            <div class="form-group">
+              <label>Company Name</label>
+              <input type="text" id="companyName" value="Brand Pro Solutions Pvt Ltd" />
+            </div>
+            <div class="form-group">
+              <label>Business Category</label>
+              <input type="text" id="businessCategory" value="Consulting & Professional Services" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>GST Number</label>
+                <input type="text" id="gstNumber" value="22ABCDE1234F1Z5" />
+              </div>
+              <div class="form-group">
+                <label>PAN Number</label>
+                <input type="text" id="panNumber" value="ABCDE1234F" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Business Address</label>
+              <input type="text" id="businessAddress" value="Delhi, India" />
+            </div>
+            <div class="form-group">
+              <label>Website</label>
+              <input type="text" id="businessWebsite" value="https://brandpro.com" />
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🔗 Social Links</h3>
+              <span class="edit-btn" onclick="alert('Edit social links')">✏️ Edit</span>
+            </div>
+            <div class="social-grid">
+              <div class="social-input"><span class="icon">💼</span><input type="text" placeholder="LinkedIn" value="linkedin.com/in/johndoe" /></div>
+              <div class="social-input"><span class="icon">📘</span><input type="text" placeholder="Facebook" value="facebook.com/johndoe" /></div>
+              <div class="social-input"><span class="icon">📸</span><input type="text" placeholder="Instagram" value="@johndoe" /></div>
+              <div class="social-input"><span class="icon">▶️</span><input type="text" placeholder="YouTube" value="youtube.com/johndoe" /></div>
+              <div class="social-input"><span class="icon">🐦</span><input type="text" placeholder="X (Twitter)" value="@johndoe" /></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div>
+          <!-- Account Information -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📊 Account Information</h3>
+            </div>
+            <div class="form-group">
+              <label>Customer ID</label>
+              <input type="text" value="CUS-2025-001" disabled style="background:#f8fafc;" />
+            </div>
+            <div class="form-group">
+              <label>Membership Plan</label>
+              <input type="text" value="Business Plan – Premium" disabled style="background:#f8fafc;" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Credits Remaining</label>
+                <input type="text" value="24" disabled style="background:#f8fafc;" />
+              </div>
+              <div class="form-group">
+                <label>Projects Created</label>
+                <input type="text" value="12" disabled style="background:#f8fafc;" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Projects Completed</label>
+              <input type="text" value="8" disabled style="background:#f8fafc;" />
+            </div>
+          </div>
+
+          <!-- Security -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🔒 Security</h3>
+            </div>
+            <div class="security-item">
+              <div class="info"><div class="title">Change Password</div><div class="desc">Last changed 30 days ago</div></div>
+              <button class="btn-sm" onclick="alert('Change password')">Change</button>
+            </div>
+            <div class="security-item">
+              <div class="info"><div class="title">Two Factor Authentication</div><div class="desc">Add extra security to your account</div></div>
+              <div class="toggle active" onclick="this.classList.toggle('active')">
+                <div class="knob"></div>
+              </div>
+            </div>
+            <div class="security-item">
+              <div class="info"><div class="title">Login Devices</div><div class="desc">2 active sessions</div></div>
+              <button class="btn-sm" onclick="alert('View login devices')">View</button>
+            </div>
+            <div class="security-item">
+              <div class="info"><div class="title">Recent Login Activity</div><div class="desc">Last login: 2025-01-14 14:30</div></div>
+              <button class="btn-sm" onclick="alert('View activity log')">View</button>
+            </div>
+          </div>
+
+          <!-- Documents -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📁 Documents</h3>
+            </div>
+            <div class="doc-item"><span class="icon">📄</span><span class="name">PAN Card</span><span class="status">✅ Verified</span><button class="upload-btn" onclick="alert('Upload PAN')">Upload</button></div>
+            <div class="doc-item"><span class="icon">📄</span><span class="name">GST Certificate</span><span class="status">⏳ Pending</span><button class="upload-btn" onclick="alert('Upload GST')">Upload</button></div>
+            <div class="doc-item"><span class="icon">📄</span><span class="name">Aadhaar Card</span><span class="status">✅ Verified</span><button class="upload-btn" onclick="alert('Upload Aadhaar')">Upload</button></div>
+            <div class="doc-item"><span class="icon">🖼️</span><span class="name">Company Logo</span><span class="status">✅ Uploaded</span><button class="upload-btn" onclick="alert('Upload Logo')">Upload</button></div>
+            <div class="doc-item"><span class="icon">📁</span><span class="name">Business Documents</span><span class="status">⏳ Pending</span><button class="upload-btn" onclick="alert('Upload Documents')">Upload</button></div>
+          </div>
+
+          <!-- Profile Actions -->
+          <div class="card">
+            <div class="card-header">
+              <h3>⚡ Profile Actions</h3>
+            </div>
+            <div class="profile-actions">
+              <button class="btn-action primary" onclick="saveProfile()">💾 Save Changes</button>
+              <button class="btn-action" onclick="alert('Changes cancelled')">✖️ Cancel</button>
+              <button class="btn-action" onclick="downloadProfile()">📥 Download Profile</button>
+              <button class="btn-action danger" onclick="deleteAccount()">🗑️ Delete Account</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+    });
+
+    // ===== SIDEBAR =====
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { sidebar.classList.remove('open'); overlay.classList.remove('active'); }
+    });
+
+    // ===== PROFILE ACTIONS =====
+    function saveProfile() {
+      alert('💾 Profile saved successfully!');
+    }
+
+    function downloadProfile() {
+      alert('📥 Downloading profile data...');
+    }
+
+    function deleteAccount() {
+      if (confirm('🗑️ Are you sure you want to delete your account? This action cannot be undone.')) {
+        if (confirm('⚠️ This will permanently delete all your projects and data. Continue?')) {
+          alert('✅ Account deletion request submitted.');
+        }
+      }
+    }
+
+    // ============================================================
+    // 🔥 FIREBASE FIRESTORE INTEGRATION
+    // ============================================================
+    /*
+    import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
+    import { getAuth } from 'firebase/auth';
+
+    const db = getFirestore();
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+      const docRef = doc(db, 'users', user.uid);
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        // Populate all fields
+        document.getElementById('fullName').value = data.name || '';
+        document.getElementById('businessName').value = data.businessName || '';
+        document.getElementById('email').value = data.email || '';
+        // ... populate all fields
+      }
+
+      // Save changes
+      async function saveProfile() {
+        await updateDoc(docRef, {
+          name: document.getElementById('fullName').value,
+          businessName: document.getElementById('businessName').value,
+          // ... all fields
+        });
+      }
+    }
+    */
+
+    console.log('🚀 profile.html – Smile AI Web Studio');
+    console.log('📌 Premium user profile with all sections');
+    console.log('📌 Firebase Firestore ready (commented)');
+  </script>
+</body>
+</html>
