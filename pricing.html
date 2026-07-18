@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
-  <title>Simple & Transparent Website Pricing – Smile AI Web Studio</title>
-  <meta name="description" content="Affordable website pricing plans for businesses of all sizes. Choose from Starter, Business, Professional, and Premium packages. Free demo available." />
-  <meta name="keywords" content="website pricing, affordable website packages, business website cost, website plans, Smile AI Web Studio" />
+  <title>Simple & Transparent Pricing – Smile AI Web Studio</title>
+  <meta name="description" content="Choose the perfect plan for your business. AI-powered website builder starting at ₹4,999. Free demo available. No hidden charges." />
+  <meta name="keywords" content="website pricing, AI website builder cost, business website price, web development pricing" />
   <link rel="canonical" href="https://web.smilefinancialsolution.com/pricing.html" />
   <meta name="robots" content="index, follow" />
 
   <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Simple & Transparent Website Pricing – Smile AI Web Studio" />
-  <meta property="og:description" content="Affordable website pricing plans for businesses of all sizes. Choose the perfect package for your business." />
+  <meta property="og:title" content="Simple & Transparent Pricing – Smile AI Web Studio" />
+  <meta property="og:description" content="Choose the perfect plan for your business. AI-powered website builder starting at ₹4,999. Free demo available." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://web.smilefinancialsolution.com/pricing.html" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -217,7 +217,7 @@
       align-items: center;
     }
     .hero-content h1 {
-      font-size: 3.2rem; font-weight: 900; line-height: 1.1; letter-spacing: -0.03em;
+      font-size: 3.5rem; font-weight: 900; line-height: 1.1; letter-spacing: -0.03em;
     }
     .hero-content h1 .highlight { color: var(--primary); }
     .hero-content p {
@@ -228,9 +228,9 @@
     .breadcrumb a { color: var(--primary); }
     .breadcrumb span { color: #94a3b8; }
     .hero-illustration {
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="160" fill="%232563EB" opacity="0.05"/><circle cx="200" cy="200" r="120" fill="%2310B981" opacity="0.04"/><circle cx="200" cy="200" r="80" fill="%23F59E0B" opacity="0.06"/><rect x="145" y="115" width="110" height="130" rx="16" fill="white" stroke="%232563EB" stroke-width="2.5"/><rect x="165" y="135" width="70" height="14" rx="8" fill="%232563EB"/><rect x="165" y="165" width="70" height="8" rx="4" fill="%23cbd5e1"/><rect x="165" y="185" width="70" height="8" rx="4" fill="%23cbd5e1"/><rect x="165" y="205" width="45" height="8" rx="4" fill="%23cbd5e1"/><circle cx="110" cy="95" r="28" fill="%23F59E0B" opacity="0.20"/><circle cx="320" cy="295" r="22" fill="%2310B981" opacity="0.15"/></svg>');
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 350"><circle cx="200" cy="175" r="140" fill="%232563EB" opacity="0.05"/><circle cx="200" cy="175" r="100" fill="%2310B981" opacity="0.04"/><circle cx="200" cy="175" r="60" fill="%23F59E0B" opacity="0.06"/><rect x="130" y="100" width="140" height="150" rx="16" fill="white" stroke="%232563EB" stroke-width="2.5"/><rect x="155" y="125" width="90" height="20" rx="10" fill="%232563EB"/><rect x="155" y="160" width="90" height="10" rx="5" fill="%23cbd5e1"/><rect x="155" y="180" width="90" height="10" rx="5" fill="%23cbd5e1"/><rect x="155" y="200" width="60" height="10" rx="5" fill="%23cbd5e1"/><circle cx="105" cy="100" r="20" fill="%23F59E0B" opacity="0.2"/><circle cx="310" cy="270" r="16" fill="%2310B981" opacity="0.15"/></svg>');
       background-size: contain; background-repeat: no-repeat; background-position: center;
-      min-height: 280px; width: 100%;
+      min-height: 350px; width: 100%;
     }
     .floating-shapes {
       position: absolute; inset: 0; pointer-events: none;
@@ -244,8 +244,25 @@
     .floating-shapes span:nth-child(3) { width: 80px; height: 80px; top: 50%; right: 0%; background: var(--secondary); animation-delay: 1s; }
     @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-40px) rotate(10deg); } }
 
+    /* ===== TOGGLE ===== */
+    #toggle-section { padding: 40px 0; background: white; border-bottom: 1px solid #eef2f6; }
+    .toggle-container { display: flex; align-items: center; justify-content: center; gap: 1.5rem; }
+    .toggle-label { font-weight: 600; color: #475569; }
+    .toggle-label.active { color: var(--primary); }
+    .toggle-switch {
+      width: 64px; height: 32px; background: #e2e8f0; border-radius: 32px;
+      cursor: pointer; position: relative; transition: var(--transition);
+    }
+    .toggle-switch.active { background: var(--primary); }
+    .toggle-switch .knob {
+      width: 28px; height: 28px; background: white; border-radius: 50%;
+      position: absolute; top: 2px; left: 2px; transition: var(--transition);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .toggle-switch.active .knob { left: 34px; }
+
     /* ===== PRICING GRID ===== */
-    #pricing-grid { padding: 80px 0; background: #f8fafc; }
+    #pricing-grid { padding: 60px 0; background: #f8fafc; }
     .pricing-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 2rem; margin-top: 2rem;
@@ -253,31 +270,52 @@
     .pricing-card {
       background: white; padding: 2rem 1.8rem; border-radius: var(--radius-lg);
       border: 2px solid #eef2f6; transition: var(--transition);
-      text-align: left;
+      position: relative;
     }
     .pricing-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-card); border-color: var(--primary); }
-    .pricing-card.popular {
-      border-color: var(--secondary);
-      background: #f0fdf4;
-    }
+    .pricing-card.popular { border-color: var(--secondary); background: #f0fdf4; }
     .pricing-card.popular:hover { border-color: var(--secondary); }
-    .pricing-card .popular-badge {
-      background: var(--secondary); color: white; padding: 4px 14px;
-      border-radius: 100px; font-size: 0.7rem; font-weight: 600;
-      display: inline-block; margin-bottom: 0.5rem;
+    .pricing-card.best-value { border-color: var(--accent); background: #fffbeb; }
+    .pricing-card.best-value:hover { border-color: var(--accent); }
+    .pricing-card .badge-top {
+      position: absolute; top: -12px; right: 20px;
+      background: var(--secondary); color: white; padding: 4px 16px;
+      border-radius: 100px; font-size: 0.75rem; font-weight: 600;
     }
-    .pricing-card .price {
-      font-size: 2.8rem; font-weight: 800; color: var(--primary);
-    }
-    .pricing-card .price small {
-      font-size: 1rem; font-weight: 400; color: #475569;
-    }
-    .pricing-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .pricing-card .delivery { font-size: 0.85rem; color: var(--primary); font-weight: 600; margin: 0.5rem 0; }
-    .pricing-card ul { list-style: none; margin: 1rem 0; }
-    .pricing-card ul li { padding: 6px 0; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 8px; }
-    .pricing-card ul li::before { content: "✓"; color: var(--secondary); font-weight: 700; }
+    .pricing-card .badge-top.best { background: var(--accent); color: #1e293b; }
+    .pricing-card .price { font-size: 2.8rem; font-weight: 800; color: var(--primary); margin: 0.5rem 0; }
+    .pricing-card .price small { font-size: 1rem; font-weight: 400; color: #475569; }
+    .pricing-card .sub { color: #475569; font-size: 0.95rem; }
+    .pricing-card .features { list-style: none; margin: 1.5rem 0; }
+    .pricing-card .features li { padding: 6px 0; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+    .pricing-card .features li::before { content: "✓"; color: var(--secondary); font-weight: 700; }
     .pricing-card .btn-group { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .pricing-card .trust-badge { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; font-size: 0.8rem; color: #475569; }
+    .pricing-card .trust-badge span { display: flex; align-items: center; gap: 4px; }
+
+    /* ===== AI BUILDER PLAN ===== */
+    #ai-builder-plan { padding: 60px 0; background: white; }
+    .ai-plan-card {
+      background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      border-radius: var(--radius-lg); padding: 2.5rem 3rem;
+      color: white; display: grid; grid-template-columns: 2fr 1fr;
+      gap: 2rem; align-items: center;
+    }
+    .ai-plan-card h2 { font-size: 2.2rem; font-weight: 800; }
+    .ai-plan-card .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .ai-plan-card .features-grid .feature { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; }
+    .ai-plan-card .btn { box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+
+    /* ===== COMPARISON TABLE ===== */
+    #comparison { padding: 80px 0; background: #f8fafc; }
+    .table-wrap { overflow-x: auto; margin-top: 2rem; }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); }
+    th, td { padding: 14px 20px; text-align: left; border-bottom: 1px solid #eef2f6; }
+    th { background: #f8fafc; font-weight: 700; }
+    td:first-child { font-weight: 600; }
+    td .check { color: var(--secondary); font-weight: 700; }
+    td .dash { color: #cbd5e1; }
+    tr:hover { background: #f8fafc; }
 
     /* ===== ADD-ONS ===== */
     #addons { padding: 80px 0; background: white; }
@@ -291,26 +329,39 @@
     }
     .addon-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--primary); }
     .addon-item .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
-    .addon-item h3 { font-weight: 700; font-size: 1.1rem; }
-    .addon-item .price { color: var(--primary); font-weight: 600; }
+    .addon-item .price { color: var(--primary); font-weight: 700; }
 
-    /* ===== WHY ===== */
-    #why-pricing { padding: 80px 0; background: #f8fafc; }
+    /* ===== WHY CHOOSE ===== */
+    #why-choose { padding: 80px 0; background: #f8fafc; }
     .why-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
       gap: 2rem; margin-top: 2rem;
     }
     .why-item {
       background: white; padding: 1.5rem; border-radius: var(--radius-lg);
-      text-align: center; font-weight: 600; border: 1px solid #eef2f6;
-      transition: var(--transition);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
     }
     .why-item:hover { background: var(--primary); color: white; transform: scale(1.02); }
+    .why-item .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+
+    /* ===== HOW IT WORKS ===== */
+    #how-it-works { padding: 80px 0; background: white; }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .process-step {
+      background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .process-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+    .process-step .num { font-size: 2rem; font-weight: 800; color: var(--primary); opacity: 0.15; }
+    .process-step h3 { font-weight: 700; font-size: 0.9rem; margin: 0.5rem 0; }
 
     /* ===== FAQ ===== */
-    #faq { padding: 80px 0; background: white; }
+    #faq { padding: 80px 0; background: #f8fafc; }
     .faq-item {
-      background: #f8fafc; border-radius: 16px; margin-bottom: 1rem;
+      background: white; border-radius: 16px; margin-bottom: 1rem;
       padding: 1.2rem 1.5rem; cursor: pointer; border: 1px solid #eef2f6;
       transition: var(--transition);
     }
@@ -319,6 +370,20 @@
     .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; color: #475569; }
     .faq-item.active .faq-answer { max-height: 200px; padding-top: 0.75rem; }
 
+    /* ===== TESTIMONIALS ===== */
+    #testimonials { padding: 80px 0; background: white; }
+    .testimonial-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .testimonial-card {
+      background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+    .testimonial-card .quote { font-style: italic; color: #475569; }
+    .testimonial-card .author { font-weight: 600; margin-top: 0.5rem; }
+
     /* ===== CTA ===== */
     #final-cta {
       padding: 80px 0; background: linear-gradient(145deg, #2563EB, #1d4ed8);
@@ -326,6 +391,22 @@
     }
     #final-cta h2 { font-size: 2.8rem; font-weight: 800; }
     #final-cta .btn { box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* ===== CONTACT FORM ===== */
+    #contact-form { padding: 80px 0; background: white; }
+    .form-wrapper {
+      max-width: 700px; margin: 0 auto; background: #f8fafc; padding: 2.5rem;
+      border-radius: var(--radius-lg); border: 1px solid #eef2f6; box-shadow: var(--shadow-card);
+    }
+    .form-wrapper input, .form-wrapper textarea, .form-wrapper select {
+      width: 100%; padding: 14px 18px; border-radius: 60px; border: 1px solid #d1d9e6;
+      font-size: 1rem; margin-bottom: 1rem; background: white;
+      transition: var(--transition);
+    }
+    .form-wrapper input:focus, .form-wrapper textarea:focus, .form-wrapper select:focus {
+      outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
+    }
+    .form-wrapper textarea { border-radius: 24px; min-height: 80px; resize: vertical; }
 
     /* ===== FOOTER ===== */
     footer {
@@ -350,10 +431,34 @@
     .floating-btn.call { bottom: 170px; background: var(--secondary); }
     .floating-btn.top { bottom: 30px; background: var(--accent); color: #0b1a33; }
 
+    /* ===== THANK YOU POPUP ===== */
+    .popup-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.35); backdrop-filter: blur(6px);
+      z-index: 2000; display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .popup-overlay.open { display: flex; }
+    .popup {
+      background: white; max-width: 460px; width: 100%; padding: 2.5rem;
+      border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);
+      text-align: center; animation: popIn 0.3s ease;
+    }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    .popup .close {
+      position: absolute; top: 16px; right: 20px; font-size: 1.8rem; cursor: pointer;
+      color: #94a3b8; transition: var(--transition);
+    }
+    .popup .close:hover { color: #1e293b; }
+    .popup .icon-big { font-size: 4rem; margin-bottom: 0.5rem; }
+    .popup h2 { font-weight: 800; margin-bottom: 0.5rem; }
+    .popup .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       #pricing-hero .container { grid-template-columns: 1fr; text-align: center; }
       .hero-content p { margin-left: auto; margin-right: auto; }
+      .ai-plan-card { grid-template-columns: 1fr; text-align: center; }
+      .process-steps { grid-template-columns: repeat(3, 1fr); }
       footer .container { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
@@ -363,12 +468,18 @@
       .hero-content h1 { font-size: 2.4rem; }
       .section-title { font-size: 2rem; }
       .pricing-grid { grid-template-columns: 1fr; }
+      .ai-plan-card .features-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .toggle-container { gap: 0.8rem; font-size: 0.9rem; }
       footer .container { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
       .hero-content h1 { font-size: 2rem; }
       .btn { padding: 12px 24px; font-size: 0.9rem; }
+      .process-steps { grid-template-columns: 1fr; }
       .floating-btn { width: 48px; height: 48px; font-size: 1.2rem; right: 16px; }
+      .ai-plan-card { padding: 1.5rem; }
+      .ai-plan-card h2 { font-size: 1.6rem; }
     }
   </style>
 </head>
@@ -382,13 +493,14 @@
       <a href="index.html" class="logo">Smile<span>AI</span><small>Web Studio</small></a>
       <nav id="navbar">
         <a href="index.html">Home</a>
+        <a href="create-website.html">AI Builder</a>
         <a href="services.html">Services</a>
         <a href="portfolio.html">Portfolio</a>
         <a href="pricing.html" class="active">Pricing</a>
         <a href="about.html">About</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a href="contact.html" class="btn btn-primary" style="padding:8px 22px;font-size:0.85rem;">Get FREE Demo</a>
+        <a href="create-website.html" class="btn btn-primary" style="padding:8px 22px;font-size:0.85rem;">✨ Create Website</a>
       </nav>
       <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
     </div>
@@ -400,12 +512,12 @@
     <div class="container">
       <div class="hero-content">
         <span class="badge-pill" style="background:var(--primary);">Pricing</span>
-        <h1>Simple, Transparent <span class="highlight">Website Pricing</span></h1>
-        <p>Choose the perfect website package for your business. Affordable pricing with premium quality. No hidden charges.</p>
+        <h1>Simple & <span class="highlight">Transparent</span> Pricing</h1>
+        <p>Choose the perfect plan for your business or generate your website with AI. No hidden charges.</p>
         <div class="flex-center" style="justify-content:flex-start;">
-          <a href="contact.html" class="btn btn-primary">Get FREE Consultation</a>
-          <a href="contact.html" class="btn btn-secondary">Request FREE Demo</a>
-          <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20to%20know%20about%20your%20pricing." class="btn btn-outline">Chat on WhatsApp</a>
+          <a href="create-website.html" class="btn btn-primary">✨ Create Website with AI</a>
+          <a href="demo.html" class="btn btn-outline">View Live Demo</a>
+          <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%2C%20I%20need%20pricing%20details." class="btn btn-secondary">Talk To Expert</a>
         </div>
         <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Pricing</span></div>
       </div>
@@ -413,143 +525,218 @@
     </div>
   </section>
 
+  <!-- TOGGLE -->
+  <section id="toggle-section">
+    <div class="container">
+      <div class="toggle-container">
+        <span class="toggle-label active" id="labelMonthly">Monthly</span>
+        <div class="toggle-switch" id="pricingToggle">
+          <div class="knob"></div>
+        </div>
+        <span class="toggle-label" id="labelOneTime">One Time</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI BUILDER PLAN -->
+  <section id="ai-builder-plan">
+    <div class="container">
+      <div class="ai-plan-card">
+        <div>
+          <span class="badge-pill" style="background:rgba(255,255,255,0.2);">AI Powered</span>
+          <h2>AI Website Builder</h2>
+          <p style="font-size:1.1rem;opacity:0.9;">Generate a complete website with AI. Preview and edit before purchase.</p>
+          <div class="features-grid">
+            <div class="feature">✅ AI Generated Content</div>
+            <div class="feature">✅ 50+ Industries</div>
+            <div class="feature">✅ Free Preview</div>
+            <div class="feature">✅ No Download Required</div>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:2.2rem;font-weight:800;">FREE</div>
+          <div style="opacity:0.8;">Preview & Demo</div>
+          <a href="create-website.html" class="btn btn-accent" style="margin-top:1rem;background:white;color:var(--primary);">✨ Create Website</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PRICING GRID -->
   <section id="pricing-grid">
-    <div class="container text-center">
-      <h2 class="section-title">Choose Your <span>Package</span></h2>
-      <p class="section-sub" style="margin:0 auto;">Transparent pricing with everything you need to succeed.</p>
+    <div class="container">
       <div class="pricing-grid">
         <!-- Starter -->
         <div class="pricing-card">
-          <h3>Starter Website</h3>
-          <div class="price">₹999</div>
-          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
-          <ul>
+          <h3>Starter</h3>
+          <div class="price">₹4,999</div>
+          <div class="sub">Perfect for small businesses</div>
+          <ul class="features">
             <li>5 Pages</li>
-            <li>Mobile Responsive</li>
+            <li>Responsive Design</li>
+            <li>Basic SEO</li>
+            <li>WhatsApp Chat</li>
             <li>Contact Form</li>
-            <li>WhatsApp Integration</li>
-            <li>SEO Ready</li>
-            <li>Google Analytics Setup</li>
+            <li>1 Month Support</li>
           </ul>
           <div class="btn-group">
-            <a href="contact.html" class="btn-sm btn-sm-primary">Choose Plan</a>
-            <a href="contact.html" class="btn-sm btn-sm-outline">Request Demo</a>
-            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20the%20Starter%20Plan." class="btn-sm btn-sm-whatsapp">Chat</a>
+            <a href="contact.html" class="btn btn-primary" style="padding:10px 24px;font-size:0.9rem;">Choose Plan</a>
+            <a href="create-website.html" class="btn btn-outline" style="padding:10px 24px;font-size:0.9rem;">Try AI Free</a>
+          </div>
+          <div class="trust-badge">
+            <span>🔒 Secure</span>
+            <span>📱 Mobile Ready</span>
           </div>
         </div>
-        <!-- Business -->
+
+        <!-- Business (Most Popular) -->
         <div class="pricing-card popular">
-          <div class="popular-badge">🔥 Most Popular</div>
-          <h3>Business Website</h3>
-          <div class="price">₹2999</div>
-          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
-          <ul>
+          <div class="badge-top">🔥 Most Popular</div>
+          <h3>Business</h3>
+          <div class="price">₹9,999</div>
+          <div class="sub">Best for growing businesses</div>
+          <ul class="features">
             <li>10 Pages</li>
-            <li>Mobile Responsive</li>
-            <li>Contact Forms</li>
-            <li>WhatsApp Integration</li>
-            <li>SEO Optimized</li>
-            <li>Google Business Profile</li>
-            <li>Speed Optimization</li>
-            <li>Lifetime Guidance</li>
+            <li>Premium Design</li>
+            <li>Advanced SEO</li>
+            <li>Lead Forms</li>
+            <li>Portfolio</li>
+            <li>Blog Ready</li>
+            <li>Google Map</li>
+            <li>Analytics</li>
+            <li>3 Months Support</li>
           </ul>
           <div class="btn-group">
-            <a href="contact.html" class="btn-sm btn-sm-primary">Choose Plan</a>
-            <a href="contact.html" class="btn-sm btn-sm-outline">Request Demo</a>
-            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20the%20Business%20Plan." class="btn-sm btn-sm-whatsapp">Chat</a>
+            <a href="contact.html" class="btn btn-secondary" style="padding:10px 24px;font-size:0.9rem;">Choose Plan</a>
+            <a href="create-website.html" class="btn btn-outline" style="padding:10px 24px;font-size:0.9rem;">Try AI Free</a>
+          </div>
+          <div class="trust-badge">
+            <span>🔒 Secure</span>
+            <span>📱 Mobile Ready</span>
+            <span>🔍 SEO Optimized</span>
+            <span>🚀 AI Ready</span>
           </div>
         </div>
+
         <!-- Professional -->
         <div class="pricing-card">
-          <h3>Professional Website</h3>
-          <div class="price">₹4999</div>
-          <div class="delivery">⏱️ Delivery: 3-5 days</div>
-          <ul>
-            <li>15 Pages</li>
-            <li>Mobile Responsive</li>
-            <li>Contact Forms</li>
-            <li>WhatsApp Integration</li>
-            <li>Advanced SEO</li>
-            <li>Google Business Profile</li>
-            <li>Custom Design</li>
-            <li>Admin Panel</li>
-            <li>1 Year Support</li>
+          <h3>Professional</h3>
+          <div class="price">₹19,999</div>
+          <div class="sub">For established enterprises</div>
+          <ul class="features">
+            <li>Everything in Business</li>
+            <li>Admin Panel Ready</li>
+            <li>Firebase Ready</li>
+            <li>Performance Optimization</li>
+            <li>Speed Optimization</li>
+            <li>Premium Animations</li>
+            <li>6 Months Support</li>
           </ul>
           <div class="btn-group">
-            <a href="contact.html" class="btn-sm btn-sm-primary">Choose Plan</a>
-            <a href="contact.html" class="btn-sm btn-sm-outline">Request Demo</a>
-            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20the%20Professional%20Plan." class="btn-sm btn-sm-whatsapp">Chat</a>
+            <a href="contact.html" class="btn btn-primary" style="padding:10px 24px;font-size:0.9rem;">Choose Plan</a>
+            <a href="create-website.html" class="btn btn-outline" style="padding:10px 24px;font-size:0.9rem;">Try AI Free</a>
+          </div>
+          <div class="trust-badge">
+            <span>🔒 Secure</span>
+            <span>📱 Mobile Ready</span>
+            <span>🚀 AI Ready</span>
           </div>
         </div>
-        <!-- Premium -->
-        <div class="pricing-card">
-          <h3>Premium Website</h3>
-          <div class="price">₹7999</div>
-          <div class="delivery">⏱️ Delivery: 5-7 days</div>
-          <ul>
-            <li>25 Pages</li>
-            <li>Mobile Responsive</li>
-            <li>Custom Contact Forms</li>
-            <li>WhatsApp Integration</li>
-            <li>Advanced SEO</li>
-            <li>Google Business Profile</li>
-            <li>Premium Custom Design</li>
-            <li>Full Admin Panel</li>
-            <li>E-commerce Ready</li>
-            <li>2 Years Support</li>
-          </ul>
-          <div class="btn-group">
-            <a href="contact.html" class="btn-sm btn-sm-primary">Choose Plan</a>
-            <a href="contact.html" class="btn-sm btn-sm-outline">Request Demo</a>
-            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20the%20Premium%20Plan." class="btn-sm btn-sm-whatsapp">Chat</a>
-          </div>
-        </div>
-        <!-- E-commerce -->
-        <div class="pricing-card">
-          <h3>E-commerce Website</h3>
-          <div class="price">₹9999</div>
-          <div class="delivery">⏱️ Delivery: 5-10 days</div>
-          <ul>
-            <li>Product Catalog</li>
-            <li>Mobile Responsive</li>
-            <li>Shopping Cart</li>
-            <li>Payment Gateway</li>
-            <li>WhatsApp Integration</li>
-            <li>SEO Optimized</li>
-            <li>Order Management</li>
-            <li>Customer Accounts</li>
+
+        <!-- AI Business Package (Best Value) -->
+        <div class="pricing-card best-value">
+          <div class="badge-top best">⭐ Best Value</div>
+          <h3>AI Business Package</h3>
+          <div class="price">₹29,999</div>
+          <div class="sub">Everything included with AI power</div>
+          <ul class="features">
+            <li>Everything Included</li>
+            <li>AI Website Generator</li>
+            <li>AI Content</li>
+            <li>AI SEO</li>
+            <li>Firebase Integration</li>
+            <li>Groq API Ready</li>
             <li>Admin Dashboard</li>
-            <li>1 Year Support</li>
+            <li>Lead CRM</li>
+            <li>Performance</li>
+            <li>Lifetime Structure</li>
           </ul>
           <div class="btn-group">
-            <a href="contact.html" class="btn-sm btn-sm-primary">Choose Plan</a>
-            <a href="contact.html" class="btn-sm btn-sm-outline">Request Demo</a>
-            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20the%20E-commerce%20Plan." class="btn-sm btn-sm-whatsapp">Chat</a>
+            <a href="contact.html" class="btn btn-accent" style="padding:10px 24px;font-size:0.9rem;background:var(--accent);color:#1e293b;">Choose Plan</a>
+            <a href="create-website.html" class="btn btn-outline" style="padding:10px 24px;font-size:0.9rem;">Try AI Free</a>
+          </div>
+          <div class="trust-badge">
+            <span>🔒 Secure</span>
+            <span>📱 Mobile Ready</span>
+            <span>🔍 SEO Optimized</span>
+            <span>🚀 AI Ready</span>
+            <span>⚡ Performance</span>
           </div>
         </div>
-        <!-- Custom Web App -->
+
+        <!-- Enterprise -->
         <div class="pricing-card">
-          <h3>Custom Web Application</h3>
+          <h3>Enterprise</h3>
           <div class="price">Custom</div>
-          <div class="delivery">⏱️ Delivery: 10-15 days</div>
-          <ul>
-            <li>Custom Business Logic</li>
-            <li>Database Integration</li>
-            <li>User Authentication</li>
-            <li>Workflow Automation</li>
-            <li>Mobile Responsive</li>
-            <li>Scalable Architecture</li>
+          <div class="sub">Tailored for large organizations</div>
+          <ul class="features">
+            <li>Unlimited Pages</li>
+            <li>Custom Features</li>
+            <li>CRM</li>
+            <li>Automation</li>
+            <li>Payment Gateway</li>
+            <li>Customer Dashboard</li>
             <li>Admin Dashboard</li>
-            <li>Security & Compliance</li>
-            <li>2 Years Support</li>
+            <li>API Integration</li>
+            <li>Cloud Deployment</li>
+            <li>Dedicated Support</li>
           </ul>
           <div class="btn-group">
-            <a href="contact.html" class="btn-sm btn-sm-primary">Contact Us</a>
-            <a href="contact.html" class="btn-sm btn-sm-outline">Request Demo</a>
-            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Custom%20Web%20Application." class="btn-sm btn-sm-whatsapp">Chat</a>
+            <a href="contact.html" class="btn btn-primary" style="padding:10px 24px;font-size:0.9rem;">Contact Sales</a>
+          </div>
+          <div class="trust-badge">
+            <span>🔒 Secure</span>
+            <span>📱 Mobile Ready</span>
+            <span>🚀 AI Ready</span>
+            <span>⚡ Enterprise Grade</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section id="comparison">
+    <div class="container text-center">
+      <h2 class="section-title">Feature <span>Comparison</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Compare everything included in each plan.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Starter</th>
+              <th>Business</th>
+              <th>Professional</th>
+              <th>AI Package</th>
+              <th>Enterprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Responsive</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>SEO</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Performance</td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>AI Content</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>AI Website</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>WhatsApp</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Blog</td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>CMS</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Firebase</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>API Ready</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>CRM</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Dashboard</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
@@ -558,29 +745,49 @@
   <section id="addons">
     <div class="container text-center">
       <h2 class="section-title">Add-On <span>Services</span></h2>
-      <p class="section-sub" style="margin:0 auto;">Enhance your website with these additional services.</p>
+      <p class="section-sub" style="margin:0 auto;">Enhance your website with additional services.</p>
       <div class="addons-grid">
         <div class="addon-item"><span class="icon">🎨</span><h3>Logo Design</h3><span class="price">₹999</span></div>
-        <div class="addon-item"><span class="icon">📈</span><h3>SEO</h3><span class="price">₹1499</span></div>
         <div class="addon-item"><span class="icon">📍</span><h3>Google Business Profile</h3><span class="price">₹799</span></div>
-        <div class="addon-item"><span class="icon">🛠️</span><h3>Website Maintenance</h3><span class="price">₹999/mo</span></div>
-        <div class="addon-item"><span class="icon">🌐</span><h3>Domain & Hosting</h3><span class="price">₹999/yr</span></div>
+        <div class="addon-item"><span class="icon">🌐</span><h3>Domain Setup</h3><span class="price">₹499</span></div>
+        <div class="addon-item"><span class="icon">🖥️</span><h3>Hosting Setup</h3><span class="price">₹999/yr</span></div>
         <div class="addon-item"><span class="icon">✉️</span><h3>Business Email</h3><span class="price">₹499/yr</span></div>
         <div class="addon-item"><span class="icon">💳</span><h3>Payment Gateway</h3><span class="price">₹1999</span></div>
+        <div class="addon-item"><span class="icon">📱</span><h3>Social Media Setup</h3><span class="price">₹1499</span></div>
+        <div class="addon-item"><span class="icon">⚡</span><h3>Speed Optimization</h3><span class="price">₹2499</span></div>
+        <div class="addon-item"><span class="icon">🛠️</span><h3>Website Maintenance</h3><span class="price">₹999/mo</span></div>
       </div>
     </div>
   </section>
 
-  <!-- WHY -->
-  <section id="why-pricing">
+  <!-- WHY CHOOSE -->
+  <section id="why-choose">
     <div class="container text-center">
-      <h2 class="section-title">Why Our <span>Pricing</span></h2>
+      <h2 class="section-title">Why <span>Choose Us</span></h2>
       <div class="why-grid">
-        <div class="why-item">💰 Affordable</div>
-        <div class="why-item">🔍 Transparent</div>
-        <div class="why-item">🚫 No Hidden Charges</div>
-        <div class="why-item">⚡ Fast Delivery</div>
-        <div class="why-item">🔧 Future Support</div>
+        <div class="why-item"><span class="icon">🎨</span>Modern UI</div>
+        <div class="why-item"><span class="icon">🤖</span>AI Powered</div>
+        <div class="why-item"><span class="icon">⚡</span>Fast Delivery</div>
+        <div class="why-item"><span class="icon">📱</span>Mobile Friendly</div>
+        <div class="why-item"><span class="icon">🔍</span>SEO Ready</div>
+        <div class="why-item"><span class="icon">🌐</span>Google Ready</div>
+        <div class="why-item"><span class="icon">🔒</span>Secure</div>
+        <div class="why-item"><span class="icon">🚀</span>Future Proof</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works">
+    <div class="container text-center">
+      <h2 class="section-title">How It <span>Works</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Simple process to get your website.</p>
+      <div class="process-steps">
+        <div class="process-step"><div class="num">01</div><h3>Choose Package</h3></div>
+        <div class="process-step"><div class="num">02</div><h3>Fill Details</h3></div>
+        <div class="process-step"><div class="num">03</div><h3>AI Creates Demo</h3></div>
+        <div class="process-step"><div class="num">04</div><h3>Approve Design</h3></div>
+        <div class="process-step"><div class="num">05</div><h3>Website Delivered</h3></div>
       </div>
     </div>
   </section>
@@ -590,29 +797,61 @@
     <div class="container text-center">
       <h2 class="section-title">Frequently <span>Asked</span></h2>
       <div style="max-width:700px;margin:2rem auto;text-align:left;">
-        <div class="faq-item"><div class="faq-question">What is included in the Starter plan? <span>+</span></div><div class="faq-answer">The Starter plan includes 5 pages, mobile responsive design, contact form, WhatsApp integration, SEO readiness, and Google Analytics setup.</div></div>
-        <div class="faq-item"><div class="faq-question">Which plan is best for a new business? <span>+</span></div><div class="faq-answer">The Business plan is most popular for new businesses. It includes 10 pages, SEO optimization, Google Business Profile, speed optimization, and lifetime guidance.</div></div>
-        <div class="faq-item"><div class="faq-question">Do you offer custom quotes? <span>+</span></div><div class="faq-answer">Yes, we offer custom quotes for Custom Web Applications and complex projects. Contact us for a personalized quote.</div></div>
-        <div class="faq-item"><div class="faq-question">Is there any hidden charge? <span>+</span></div><div class="faq-answer">No, our pricing is completely transparent. The price you see is the price you pay. No hidden fees.</div></div>
-        <div class="faq-item"><div class="faq-question">How long does delivery take? <span>+</span></div><div class="faq-answer">Most websites are delivered within 24-48 hours. Complex projects like E-commerce and Custom Web Apps take 5-10 days.</div></div>
-        <div class="faq-item"><div class="faq-question">Do you provide free demo? <span>+</span></div><div class="faq-answer">Yes, we provide a free website demo before any payment. Contact us to get started.</div></div>
-        <div class="faq-item"><div class="faq-question">Is the website mobile responsive? <span>+</span></div><div class="faq-answer">Absolutely. All our websites are fully responsive and work on all devices.</div></div>
-        <div class="faq-item"><div class="faq-question">Do you provide SEO with the website? <span>+</span></div><div class="faq-answer">Yes, we build SEO-ready websites with proper meta tags and structure. Our Business and Premium plans include advanced SEO.</div></div>
-        <div class="faq-item"><div class="faq-question">Can I update the website myself? <span>+</span></div><div class="faq-answer">Yes, we provide easy-to-use CMS or can train you to manage and update your website content.</div></div>
-        <div class="faq-item"><div class="faq-question">Do you offer maintenance support? <span>+</span></div><div class="faq-answer">Yes, we offer website maintenance plans starting at ₹999/month. Professional and Premium plans include 1-2 years of support.</div></div>
+        <div class="faq-item"><div class="faq-question">What is the AI Website Builder? <span>+</span></div><div class="faq-answer">Our AI Website Builder creates a complete website for your business in minutes. You can preview it for free before deciding to purchase.</div></div>
+        <div class="faq-item"><div class="faq-question">How much does a website cost? <span>+</span></div><div class="faq-answer">Our plans start at ₹4,999 for the Starter plan, ₹9,999 for Business, and ₹19,999 for Professional. The AI Business Package is ₹29,999.</div></div>
+        <div class="faq-item"><div class="faq-question">Do you offer monthly payments? <span>+</span></div><div class="faq-answer">Yes, we offer monthly payment options for all our plans. You can also choose one-time payment for the full package.</div></div>
+        <div class="faq-item"><div class="faq-question">What is included in the AI Business Package? <span>+</span></div><div class="faq-answer">The AI Business Package includes everything: AI Website Generator, AI Content, AI SEO, Firebase Integration, Groq API Ready, Admin Dashboard, Lead CRM, and more.</div></div>
+        <div class="faq-item"><div class="faq-question">Is there a free trial? <span>+</span></div><div class="faq-answer">Yes, you can use the AI Website Builder to generate a free demo website. You can preview it before making any payment.</div></div>
+        <div class="faq-item"><div class="faq-question">Are there any hidden charges? <span>+</span></div><div class="faq-answer">No, our pricing is completely transparent. The price you see is the price you pay. No hidden fees.</div></div>
+        <div class="faq-item"><div class="faq-question">How long does it take to deliver? <span>+</span></div><div class="faq-answer">Most websites are delivered within 24-48 hours. Complex projects may take 3-5 days.</div></div>
+        <div class="faq-item"><div class="faq-question">Can I upgrade my plan later? <span>+</span></div><div class="faq-answer">Yes, you can upgrade your plan anytime. We'll adjust the pricing accordingly.</div></div>
+        <div class="faq-item"><div class="faq-question">Do you provide support? <span>+</span></div><div class="faq-answer">Yes, all plans come with dedicated support. Business and Professional plans include 3-6 months of support.</div></div>
+        <div class="faq-item"><div class="faq-question">What is your refund policy? <span>+</span></div><div class="faq-answer">We offer a 7-day money-back guarantee. If you're not satisfied, we'll refund your payment.</div></div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container text-center">
+      <h2 class="section-title">Client <span>Testimonials</span></h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card"><p class="quote">"The AI Builder created our website in minutes. The Business plan gave us everything we needed."</p><p class="author">– Rajesh Kumar, Entrepreneur</p></div>
+        <div class="testimonial-card"><p class="quote">"Professional, transparent pricing. We got a stunning website without any hidden costs."</p><p class="author">– Priya Singh, Business Owner</p></div>
+        <div class="testimonial-card"><p class="quote">"The AI Business Package transformed our online presence. Highly recommended!"</p><p class="author">– Amit Sharma, Startup Founder</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section id="contact-form">
+    <div class="container text-center">
+      <h2 class="section-title">Get a <span>Custom Quote</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Tell us about your requirements and we'll create a custom plan.</p>
+      <div class="form-wrapper" style="margin-top:2rem;">
+        <form id="pricingForm" onsubmit="handlePricingForm(event)">
+          <input type="text" id="pricingName" placeholder="Your Full Name" required />
+          <input type="tel" id="pricingPhone" placeholder="Phone Number" required />
+          <input type="text" id="pricingBusiness" placeholder="Business Type" />
+          <input type="text" id="pricingBudget" placeholder="Budget (e.g. ₹9,999)" />
+          <textarea id="pricingRequirement" placeholder="Tell us about your requirement..."></textarea>
+          <button type="submit" class="btn btn-primary" style="width:100%;">🚀 Get Free Quote</button>
+        </form>
+        <p style="margin-top:0.8rem;font-size:0.85rem;color:#94a3b8;">We'll respond on WhatsApp within 2 hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
   <section id="final-cta">
     <div class="container">
-      <h2>Need a Custom Quote?</h2>
-      <p style="font-size:1.2rem;margin:1rem 0;">Let's discuss your project and find the perfect package.</p>
+      <h2>Need a Custom Solution?</h2>
+      <p style="font-size:1.2rem;margin:1rem 0;">Let's build the perfect website for your business.</p>
       <div class="flex-center" style="margin-top:1.5rem;">
-        <a href="contact.html" class="btn btn-primary" style="background:white;color:var(--primary);">Get FREE Quote</a>
-        <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20custom%20quote." class="btn btn-secondary" style="background:white;color:var(--primary);">WhatsApp</a>
-        <a href="tel:+917290977231" class="btn btn-accent" style="background:white;color:var(--primary);">Call Now</a>
+        <a href="create-website.html" class="btn btn-primary" style="background:white;color:var(--primary);">✨ Create Website with AI</a>
+        <a href="contact.html" class="btn btn-secondary" style="background:white;color:var(--primary);">Request FREE Demo</a>
+        <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%2C%20I%20need%20a%20custom%20solution." class="btn btn-accent" style="background:white;color:var(--primary);">WhatsApp</a>
+        <a href="tel:+917290977231" class="btn btn-outline" style="background:white;color:var(--primary);">Call Now</a>
       </div>
     </div>
   </section>
@@ -620,8 +859,8 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <div><h3 style="color:white;">Smile AI Web Studio</h3><p style="margin:0.5rem 0;">Premium website design and development for businesses across India.</p></div>
-      <div><h4 style="color:white;">Quick Links</h4><a href="index.html">Home</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
+      <div><h3 style="color:white;">Smile AI Web Studio</h3><p style="margin:0.5rem 0;">AI-powered website builder for businesses.</p></div>
+      <div><h4 style="color:white;">Quick Links</h4><a href="index.html">Home</a><a href="create-website.html">AI Builder</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="pricing.html">Pricing</a></div>
       <div><h4 style="color:white;">Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
       <div><h4 style="color:white;">Contact</h4><a href="https://wa.me/917290977231" target="_blank">WhatsApp</a><a href="tel:+917290977231">Call Now</a></div>
     </div>
@@ -629,9 +868,24 @@
   </footer>
 
   <!-- FLOATING BUTTONS -->
-  <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20to%20know%20about%20your%20pricing." class="floating-btn whatsapp" aria-label="WhatsApp">💬</a>
+  <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%2C%20I%20need%20pricing%20details." class="floating-btn whatsapp" aria-label="WhatsApp">💬</a>
   <a href="tel:+917290977231" class="floating-btn call" aria-label="Call">📞</a>
   <button class="floating-btn top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <!-- THANK YOU POPUP -->
+  <div class="popup-overlay" id="thankYouPopup">
+    <div class="popup">
+      <span class="close" onclick="closeThankYou()">&times;</span>
+      <div class="icon-big">📩</div>
+      <h2>Thank You!</h2>
+      <p style="color:#475569;">Your request has been received.</p>
+      <p style="color:#475569;margin-bottom:0.5rem;">Our team will contact you shortly.</p>
+      <div class="btn-group">
+        <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%2C%20I%20filled%20the%20pricing%20form." target="_blank" class="btn btn-secondary" style="background:var(--secondary);color:white;">Open WhatsApp</a>
+        <a href="pricing.html" class="btn btn-outline">Back to Pricing</a>
+      </div>
+    </div>
+  </div>
 
   <script>
     // ===== LOADER =====
@@ -654,6 +908,47 @@
       link.addEventListener('click', () => document.getElementById('navbar').classList.remove('open'));
     });
 
+    // ===== TOGGLE =====
+    const toggle = document.getElementById('pricingToggle');
+    const labelMonthly = document.getElementById('labelMonthly');
+    const labelOneTime = document.getElementById('labelOneTime');
+    let isMonthly = true;
+
+    toggle.addEventListener('click', function() {
+      isMonthly = !isMonthly;
+      this.classList.toggle('active', isMonthly);
+      labelMonthly.classList.toggle('active', isMonthly);
+      labelOneTime.classList.toggle('active', !isMonthly);
+      updatePrices();
+    });
+
+    function updatePrices() {
+      const prices = {
+        starter: isMonthly ? '₹999/mo' : '₹4,999',
+        business: isMonthly ? '₹1,999/mo' : '₹9,999',
+        professional: isMonthly ? '₹3,999/mo' : '₹19,999',
+        aiPackage: isMonthly ? '₹5,999/mo' : '₹29,999'
+      };
+      const cards = document.querySelectorAll('.pricing-card');
+      const planNames = ['Starter', 'Business', 'Professional', 'AI Business Package'];
+      cards.forEach((card, idx) => {
+        if (idx < 4) {
+          const priceEl = card.querySelector('.price');
+          if (priceEl) {
+            const key = planNames[idx].toLowerCase().replace(/\s+/g, '');
+            const priceMap = {
+              starter: prices.starter,
+              business: prices.business,
+              professional: prices.professional,
+              'aibusinesspackage': prices.aiPackage
+            };
+            const planKey = key === 'aibusinesspackage' ? 'aiPackage' : key;
+            priceEl.innerHTML = priceMap[planKey] || prices.starter;
+          }
+        }
+      });
+    }
+
     // ===== FAQ ACCORDION =====
     document.querySelectorAll('.faq-item').forEach(item => {
       item.addEventListener('click', function() {
@@ -663,8 +958,54 @@
       });
     });
 
+    // ===== PRICING FORM =====
+    function handlePricingForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('pricingName').value.trim();
+      const phone = document.getElementById('pricingPhone').value.trim();
+      const business = document.getElementById('pricingBusiness').value.trim();
+      const budget = document.getElementById('pricingBudget').value.trim();
+      const requirement = document.getElementById('pricingRequirement').value.trim();
+
+      /*
+        =============================================================
+        🔥 FIREBASE FIRESTORE INTEGRATION
+        =============================================================
+        // Uncomment when Firebase is ready:
+        // import { db } from './firebase-config.js';
+        // import { collection, addDoc } from 'firebase/firestore';
+        //
+        // try {
+        //   await addDoc(collection(db, 'pricing_requests'), {
+        //     name, phone, business, budget, requirement,
+        //     source: 'pricing.html',
+        //     timestamp: new Date().toISOString(),
+        //     status: 'new'
+        //   });
+        //   console.log('✅ Firestore document written');
+        // } catch (error) {
+        //   console.error('❌ Firestore error: ', error);
+        // }
+        =============================================================
+      */
+
+      const msg = `Hello Smile AI Web Studio,%0A%0A🧑‍💼 Name: ${name}%0A📞 Phone: ${phone}%0A🏢 Business: ${business || 'Not specified'}%0A💰 Budget: ${budget || 'Not specified'}%0A📝 Requirement: ${requirement || 'Need pricing for my website.'}%0A%0A🚀 I need pricing for my website.`;
+      window.open(`https://wa.me/917290977231?text=${msg}`, '_blank');
+      document.getElementById('thankYouPopup').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('pricingForm').reset();
+    }
+
+    function closeThankYou() {
+      document.getElementById('thankYouPopup').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('thankYouPopup').addEventListener('click', function(e) {
+      if (e.target === this) closeThankYou();
+    });
+
     // ===== SCROLL REVEAL =====
-    const revealItems = document.querySelectorAll('.pricing-card, .addon-item, .why-item, .faq-item');
+    const revealItems = document.querySelectorAll('.pricing-card, .addon-item, .why-item, .process-step, .testimonial-card, .faq-item');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -681,6 +1022,7 @@
     });
 
     console.log('🚀 pricing.html – Smile AI Web Studio');
+    console.log('📌 Ready for: Razorpay, PhonePe, Cashfree, Stripe, Firebase, Groq API');
   </script>
 </body>
 </html>
