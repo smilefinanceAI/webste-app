@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Settings – Smile AI Web Studio</title>
+  <meta name="description" content="Manage your account settings, security, notifications, appearance, and privacy preferences." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --sidebar-width: 260px;
+      --header-height: 64px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 4px 24px rgba(0,0,0,0.04);
+      --shadow-card: 0 8px 32px -8px rgba(0,0,0,0.06);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100%;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(0,0,0,0.04);
+      padding: 20px 16px; overflow-y: auto; z-index: 1000;
+      transition: transform var(--transition);
+    }
+    .sidebar .logo {
+      font-size: 1.4rem; font-weight: 800; color: var(--primary);
+      display: flex; align-items: center; gap: 8px; padding: 0 8px 20px;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .sidebar .logo span { color: var(--secondary); }
+    .sidebar .logo small { font-size: 0.55rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; }
+
+    .sidebar-nav { margin-top: 16px; }
+    .sidebar-nav .nav-label { font-size: 0.7rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      color: #475569; transition: var(--transition); margin-bottom: 2px;
+    }
+    .sidebar-nav a:hover { background: #f1f5f9; color: var(--primary); }
+    .sidebar-nav a.active { background: #eff6ff; color: var(--primary); font-weight: 600; }
+    .sidebar-nav a .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+    .sidebar-nav a .badge {
+      margin-left: auto; background: var(--primary); color: white;
+      padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+    }
+    .sidebar-nav .logout { margin-top: 16px; border-top: 1px solid #eef2f6; padding-top: 12px; color: #EF4444; }
+    .sidebar-nav .logout:hover { background: #fef2f2; color: #EF4444; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
+
+    /* ===== HEADER ===== */
+    .top-header {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(16px);
+      padding: 0 24px; height: var(--header-height);
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      flex-wrap: wrap;
+    }
+    .top-header .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    .top-header .left { display: flex; align-items: center; gap: 14px; }
+    .top-header .left h1 { font-size: 1.1rem; font-weight: 700; }
+    .top-header .right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .top-header .right .btn-sm {
+      padding: 6px 18px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+    }
+    .top-header .right .btn-sm:hover { border-color: var(--primary); color: var(--primary); }
+    .top-header .right .btn-sm.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .top-header .right .btn-sm.primary:hover { background: #1d4ed8; }
+    .top-header .right .profile {
+      display: flex; align-items: center; gap: 10px; cursor: pointer;
+      padding: 4px 12px 4px 4px; border-radius: 60px; transition: var(--transition);
+    }
+    .top-header .right .profile:hover { background: #f1f5f9; }
+    .top-header .right .profile .avatar {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--primary);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.8rem;
+    }
+
+    /* ===== CONTENT ===== */
+    .content { padding: 20px 24px; max-width: 1200px; margin: 0 auto; }
+
+    /* ===== SETTINGS LAYOUT ===== */
+    .settings-layout {
+      display: grid; grid-template-columns: 220px 1fr; gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .settings-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ===== LEFT MENU ===== */
+    .settings-menu {
+      background: white; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; padding: 8px 4px;
+    }
+    .settings-menu .menu-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; border-radius: 12px;
+      cursor: pointer; transition: var(--transition);
+      font-weight: 500; font-size: 0.9rem; color: #475569;
+    }
+    .settings-menu .menu-item:hover { background: #f1f5f9; color: var(--primary); }
+    .settings-menu .menu-item.active { background: #eff6ff; color: var(--primary); font-weight: 600; }
+    .settings-menu .menu-item .icon { font-size: 1.1rem; }
+
+    /* ===== SETTINGS PANELS ===== */
+    .settings-panel {
+      display: none; animation: fadeSlide 0.3s ease;
+    }
+    .settings-panel.active { display: block; }
+    @keyframes fadeSlide { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: white; border-radius: var(--radius-lg); border: 1px solid #eef2f6;
+      padding: 20px 24px; margin-bottom: 20px;
+    }
+    .card .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 14px;
+    }
+    .card .card-header h3 { font-weight: 700; font-size: 1rem; }
+
+    /* ===== FORM ===== */
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      font-weight: 600; font-size: 0.8rem; display: block; margin-bottom: 4px; color: #1e293b;
+    }
+    .form-group input, .form-group select {
+      width: 100%; padding: 8px 14px; border-radius: 60px; border: 1px solid #eef2f6;
+      font-size: 0.9rem; transition: var(--transition); background: #fafcff;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+      background: white;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ===== TOGGLES ===== */
+    .toggle-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid #f1f5f9;
+    }
+    .toggle-row:last-child { border-bottom: none; }
+    .toggle-row .info .title { font-weight: 500; font-size: 0.9rem; }
+    .toggle-row .info .desc { font-size: 0.8rem; color: #94a3b8; }
+    .toggle-switch {
+      width: 44px; height: 24px; border-radius: 12px; background: #e2e8f0;
+      cursor: pointer; position: relative; transition: var(--transition); flex-shrink: 0;
+    }
+    .toggle-switch.active { background: var(--primary); }
+    .toggle-switch .knob {
+      width: 20px; height: 20px; background: white; border-radius: 50%;
+      position: absolute; top: 2px; left: 2px; transition: var(--transition);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .toggle-switch.active .knob { left: 22px; }
+
+    /* ===== CONNECTED ACCOUNTS ===== */
+    .account-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid #f1f5f9;
+    }
+    .account-item:last-child { border-bottom: none; }
+    .account-item .info { display: flex; align-items: center; gap: 12px; }
+    .account-item .info .icon { font-size: 1.5rem; }
+    .account-item .info .name { font-weight: 500; }
+    .account-item .info .email { font-size: 0.8rem; color: #94a3b8; }
+    .account-item .btn-sm {
+      padding: 4px 16px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; font-size: 0.75rem; transition: var(--transition);
+    }
+    .account-item .btn-sm:hover { border-color: var(--primary); color: var(--primary); }
+    .account-item .btn-sm.connected { background: #d1fae5; color: #065f46; border-color: #d1fae5; }
+
+    /* ===== PRIVACY ===== */
+    .privacy-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid #f1f5f9;
+    }
+    .privacy-item:last-child { border-bottom: none; }
+    .privacy-item .info .title { font-weight: 500; font-size: 0.9rem; }
+    .privacy-item .info .desc { font-size: 0.8rem; color: #94a3b8; }
+    .privacy-item .btn-sm {
+      padding: 4px 16px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; font-size: 0.75rem; transition: var(--transition);
+    }
+    .privacy-item .btn-sm:hover { border-color: var(--primary); color: var(--primary); }
+    .privacy-item .btn-sm.danger { border-color: #EF4444; color: #EF4444; }
+    .privacy-item .btn-sm.danger:hover { background: #EF4444; color: white; }
+
+    /* ===== DANGER ZONE ===== */
+    .danger-zone {
+      border: 2px solid #fecaca;
+      background: #fef2f2;
+    }
+    .danger-zone .card-header h3 { color: #991b1b; }
+
+    /* ===== SAVE ACTIONS ===== */
+    .save-actions {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .save-actions .btn-action {
+      padding: 8px 24px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; font-weight: 500; font-size: 0.85rem;
+      transition: var(--transition);
+    }
+    .save-actions .btn-action:hover { border-color: var(--primary); color: var(--primary); }
+    .save-actions .btn-action.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .save-actions .btn-action.primary:hover { background: #1d4ed8; }
+    .save-actions .btn-action.danger { border-color: #EF4444; color: #EF4444; }
+    .save-actions .btn-action.danger:hover { background: #EF4444; color: white; }
+
+    /* ===== SIDEBAR OVERLAY ===== */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 999; backdrop-filter: blur(4px); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.active { display: block; }
+      .top-header .menu-toggle { display: block; }
+      .main-content { margin-left: 0; }
+      .top-header { padding: 0 16px; height: auto; gap: 10px; }
+      .top-header .right { width: 100%; }
+      .content { padding: 12px; }
+      .settings-menu { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px; }
+      .settings-menu .menu-item { padding: 6px 14px; font-size: 0.8rem; }
+      .card { padding: 16px; }
+    }
+    @media (max-width: 480px) {
+      .top-header .left h1 { font-size: 0.9rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .save-actions .btn-action { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">Smile<span>AI</span><small>Web Studio</small></div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Main</div>
+      <a href="customer-dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a href="create-project.html"><span class="icon">✨</span> Create Website</a>
+      <a href="my-projects.html"><span class="icon">🌐</span> My Projects <span class="badge">12</span></a>
+      <a href="project-details.html"><span class="icon">📋</span> Project Details</a>
+      <a href="billing.html"><span class="icon">💳</span> Billing</a>
+      <a href="profile.html"><span class="icon">👤</span> Profile</a>
+      <a href="settings.html" class="active"><span class="icon">⚙️</span> Settings</a>
+      <a href="portfolio.html"><span class="icon">📁</span> Portfolio</a>
+      <div class="nav-label" style="margin-top:12px;">Account</div>
+      <a href="#"><span class="icon">🔔</span> Notifications <span class="badge">5</span></a>
+      <a href="#"><span class="icon">💬</span> Messages <span class="badge">2</span></a>
+      <a href="contact.html"><span class="icon">🛡️</span> Support</a>
+      <a href="login.html" class="logout"><span class="icon">🚪</span> Logout</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- HEADER -->
+    <header class="top-header">
+      <div class="left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <h1>⚙️ Settings</h1>
+      </div>
+      <div class="right">
+        <button class="btn-sm primary" onclick="saveSettings()">💾 Save Changes</button>
+        <button class="btn-sm" onclick="resetSettings()">🔄 Reset</button>
+        <div class="profile">
+          <span style="font-weight:600;font-size:0.85rem;">John</span>
+          <div class="avatar">JD</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <div class="settings-layout">
+        <!-- LEFT MENU -->
+        <div class="settings-menu">
+          <div class="menu-item active" data-panel="general" onclick="switchPanel('general')">
+            <span class="icon">📋</span> General
+          </div>
+          <div class="menu-item" data-panel="security" onclick="switchPanel('security')">
+            <span class="icon">🔒</span> Security
+          </div>
+          <div class="menu-item" data-panel="notifications" onclick="switchPanel('notifications')">
+            <span class="icon">🔔</span> Notifications
+          </div>
+          <div class="menu-item" data-panel="appearance" onclick="switchPanel('appearance')">
+            <span class="icon">🎨</span> Appearance
+          </div>
+          <div class="menu-item" data-panel="connected" onclick="switchPanel('connected')">
+            <span class="icon">🔗</span> Connected Accounts
+          </div>
+          <div class="menu-item" data-panel="privacy" onclick="switchPanel('privacy')">
+            <span class="icon">🛡️</span> Privacy
+          </div>
+          <div class="menu-item" data-panel="danger" onclick="switchPanel('danger')">
+            <span class="icon">⚠️</span> Danger Zone
+          </div>
+        </div>
+
+        <!-- RIGHT PANELS -->
+        <div class="settings-panels">
+          <!-- General -->
+          <div class="settings-panel active" id="panel-general">
+            <div class="card">
+              <div class="card-header"><h3>📋 General Settings</h3></div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" id="settingsName" value="John Doe" />
+                </div>
+                <div class="form-group">
+                  <label>Business Name</label>
+                  <input type="text" id="settingsBusiness" value="Brand Pro Solutions" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" id="settingsEmail" value="john@example.com" />
+                </div>
+                <div class="form-group">
+                  <label>Phone</label>
+                  <input type="tel" id="settingsPhone" value="+91 98765 43210" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Timezone</label>
+                  <select id="settingsTimezone">
+                    <option value="IST" selected>IST (UTC+5:30)</option>
+                    <option value="EST">EST (UTC-5)</option>
+                    <option value="PST">PST (UTC-8)</option>
+                    <option value="GMT">GMT (UTC+0)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Language</label>
+                  <select id="settingsLanguage">
+                    <option value="en" selected>English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="ta">Tamil</option>
+                    <option value="te">Telugu</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="save-actions">
+              <button class="btn-action primary" onclick="saveSettings()">💾 Save Changes</button>
+              <button class="btn-action" onclick="resetSettings()">🔄 Reset Settings</button>
+            </div>
+          </div>
+
+          <!-- Security -->
+          <div class="settings-panel" id="panel-security">
+            <div class="card">
+              <div class="card-header"><h3>🔒 Security Settings</h3></div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">Change Password</div><div class="desc">Last changed 30 days ago</div></div>
+                <button class="btn-sm" onclick="alert('Change password')">Change</button>
+              </div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">Two Factor Authentication</div><div class="desc">Add extra security to your account</div></div>
+                <div class="toggle-switch active" onclick="this.classList.toggle('active')">
+                  <div class="knob"></div>
+                </div>
+              </div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">Login Sessions</div><div class="desc">2 active sessions</div></div>
+                <button class="btn-sm" onclick="alert('View sessions')">View</button>
+              </div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">Recent Devices</div><div class="desc">Chrome, Windows • 2025-01-14</div></div>
+                <button class="btn-sm" onclick="alert('View devices')">View</button>
+              </div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">Logout From All Devices</div><div class="desc" style="color:#EF4444;">This will end all active sessions</div></div>
+                <button class="btn-sm danger" onclick="logoutAllDevices()" style="border-color:#EF4444;color:#EF4444;">Logout All</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <div class="settings-panel" id="panel-notifications">
+            <div class="card">
+              <div class="card-header"><h3>🔔 Notification Preferences</h3></div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">Email Notifications</div><div class="desc">Receive updates via email</div></div>
+                <div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="knob"></div></div>
+              </div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">SMS Notifications</div><div class="desc">Receive updates via SMS</div></div>
+                <div class="toggle-switch" onclick="this.classList.toggle('active')"><div class="knob"></div></div>
+              </div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">WhatsApp Notifications</div><div class="desc">Receive updates on WhatsApp</div></div>
+                <div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="knob"></div></div>
+              </div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">Marketing Emails</div><div class="desc">Product updates and offers</div></div>
+                <div class="toggle-switch" onclick="this.classList.toggle('active')"><div class="knob"></div></div>
+              </div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">Project Updates</div><div class="desc">Website generation progress</div></div>
+                <div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="knob"></div></div>
+              </div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">Payment Alerts</div><div class="desc">Billing and invoice notifications</div></div>
+                <div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="knob"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Appearance -->
+          <div class="settings-panel" id="panel-appearance">
+            <div class="card">
+              <div class="card-header"><h3>🎨 Appearance</h3></div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">Dark Mode</div><div class="desc">Switch to dark theme</div></div>
+                <div class="toggle-switch" onclick="this.classList.toggle('active')"><div class="knob"></div></div>
+              </div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">Light Mode</div><div class="desc">Switch to light theme</div></div>
+                <div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="knob"></div></div>
+              </div>
+              <div class="toggle-row">
+                <div class="info"><div class="title">System Mode</div><div class="desc">Follow system theme</div></div>
+                <div class="toggle-switch" onclick="this.classList.toggle('active')"><div class="knob"></div></div>
+              </div>
+              <div class="form-group" style="margin-top:12px;">
+                <label>Accent Color</label>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+                  <input type="color" id="accentColor" value="#2563EB" style="width:50px;height:50px;padding:0;border:2px solid #eef2f6;border-radius:50%;cursor:pointer;" />
+                  <span style="font-size:0.85rem;color:#475569;">Choose your accent color</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Dashboard Layout</label>
+                <select id="dashboardLayout">
+                  <option value="default" selected>Default</option>
+                  <option value="compact">Compact</option>
+                  <option value="comfortable">Comfortable</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connected Accounts -->
+          <div class="settings-panel" id="panel-connected">
+            <div class="card">
+              <div class="card-header"><h3>🔗 Connected Accounts</h3></div>
+              <div class="account-item">
+                <div class="info"><span class="icon">🔵</span><div><div class="name">Google</div><div class="email">john@gmail.com</div></div></div>
+                <button class="btn-sm connected">✅ Connected</button>
+              </div>
+              <div class="account-item">
+                <div class="info"><span class="icon">⚫</span><div><div class="name">GitHub</div><div class="email">Not connected</div></div></div>
+                <button class="btn-sm" onclick="alert('Connect GitHub')">Connect</button>
+              </div>
+              <div class="account-item">
+                <div class="info"><span class="icon">💼</span><div><div class="name">Microsoft</div><div class="email">Not connected</div></div></div>
+                <button class="btn-sm" onclick="alert('Connect Microsoft')">Connect</button>
+              </div>
+              <div class="account-item">
+                <div class="info"><span class="icon">📘</span><div><div class="name">Facebook</div><div class="email">Not connected</div></div></div>
+                <button class="btn-sm" onclick="alert('Connect Facebook')">Connect</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Privacy -->
+          <div class="settings-panel" id="panel-privacy">
+            <div class="card">
+              <div class="card-header"><h3>🛡️ Privacy Settings</h3></div>
+              <div class="privacy-item">
+                <div class="info"><div class="title">Profile Visibility</div><div class="desc">Who can see your profile</div></div>
+                <select style="padding:4px 12px;border-radius:60px;border:1px solid #eef2f6;font-size:0.8rem;">
+                  <option value="public">Public</option>
+                  <option value="private" selected>Private</option>
+                  <option value="team">Team Only</option>
+                </select>
+              </div>
+              <div class="privacy-item">
+                <div class="info"><div class="title">Data Export</div><div class="desc">Export all your data</div></div>
+                <button class="btn-sm" onclick="alert('Exporting data...')">Export</button>
+              </div>
+              <div class="privacy-item">
+                <div class="info"><div class="title">Download My Data</div><div class="desc">Download a copy of your data</div></div>
+                <button class="btn-sm" onclick="downloadData()">Download</button>
+              </div>
+              <div class="privacy-item">
+                <div class="info"><div class="title" style="color:#EF4444;">Delete Account Request</div><div class="desc">Permanently delete your account</div></div>
+                <button class="btn-sm danger" onclick="deleteAccount()">Request Deletion</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Danger Zone -->
+          <div class="settings-panel" id="panel-danger">
+            <div class="card danger-zone">
+              <div class="card-header"><h3>⚠️ Danger Zone</h3></div>
+              <div class="privacy-item">
+                <div class="info"><div class="title" style="color:#991b1b;">Delete Account</div><div class="desc">Permanently delete your account and all data</div></div>
+                <button class="btn-sm danger" onclick="deleteAccount()" style="background:#EF4444;color:white;border-color:#EF4444;">Delete Account</button>
+              </div>
+              <div class="privacy-item">
+                <div class="info"><div class="title" style="color:#991b1b;">Clear All Data</div><div class="desc">Remove all projects and settings</div></div>
+                <button class="btn-sm danger" onclick="clearAllData()" style="background:#EF4444;color:white;border-color:#EF4444;">Clear Data</button>
+              </div>
+              <div class="privacy-item">
+                <div class="info"><div class="title" style="color:#991b1b;">Cancel Subscription</div><div class="desc">Cancel your premium membership</div></div>
+                <button class="btn-sm danger" onclick="cancelSubscription()" style="background:#EF4444;color:white;border-color:#EF4444;">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+    });
+
+    // ===== SIDEBAR =====
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { sidebar.classList.remove('open'); overlay.classList.remove('active'); }
+    });
+
+    // ===== PANEL SWITCHING =====
+    function switchPanel(panelId) {
+      document.querySelectorAll('.settings-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.settings-menu .menu-item').forEach(m => m.classList.remove('active'));
+      document.getElementById('panel-' + panelId).classList.add('active');
+      document.querySelector(`.settings-menu .menu-item[data-panel="${panelId}"]`).classList.add('active');
+    }
+
+    // ===== SETTINGS ACTIONS =====
+    function saveSettings() {
+      alert('💾 Settings saved successfully!');
+    }
+
+    function resetSettings() {
+      if (confirm('🔄 Reset all settings to default?')) {
+        alert('✅ Settings reset to default');
+      }
+    }
+
+    function logoutAllDevices() {
+      if (confirm('🔒 Logout from all devices?')) {
+        alert('✅ Logged out from all devices');
+      }
+    }
+
+    function downloadData() {
+      alert('📥 Downloading your data...');
+    }
+
+    function deleteAccount() {
+      if (confirm('⚠️ Are you sure you want to delete your account? This action cannot be undone.')) {
+        if (confirm('🗑️ This will permanently delete all your data. Continue?')) {
+          alert('✅ Account deletion request submitted.');
+        }
+      }
+    }
+
+    function clearAllData() {
+      if (confirm('⚠️ Clear all data? This action cannot be undone.')) {
+        alert('✅ All data cleared.');
+      }
+    }
+
+    function cancelSubscription() {
+      if (confirm('⚠️ Cancel your premium subscription?')) {
+        alert('✅ Subscription cancelled.');
+      }
+    }
+
+    // ============================================================
+    // 🔥 FIREBASE FIRESTORE INTEGRATION
+    // ============================================================
+    /*
+    import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
+    import { getAuth } from 'firebase/auth';
+
+    const db = getFirestore();
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+      const docRef = doc(db, 'users', user.uid);
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        document.getElementById('settingsName').value = data.name || '';
+        document.getElementById('settingsEmail').value = data.email || '';
+        // ... populate all fields
+      }
+
+      async function saveSettings() {
+        await updateDoc(docRef, {
+          name: document.getElementById('settingsName').value,
+          email: document.getElementById('settingsEmail').value,
+          // ... all fields
+        });
+      }
+    }
+    */
+
+    console.log('🚀 settings.html – Smile AI Web Studio');
+    console.log('📌 Premium settings with all sections');
+    console.log('📌 Firebase Firestore ready (commented)');
+  </script>
+</body>
+</html>
