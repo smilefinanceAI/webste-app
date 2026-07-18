@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Dashboard – Smile AI Web Studio</title>
+  <meta name="description" content="Manage your AI websites, projects, and business dashboard at Smile AI Web Studio." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Dashboard – Smile AI Web Studio" />
+  <meta property="og:description" content="Manage your AI websites, projects, and business dashboard." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://web.smilefinancialsolution.com/customer-dashboard.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Smile AI Web Studio",
+      "url": "https://web.smilefinancialsolution.com"
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --sidebar-width: 260px;
+      --header-height: 72px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 4px 24px rgba(0,0,0,0.04);
+      --shadow-card: 0 8px 32px -8px rgba(0,0,0,0.06);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --glass-bg: rgba(255,255,255,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100%;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(0,0,0,0.04);
+      padding: 20px 16px; overflow-y: auto; z-index: 1000;
+      transition: transform var(--transition);
+    }
+    .sidebar .logo {
+      font-size: 1.4rem; font-weight: 800; color: var(--primary);
+      display: flex; align-items: center; gap: 8px; padding: 0 8px 20px;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .sidebar .logo span { color: var(--secondary); }
+    .sidebar .logo small { font-size: 0.55rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; }
+
+    .sidebar-nav { margin-top: 16px; }
+    .sidebar-nav .nav-label { font-size: 0.7rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      color: #475569; transition: var(--transition); margin-bottom: 2px;
+    }
+    .sidebar-nav a:hover { background: #f1f5f9; color: var(--primary); }
+    .sidebar-nav a.active { background: #eff6ff; color: var(--primary); font-weight: 600; }
+    .sidebar-nav a .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+    .sidebar-nav a .badge {
+      margin-left: auto; background: var(--primary); color: white;
+      padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+    }
+    .sidebar-nav .logout { margin-top: 16px; border-top: 1px solid #eef2f6; padding-top: 12px; color: #EF4444; }
+    .sidebar-nav .logout:hover { background: #fef2f2; color: #EF4444; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* ===== HEADER ===== */
+    .top-header {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(16px);
+      padding: 0 32px; height: var(--header-height);
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .top-header .menu-toggle {
+      display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer;
+    }
+    .top-header .search {
+      display: flex; align-items: center; background: #f1f5f9; border-radius: 60px;
+      padding: 6px 16px; gap: 8px; flex: 1; max-width: 400px;
+    }
+    .top-header .search input {
+      border: none; background: transparent; padding: 8px 0;
+      font-size: 0.95rem; width: 100%; outline: none;
+    }
+    .top-header .search .icon { color: #94a3b8; }
+    .top-header .right {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .top-header .right .btn-icon {
+      width: 40px; height: 40px; border-radius: 50%; border: none;
+      background: transparent; font-size: 1.2rem; cursor: pointer;
+      transition: var(--transition); display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .top-header .right .btn-icon:hover { background: #f1f5f9; }
+    .top-header .right .btn-icon .dot {
+      position: absolute; top: 6px; right: 6px; width: 8px; height: 8px;
+      background: #EF4444; border-radius: 50%; border: 2px solid white;
+    }
+    .top-header .right .profile {
+      display: flex; align-items: center; gap: 10px; cursor: pointer;
+      padding: 4px 12px 4px 4px; border-radius: 60px; transition: var(--transition);
+    }
+    .top-header .right .profile:hover { background: #f1f5f9; }
+    .top-header .right .profile .avatar {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--primary);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem;
+    }
+
+    /* ===== DASHBOARD CONTENT ===== */
+    .dashboard-content { padding: 28px 32px; }
+
+    /* Hero */
+    .dashboard-hero {
+      background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      border-radius: var(--radius-lg); padding: 28px 32px;
+      color: white; margin-bottom: 28px; position: relative; overflow: hidden;
+    }
+    .dashboard-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="white" opacity="0.05"/><circle cx="80" cy="80" r="4" fill="white" opacity="0.05"/><circle cx="50" cy="50" r="6" fill="white" opacity="0.03"/></svg>');
+      background-size: 100px 100px;
+    }
+    .dashboard-hero h1 { font-size: 1.8rem; font-weight: 800; position: relative; z-index: 1; }
+    .dashboard-hero p { opacity: 0.85; position: relative; z-index: 1; }
+    .dashboard-hero .hero-actions { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .dashboard-hero .hero-actions .btn { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 8px 24px; font-size: 0.9rem; box-shadow: none; }
+    .dashboard-hero .hero-actions .btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.02); }
+    .dashboard-hero .hero-actions .btn-primary-solid { background: white; color: var(--primary); border: none; }
+    .dashboard-hero .hero-actions .btn-primary-solid:hover { background: #f8fafc; }
+
+    /* Quick Actions */
+    .quick-actions { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 28px; }
+    .quick-action {
+      background: white; padding: 16px; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; text-align: center; cursor: pointer;
+      transition: var(--transition);
+    }
+    .quick-action:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); border-color: var(--primary); }
+    .quick-action .icon { font-size: 1.8rem; display: block; margin-bottom: 4px; }
+    .quick-action .label { font-weight: 600; font-size: 0.85rem; }
+
+    /* Stats */
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px; margin-bottom: 28px;
+    }
+    .stat-card {
+      background: white; padding: 18px 20px; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
+    .stat-card .value { font-size: 1.8rem; font-weight: 800; color: var(--primary); }
+    .stat-card .label { font-size: 0.85rem; color: #475569; }
+
+    /* Section Title */
+    .section-title {
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .section-title a { font-size: 0.85rem; font-weight: 500; color: var(--primary); }
+
+    /* Recent Projects */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px; margin-bottom: 28px;
+    }
+    .project-card {
+      background: white; padding: 18px 20px; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .project-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); border-color: var(--primary); }
+    .project-card .project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .project-card .project-header h4 { font-weight: 700; font-size: 1rem; }
+    .project-card .project-header .status {
+      font-size: 0.7rem; font-weight: 600; padding: 2px 12px; border-radius: 100px;
+    }
+    .project-card .project-header .status.published { background: #d1fae5; color: #065f46; }
+    .project-card .project-header .status.draft { background: #fef3c7; color: #92400e; }
+    .project-card .project-header .status.pending { background: #dbeafe; color: #1e40af; }
+    .project-card .project-header .status.completed { background: #d1fae5; color: #065f46; }
+    .project-card .project-meta { font-size: 0.8rem; color: #94a3b8; }
+    .project-card .progress-bar {
+      height: 4px; background: #eef2f6; border-radius: 4px; margin: 8px 0; overflow: hidden;
+    }
+    .project-card .progress-bar .fill {
+      height: 100%; border-radius: 4px; background: var(--primary);
+    }
+    .project-card .project-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+    .project-card .project-actions .btn-sm { padding: 4px 16px; font-size: 0.75rem; border-radius: 60px; border: 1px solid #eef2f6; background: transparent; cursor: pointer; transition: var(--transition); }
+    .project-card .project-actions .btn-sm:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+    /* AI CTA */
+    .ai-cta {
+      background: linear-gradient(145deg, #10B981, #059669);
+      border-radius: var(--radius-lg); padding: 24px 32px;
+      color: white; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 16px;
+      margin-bottom: 28px;
+    }
+    .ai-cta h3 { font-size: 1.4rem; font-weight: 700; }
+    .ai-cta .btn { background: white; color: var(--primary); border: none; padding: 10px 32px; }
+    .ai-cta .btn:hover { background: #f8fafc; transform: scale(1.02); }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; background: white; border-radius: var(--radius-lg); border: 1px solid #eef2f6; margin-bottom: 28px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px 20px; text-align: left; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; }
+    th { background: #f8fafc; font-weight: 600; color: #475569; }
+    td .status-badge { padding: 2px 12px; border-radius: 100px; font-size: 0.7rem; font-weight: 600; }
+    td .status-badge.pending { background: #dbeafe; color: #1e40af; }
+    td .status-badge.progress { background: #fef3c7; color: #92400e; }
+    td .status-badge.completed { background: #d1fae5; color: #065f46; }
+    td .status-badge.rejected { background: #fef2f2; color: #991b1b; }
+
+    /* Activity & Notifications */
+    .two-col {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px;
+    }
+    .activity-timeline, .notifications-list {
+      background: white; padding: 20px; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6;
+    }
+    .activity-item, .notif-item {
+      display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f1f5f9;
+    }
+    .activity-item:last-child, .notif-item:last-child { border-bottom: none; }
+    .activity-item .time { font-size: 0.75rem; color: #94a3b8; min-width: 60px; }
+    .activity-item .desc { font-size: 0.9rem; }
+    .notif-item .icon { font-size: 1.2rem; }
+    .notif-item .content { font-size: 0.9rem; }
+    .notif-item .content .time { font-size: 0.75rem; color: #94a3b8; }
+
+    /* Profile Summary */
+    .profile-summary {
+      background: white; padding: 20px; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; display: flex; align-items: center;
+      gap: 20px; flex-wrap: wrap; margin-bottom: 28px;
+    }
+    .profile-summary .avatar {
+      width: 64px; height: 64px; border-radius: 50%; background: var(--primary);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; font-weight: 700;
+    }
+    .profile-summary .info h3 { font-weight: 700; }
+    .profile-summary .info p { color: #475569; font-size: 0.9rem; }
+    .profile-summary .badge-membership {
+      background: #d1fae5; color: #065f46; padding: 4px 16px; border-radius: 100px;
+      font-size: 0.75rem; font-weight: 600;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    .sidebar-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2);
+      z-index: 999; backdrop-filter: blur(4px);
+    }
+
+    @media (max-width: 1024px) {
+      .two-col { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.active { display: block; }
+      .top-header .menu-toggle { display: block; }
+      .main-content { margin-left: 0; }
+      .top-header { padding: 0 16px; }
+      .top-header .search { max-width: 200px; }
+      .dashboard-content { padding: 16px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .quick-actions { grid-template-columns: repeat(2, 1fr); }
+      .dashboard-hero { padding: 20px; }
+      .dashboard-hero h1 { font-size: 1.4rem; }
+      .ai-cta { flex-direction: column; text-align: center; }
+      .profile-summary { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .quick-actions { grid-template-columns: 1fr 1fr; }
+      .top-header .search { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">Smile<span>AI</span><small>Web Studio</small></div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Main</div>
+      <a href="#" class="active"><span class="icon">📊</span> Dashboard</a>
+      <a href="create-website.html"><span class="icon">✨</span> Create Website</a>
+      <a href="#"><span class="icon">🌐</span> My Websites <span class="badge">12</span></a>
+      <a href="#"><span class="icon">📋</span> Website Requests <span class="badge">3</span></a>
+      <a href="#"><span class="icon">🎨</span> Templates</a>
+      <a href="#"><span class="icon">🤖</span> AI Generator</a>
+      <a href="portfolio.html"><span class="icon">📁</span> Portfolio</a>
+
+      <div class="nav-label" style="margin-top:12px;">Account</div>
+      <a href="#"><span class="icon">📄</span> Invoices</a>
+      <a href="#"><span class="icon">💳</span> Billing</a>
+      <a href="#"><span class="icon">🔔</span> Notifications <span class="badge">5</span></a>
+      <a href="#"><span class="icon">💬</span> Messages <span class="badge">2</span></a>
+      <a href="#"><span class="icon">🛡️</span> Support</a>
+      <a href="#"><span class="icon">👤</span> Profile</a>
+      <a href="#"><span class="icon">⚙️</span> Settings</a>
+
+      <a href="login.html" class="logout"><span class="icon">🚪</span> Logout</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- TOP HEADER -->
+    <header class="top-header">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <div class="search">
+          <span class="icon">🔍</span>
+          <input type="text" placeholder="Search websites, projects..." />
+        </div>
+      </div>
+      <div class="right">
+        <button class="btn-icon" aria-label="Theme"><span>🌙</span></button>
+        <button class="btn-icon" aria-label="Notifications"><span>🔔</span><span class="dot"></span></button>
+        <button class="btn-icon" aria-label="Messages"><span>💬</span><span class="dot"></span></button>
+        <div class="profile" id="profileDropdown">
+          <span style="font-weight:600;font-size:0.9rem;">John</span>
+          <div class="avatar">JD</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- DASHBOARD CONTENT -->
+    <div class="dashboard-content">
+      <!-- Hero -->
+      <div class="dashboard-hero">
+        <h1>👋 Welcome back, John!</h1>
+        <p>Your AI-powered website dashboard. Manage your projects, websites, and business growth.</p>
+        <div class="hero-actions">
+          <a href="create-website.html" class="btn btn-primary-solid">✨ Create New Website</a>
+          <a href="#" class="btn">📋 View All Projects</a>
+          <a href="contact.html" class="btn">💬 Support</a>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <div class="quick-action" onclick="location.href='create-website.html'"><span class="icon">✨</span><span class="label">Create Website</span></div>
+        <div class="quick-action" onclick="location.href='demo.html'"><span class="icon">🚀</span><span class="label">Landing Page</span></div>
+        <div class="quick-action" onclick="alert('SEO Generator')"><span class="icon">🔍</span><span class="label">Generate SEO</span></div>
+        <div class="quick-action" onclick="alert('AI Content')"><span class="icon">✍️</span><span class="label">AI Content</span></div>
+        <div class="quick-action" onclick="alert('Upload Logo')"><span class="icon">🖼️</span><span class="label">Upload Logo</span></div>
+        <div class="quick-action" onclick="location.href='contact.html'"><span class="icon">📞</span><span class="label">Book Consultation</span></div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card"><div class="value">12</div><div class="label">Total Websites</div></div>
+        <div class="stat-card"><div class="value">8</div><div class="label">Published</div></div>
+        <div class="stat-card"><div class="value">3</div><div class="label">Drafts</div></div>
+        <div class="stat-card"><div class="value">4</div><div class="label">Pending Requests</div></div>
+        <div class="stat-card"><div class="value">6</div><div class="label">Unread Messages</div></div>
+        <div class="stat-card"><div class="value">24</div><div class="label">AI Credits</div></div>
+      </div>
+
+      <!-- Recent Projects -->
+      <div class="section-title">
+        <span>📂 Recent Projects</span>
+        <a href="#">View All →</a>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <h4>Brand Pro Business</h4>
+            <span class="status published">Published</span>
+          </div>
+          <div class="project-meta">Last updated: 2 days ago • Business Website</div>
+          <div class="progress-bar"><div class="fill" style="width:100%;"></div></div>
+          <div class="project-actions">
+            <button class="btn-sm" onclick="alert('Opening project...')">Open</button>
+            <button class="btn-sm" onclick="window.open('demo.html?type=business','_blank')">Preview</button>
+            <button class="btn-sm" onclick="alert('Edit project')">Edit</button>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <h4>Flavors Restaurant</h4>
+            <span class="status published">Published</span>
+          </div>
+          <div class="project-meta">Last updated: 5 days ago • Restaurant Website</div>
+          <div class="progress-bar"><div class="fill" style="width:100%;"></div></div>
+          <div class="project-actions">
+            <button class="btn-sm" onclick="alert('Opening project...')">Open</button>
+            <button class="btn-sm" onclick="window.open('demo.html?type=restaurant','_blank')">Preview</button>
+            <button class="btn-sm" onclick="alert('Edit project')">Edit</button>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <h4>WealthBridge Finance</h4>
+            <span class="status draft">Draft</span>
+          </div>
+          <div class="project-meta">Last updated: 1 week ago • Finance Website</div>
+          <div class="progress-bar"><div class="fill" style="width:60%;"></div></div>
+          <div class="project-actions">
+            <button class="btn-sm" onclick="alert('Opening project...')">Open</button>
+            <button class="btn-sm" onclick="window.open('demo.html?type=finance','_blank')">Preview</button>
+            <button class="btn-sm" onclick="alert('Edit project')">Edit</button>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <h4>Dream Homes Realty</h4>
+            <span class="status pending">Pending</span>
+          </div>
+          <div class="project-meta">Last updated: 2 weeks ago • Real Estate</div>
+          <div class="progress-bar"><div class="fill" style="width:30%;"></div></div>
+          <div class="project-actions">
+            <button class="btn-sm" onclick="alert('Opening project...')">Open</button>
+            <button class="btn-sm" onclick="window.open('demo.html?type=realestate','_blank')">Preview</button>
+            <button class="btn-sm" onclick="alert('Edit project')">Edit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI CTA -->
+      <div class="ai-cta">
+        <div>
+          <h3>🤖 Generate a New Website with AI</h3>
+          <p style="opacity:0.9;">Create a complete website in minutes using AI.</p>
+        </div>
+        <a href="create-website.html" class="btn">✨ Create Website</a>
+      </div>
+
+      <!-- Website Requests Table -->
+      <div class="section-title"><span>📋 Website Requests</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Project</th><th>Type</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>CityCare Clinic</td><td>Clinic</td><td>2025-01-12</td><td><span class="status-badge completed">Completed</span></td><td><button class="btn-sm" style="padding:2px 12px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;">View</button></td></tr>
+            <tr><td>Excel Academy</td><td>School</td><td>2025-01-10</td><td><span class="status-badge progress">In Progress</span></td><td><button class="btn-sm" style="padding:2px 12px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;">View</button></td></tr>
+            <tr><td>Royal Grand Hotel</td><td>Hotel</td><td>2025-01-08</td><td><span class="status-badge pending">Pending</span></td><td><button class="btn-sm" style="padding:2px 12px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;">View</button></td></tr>
+            <tr><td>ABC Corporate</td><td>Business</td><td>2025-01-05</td><td><span class="status-badge rejected">Rejected</span></td><td><button class="btn-sm" style="padding:2px 12px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;">View</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Activity & Notifications -->
+      <div class="two-col">
+        <div class="activity-timeline">
+          <h4 style="font-weight:700;margin-bottom:12px;">📋 Recent Activity</h4>
+          <div class="activity-item"><span class="time">2h ago</span><span class="desc">Website <strong>Brand Pro</strong> was published</span></div>
+          <div class="activity-item"><span class="time">4h ago</span><span class="desc">AI generated content for <strong>Flavors</strong></span></div>
+          <div class="activity-item"><span class="time">1d ago</span><span class="desc">New website request: <strong>Excel Academy</strong></span></div>
+          <div class="activity-item"><span class="time">2d ago</span><span class="desc">Updated SEO for <strong>WealthBridge</strong></span></div>
+        </div>
+        <div class="notifications-list">
+          <h4 style="font-weight:700;margin-bottom:12px;">🔔 Notifications</h4>
+          <div class="notif-item"><span class="icon">✅</span><div class="content"><strong>Website approved</strong><div class="time">2 hours ago</div></div></div>
+          <div class="notif-item"><span class="icon">✨</span><div class="content"><strong>AI credits added</strong><div class="time">4 hours ago</div></div></div>
+          <div class="notif-item"><span class="icon">📩</span><div class="content"><strong>New message from support</strong><div class="time">1 day ago</div></div></div>
+          <div class="notif-item"><span class="icon">📋</span><div class="content"><strong>Website request approved</strong><div class="time">2 days ago</div></div></div>
+        </div>
+      </div>
+
+      <!-- Profile Summary -->
+      <div class="profile-summary">
+        <div class="avatar">JD</div>
+        <div class="info">
+          <h3>John Doe</h3>
+          <p>john@example.com • Business Owner</p>
+          <p style="font-size:0.85rem;color:#94a3b8;">Joined January 2025</p>
+        </div>
+        <span class="badge-membership">⭐ Premium Member</span>
+        <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;">
+          <a href="#" class="btn-sm" style="padding:4px 16px;border-radius:60px;border:1px solid #eef2f6;background:transparent;cursor:pointer;">Edit Profile</a>
+          <a href="#" class="btn-sm" style="padding:4px 16px;border-radius:60px;background:var(--primary);color:white;border:none;cursor:pointer;">Upgrade Plan</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+    });
+
+    // ===== SIDEBAR TOGGLE =====
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+      }
+    });
+
+    // ============================================================
+    // 🔥 FIREBASE FIRESTORE INTEGRATION
+    // ============================================================
+    /*
+    import { getAuth, onAuthStateChanged } from 'firebase/auth';
+    import { getFirestore, doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
+
+    const auth = getAuth();
+    const db = getFirestore();
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // Load user data
+        const userDoc = await getDoc(doc(db, 'users', user.uid));
+        if (userDoc.exists()) {
+          const data = userDoc.data();
+          document.querySelector('.profile .avatar').textContent = data.name?.charAt(0) || 'U';
+          document.querySelector('.profile-summary .info h3').textContent = data.name || 'User';
+          document.querySelector('.profile-summary .info p').textContent = data.email || '';
+        }
+
+        // Load websites
+        const websitesQuery = query(
+          collection(db, 'websites'),
+          where('userId', '==', user.uid)
+        );
+        const websitesSnap = await getDocs(websitesQuery);
+        // Update stats with websitesSnap.size
+
+        // Load notifications
+        const notifQuery = query(
+          collection(db, 'notifications'),
+          where('userId', '==', user.uid),
+          where('read', '==', false)
+        );
+        const notifSnap = await getDocs(notifQuery);
+        // Update notification badge count
+      } else {
+        window.location.href = 'login.html';
+      }
+    });
+    */
+
+    // ============================================================
+    // ===== SMOOTH SCROLL FIX =====
+    // ============================================================
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href.length > 1) {
+        link.addEventListener('click', function(e) {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+    });
+
+    console.log('🚀 customer-dashboard.html – Smile AI Web Studio');
+    console.log('📌 Firebase ready (commented)');
+    console.log('📌 Collections: users, websites, website_requests, notifications, billing, messages, projects');
+  </script>
+</body>
+</html>
