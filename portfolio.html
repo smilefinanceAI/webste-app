@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Our Website Portfolio – Smile AI Web Studio</title>
+  <meta name="description" content="Explore our premium website portfolio showcasing modern, responsive, and SEO-friendly websites designed for businesses across industries. Get inspired!" />
+  <meta name="keywords" content="website portfolio, web design examples, business websites, responsive websites, SEO websites, Smile AI Web Studio" />
+  <link rel="canonical" href="https://web.smilefinancialsolution.com/portfolio.html" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Our Website Portfolio – Smile AI Web Studio" />
+  <meta property="og:description" content="Explore our premium website portfolio showcasing modern, responsive, and SEO-friendly websites designed for businesses across industries." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://web.smilefinancialsolution.com/portfolio.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD Schemas -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Smile AI Web Studio",
+      "url": "https://web.smilefinancialsolution.com",
+      "logo": "https://web.smilefinancialsolution.com/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-7290977231",
+        "contactType": "Sales"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Website Portfolio – Smile AI Web Studio",
+      "description": "Explore our portfolio of modern, responsive, and SEO-friendly websites.",
+      "url": "https://web.smilefinancialsolution.com/portfolio.html"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://web.smilefinancialsolution.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://web.smilefinancialsolution.com/portfolio.html" }
+      ]
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --glass-bg: rgba(255,255,255,0.10);
+      --shadow-soft: 0 20px 50px -12px rgba(0,0,0,0.06);
+      --shadow-card: 0 12px 40px -8px rgba(0,0,0,0.04);
+      --radius-lg: 18px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+    /* ===== GLASS & UTILITY ===== */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+    }
+    .badge-pill {
+      background: var(--secondary);
+      color: white;
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 34px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.15);
+    }
+    .btn-primary {
+      background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      color: white;
+    }
+    .btn-primary:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 12px 30px rgba(37,99,235,0.30); }
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+    }
+    .btn-secondary:hover { transform: scale(1.03) translateY(-2px); background: #059669; }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary); color: white; }
+    .btn-accent {
+      background: var(--accent);
+      color: #0b1a33;
+    }
+    .btn-accent:hover { transform: scale(1.03) translateY(-2px); background: #d48d0a; }
+    .btn-sm {
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-sm-primary { background: var(--primary); color: white; }
+    .btn-sm-primary:hover { background: #1d4ed8; transform: scale(1.02); }
+    .btn-sm-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
+    .btn-sm-outline:hover { background: var(--primary); color: white; }
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .section-title span { color: var(--primary); }
+    .section-sub {
+      font-size: 1.2rem;
+      color: #475569;
+      max-width: 600px;
+    }
+    .text-center { text-align: center; }
+    .flex-center { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .mt-4 { margin-top: 2rem; }
+    .mb-4 { margin-bottom: 2rem; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      padding: 16px 0; transition: var(--transition);
+      background: rgba(255,255,255,0.70); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    header.scrolled {
+      background: rgba(255,255,255,0.94); box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.6rem; font-weight: 800; color: var(--primary);
+      letter-spacing: -0.02em; display: flex; align-items: center; gap: 6px;
+    }
+    .logo span { color: var(--secondary); }
+    .logo small { font-size: 0.6rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; margin-left: 6px; }
+    nav { display: flex; align-items: center; gap: 2rem; }
+    nav a {
+      font-weight: 500; font-size: 0.95rem; color: #1e293b;
+      transition: var(--transition); position: relative;
+    }
+    nav a:hover { color: var(--primary); }
+    nav a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--primary);
+      transition: var(--transition);
+    }
+    nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--primary); }
+    nav a.active::after { width: 100%; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 28px; height: 3px; background: #1e293b; border-radius: 4px; transition: var(--transition); }
+
+    /* ===== HERO ===== */
+    #portfolio-hero {
+      padding: 140px 0 70px;
+      background: linear-gradient(165deg, #f0f7ff 0%, #ffffff 100%);
+      position: relative; overflow: hidden;
+    }
+    #portfolio-hero .container {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem; font-weight: 900; line-height: 1.1; letter-spacing: -0.03em;
+    }
+    .hero-content h1 .highlight { color: var(--primary); }
+    .hero-content p {
+      font-size: 1.2rem; color: #334155; margin: 1.5rem 0 2rem;
+      max-width: 520px;
+    }
+    .breadcrumb { font-size: 0.9rem; color: #475569; margin-top: 1rem; }
+    .breadcrumb a { color: var(--primary); }
+    .breadcrumb span { color: #94a3b8; }
+    .hero-illustration {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="160" fill="%232563EB" opacity="0.05"/><circle cx="200" cy="200" r="120" fill="%2310B981" opacity="0.04"/><circle cx="200" cy="200" r="80" fill="%23F59E0B" opacity="0.06"/><rect x="145" y="115" width="110" height="130" rx="16" fill="white" stroke="%232563EB" stroke-width="2.5"/><rect x="165" y="135" width="70" height="14" rx="8" fill="%232563EB"/><rect x="165" y="165" width="70" height="8" rx="4" fill="%23cbd5e1"/><rect x="165" y="185" width="70" height="8" rx="4" fill="%23cbd5e1"/><rect x="165" y="205" width="45" height="8" rx="4" fill="%23cbd5e1"/><circle cx="110" cy="95" r="28" fill="%23F59E0B" opacity="0.20"/><circle cx="320" cy="295" r="22" fill="%2310B981" opacity="0.15"/></svg>');
+      background-size: contain; background-repeat: no-repeat; background-position: center;
+      min-height: 280px; width: 100%;
+    }
+    .floating-shapes {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .floating-shapes span {
+      position: absolute; border-radius: 50%; background: var(--primary); opacity: 0.04;
+      animation: float 12s infinite alternate ease-in-out;
+    }
+    .floating-shapes span:nth-child(1) { width: 120px; height: 120px; top: 5%; left: 2%; }
+    .floating-shapes span:nth-child(2) { width: 160px; height: 160px; bottom: 5%; right: 3%; background: var(--accent); animation-delay: 0.5s; }
+    .floating-shapes span:nth-child(3) { width: 80px; height: 80px; top: 50%; right: 0%; background: var(--secondary); animation-delay: 1s; }
+    @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-40px) rotate(10deg); } }
+
+    /* ===== FILTER ===== */
+    #filter-section { padding: 40px 0; background: white; border-bottom: 1px solid #eef2f6; }
+    .filter-buttons {
+      display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center;
+    }
+    .filter-btn {
+      padding: 10px 24px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+      transition: var(--transition); color: #475569;
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+    /* ===== PORTFOLIO GRID ===== */
+    #portfolio-grid { padding: 80px 0; background: #f8fafc; }
+    .portfolio-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .portfolio-item {
+      background: white; border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid #eef2f6;
+      transition: var(--transition);
+    }
+    .portfolio-item:hover { transform: translateY(-8px); box-shadow: var(--shadow-card); border-color: var(--primary); }
+    .portfolio-item .preview {
+      height: 200px; background: #e2e8f0; display: flex; align-items: center;
+      justify-content: center; color: #94a3b8; font-weight: 500; position: relative;
+      background-image: linear-gradient(45deg, #e2e8f0 25%, #f1f5f9 25%, #f1f5f9 50%, #e2e8f0 50%, #e2e8f0 75%, #f1f5f9 75%);
+      background-size: 20px 20px;
+    }
+    .portfolio-item .preview .placeholder-icon { font-size: 4rem; opacity: 0.3; }
+    .portfolio-item .content { padding: 1.5rem; }
+    .portfolio-item .content h3 { font-weight: 700; font-size: 1.2rem; }
+    .portfolio-item .content .industry { color: var(--primary); font-size: 0.85rem; font-weight: 600; }
+    .portfolio-item .content p { color: #475569; font-size: 0.9rem; margin: 0.5rem 0; }
+    .portfolio-item .badge-group { display: flex; gap: 6px; flex-wrap: wrap; margin: 0.5rem 0; }
+    .portfolio-item .badge-group span {
+      background: #eef2f6; padding: 2px 12px; border-radius: 100px;
+      font-size: 0.7rem; font-weight: 600; color: #475569;
+    }
+    .portfolio-item .badge-group .seo-badge { background: #dbeafe; color: var(--primary); }
+    .portfolio-item .badge-group .responsive-badge { background: #d1fae5; color: var(--secondary); }
+    .portfolio-item .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    .portfolio-item .btn-sm { padding: 8px 18px; font-size: 0.8rem; }
+    .portfolio-item .btn-sm-whatsapp { background: #25D366; color: white; }
+    .portfolio-item .btn-sm-whatsapp:hover { background: #1da851; }
+
+    /* ===== FEATURED PROJECTS ===== */
+    #featured { padding: 80px 0; background: white; }
+    .featured-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+      margin-top: 2rem;
+    }
+    .featured-card {
+      background: #f8fafc; border-radius: var(--radius-lg); overflow: hidden;
+      border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .featured-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
+    .featured-card .preview { height: 180px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; color: #94a3b8; background-image: linear-gradient(45deg, #e2e8f0 25%, #f1f5f9 25%, #f1f5f9 50%, #e2e8f0 50%, #e2e8f0 75%, #f1f5f9 75%); background-size: 20px 20px; }
+    .featured-card .content { padding: 1.5rem; }
+    .featured-card .content h3 { font-weight: 700; }
+    .featured-card .content p { color: #475569; font-size: 0.9rem; }
+
+    /* ===== PROCESS ===== */
+    #process { padding: 80px 0; background: #f8fafc; }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .process-step {
+      background: white; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .process-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+    .process-step .num { font-size: 2rem; font-weight: 800; color: var(--primary); opacity: 0.15; }
+    .process-step h3 { font-weight: 700; font-size: 0.85rem; margin: 0.5rem 0; }
+
+    /* ===== TECH ===== */
+    #tech { padding: 80px 0; background: white; }
+    .tech-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .tech-item {
+      background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; font-weight: 600; border: 1px solid #eef2f6;
+      transition: var(--transition);
+    }
+    .tech-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+
+    /* ===== WHY CHOOSE ===== */
+    #why-choose { padding: 80px 0; background: #f8fafc; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .why-item {
+      background: white; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; font-weight: 600; border: 1px solid #eef2f6;
+      transition: var(--transition);
+    }
+    .why-item:hover { background: var(--primary); color: white; transform: scale(1.02); }
+
+    /* ===== CLIENT RESULTS ===== */
+    #results { padding: 80px 0; background: white; }
+    .results-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .result-item {
+      background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .result-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+    .result-item .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+
+    /* ===== CTA ===== */
+    #final-cta {
+      padding: 80px 0; background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      color: white; text-align: center;
+    }
+    #final-cta h2 { font-size: 2.8rem; font-weight: 800; }
+    #final-cta .btn { box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0b1a33; color: #cbd5e1; padding: 3rem 0;
+    }
+    footer .container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    footer a { display: block; margin: 6px 0; transition: var(--transition); }
+    footer a:hover { color: white; padding-left: 4px; }
+    footer .powered { margin-top: 2rem; border-top: 1px solid #1e293b; padding-top: 1.5rem; text-align: center; }
+
+    /* ===== FLOATING BUTTONS ===== */
+    .floating-btn {
+      position: fixed; right: 24px; z-index: 999;
+      width: 56px; height: 56px; border-radius: 60px;
+      background: var(--primary); color: white; border: none;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.25);
+      font-size: 1.5rem; cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .floating-btn:hover { transform: scale(1.08); }
+    .floating-btn.whatsapp { bottom: 100px; background: #25D366; }
+    .floating-btn.call { bottom: 170px; background: var(--secondary); }
+    .floating-btn.top { bottom: 30px; background: var(--accent); color: #0b1a33; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      #portfolio-hero .container { grid-template-columns: 1fr; text-align: center; }
+      .hero-content p { margin-left: auto; margin-right: auto; }
+      .featured-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: repeat(4, 1fr); }
+      footer .container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+      nav.open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 2rem; gap: 1rem; box-shadow: var(--shadow-soft); border-radius: 0 0 24px 24px; }
+      .hero-content h1 { font-size: 2.4rem; }
+      .section-title { font-size: 2rem; }
+      .featured-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      footer .container { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 2rem; }
+      .btn { padding: 12px 24px; font-size: 0.9rem; }
+      .process-steps { grid-template-columns: 1fr; }
+      .floating-btn { width: 48px; height: 48px; font-size: 1.2rem; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Smile<span>AI</span><small>Web Studio</small></a>
+      <nav id="navbar">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html" class="active">Portfolio</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn-primary" style="padding:8px 22px;font-size:0.85rem;">Get FREE Demo</a>
+      </nav>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="portfolio-hero">
+    <div class="floating-shapes"><span></span><span></span><span></span></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="badge-pill" style="background:var(--primary);">Our Work</span>
+        <h1>Our <span class="highlight">Website Portfolio</span></h1>
+        <p>Explore modern, responsive and SEO-friendly website designs created for different industries. Get inspired by our work.</p>
+        <div class="flex-center" style="justify-content:flex-start;">
+          <a href="contact.html" class="btn btn-primary">Request FREE Demo</a>
+          <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20to%20see%20your%20portfolio." class="btn btn-secondary">Chat on WhatsApp</a>
+        </div>
+        <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Portfolio</span></div>
+      </div>
+      <div class="hero-illustration"></div>
+    </div>
+  </section>
+
+  <!-- FILTER -->
+  <section id="filter-section">
+    <div class="container">
+      <div class="filter-buttons" id="filterButtons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="business">Business</button>
+        <button class="filter-btn" data-filter="finance">Finance</button>
+        <button class="filter-btn" data-filter="restaurant">Restaurant</button>
+        <button class="filter-btn" data-filter="clinic">Clinic</button>
+        <button class="filter-btn" data-filter="school">School</button>
+        <button class="filter-btn" data-filter="realestate">Real Estate</button>
+        <button class="filter-btn" data-filter="travel">Travel</button>
+        <button class="filter-btn" data-filter="hotel">Hotel</button>
+        <button class="filter-btn" data-filter="portfolio">Portfolio</button>
+        <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+        <button class="filter-btn" data-filter="ngo">NGO</button>
+        <button class="filter-btn" data-filter="blog">Blog</button>
+        <button class="filter-btn" data-filter="webapp">Custom Web App</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO GRID -->
+  <section id="portfolio-grid">
+    <div class="container">
+      <div class="portfolio-grid" id="portfolioItems">
+        <!-- Business 1 -->
+        <div class="portfolio-item" data-category="business">
+          <div class="preview"><span class="placeholder-icon">🏢</span></div>
+          <div class="content">
+            <h3>Brand Pro Business</h3>
+            <div class="industry">Business Website</div>
+            <p>Modern corporate website with lead generation and service pages.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-business.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Business 2 -->
+        <div class="portfolio-item" data-category="business">
+          <div class="preview"><span class="placeholder-icon">📊</span></div>
+          <div class="content">
+            <h3>ConsultPro Digital</h3>
+            <div class="industry">Business Website</div>
+            <p>Professional consultancy website with client onboarding system.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-business.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Finance 1 -->
+        <div class="portfolio-item" data-category="finance">
+          <div class="preview"><span class="placeholder-icon">💰</span></div>
+          <div class="content">
+            <h3>WealthBridge Finance</h3>
+            <div class="industry">Finance Website</div>
+            <p>Trustworthy finance website with loan calculators and application forms.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-finance.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Finance 2 -->
+        <div class="portfolio-item" data-category="finance">
+          <div class="preview"><span class="placeholder-icon">🏦</span></div>
+          <div class="content">
+            <h3>LoanDSA Connect</h3>
+            <div class="industry">Finance Website</div>
+            <p>Loan DSA website with product listings and application tracking.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-finance.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Restaurant 1 -->
+        <div class="portfolio-item" data-category="restaurant">
+          <div class="preview"><span class="placeholder-icon">🍽️</span></div>
+          <div class="content">
+            <h3>Flavors Restaurant</h3>
+            <div class="industry">Restaurant Website</div>
+            <p>Beautiful restaurant website with menu display and online ordering.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-restaurant.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Restaurant 2 -->
+        <div class="portfolio-item" data-category="restaurant">
+          <div class="preview"><span class="placeholder-icon">☕</span></div>
+          <div class="content">
+            <h3>Brew & Bean Cafe</h3>
+            <div class="industry">Restaurant Website</div>
+            <p>Charming cafe website with menu and online ordering system.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-restaurant.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Clinic 1 -->
+        <div class="portfolio-item" data-category="clinic">
+          <div class="preview"><span class="placeholder-icon">🏥</span></div>
+          <div class="content">
+            <h3>CityCare Clinic</h3>
+            <div class="industry">Clinic Website</div>
+            <p>Patient-friendly clinic website with appointment booking and doctor profiles.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-clinic.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Clinic 2 -->
+        <div class="portfolio-item" data-category="clinic">
+          <div class="preview"><span class="placeholder-icon">👨‍⚕️</span></div>
+          <div class="content">
+            <h3>Dr. Sharma Clinic</h3>
+            <div class="industry">Clinic Website</div>
+            <p>Professional doctor website with services and testimonials.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-clinic.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- School 1 -->
+        <div class="portfolio-item" data-category="school">
+          <div class="preview"><span class="placeholder-icon">🏫</span></div>
+          <div class="content">
+            <h3>SmartKids Academy</h3>
+            <div class="industry">School Website</div>
+            <p>Engaging school website with course management and events calendar.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-school.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- School 2 -->
+        <div class="portfolio-item" data-category="school">
+          <div class="preview"><span class="placeholder-icon">🎓</span></div>
+          <div class="content">
+            <h3>Excel College</h3>
+            <div class="industry">School Website</div>
+            <p>Comprehensive college website with course catalog and admission management.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-school.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Real Estate 1 -->
+        <div class="portfolio-item" data-category="realestate">
+          <div class="preview"><span class="placeholder-icon">🏡</span></div>
+          <div class="content">
+            <h3>Dream Homes Realty</h3>
+            <div class="industry">Real Estate Website</div>
+            <p>Professional real estate website with property listings and virtual tours.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-realestate.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Real Estate 2 -->
+        <div class="portfolio-item" data-category="realestate">
+          <div class="preview"><span class="placeholder-icon">🏗️</span></div>
+          <div class="content">
+            <h3>BuildRight Constructions</h3>
+            <div class="industry">Real Estate Website</div>
+            <p>Construction website with project portfolio and services showcase.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-realestate.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Travel -->
+        <div class="portfolio-item" data-category="travel">
+          <div class="preview"><span class="placeholder-icon">✈️</span></div>
+          <div class="content">
+            <h3>Wanderlust Travel</h3>
+            <div class="industry">Travel Website</div>
+            <p>Beautiful travel website with tour packages and booking system.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-travel.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Hotel -->
+        <div class="portfolio-item" data-category="hotel">
+          <div class="preview"><span class="placeholder-icon">🏨</span></div>
+          <div class="content">
+            <h3>Royal Palace Hotel</h3>
+            <div class="industry">Hotel Website</div>
+            <p>Luxurious hotel website with room booking and gallery.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-hotel.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Portfolio -->
+        <div class="portfolio-item" data-category="portfolio">
+          <div class="preview"><span class="placeholder-icon">📁</span></div>
+          <div class="content">
+            <h3>Creative Studio Portfolio</h3>
+            <div class="industry">Portfolio Website</div>
+            <p>Stunning portfolio website with gallery and client testimonials.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-portfolio.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- E-commerce -->
+        <div class="portfolio-item" data-category="ecommerce">
+          <div class="preview"><span class="placeholder-icon">🛍️</span></div>
+          <div class="content">
+            <h3>ShopVibe Store</h3>
+            <div class="industry">E-commerce Website</div>
+            <p>Full-featured e-commerce website with payment integration.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-ecommerce.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- NGO -->
+        <div class="portfolio-item" data-category="ngo">
+          <div class="preview"><span class="placeholder-icon">🤝</span></div>
+          <div class="content">
+            <h3>Hope Foundation</h3>
+            <div class="industry">NGO Website</div>
+            <p>Cause-driven NGO website with donation and volunteer systems.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-ngo.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Blog -->
+        <div class="portfolio-item" data-category="blog">
+          <div class="preview"><span class="placeholder-icon">✍️</span></div>
+          <div class="content">
+            <h3>Insight Blog</h3>
+            <div class="industry">Blog Website</div>
+            <p>Professional blog website with content management and SEO.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-blog.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Custom Web App -->
+        <div class="portfolio-item" data-category="webapp">
+          <div class="preview"><span class="placeholder-icon">⚙️</span></div>
+          <div class="content">
+            <h3>TaskFlow Pro</h3>
+            <div class="industry">Custom Web Application</div>
+            <p>Custom web application with workflow automation and data management.</p>
+            <div class="badge-group"><span class="responsive-badge">Responsive</span><span class="seo-badge">SEO Ready</span></div>
+            <div class="btn-group">
+              <a href="demo-webapp.html" class="btn-sm btn-sm-outline">Live Demo</a>
+              <a href="portfolio-details.html" class="btn-sm btn-sm-primary">Project Details</a>
+              <a href="contact.html" class="btn-sm btn-sm-whatsapp">Request Similar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECTS -->
+  <section id="featured">
+    <div class="container text-center">
+      <h2 class="section-title">Featured <span>Projects</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Some of our best work across different industries.</p>
+      <div class="featured-grid">
+        <div class="featured-card">
+          <div class="preview"><span style="font-size:3rem;">🏢</span></div>
+          <div class="content"><h3>Brand Pro Business</h3><p>Corporate business website with lead generation.</p><a href="demo-business.html" class="btn-sm btn-sm-outline" style="display:inline-block;margin-top:0.5rem;">Live Demo</a></div>
+        </div>
+        <div class="featured-card">
+          <div class="preview"><span style="font-size:3rem;">💰</span></div>
+          <div class="content"><h3>WealthBridge Finance</h3><p>Trustworthy finance website with loan calculators.</p><a href="demo-finance.html" class="btn-sm btn-sm-outline" style="display:inline-block;margin-top:0.5rem;">Live Demo</a></div>
+        </div>
+        <div class="featured-card">
+          <div class="preview"><span style="font-size:3rem;">🍽️</span></div>
+          <div class="content"><h3>Flavors Restaurant</h3><p>Restaurant website with online ordering.</p><a href="demo-restaurant.html" class="btn-sm btn-sm-outline" style="display:inline-block;margin-top:0.5rem;">Live Demo</a></div>
+        </div>
+        <div class="featured-card">
+          <div class="preview"><span style="font-size:3rem;">🏥</span></div>
+          <div class="content"><h3>CityCare Clinic</h3><p>Clinic website with appointment booking.</p><a href="demo-clinic.html" class="btn-sm btn-sm-outline" style="display:inline-block;margin-top:0.5rem;">Live Demo</a></div>
+        </div>
+        <div class="featured-card">
+          <div class="preview"><span style="font-size:3rem;">🏫</span></div>
+          <div class="content"><h3>SmartKids Academy</h3><p>School website with course management.</p><a href="demo-school.html" class="btn-sm btn-sm-outline" style="display:inline-block;margin-top:0.5rem;">Live Demo</a></div>
+        </div>
+        <div class="featured-card">
+          <div class="preview"><span style="font-size:3rem;">🏡</span></div>
+          <div class="content"><h3>Dream Homes Realty</h3><p>Real estate website with property listings.</p><a href="demo-realestate.html" class="btn-sm btn-sm-outline" style="display:inline-block;margin-top:0.5rem;">Live Demo</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container text-center">
+      <h2 class="section-title">Our Design <span>Process</span></h2>
+      <p class="section-sub" style="margin:0 auto;">How we bring your vision to life.</p>
+      <div class="process-steps">
+        <div class="process-step"><div class="num">01</div><h3>Requirement</h3></div>
+        <div class="process-step"><div class="num">02</div><h3>Research</h3></div>
+        <div class="process-step"><div class="num">03</div><h3>Wireframe</h3></div>
+        <div class="process-step"><div class="num">04</div><h3>UI Design</h3></div>
+        <div class="process-step"><div class="num">05</div><h3>Development</h3></div>
+        <div class="process-step"><div class="num">06</div><h3>Testing</h3></div>
+        <div class="process-step"><div class="num">07</div><h3>Launch</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH -->
+  <section id="tech">
+    <div class="container text-center">
+      <h2 class="section-title">Technologies <span>We Use</span></h2>
+      <div class="tech-grid">
+        <div class="tech-item">HTML5</div>
+        <div class="tech-item">CSS3</div>
+        <div class="tech-item">JavaScript</div>
+        <div class="tech-item">Firebase</div>
+        <div class="tech-item">Firestore</div>
+        <div class="tech-item">Responsive Design</div>
+        <div class="tech-item">SEO</div>
+        <div class="tech-item">Performance Optimization</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section id="why-choose">
+    <div class="container text-center">
+      <h2 class="section-title">Why Clients <span>Choose Us</span></h2>
+      <div class="why-grid">
+        <div class="why-item">⚡ Fast Delivery</div>
+        <div class="why-item">💻 Clean Code</div>
+        <div class="why-item">🔍 SEO Friendly</div>
+        <div class="why-item">📱 Mobile Responsive</div>
+        <div class="why-item">🌐 Google Ready</div>
+        <div class="why-item">🔒 Secure</div>
+        <div class="why-item">💰 Affordable</div>
+        <div class="why-item">🚀 Future Ready</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results">
+    <div class="container text-center">
+      <h2 class="section-title">What We <span>Deliver</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Real results that make a difference.</p>
+      <div class="results-grid">
+        <div class="result-item"><span class="icon">📈</span><h3>Improved User Experience</h3></div>
+        <div class="result-item"><span class="icon">📱</span><h3>Better Mobile Compatibility</h3></div>
+        <div class="result-item"><span class="icon">⚡</span><h3>Fast Loading</h3></div>
+        <div class="result-item"><span class="icon">🎨</span><h3>Modern Design</h3></div>
+        <div class="result-item"><span class="icon">🔍</span><h3>SEO Optimized</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="final-cta">
+    <div class="container">
+      <h2>Need a Website Like These?</h2>
+      <p style="font-size:1.2rem;margin:1rem 0;">Let's create something amazing for your business.</p>
+      <div class="flex-center" style="margin-top:1.5rem;">
+        <a href="contact.html" class="btn btn-primary" style="background:white;color:var(--primary);">Request FREE Demo</a>
+        <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20a%20website%20like%20your%20portfolio." class="btn btn-secondary" style="background:white;color:var(--primary);">WhatsApp</a>
+        <a href="tel:+917290977231" class="btn btn-accent" style="background:white;color:var(--primary);">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div><h3 style="color:white;">Smile AI Web Studio</h3><p style="margin:0.5rem 0;">Premium website design and development for businesses across India.</p></div>
+      <div><h4 style="color:white;">Quick Links</h4><a href="index.html">Home</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
+      <div><h4 style="color:white;">Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+      <div><h4 style="color:white;">Contact</h4><a href="https://wa.me/917290977231" target="_blank">WhatsApp</a><a href="tel:+917290977231">Call Now</a></div>
+    </div>
+    <div class="container powered">© 2025 Smile AI Web Studio. Powered by Smile Financial Solution.</div>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+  <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20to%20see%20your%20portfolio." class="floating-btn whatsapp" aria-label="WhatsApp">💬</a>
+  <a href="tel:+917290977231" class="floating-btn call" aria-label="Call">📞</a>
+  <button class="floating-btn top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+    });
+
+    // ===== HEADER SCROLL =====
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // ===== HAMBURGER =====
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navbar').classList.toggle('open');
+    });
+    document.querySelectorAll('#navbar a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('navbar').classList.remove('open'));
+    });
+
+    // ===== FILTER =====
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Update active button
+        filterButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        const filter = this.dataset.filter;
+        portfolioItems.forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = 'block';
+            item.style.animation = 'fadeIn 0.5s ease';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // ===== SCROLL REVEAL =====
+    const revealItems = document.querySelectorAll('.portfolio-item, .featured-card, .why-item, .result-item, .tech-item, .process-step');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+    revealItems.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      revealObserver.observe(el);
+    });
+
+    console.log('🚀 portfolio.html – Smile AI Web Studio');
+    console.log('📌 Portfolio page loaded successfully.');
+  </script>
+</body>
+</html>
