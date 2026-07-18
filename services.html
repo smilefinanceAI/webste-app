@@ -169,6 +169,8 @@
     .btn-sm-primary:hover { background: #1d4ed8; transform: scale(1.02); }
     .btn-sm-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
     .btn-sm-outline:hover { background: var(--primary); color: white; }
+    .btn-sm-whatsapp { background: #25D366; color: white; }
+    .btn-sm-whatsapp:hover { background: #1da851; transform: scale(1.02); }
     .section-title {
       font-size: 2.8rem;
       font-weight: 800;
@@ -310,13 +312,6 @@
       font-size: 0.85rem; color: var(--primary); font-weight: 600; margin: 0.5rem 0;
     }
     .service-card .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
-    .service-card .btn-sm { padding: 8px 18px; border-radius: 60px; font-size: 0.8rem; font-weight: 600; border: none; cursor: pointer; transition: var(--transition); }
-    .service-card .btn-sm-primary { background: var(--primary); color: white; }
-    .service-card .btn-sm-primary:hover { background: #1d4ed8; transform: scale(1.02); }
-    .service-card .btn-sm-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
-    .service-card .btn-sm-outline:hover { background: var(--primary); color: white; }
-    .service-card .btn-sm-whatsapp { background: #25D366; color: white; }
-    .service-card .btn-sm-whatsapp:hover { background: #1da851; transform: scale(1.02); }
 
     /* ===== WHY CHOOSE ===== */
     #why-choose { padding: 80px 0; background: white; }
@@ -351,7 +346,6 @@
       font-size: 2rem; font-weight: 800; color: var(--primary); opacity: 0.15;
     }
     .step-item h3 { font-weight: 700; font-size: 0.9rem; margin: 0.5rem 0; }
-    .step-item .arrow { color: var(--primary); font-size: 1.5rem; }
 
     /* ===== INDUSTRIES ===== */
     #industries { padding: 80px 0; background: white; }
@@ -507,7 +501,7 @@
         <a href="about.html">About</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a href="#demo-popup" class="btn btn-primary" style="padding:8px 22px;font-size:0.85rem;" onclick="openPopup()">Get FREE Demo</a>
+        <a href="contact.html" class="btn btn-primary" style="padding:8px 22px;font-size:0.85rem;">Get FREE Demo</a>
       </nav>
       <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
     </div>
@@ -522,7 +516,7 @@
         <h1>Professional Website Design Services for <span class="highlight">Every Business</span></h1>
         <p>From startups to growing businesses, we create modern, fast, mobile-friendly and SEO-ready websites that help you build trust and generate customers.</p>
         <div class="flex-center" style="justify-content:flex-start;">
-          <a href="#demo-popup" class="btn btn-primary" onclick="openPopup()">Get FREE Website Demo</a>
+          <a href="contact.html" class="btn btn-primary">Get FREE Website Demo</a>
           <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20to%20know%20about%20your%20services." class="btn btn-secondary">Chat on WhatsApp</a>
         </div>
         <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Services</span></div>
@@ -546,9 +540,9 @@
           <ul class="features"><li>Brand identity focused design</li><li>Lead generation forms</li><li>Google Maps integration</li></ul>
           <div class="delivery">⏱️ Delivery: 24-48 hours</div>
           <div class="btn-group">
-            <button class="btn-sm btn-sm-outline" onclick="alert('Service details page coming soon.')">View Details</button>
-            <button class="btn-sm btn-sm-primary" onclick="openPopup()">Request FREE Demo</button>
-            <button class="btn-sm btn-sm-whatsapp" onclick="window.open('https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Business%20Website.','_blank')">Chat</button>
+            <a href="service-details.html?service=business" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Business%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
           </div>
         </div>
         <!-- Landing Page -->
@@ -560,9 +554,9 @@
           <ul class="features"><li>Conversion optimized design</li><li>Clear call-to-action</li><li>A/B testing ready</li></ul>
           <div class="delivery">⏱️ Delivery: 12-24 hours</div>
           <div class="btn-group">
-            <button class="btn-sm btn-sm-outline" onclick="alert('Service details page coming soon.')">View Details</button>
-            <button class="btn-sm btn-sm-primary" onclick="openPopup()">Request FREE Demo</button>
-            <button class="btn-sm btn-sm-whatsapp" onclick="window.open('https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Landing%20Page.','_blank')">Chat</button>
+            <a href="service-details.html?service=landing" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Landing%20Page." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
           </div>
         </div>
         <!-- Portfolio Website -->
@@ -574,9 +568,9 @@
           <ul class="features"><li>Gallery and project management</li><li>Client testimonial section</li><li>Case study integration</li></ul>
           <div class="delivery">⏱️ Delivery: 24-48 hours</div>
           <div class="btn-group">
-            <button class="btn-sm btn-sm-outline" onclick="alert('Service details page coming soon.')">View Details</button>
-            <button class="btn-sm btn-sm-primary" onclick="openPopup()">Request FREE Demo</button>
-            <button class="btn-sm btn-sm-whatsapp" onclick="window.open('https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Portfolio%20Website.','_blank')">Chat</button>
+            <a href="service-details.html?service=portfolio" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Portfolio%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
           </div>
         </div>
         <!-- E-commerce Website -->
@@ -588,9 +582,9 @@
           <ul class="features"><li>Secure payment gateway</li><li>Product catalog management</li><li>Order tracking system</li></ul>
           <div class="delivery">⏱️ Delivery: 3-5 days</div>
           <div class="btn-group">
-            <button class="btn-sm btn-sm-outline" onclick="alert('Service details page coming soon.')">View Details</button>
-            <button class="btn-sm btn-sm-primary" onclick="openPopup()">Request FREE Demo</button>
-            <button class="btn-sm btn-sm-whatsapp" onclick="window.open('https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20an%20E-commerce%20Website.','_blank')">Chat</button>
+            <a href="service-details.html?service=ecommerce" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20an%20E-commerce%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
           </div>
         </div>
         <!-- Restaurant Website -->
@@ -602,37 +596,121 @@
           <ul class="features"><li>Digital menu management</li><li>Online reservation system</li><li>Food gallery showcase</li></ul>
           <div class="delivery">⏱️ Delivery: 24-48 hours</div>
           <div class="btn-group">
-            <button class="btn-sm btn-sm-outline" onclick="alert('Service details page coming soon.')">View Details</button>
-            <button class="btn-sm btn-sm-primary" onclick="openPopup()">Request FREE Demo</button>
-            <button class="btn-sm btn-sm-whatsapp" onclick="window.open('https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Restaurant%20Website.','_blank')">Chat</button>
+            <a href="service-details.html?service=restaurant" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Restaurant%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Cafe Website -->
+        <div class="service-card">
+          <div class="icon">☕</div>
+          <h3>Cafe Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Charming cafe websites with menu display, online ordering, and location information.</p>
+          <ul class="features"><li>Digital menu management</li><li>Online ordering system</li><li>Location and hours</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=cafe" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Cafe%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Hotel Website -->
+        <div class="service-card">
+          <div class="icon">🏨</div>
+          <h3>Hotel Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Luxurious hotel websites with room booking, gallery, and guest services information.</p>
+          <ul class="features"><li>Room booking system</li><li>Photo gallery</li><li>Amenities and services</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=hotel" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Hotel%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
           </div>
         </div>
         <!-- Clinic Website -->
         <div class="service-card">
           <div class="icon">🏥</div>
-          <h3>Clinic & Hospital Website</h3>
+          <h3>Clinic Website</h3>
           <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
           <p>Patient-friendly websites with appointment booking, doctor profiles, and health resources.</p>
           <ul class="features"><li>Appointment scheduling</li><li>Doctor and staff profiles</li><li>Health blog integration</li></ul>
           <div class="delivery">⏱️ Delivery: 24-48 hours</div>
           <div class="btn-group">
-            <button class="btn-sm btn-sm-outline" onclick="alert('Service details page coming soon.')">View Details</button>
-            <button class="btn-sm btn-sm-primary" onclick="openPopup()">Request FREE Demo</button>
-            <button class="btn-sm btn-sm-whatsapp" onclick="window.open('https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Clinic%20Website.','_blank')">Chat</button>
+            <a href="service-details.html?service=clinic" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Clinic%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Hospital Website -->
+        <div class="service-card">
+          <div class="icon">🏨</div>
+          <h3>Hospital Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Comprehensive hospital websites with department pages, doctor profiles, and patient services.</p>
+          <ul class="features"><li>Department management</li><li>Doctor profiles</li><li>Patient resources</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=hospital" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Hospital%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Doctor Website -->
+        <div class="service-card">
+          <div class="icon">👨‍⚕️</div>
+          <h3>Doctor Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Professional doctor websites with appointment booking, services, and patient testimonials.</p>
+          <ul class="features"><li>Appointment booking</li><li>Services and specialties</li><li>Patient testimonials</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=doctor" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Doctor%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
           </div>
         </div>
         <!-- School Website -->
         <div class="service-card">
           <div class="icon">🏫</div>
-          <h3>School & College Website</h3>
+          <h3>School Website</h3>
           <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
           <p>Informative and engaging websites for educational institutions, with course management.</p>
           <ul class="features"><li>Course and program pages</li><li>Admission management</li><li>Student portal integration</li></ul>
           <div class="delivery">⏱️ Delivery: 24-48 hours</div>
           <div class="btn-group">
-            <button class="btn-sm btn-sm-outline" onclick="alert('Service details page coming soon.')">View Details</button>
-            <button class="btn-sm btn-sm-primary" onclick="openPopup()">Request FREE Demo</button>
-            <button class="btn-sm btn-sm-whatsapp" onclick="window.open('https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20School%20Website.','_blank')">Chat</button>
+            <a href="service-details.html?service=school" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20School%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- College Website -->
+        <div class="service-card">
+          <div class="icon">🎓</div>
+          <h3>College Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Comprehensive college websites with course catalogs, admission, and student resources.</p>
+          <ul class="features"><li>Course catalog</li><li>Admission management</li><li>Student resources</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=college" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20College%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Coaching Website -->
+        <div class="service-card">
+          <div class="icon">📚</div>
+          <h3>Coaching Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Professional coaching websites with course listings, student enrollment, and testimonials.</p>
+          <ul class="features"><li>Course listings</li><li>Student enrollment</li><li>Testimonials</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=coaching" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Coaching%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
           </div>
         </div>
         <!-- Finance Website -->
@@ -644,9 +722,65 @@
           <ul class="features"><li>Loan application forms</li><li>EMI calculator integration</li><li>Trust building design</li></ul>
           <div class="delivery">⏱️ Delivery: 24-48 hours</div>
           <div class="btn-group">
-            <button class="btn-sm btn-sm-outline" onclick="alert('Service details page coming soon.')">View Details</button>
-            <button class="btn-sm btn-sm-primary" onclick="openPopup()">Request FREE Demo</button>
-            <button class="btn-sm btn-sm-whatsapp" onclick="window.open('https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Finance%20Website.','_blank')">Chat</button>
+            <a href="service-details.html?service=finance" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Finance%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Loan DSA Website -->
+        <div class="service-card">
+          <div class="icon">🏦</div>
+          <h3>Loan DSA Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Specialized loan DSA websites with loan products, applications, and lead generation.</p>
+          <ul class="features"><li>Loan product listing</li><li>Lead generation forms</li><li>EMI calculators</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=loan" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Loan%20DSA%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Insurance Website -->
+        <div class="service-card">
+          <div class="icon">🛡️</div>
+          <h3>Insurance Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Trustworthy insurance websites with policy details, claim forms, and agent contact.</p>
+          <ul class="features"><li>Policy management</li><li>Claim forms</li><li>Agent profiles</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=insurance" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20an%20Insurance%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- CA Website -->
+        <div class="service-card">
+          <div class="icon">🧾</div>
+          <h3>CA Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Professional websites for chartered accountants with service listings and client resources.</p>
+          <ul class="features"><li>Service listings</li><li>Client resources</li><li>Appointment booking</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=ca" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20CA%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Advocate Website -->
+        <div class="service-card">
+          <div class="icon">⚖️</div>
+          <h3>Advocate Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Professional lawyer and advocate websites with practice areas, case results, and consultation booking.</p>
+          <ul class="features"><li>Practice areas</li><li>Case results</li><li>Consultation booking</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=advocate" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20an%20Advocate%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
           </div>
         </div>
         <!-- Real Estate Website -->
@@ -658,37 +792,163 @@
           <ul class="features"><li>Property listing management</li><li>Virtual tour integration</li><li>Agent and broker profiles</li></ul>
           <div class="delivery">⏱️ Delivery: 24-48 hours</div>
           <div class="btn-group">
-            <button class="btn-sm btn-sm-outline" onclick="alert('Service details page coming soon.')">View Details</button>
-            <button class="btn-sm btn-sm-primary" onclick="openPopup()">Request FREE Demo</button>
-            <button class="btn-sm btn-sm-whatsapp" onclick="window.open('https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Real%20Estate%20Website.','_blank')">Chat</button>
+            <a href="service-details.html?service=realestate" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Real%20Estate%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Construction Website -->
+        <div class="service-card">
+          <div class="icon">🏗️</div>
+          <h3>Construction Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Professional construction websites with project portfolios, services, and team profiles.</p>
+          <ul class="features"><li>Project portfolio</li><li>Services listing</li><li>Team profiles</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=construction" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Construction%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
           </div>
         </div>
         <!-- Travel Website -->
         <div class="service-card">
           <div class="icon">✈️</div>
-          <h3>Travel Agency Website</h3>
+          <h3>Travel Website</h3>
           <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
           <p>Beautiful travel websites with booking systems, destination guides, and tour packages.</p>
           <ul class="features"><li>Tour package management</li><li>Booking and enquiry forms</li><li>Destination gallery</li></ul>
           <div class="delivery">⏱️ Delivery: 24-48 hours</div>
           <div class="btn-group">
-            <button class="btn-sm btn-sm-outline" onclick="alert('Service details page coming soon.')">View Details</button>
-            <button class="btn-sm btn-sm-primary" onclick="openPopup()">Request FREE Demo</button>
-            <button class="btn-sm btn-sm-whatsapp" onclick="window.open('https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Travel%20Website.','_blank')">Chat</button>
+            <a href="service-details.html?service=travel" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Travel%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
           </div>
         </div>
         <!-- NGO Website -->
         <div class="service-card">
           <div class="icon">🤝</div>
-          <h3>NGO & Non-Profit Website</h3>
+          <h3>NGO Website</h3>
           <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
           <p>Cause-driven websites with donation systems, volunteer management, and impact stories.</p>
           <ul class="features"><li>Donation integration</li><li>Volunteer registration</li><li>Impact and story pages</li></ul>
           <div class="delivery">⏱️ Delivery: 24-48 hours</div>
           <div class="btn-group">
-            <button class="btn-sm btn-sm-outline" onclick="alert('Service details page coming soon.')">View Details</button>
-            <button class="btn-sm btn-sm-primary" onclick="openPopup()">Request FREE Demo</button>
-            <button class="btn-sm btn-sm-whatsapp" onclick="window.open('https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20an%20NGO%20Website.','_blank')">Chat</button>
+            <a href="service-details.html?service=ngo" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20an%20NGO%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Retail Website -->
+        <div class="service-card">
+          <div class="icon">🛒</div>
+          <h3>Retail Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Modern retail websites with product catalogs, online ordering, and store locator.</p>
+          <ul class="features"><li>Product catalog</li><li>Online ordering</li><li>Store locator</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=retail" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Retail%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Manufacturer Website -->
+        <div class="service-card">
+          <div class="icon">🏭</div>
+          <h3>Manufacturer Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Professional manufacturing websites with product catalogs, services, and company profiles.</p>
+          <ul class="features"><li>Product catalogs</li><li>Services listing</li><li>Company profile</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=manufacturer" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Manufacturer%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Distributor Website -->
+        <div class="service-card">
+          <div class="icon">📦</div>
+          <h3>Distributor Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Professional distributor websites with product catalogs, client portals, and order management.</p>
+          <ul class="features"><li>Product catalogs</li><li>Client portals</li><li>Order management</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=distributor" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Distributor%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Beauty Salon Website -->
+        <div class="service-card">
+          <div class="icon">💇</div>
+          <h3>Beauty Salon Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Elegant beauty salon websites with service listings, appointment booking, and portfolio.</p>
+          <ul class="features"><li>Service listings</li><li>Appointment booking</li><li>Portfolio gallery</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=salon" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Beauty%20Salon%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Gym Website -->
+        <div class="service-card">
+          <div class="icon">💪</div>
+          <h3>Gym Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Dynamic gym websites with membership plans, class schedules, and trainer profiles.</p>
+          <ul class="features"><li>Membership plans</li><li>Class schedules</li><li>Trainer profiles</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=gym" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Gym%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Photography Website -->
+        <div class="service-card">
+          <div class="icon">📸</div>
+          <h3>Photography Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Stunning photography websites with galleries, client proofing, and booking system.</p>
+          <ul class="features"><li>Photo galleries</li><li>Client proofing</li><li>Booking system</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=photography" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Photography%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Blog Website -->
+        <div class="service-card">
+          <div class="icon">✍️</div>
+          <h3>Blog Website</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Professional blog websites with content management, categories, and reader engagement.</p>
+          <ul class="features"><li>Content management</li><li>Categories and tags</li><li>Reader engagement</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=blog" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Blog%20Website." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- News Portal -->
+        <div class="service-card">
+          <div class="icon">📰</div>
+          <h3>News Portal</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Professional news portals with categories, breaking news, and subscription management.</p>
+          <ul class="features"><li>News categories</li><li>Breaking news</li><li>Subscription management</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=news" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20News%20Portal." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
           </div>
         </div>
         <!-- Custom Web Application -->
@@ -700,9 +960,65 @@
           <ul class="features"><li>Custom business logic</li><li>Database integration</li><li>User authentication</li></ul>
           <div class="delivery">⏱️ Delivery: 5-10 days</div>
           <div class="btn-group">
-            <button class="btn-sm btn-sm-outline" onclick="alert('Service details page coming soon.')">View Details</button>
-            <button class="btn-sm btn-sm-primary" onclick="openPopup()">Request FREE Demo</button>
-            <button class="btn-sm btn-sm-whatsapp" onclick="window.open('https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Custom%20Web%20Application.','_blank')">Chat</button>
+            <a href="service-details.html?service=webapp" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Custom%20Web%20Application." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Website Redesign -->
+        <div class="service-card">
+          <div class="icon">🔄</div>
+          <h3>Website Redesign</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Transform your existing website with a modern redesign that improves performance and conversions.</p>
+          <ul class="features"><li>Modern design updates</li><li>Performance optimization</li><li>Mobile responsiveness</li></ul>
+          <div class="delivery">⏱️ Delivery: 3-5 days</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=redesign" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20Website%20Redesign." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Website Maintenance -->
+        <div class="service-card">
+          <div class="icon">🛠️</div>
+          <h3>Website Maintenance</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Professional website maintenance services including updates, backups, and security monitoring.</p>
+          <ul class="features"><li>Regular updates</li><li>Backup management</li><li>Security monitoring</li></ul>
+          <div class="delivery">⏱️ Delivery: Ongoing</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=maintenance" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20Website%20Maintenance." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- SEO Optimization -->
+        <div class="service-card">
+          <div class="icon">📈</div>
+          <h3>SEO Optimization</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Comprehensive SEO optimization services for better search visibility and organic traffic.</p>
+          <ul class="features"><li>On-page SEO optimization</li><li>Technical SEO audit</li><li>Keyword research</li></ul>
+          <div class="delivery">⏱️ Delivery: 3-5 days</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=seo" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20SEO%20Optimization." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Google Business Profile -->
+        <div class="service-card">
+          <div class="icon">📍</div>
+          <h3>Google Business Profile</h3>
+          <div class="badge-group"><span class="seo-badge">SEO Ready</span><span class="responsive-badge">Responsive</span></div>
+          <p>Professional Google Business Profile setup and optimization for local search visibility.</p>
+          <ul class="features"><li>Profile setup</li><li>Optimization</li><li>Review management</li></ul>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <div class="btn-group">
+            <a href="service-details.html?service=google-business" class="btn-sm btn-sm-outline">View Details</a>
+            <a href="contact.html" class="btn-sm btn-sm-primary">Request FREE Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20Google%20Business%20Profile." target="_blank" class="btn-sm btn-sm-whatsapp">Chat</a>
           </div>
         </div>
       </div>
@@ -815,7 +1131,7 @@
         <div class="faq-item"><div class="faq-question">Can I update the website myself? <span>+</span></div><div class="faq-answer">Yes, we provide easy-to-use CMS or can train you to manage content.</div></div>
         <div class="faq-item"><div class="faq-question">Do you offer maintenance and support? <span>+</span></div><div class="faq-answer">Yes, we offer maintenance plans and lifetime guidance for all our clients.</div></div>
         <div class="faq-item"><div class="faq-question">What industries do you specialize in? <span>+</span></div><div class="faq-answer">We work with restaurants, clinics, schools, finance, real estate, travel, and many more.</div></div>
-        <div class="faq-item"><div class="faq-question">How do I get started? <span>+</span></div><div class="faq-answer">Simply click the "Request FREE Demo" button, fill the form, and we'll contact you.</div></div>
+        <div class="faq-item"><div class="faq-question">How do I get started? <span>+</span></div><div class="faq-answer">Simply click the "Request FREE Demo" button and we'll contact you.</div></div>
       </div>
     </div>
   </section>
@@ -826,7 +1142,7 @@
       <h2>Ready to Grow Your Business Online?</h2>
       <p style="font-size:1.2rem;margin:1rem 0;">Get a FREE Website Demo Today.</p>
       <div class="flex-center" style="margin-top:1.5rem;">
-        <a href="#demo-popup" class="btn btn-primary" style="background:white;color:var(--primary);" onclick="openPopup()">Get FREE Demo</a>
+        <a href="contact.html" class="btn btn-primary" style="background:white;color:var(--primary);">Get FREE Demo</a>
         <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20to%20know%20about%20your%20services." class="btn btn-secondary" style="background:white;color:var(--primary);">WhatsApp</a>
         <a href="tel:+917290977231" class="btn btn-accent" style="background:white;color:var(--primary);">Call Now</a>
       </div>
@@ -965,8 +1281,8 @@
     });
 
     console.log('🚀 services.html – Smile AI Web Studio');
+    console.log('📌 All View Details buttons now link to service-details.html with proper parameters.');
     console.log('🔮 Future Firestore integration ready.');
-    console.log('📌 All service detail pages future-ready.');
   </script>
 </body>
 </html>
