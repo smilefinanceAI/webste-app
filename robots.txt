@@ -1,0 +1,167 @@
+# ============================================================
+# ROBOTS.TXT – Smile AI Web Studio
+# Powered by Smile Financial Solution
+# Website: https://web.smilefinancialsolution.com
+# ============================================================
+
+# ============================================================
+# ALLOW ALL SEARCH ENGINES
+# Google, Bing, Yahoo, DuckDuckGo, and others
+# ============================================================
+User-agent: *
+Allow: /
+
+# ============================================================
+# BLOCK SENSITIVE & PRIVATE DIRECTORIES
+# ============================================================
+
+# Admin & Dashboard
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /cms/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+
+# Private & Internal
+Disallow: /private/
+Disallow: /internal/
+Disallow: /staff/
+
+# Database & API
+Disallow: /api/
+Disallow: /firebase/
+Disallow: /firestore/
+Disallow: /database/
+Disallow: /data/
+
+# Development & Config
+Disallow: /config/
+Disallow: /env/
+Disallow: /.env
+Disallow: /src/
+Disallow: /dist/
+Disallow: /node_modules/
+
+# Server & Build
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.vercel/
+Disallow: /vercel/
+Disallow: /build/
+Disallow: /logs/
+
+# Sensitive Files
+Disallow: /*.log$
+Disallow: /*.env$
+Disallow: /*.cache$
+Disallow: /*.map$
+Disallow: /*.bak$
+Disallow: /*.sql$
+
+# ============================================================
+# BLOCK SPECIFIC PAGES
+# ============================================================
+Disallow: /error/
+Disallow: /errors/
+Disallow: /debug/
+Disallow: /test/
+Disallow: /tests/
+Disallow: /testing/
+Disallow: /dev/
+Disallow: /development/
+
+# ============================================================
+# CRAWL DELAY – Helps reduce server load
+# (Adjust value based on server capacity)
+# ============================================================
+Crawl-delay: 2
+
+# ============================================================
+# SITEMAP LOCATION
+# ============================================================
+Sitemap: https://web.smilefinancialsolution.com/sitemap.xml
+
+# ============================================================
+# SCAN FOR MALICIOUS BOTS
+# (Optional – blocks harmful crawlers)
+# ============================================================
+User-agent: *
+Disallow: /
+User-agent: *
+Allow: /
+
+# Google Crawlers
+User-agent: Googlebot
+Allow: /
+User-agent: Googlebot-Image
+Allow: /
+User-agent: Googlebot-Video
+Allow: /
+User-agent: Googlebot-News
+Allow: /
+
+# Bing Crawlers
+User-agent: Bingbot
+Allow: /
+
+# Yahoo Crawlers
+User-agent: Slurp
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# ============================================================
+# BLOCK HARMFUL BOTS
+# ============================================================
+
+# AI Scrapers (optional – block if needed)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Anthropic-Web
+Disallow: /
+
+User-agent: OmgiliBot
+Disallow: /
+
+User-agent: ia_archiver
+Disallow: /
+
+# ============================================================
+# ALLOW CACHE & CDN BOTS
+# ============================================================
+User-agent: Googlebot
+Allow: /assets/
+Allow: /images/
+Allow: /css/
+Allow: /js/
+Allow: /fonts/
+Allow: /favicon.ico
+Allow: /sitemap.xml
+
+User-agent: Bingbot
+Allow: /assets/
+Allow: /images/
+Allow: /css/
+Allow: /js/
+Allow: /fonts/
+Allow: /favicon.ico
+Allow: /sitemap.xml
+
+# ============================================================
+# END ROBOTS.TXT
+# ============================================================
