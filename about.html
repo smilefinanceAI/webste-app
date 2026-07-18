@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>About Us – Smile AI Web Studio | AI-Powered Website Builder</title>
+  <meta name="description" content="Smile AI Web Studio helps businesses create professional, AI-powered websites. Learn about our mission, vision, and how we're transforming web design." />
+  <meta name="keywords" content="about us, AI website builder, company story, Smile AI, web design agency" />
+  <link rel="canonical" href="https://web.smilefinancialsolution.com/about.html" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="About Us – Smile AI Web Studio" />
+  <meta property="og:description" content="Smile AI Web Studio helps businesses create professional, AI-powered websites. Learn about our mission, vision, and how we're transforming web design." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://web.smilefinancialsolution.com/about.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD Schemas -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Smile AI Web Studio",
+      "url": "https://web.smilefinancialsolution.com",
+      "logo": "https://web.smilefinancialsolution.com/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-7290977231",
+        "contactType": "Sales"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "About Smile AI Web Studio",
+      "description": "Learn about Smile AI Web Studio, an AI-powered website builder helping businesses grow online.",
+      "url": "https://web.smilefinancialsolution.com/about.html"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://web.smilefinancialsolution.com/" },
+        { "@type": "ListItem", "position": 2, "name": "About", "item": "https://web.smilefinancialsolution.com/about.html" }
+      ]
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --glass-bg: rgba(255,255,255,0.10);
+      --shadow-soft: 0 20px 50px -12px rgba(0,0,0,0.06);
+      --shadow-card: 0 12px 40px -8px rgba(0,0,0,0.04);
+      --radius-lg: 18px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+    /* ===== GLASS & UTILITY ===== */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+    }
+    .badge-pill {
+      background: var(--secondary);
+      color: white;
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 34px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.15);
+    }
+    .btn-primary {
+      background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      color: white;
+    }
+    .btn-primary:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 12px 30px rgba(37,99,235,0.30); }
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+    }
+    .btn-secondary:hover { transform: scale(1.03) translateY(-2px); background: #059669; }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary); color: white; }
+    .btn-accent {
+      background: var(--accent);
+      color: #0b1a33;
+    }
+    .btn-accent:hover { transform: scale(1.03) translateY(-2px); background: #d48d0a; }
+    .btn-sm {
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-sm-primary { background: var(--primary); color: white; }
+    .btn-sm-primary:hover { background: #1d4ed8; transform: scale(1.02); }
+    .btn-sm-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
+    .btn-sm-outline:hover { background: var(--primary); color: white; }
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .section-title span { color: var(--primary); }
+    .section-sub {
+      font-size: 1.2rem;
+      color: #475569;
+      max-width: 600px;
+    }
+    .text-center { text-align: center; }
+    .flex-center { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .mt-4 { margin-top: 2rem; }
+    .mb-4 { margin-bottom: 2rem; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      padding: 16px 0; transition: var(--transition);
+      background: rgba(255,255,255,0.70); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    header.scrolled {
+      background: rgba(255,255,255,0.94); box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.6rem; font-weight: 800; color: var(--primary);
+      letter-spacing: -0.02em; display: flex; align-items: center; gap: 6px;
+    }
+    .logo span { color: var(--secondary); }
+    .logo small { font-size: 0.6rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; margin-left: 6px; }
+    nav { display: flex; align-items: center; gap: 2rem; }
+    nav a {
+      font-weight: 500; font-size: 0.95rem; color: #1e293b;
+      transition: var(--transition); position: relative;
+    }
+    nav a:hover { color: var(--primary); }
+    nav a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--primary);
+      transition: var(--transition);
+    }
+    nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--primary); }
+    nav a.active::after { width: 100%; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 28px; height: 3px; background: #1e293b; border-radius: 4px; transition: var(--transition); }
+
+    /* ===== HERO ===== */
+    #about-hero {
+      padding: 140px 0 70px;
+      background: linear-gradient(165deg, #f0f7ff 0%, #ffffff 100%);
+      position: relative; overflow: hidden;
+    }
+    #about-hero .container {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem; font-weight: 900; line-height: 1.1; letter-spacing: -0.03em;
+    }
+    .hero-content h1 .highlight { color: var(--primary); }
+    .hero-content p {
+      font-size: 1.2rem; color: #334155; margin: 1.5rem 0 2rem;
+      max-width: 520px;
+    }
+    .breadcrumb { font-size: 0.9rem; color: #475569; margin-top: 1rem; }
+    .breadcrumb a { color: var(--primary); }
+    .breadcrumb span { color: #94a3b8; }
+    .hero-illustration {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 350"><circle cx="200" cy="175" r="140" fill="%232563EB" opacity="0.05"/><circle cx="200" cy="175" r="100" fill="%2310B981" opacity="0.04"/><circle cx="200" cy="175" r="60" fill="%23F59E0B" opacity="0.06"/><rect x="130" y="100" width="140" height="150" rx="16" fill="white" stroke="%232563EB" stroke-width="2.5"/><rect x="155" y="125" width="90" height="20" rx="10" fill="%232563EB"/><rect x="155" y="160" width="90" height="10" rx="5" fill="%23cbd5e1"/><rect x="155" y="180" width="90" height="10" rx="5" fill="%23cbd5e1"/><rect x="155" y="200" width="60" height="10" rx="5" fill="%23cbd5e1"/><circle cx="105" cy="100" r="20" fill="%23F59E0B" opacity="0.2"/><circle cx="310" cy="270" r="16" fill="%2310B981" opacity="0.15"/></svg>');
+      background-size: contain; background-repeat: no-repeat; background-position: center;
+      min-height: 350px; width: 100%;
+    }
+    .floating-shapes {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .floating-shapes span {
+      position: absolute; border-radius: 50%; background: var(--primary); opacity: 0.04;
+      animation: float 12s infinite alternate ease-in-out;
+    }
+    .floating-shapes span:nth-child(1) { width: 120px; height: 120px; top: 5%; left: 2%; }
+    .floating-shapes span:nth-child(2) { width: 160px; height: 160px; bottom: 5%; right: 3%; background: var(--accent); animation-delay: 0.5s; }
+    .floating-shapes span:nth-child(3) { width: 80px; height: 80px; top: 50%; right: 0%; background: var(--secondary); animation-delay: 1s; }
+    @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-40px) rotate(10deg); } }
+
+    /* ===== STORY ===== */
+    #story { padding: 80px 0; background: white; }
+    .story-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      align-items: center;
+    }
+    .story-content .story-item { margin-bottom: 2rem; position: relative; padding-left: 2rem; border-left: 3px solid var(--primary); }
+    .story-content .story-item .year { font-weight: 800; color: var(--primary); font-size: 1.2rem; }
+    .story-content .story-item p { color: #475569; }
+
+    /* ===== MISSION & VISION ===== */
+    #mission-vision { padding: 80px 0; background: #f8fafc; }
+    .mv-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    }
+    .mv-card {
+      background: white; padding: 2.5rem; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; text-align: center; transition: var(--transition);
+    }
+    .mv-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--primary); }
+    .mv-card .icon { font-size: 3.5rem; display: block; margin-bottom: 0.5rem; }
+
+    /* ===== VALUES ===== */
+    #values { padding: 80px 0; background: white; }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .value-item {
+      background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .value-item:hover { background: var(--primary); color: white; transform: scale(1.02); }
+    .value-item .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+
+    /* ===== WHAT WE DO ===== */
+    #what-we-do { padding: 80px 0; background: #f8fafc; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .service-item {
+      background: white; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .service-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--primary); }
+    .service-item .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+
+    /* ===== WHY CHOOSE ===== */
+    #why-choose { padding: 80px 0; background: white; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .why-item {
+      background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .why-item:hover { background: var(--primary); color: white; transform: scale(1.02); }
+    .why-item .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+
+    /* ===== PROCESS ===== */
+    #process { padding: 80px 0; background: #f8fafc; }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .process-step {
+      background: white; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .process-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+    .process-step .num { font-size: 2rem; font-weight: 800; color: var(--primary); opacity: 0.15; }
+    .process-step h3 { font-weight: 700; font-size: 0.9rem; margin: 0.5rem 0; }
+
+    /* ===== TECH STACK ===== */
+    #tech-stack { padding: 80px 0; background: white; }
+    .tech-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .tech-item {
+      background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .tech-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+
+    /* ===== WHO WE HELP ===== */
+    #who-we-help { padding: 80px 0; background: #f8fafc; }
+    .help-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .help-item {
+      background: white; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .help-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+
+    /* ===== ACHIEVEMENTS ===== */
+    #achievements { padding: 80px 0; background: white; }
+    .achieve-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem;
+      margin-top: 2rem;
+    }
+    .achieve-item { text-align: center; }
+    .achieve-item .number { font-size: 3rem; font-weight: 800; color: var(--primary); }
+    .achieve-item .label { color: #475569; }
+
+    /* ===== FAQ ===== */
+    #faq { padding: 80px 0; background: #f8fafc; }
+    .faq-item {
+      background: white; border-radius: 16px; margin-bottom: 1rem;
+      padding: 1.2rem 1.5rem; cursor: pointer; border: 1px solid #eef2f6;
+      transition: var(--transition);
+    }
+    .faq-item:hover { border-color: var(--primary); }
+    .faq-question { display: flex; justify-content: space-between; font-weight: 600; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; color: #475569; }
+    .faq-item.active .faq-answer { max-height: 200px; padding-top: 0.75rem; }
+
+    /* ===== FINAL CTA ===== */
+    #final-cta {
+      padding: 80px 0; background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      color: white; text-align: center;
+    }
+    #final-cta h2 { font-size: 2.8rem; font-weight: 800; }
+    #final-cta .btn { box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0b1a33; color: #cbd5e1; padding: 3rem 0;
+    }
+    footer .container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    footer a { display: block; margin: 6px 0; transition: var(--transition); }
+    footer a:hover { color: white; padding-left: 4px; }
+    footer .powered { margin-top: 2rem; border-top: 1px solid #1e293b; padding-top: 1.5rem; text-align: center; }
+
+    /* ===== FLOATING BUTTONS ===== */
+    .floating-btn {
+      position: fixed; right: 24px; z-index: 999;
+      width: 56px; height: 56px; border-radius: 60px;
+      background: var(--primary); color: white; border: none;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.25);
+      font-size: 1.5rem; cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .floating-btn:hover { transform: scale(1.08); }
+    .floating-btn.whatsapp { bottom: 100px; background: #25D366; }
+    .floating-btn.call { bottom: 170px; background: var(--secondary); }
+    .floating-btn.top { bottom: 30px; background: var(--accent); color: #0b1a33; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      #about-hero .container { grid-template-columns: 1fr; text-align: center; }
+      .hero-content p { margin-left: auto; margin-right: auto; }
+      .story-grid { grid-template-columns: 1fr; }
+      .mv-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .achieve-grid { grid-template-columns: repeat(3, 1fr); }
+      footer .container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+      nav.open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 2rem; gap: 1rem; box-shadow: var(--shadow-soft); border-radius: 0 0 24px 24px; }
+      .hero-content h1 { font-size: 2.4rem; }
+      .section-title { font-size: 2rem; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .achieve-grid { grid-template-columns: 1fr 1fr; }
+      footer .container { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 2rem; }
+      .btn { padding: 12px 24px; font-size: 0.9rem; }
+      .process-steps { grid-template-columns: 1fr; }
+      .achieve-grid { grid-template-columns: 1fr 1fr; }
+      .floating-btn { width: 48px; height: 48px; font-size: 1.2rem; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Smile<span>AI</span><small>Web Studio</small></a>
+      <nav id="navbar">
+        <a href="index.html">Home</a>
+        <a href="create-website.html">AI Builder</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html" class="active">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="create-website.html" class="btn btn-primary" style="padding:8px 22px;font-size:0.85rem;">✨ Create Website</a>
+      </nav>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="about-hero">
+    <div class="floating-shapes"><span></span><span></span><span></span></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="badge-pill" style="background:var(--primary);">About Us</span>
+        <h1>Building Business Growth with <span class="highlight">AI</span> & Modern Technology</h1>
+        <p>Smile AI Web Studio helps businesses create beautiful, fast, SEO-ready and AI-powered websites that generate leads and build trust.</p>
+        <div class="flex-center" style="justify-content:flex-start;">
+          <a href="create-website.html" class="btn btn-primary">✨ Create Website with AI</a>
+          <a href="portfolio.html" class="btn btn-outline">View Portfolio</a>
+          <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%2C%20I%20want%20to%20know%20more%20about%20your%20company." class="btn btn-secondary">Talk to Expert</a>
+        </div>
+        <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>About</span></div>
+      </div>
+      <div class="hero-illustration"></div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-content">
+          <span class="badge-pill" style="background:var(--primary);">Our Story</span>
+          <h2 class="section-title" style="font-size:2.4rem;">Building the <span>Future</span> of Web Design</h2>
+          <p style="color:#475569;font-size:1.05rem;margin-bottom:1.5rem;">Smile AI Web Studio was born from a simple observation: most businesses struggle to get professional, affordable, and fast websites.</p>
+          <div class="story-item"><div class="year">2023 — The Beginning</div><p>We started with a mission to make professional websites accessible to every business using AI and modern technology.</p></div>
+          <div class="story-item"><div class="year">2024 — AI Integration</div><p>We integrated AI into our workflow, enabling us to generate complete websites in minutes instead of weeks.</p></div>
+          <div class="story-item"><div class="year">2025 — Platform Launch</div><p>We launched the AI Website Builder platform, helping businesses create stunning websites with zero coding required.</p></div>
+          <div class="story-item"><div class="year">Today — Leading the Future</div><p>We continue to innovate, bringing AI-powered solutions to thousands of businesses across India.</p></div>
+        </div>
+        <div style="background:#f8fafc;border-radius:var(--radius-lg);padding:2rem;border:1px solid #eef2f6;display:flex;align-items:center;justify-content:center;font-size:6rem;color:#e2e8f0;">🚀</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section id="mission-vision">
+    <div class="container">
+      <div class="mv-grid">
+        <div class="mv-card">
+          <span class="icon">🎯</span>
+          <h2 style="font-weight:800;font-size:1.8rem;">Our Mission</h2>
+          <p style="color:#475569;">Help every business build a professional online presence using AI, modern technology and affordable solutions.</p>
+        </div>
+        <div class="mv-card">
+          <span class="icon">👁️</span>
+          <h2 style="font-weight:800;font-size:1.8rem;">Our Vision</h2>
+          <p style="color:#475569;">Become one of India's most trusted AI-powered website creation platforms for startups, local businesses and enterprises.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section id="values">
+    <div class="container text-center">
+      <h2 class="section-title">Our <span>Values</span></h2>
+      <p class="section-sub" style="margin:0 auto;">The principles that guide everything we do.</p>
+      <div class="values-grid">
+        <div class="value-item"><span class="icon">💡</span>Innovation</div>
+        <div class="value-item"><span class="icon">🔍</span>Transparency</div>
+        <div class="value-item"><span class="icon">⭐</span>Quality</div>
+        <div class="value-item"><span class="icon">🤝</span>Customer Success</div>
+        <div class="value-item"><span class="icon">🔒</span>Trust</div>
+        <div class="value-item"><span class="icon">⚡</span>Speed</div>
+        <div class="value-item"><span class="icon">💬</span>Support</div>
+        <div class="value-item"><span class="icon">🔄</span>Continuous Improvement</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section id="what-we-do">
+    <div class="container text-center">
+      <h2 class="section-title">What We <span>Do</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Comprehensive solutions for your online presence.</p>
+      <div class="services-grid">
+        <div class="service-item"><span class="icon">🤖</span>AI Website Generator</div>
+        <div class="service-item"><span class="icon">🏢</span>Business Website Development</div>
+        <div class="service-item"><span class="icon">🚀</span>Landing Pages</div>
+        <div class="service-item"><span class="icon">📁</span>Portfolio Websites</div>
+        <div class="service-item"><span class="icon">🛍️</span>E-commerce Stores</div>
+        <div class="service-item"><span class="icon">🔍</span>SEO Optimization</div>
+        <div class="service-item"><span class="icon">📍</span>Google Business Profile</div>
+        <div class="service-item"><span class="icon">🛠️</span>Website Maintenance</div>
+        <div class="service-item"><span class="icon">🔄</span>Website Redesign</div>
+        <div class="service-item"><span class="icon">⚡</span>Performance Optimization</div>
+        <div class="service-item"><span class="icon">🔥</span>Firebase Integration</div>
+        <div class="service-item"><span class="icon">🤖</span>AI Automation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section id="why-choose">
+    <div class="container text-center">
+      <h2 class="section-title">Why Choose <span>Smile AI</span></h2>
+      <div class="why-grid">
+        <div class="why-item"><span class="icon">🎨</span>Modern Design</div>
+        <div class="why-item"><span class="icon">🤖</span>AI Powered</div>
+        <div class="why-item"><span class="icon">🔍</span>SEO Ready</div>
+        <div class="why-item"><span class="icon">📱</span>Mobile Responsive</div>
+        <div class="why-item"><span class="icon">⚡</span>Fast Loading</div>
+        <div class="why-item"><span class="icon">🌐</span>Google Friendly</div>
+        <div class="why-item"><span class="icon">🚀</span>Future Ready</div>
+        <div class="why-item"><span class="icon">💻</span>Clean Code</div>
+        <div class="why-item"><span class="icon">📈</span>Scalable Architecture</div>
+        <div class="why-item"><span class="icon">🔒</span>Secure</div>
+        <div class="why-item"><span class="icon">💰</span>Affordable</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container text-center">
+      <h2 class="section-title">How We <span>Work</span></h2>
+      <p class="section-sub" style="margin:0 auto;">A transparent process from start to finish.</p>
+      <div class="process-steps">
+        <div class="process-step"><div class="num">01</div><h3>Understand Business</h3></div>
+        <div class="process-step"><div class="num">02</div><h3>Research</h3></div>
+        <div class="process-step"><div class="num">03</div><h3>AI Planning</h3></div>
+        <div class="process-step"><div class="num">04</div><h3>UI Design</h3></div>
+        <div class="process-step"><div class="num">05</div><h3>Development</h3></div>
+        <div class="process-step"><div class="num">06</div><h3>Testing</h3></div>
+        <div class="process-step"><div class="num">07</div><h3>Deployment</h3></div>
+        <div class="process-step"><div class="num">08</div><h3>Support</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section id="tech-stack">
+    <div class="container text-center">
+      <h2 class="section-title">Our Technology <span>Stack</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Modern technologies powering our platform.</p>
+      <div class="tech-grid">
+        <div class="tech-item">HTML5</div>
+        <div class="tech-item">CSS3</div>
+        <div class="tech-item">JavaScript</div>
+        <div class="tech-item">Firebase</div>
+        <div class="tech-item">Firestore</div>
+        <div class="tech-item">Vercel</div>
+        <div class="tech-item">Groq API Ready</div>
+        <div class="tech-item">OpenAI Ready</div>
+        <div class="tech-item">Responsive Design</div>
+        <div class="tech-item">Performance Optimization</div>
+        <div class="tech-item">SEO Optimization</div>
+        <div class="tech-item">PWA Ready</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE HELP -->
+  <section id="who-we-help">
+    <div class="container text-center">
+      <h2 class="section-title">Who We <span>Help</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Businesses of all sizes and industries.</p>
+      <div class="help-grid">
+        <div class="help-item">🚀 Startups</div>
+        <div class="help-item">🏪 Local Businesses</div>
+        <div class="help-item">🍽️ Restaurants</div>
+        <div class="help-item">🏥 Clinics</div>
+        <div class="help-item">🏫 Schools</div>
+        <div class="help-item">🏨 Hotels</div>
+        <div class="help-item">🏡 Real Estate</div>
+        <div class="help-item">✈️ Travel</div>
+        <div class="help-item">💰 Finance</div>
+        <div class="help-item">🤝 NGOs</div>
+        <div class="help-item">💻 IT Companies</div>
+        <div class="help-item">🛍️ Retail Stores</div>
+        <div class="help-item">🏭 Manufacturers</div>
+        <div class="help-item">👨‍💼 Professionals</div>
+        <div class="help-item">📋 Agencies</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="container text-center">
+      <h2 class="section-title">Our <span>Achievements</span></h2>
+      <div class="achieve-grid">
+        <div class="achieve-item"><div class="number" data-count="500">0</div><div class="label">Projects Completed</div></div>
+        <div class="achieve-item"><div class="number" data-count="50">0</div><div class="label">Industries Served</div></div>
+        <div class="achieve-item"><div class="number" data-count="480">0</div><div class="label">Happy Clients</div></div>
+        <div class="achieve-item"><div class="number" data-count="24">0</div><div class="label">Support Availability</div></div>
+        <class="achieve-item"><div class="number" data-count="3">0</div><div class="label">Years of Experience</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container text-center">
+      <h2 class="section-title">Frequently <span>Asked</span></h2>
+      <div style="max-width:700px;margin:2rem auto;text-align:left;">
+        <div class="faq-item"><div class="faq-question">What is Smile AI Web Studio? <span>+</span></div><div class="faq-answer">Smile AI Web Studio is an AI-powered website builder that helps businesses create professional websites quickly and affordably.</div></div>
+        <div class="faq-item"><div class="faq-question">How does the AI Website Builder work? <span>+</span></div><div class="faq-answer">Simply tell us about your business, and our AI generates a complete website with content, design, and SEO in minutes.</div></div>
+        <div class="faq-item"><div class="faq-question">Do I need coding skills? <span>+</span></div><div class="faq-answer">No, our platform requires zero coding. AI handles everything for you.</div></div>
+        <div class="faq-item"><div class="faq-question">Is the website mobile responsive? <span>+</span></div><div class="faq-answer">Yes, all our websites are fully responsive and work perfectly on all devices.</div></div>
+        <div class="faq-item"><div class="faq-question">How much does it cost? <span>+</span></div><div class="faq-answer">Our plans start at ₹4,999. You can generate a free demo website before purchasing.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="final-cta">
+    <div class="container">
+      <h2>Ready to Build Your Website?</h2>
+      <p style="font-size:1.2rem;margin:1rem 0;">Join hundreds of businesses that trust Smile AI.</p>
+      <div class="flex-center" style="margin-top:1.5rem;">
+        <a href="create-website.html" class="btn btn-primary" style="background:white;color:var(--primary);">✨ Create Website with AI</a>
+        <a href="portfolio.html" class="btn btn-secondary" style="background:white;color:var(--primary);">View Portfolio</a>
+        <a href="contact.html" class="btn btn-accent" style="background:white;color:var(--primary);">Contact Us</a>
+        <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%2C%20I%20want%20to%20build%20my%20website." class="btn btn-outline" style="background:white;color:var(--primary);">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div><h3 style="color:white;">Smile AI Web Studio</h3><p style="margin:0.5rem 0;">AI-powered website builder for businesses.</p></div>
+      <div><h4 style="color:white;">Quick Links</h4><a href="index.html">Home</a><a href="create-website.html">AI Builder</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="pricing.html">Pricing</a></div>
+      <div><h4 style="color:white;">Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+      <div><h4 style="color:white;">Contact</h4><a href="https://wa.me/917290977231" target="_blank">WhatsApp</a><a href="tel:+917290977231">Call Now</a></div>
+    </div>
+    <div class="container powered">© 2025 Smile AI Web Studio. Powered by Smile Financial Solution.</div>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+  <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%2C%20I%20want%20to%20know%20more%20about%20your%20company." class="floating-btn whatsapp" aria-label="WhatsApp">💬</a>
+  <a href="tel:+917290977231" class="floating-btn call" aria-label="Call">📞</a>
+  <button class="floating-btn top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+      animateCounters();
+    });
+
+    // ===== COUNTER ANIMATION =====
+    function animateCounters() {
+      document.querySelectorAll('.number[data-count]').forEach(counter => {
+        const target = parseInt(counter.dataset.count);
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) { counter.textContent = target + (target === 98 ? '%' : '+'); clearInterval(timer); }
+          else counter.textContent = Math.floor(current);
+        }, 20);
+      });
+    }
+
+    // ===== HEADER SCROLL =====
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // ===== HAMBURGER =====
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navbar').classList.toggle('open');
+    });
+    document.querySelectorAll('#navbar a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('navbar').classList.remove('open'));
+    });
+
+    // ===== FAQ ACCORDION =====
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const sign = this.querySelector('.faq-question span');
+        if (sign) sign.textContent = this.classList.contains('active') ? '−' : '+';
+      });
+    });
+
+    // ===== SCROLL REVEAL =====
+    const revealItems = document.querySelectorAll('.mv-card, .value-item, .service-item, .why-item, .process-step, .tech-item, .help-item, .achieve-item, .faq-item');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+    revealItems.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      revealObserver.observe(el);
+    });
+
+    console.log('🚀 about.html – Smile AI Web Studio');
+    console.log('📌 Premium About page ready');
+  </script>
+</body>
+</html>
