@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Project Details – Smile AI Web Studio</title>
+  <meta name="description" content="Manage your website project details, track progress, preview, and collaborate with AI." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --sidebar-width: 260px;
+      --header-height: 72px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 4px 24px rgba(0,0,0,0.04);
+      --shadow-card: 0 8px 32px -8px rgba(0,0,0,0.06);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100%;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(0,0,0,0.04);
+      padding: 20px 16px; overflow-y: auto; z-index: 1000;
+      transition: transform var(--transition);
+    }
+    .sidebar .logo {
+      font-size: 1.4rem; font-weight: 800; color: var(--primary);
+      display: flex; align-items: center; gap: 8px; padding: 0 8px 20px;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .sidebar .logo span { color: var(--secondary); }
+    .sidebar .logo small { font-size: 0.55rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; }
+
+    .sidebar-nav { margin-top: 16px; }
+    .sidebar-nav .nav-label { font-size: 0.7rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      color: #475569; transition: var(--transition); margin-bottom: 2px;
+    }
+    .sidebar-nav a:hover { background: #f1f5f9; color: var(--primary); }
+    .sidebar-nav a.active { background: #eff6ff; color: var(--primary); font-weight: 600; }
+    .sidebar-nav a .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+    .sidebar-nav a .badge {
+      margin-left: auto; background: var(--primary); color: white;
+      padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+    }
+    .sidebar-nav .logout { margin-top: 16px; border-top: 1px solid #eef2f6; padding-top: 12px; color: #EF4444; }
+    .sidebar-nav .logout:hover { background: #fef2f2; color: #EF4444; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
+
+    /* ===== HEADER ===== */
+    .top-header {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(16px);
+      padding: 0 32px; height: var(--header-height);
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      flex-wrap: wrap;
+    }
+    .top-header .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    .top-header .left { display: flex; align-items: center; gap: 16px; }
+    .top-header .left h1 { font-size: 1.1rem; font-weight: 700; }
+    .top-header .left h1 small { font-weight: 400; color: #94a3b8; font-size: 0.8rem; }
+    .top-header .right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .top-header .right .btn-sm {
+      padding: 6px 18px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+    }
+    .top-header .right .btn-sm:hover { border-color: var(--primary); color: var(--primary); }
+    .top-header .right .btn-sm.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .top-header .right .btn-sm.primary:hover { background: #1d4ed8; }
+    .top-header .right .btn-sm.danger:hover { border-color: #EF4444; color: #EF4444; }
+    .top-header .right .profile {
+      display: flex; align-items: center; gap: 10px; cursor: pointer;
+      padding: 4px 12px 4px 4px; border-radius: 60px; transition: var(--transition);
+    }
+    .top-header .right .profile:hover { background: #f1f5f9; }
+    .top-header .right .profile .avatar {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--primary);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem;
+    }
+
+    /* ===== CONTENT ===== */
+    .content { padding: 24px 32px; max-width: 1400px; margin: 0 auto; }
+
+    /* ===== PROJECT HEADER ===== */
+    .project-header {
+      background: white; border-radius: var(--radius-lg); border: 1px solid #eef2f6;
+      padding: 24px 28px; margin-bottom: 24px;
+    }
+    .project-header .top-row {
+      display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;
+    }
+    .project-header .top-row .title h2 { font-size: 1.6rem; font-weight: 800; }
+    .project-header .top-row .title .sub {
+      display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.85rem; color: #475569; margin-top: 4px;
+    }
+    .project-header .top-row .status-badge {
+      padding: 6px 20px; border-radius: 100px; font-weight: 600; font-size: 0.85rem;
+      background: #dbeafe; color: #1e40af;
+    }
+    .project-header .top-row .status-badge.published { background: #d1fae5; color: #065f46; }
+    .project-header .top-row .status-badge.development { background: #fce7f3; color: #9d174d; }
+    .project-header .top-row .status-badge.completed { background: #d1fae5; color: #065f46; }
+    .project-header .top-row .status-badge.pending { background: #dbeafe; color: #1e40af; }
+    .project-header .top-row .status-badge.generating { background: #fef3c7; color: #92400e; }
+    .project-header .top-row .status-badge.review { background: #ede9fe; color: #5b21b6; }
+    .project-header .top-row .status-badge.draft { background: #fef3c7; color: #92400e; }
+
+    .project-header .stats-row {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px; margin-top: 16px; padding-top: 16px; border-top: 1px solid #f1f5f9;
+    }
+    .project-header .stats-row .stat .label { font-size: 0.75rem; color: #94a3b8; }
+    .project-header .stats-row .stat .value { font-weight: 700; font-size: 0.95rem; }
+
+    /* ===== GRID LAYOUT ===== */
+    .details-grid {
+      display: grid; grid-template-columns: 2fr 1fr; gap: 24px;
+    }
+    @media (max-width: 1024px) {
+      .details-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: white; border-radius: var(--radius-lg); border: 1px solid #eef2f6;
+      padding: 20px 24px; margin-bottom: 24px;
+    }
+    .card .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 16px;
+    }
+    .card .card-header h3 { font-weight: 700; font-size: 1.1rem; }
+    .card .card-header .badge-count {
+      background: #eef2f6; padding: 2px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 600;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative; padding-left: 24px;
+    }
+    .timeline::before {
+      content: ''; position: absolute; left: 6px; top: 4px; bottom: 4px;
+      width: 2px; background: #e2e8f0;
+    }
+    .timeline-item {
+      position: relative; padding-bottom: 20px; padding-left: 20px;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -18px; top: 6px;
+      width: 12px; height: 12px; border-radius: 50%; background: #e2e8f0;
+      border: 2px solid white; box-shadow: 0 0 0 2px #e2e8f0;
+    }
+    .timeline-item.active::before { background: var(--primary); box-shadow: 0 0 0 2px var(--primary); }
+    .timeline-item.completed::before { background: var(--secondary); box-shadow: 0 0 0 2px var(--secondary); }
+    .timeline-item .time { font-size: 0.75rem; color: #94a3b8; }
+    .timeline-item .title { font-weight: 600; font-size: 0.95rem; }
+
+    /* Overview Grid */
+    .overview-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .overview-item .label { font-size: 0.75rem; color: #94a3b8; }
+    .overview-item .value { font-weight: 600; font-size: 0.9rem; }
+
+    /* Features List */
+    .feature-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .feature-tag {
+      background: #f1f5f9; padding: 2px 14px; border-radius: 100px;
+      font-size: 0.75rem; font-weight: 500; color: #475569;
+    }
+    .feature-tag.active { background: #dbeafe; color: var(--primary); }
+
+    /* Color Preview */
+    .color-preview { display: flex; gap: 12px; align-items: center; }
+    .color-swatch {
+      width: 40px; height: 40px; border-radius: 50%; border: 2px solid #eef2f6;
+    }
+
+    /* Preview Frame */
+    .preview-frame {
+      background: #f8fafc; border-radius: var(--radius-lg); padding: 12px;
+      border: 1px solid #eef2f6;
+    }
+    .preview-frame .mockup {
+      width: 100%; height: 200px; background: #e2e8f0; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #94a3b8; font-size: 0.9rem;
+    }
+    .preview-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+
+    /* AI Actions */
+    .ai-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ai-actions .btn-ai {
+      padding: 8px 20px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; transition: var(--transition);
+      font-size: 0.85rem;
+    }
+    .ai-actions .btn-ai:hover { border-color: var(--primary); color: var(--primary); }
+    .ai-actions .btn-ai.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .ai-actions .btn-ai.primary:hover { background: #1d4ed8; }
+
+    /* Files */
+    .file-item {
+      display: flex; align-items: center; gap: 12px; padding: 8px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .file-item:last-child { border-bottom: none; }
+    .file-item .icon { font-size: 1.2rem; }
+    .file-item .name { flex: 1; font-weight: 500; }
+    .file-item .size { font-size: 0.8rem; color: #94a3b8; }
+    .file-item .download { cursor: pointer; color: var(--primary); }
+
+    /* Communication */
+    .message-item {
+      padding: 10px 0; border-bottom: 1px solid #f1f5f9;
+    }
+    .message-item:last-child { border-bottom: none; }
+    .message-item .sender { font-weight: 600; font-size: 0.9rem; }
+    .message-item .time { font-size: 0.75rem; color: #94a3b8; }
+    .message-item .text { font-size: 0.9rem; color: #475569; margin-top: 2px; }
+
+    /* Payment */
+    .payment-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f5f9; }
+    .payment-item:last-child { border-bottom: none; }
+    .payment-item .amount { font-weight: 700; }
+
+    /* ===== SIDEBAR OVERLAY ===== */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 999; backdrop-filter: blur(4px); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.active { display: block; }
+      .top-header .menu-toggle { display: block; }
+      .main-content { margin-left: 0; }
+      .top-header { padding: 0 16px; height: auto; gap: 12px; }
+      .top-header .right { width: 100%; }
+      .content { padding: 16px; }
+      .overview-grid { grid-template-columns: 1fr; }
+      .project-header { padding: 16px; }
+      .project-header .top-row .title h2 { font-size: 1.2rem; }
+    }
+    @media (max-width: 480px) {
+      .project-header .stats-row { grid-template-columns: 1fr 1fr; }
+      .top-header .right .btn-sm { font-size: 0.7rem; padding: 4px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">Smile<span>AI</span><small>Web Studio</small></div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Main</div>
+      <a href="customer-dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a href="create-project.html"><span class="icon">✨</span> Create Website</a>
+      <a href="my-projects.html" class="active"><span class="icon">🌐</span> My Projects <span class="badge">12</span></a>
+      <a href="#"><span class="icon">📋</span> Requests <span class="badge">3</span></a>
+      <a href="#"><span class="icon">🎨</span> Templates</a>
+      <a href="#"><span class="icon">🤖</span> AI Generator</a>
+      <a href="portfolio.html"><span class="icon">📁</span> Portfolio</a>
+      <div class="nav-label" style="margin-top:12px;">Account</div>
+      <a href="#"><span class="icon">📄</span> Invoices</a>
+      <a href="#"><span class="icon">💳</span> Billing</a>
+      <a href="#"><span class="icon">🔔</span> Notifications <span class="badge">5</span></a>
+      <a href="#"><span class="icon">💬</span> Messages <span class="badge">2</span></a>
+      <a href="contact.html"><span class="icon">🛡️</span> Support</a>
+      <a href="#"><span class="icon">👤</span> Profile</a>
+      <a href="#"><span class="icon">⚙️</span> Settings</a>
+      <a href="login.html" class="logout"><span class="icon">🚪</span> Logout</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- HEADER -->
+    <header class="top-header">
+      <div class="left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <h1>📋 Project Details <small>PRJ-2025-001</small></h1>
+      </div>
+      <div class="right">
+        <button class="btn-sm" onclick="editProject()">✏️ Edit</button>
+        <button class="btn-sm" onclick="window.open('demo.html?type=business','_blank')">👁️ Preview</button>
+        <button class="btn-sm primary" onclick="continueAI()">🤖 Continue AI</button>
+        <button class="btn-sm" onclick="duplicateProject()">📋 Duplicate</button>
+        <button class="btn-sm danger" onclick="archiveProject()">📦 Archive</button>
+        <button class="btn-sm danger" onclick="deleteProject()">🗑️ Delete</button>
+        <div class="profile">
+          <span style="font-weight:600;font-size:0.9rem;">John</span>
+          <div class="avatar">JD</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <!-- Project Header -->
+      <div class="project-header">
+        <div class="top-row">
+          <div class="title">
+            <h2>Brand Pro Business</h2>
+            <div class="sub">
+              <span>📂 Business</span>
+              <span>🏢 Brand Pro Solutions</span>
+              <span>🆔 PRJ-2025-001</span>
+              <span>📅 Created: 2025-01-10</span>
+              <span>🔄 Updated: 2025-01-14</span>
+            </div>
+          </div>
+          <div>
+            <span class="status-badge published">Published</span>
+            <div style="margin-top:6px;font-size:0.85rem;color:#475569;">Priority: High</div>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat"><div class="label">Progress</div><div class="value">100%</div></div>
+          <div class="stat"><div class="label">Status</div><div class="value" style="color:var(--secondary);">Published</div></div>
+          <div class="stat"><div class="label">Team</div><div class="value">👤 John, 👤 Priya</div></div>
+          <div class="stat"><div class="label">Assigned</div><div class="value">2025-01-10</div></div>
+        </div>
+      </div>
+
+      <!-- Details Grid -->
+      <div class="details-grid">
+        <!-- LEFT COLUMN -->
+        <div>
+          <!-- Timeline -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📌 Project Timeline</h3>
+              <span class="badge-count">8 Steps</span>
+            </div>
+            <div class="timeline">
+              <div class="timeline-item completed"><div class="time">2025-01-10</div><div class="title">✅ Submitted</div></div>
+              <div class="timeline-item completed"><div class="time">2025-01-10</div><div class="title">✅ Under Review</div></div>
+              <div class="timeline-item completed"><div class="time">2025-01-11</div><div class="title">✅ AI Generation</div></div>
+              <div class="timeline-item completed"><div class="time">2025-01-11</div><div class="title">✅ Design</div></div>
+              <div class="timeline-item completed"><div class="time">2025-01-12</div><div class="title">✅ Development</div></div>
+              <div class="timeline-item completed"><div class="time">2025-01-13</div><div class="title">✅ Testing</div></div>
+              <div class="timeline-item completed"><div class="time">2025-01-13</div><div class="title">✅ SEO</div></div>
+              <div class="timeline-item active"><div class="time">2025-01-14</div><div class="title">📋 Client Review</div></div>
+              <div class="timeline-item"><div class="time">—</div><div class="title">⏳ Completed</div></div>
+              <div class="timeline-item"><div class="time">—</div><div class="title">🚀 Published</div></div>
+            </div>
+          </div>
+
+          <!-- Overview -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📋 Project Overview</h3>
+            </div>
+            <div class="overview-grid">
+              <div class="overview-item"><div class="label">Business</div><div class="value">Brand Pro Solutions</div></div>
+              <div class="overview-item"><div class="label">Category</div><div class="value">Business</div></div>
+              <div class="overview-item"><div class="label">Target Audience</div><div class="value">Corporate clients, SMEs</div></div>
+              <div class="overview-item"><div class="label">Primary Goal</div><div class="value">Generate Leads</div></div>
+              <div class="overview-item"><div class="label">Location</div><div class="value">Delhi, India</div></div>
+              <div class="overview-item"><div class="label">Pages</div><div class="value">Home, About, Services, FAQ, Contact</div></div>
+            </div>
+          </div>
+
+          <!-- Features -->
+          <div class="card">
+            <div class="card-header">
+              <h3>⚡ Features</h3>
+            </div>
+            <div class="feature-tags">
+              <span class="feature-tag active">WhatsApp Chat</span>
+              <span class="feature-tag active">Contact Form</span>
+              <span class="feature-tag active">SEO</span>
+              <span class="feature-tag active">Analytics</span>
+              <span class="feature-tag">Lead Form</span>
+              <span class="feature-tag">Google Maps</span>
+              <span class="feature-tag">Testimonials</span>
+            </div>
+          </div>
+
+          <!-- Brand Colors -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🎨 Brand Identity</h3>
+            </div>
+            <div class="color-preview">
+              <div><div class="color-swatch" style="background:#2563EB;"></div>Primary: #2563EB</div>
+              <div><div class="color-swatch" style="background:#10B981;"></div>Secondary: #10B981</div>
+              <div>Font: Inter</div>
+              <div>Style: Modern</div>
+            </div>
+            <div style="margin-top:12px;">
+              <div class="file-item"><span class="icon">🖼️</span><span class="name">logo-brand-pro.png</span><span class="size">124KB</span><span class="download" onclick="alert('Downloading...')">⬇️</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div>
+          <!-- Live Preview -->
+          <div class="card">
+            <div class="card-header">
+              <h3>👁️ Live Preview</h3>
+            </div>
+            <div class="preview-frame">
+              <div class="mockup">🏢 Brand Pro Business</div>
+              <div class="preview-actions">
+                <button class="btn-sm" onclick="window.open('demo.html?type=business','_blank')">🖥️ Desktop</button>
+                <button class="btn-sm" onclick="alert('Tablet preview')">📱 Tablet</button>
+                <button class="btn-sm" onclick="alert('Mobile preview')">📱 Mobile</button>
+                <button class="btn-sm primary" onclick="window.open('demo.html?type=business','_blank')">🔗 Open Full Preview</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Generation -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🤖 AI Generation</h3>
+            </div>
+            <div class="ai-actions">
+              <button class="btn-ai primary" onclick="continueAI()">⚡ Generate Website</button>
+              <button class="btn-ai" onclick="alert('Generating SEO...')">🔍 Generate SEO</button>
+              <button class="btn-ai" onclick="alert('Generating Content...')">✍️ Generate Content</button>
+              <button class="btn-ai" onclick="alert('Generating Images...')">🖼️ Generate Images</button>
+              <button class="btn-ai" onclick="alert('Regenerating...')">🔄 Regenerate</button>
+            </div>
+            <div style="margin-top:12px;font-size:0.85rem;color:#94a3b8;">
+              Version: v1.3.0 • Last generated: 2025-01-14
+            </div>
+          </div>
+
+          <!-- Files -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📁 Files</h3>
+              <span class="badge-count">4 files</span>
+            </div>
+            <div class="file-item"><span class="icon">🖼️</span><span class="name">logo-brand-pro.png</span><span class="size">124KB</span><span class="download" onclick="alert('Downloading...')">⬇️</span></div>
+            <div class="file-item"><span class="icon">📄</span><span class="name">brand-guide.pdf</span><span class="size">2.4MB</span><span class="download" onclick="alert('Downloading...')">⬇️</span></div>
+            <div class="file-item"><span class="icon">🖼️</span><span class="name">hero-image.jpg</span><span class="size">856KB</span><span class="download" onclick="alert('Downloading...')">⬇️</span></div>
+            <div class="file-item"><span class="icon">📊</span><span class="name">website-data.json</span><span class="size">45KB</span><span class="download" onclick="alert('Downloading...')">⬇️</span></div>
+          </div>
+
+          <!-- Communication -->
+          <div class="card">
+            <div class="card-header">
+              <h3>💬 Communication</h3>
+              <button class="btn-sm" onclick="alert('Add note')">+ Add</button>
+            </div>
+            <div class="message-item">
+              <div><span class="sender">John (Client)</span> <span class="time">2025-01-14 10:30</span></div>
+              <div class="text">The website looks great! Ready for final review.</div>
+            </div>
+            <div class="message-item">
+              <div><span class="sender">Priya (Developer)</span> <span class="time">2025-01-14 09:15</span></div>
+              <div class="text">SEO optimization completed. All meta tags updated.</div>
+            </div>
+            <div class="message-item">
+              <div><span class="sender">AI System</span> <span class="time">2025-01-13 16:45</span></div>
+              <div class="text">AI generation completed successfully.</div>
+            </div>
+          </div>
+
+          <!-- Payment -->
+          <div class="card">
+            <div class="card-header">
+              <h3>💳 Payment</h3>
+            </div>
+            <div class="payment-item"><span>Package</span><span><strong>Business Plan</strong></span></div>
+            <div class="payment-item"><span>Invoice</span><span>INV-2025-001</span></div>
+            <div class="payment-item"><span>Status</span><span style="color:var(--secondary);">✅ Paid</span></div>
+            <div class="payment-item"><span>Amount</span><span class="amount">₹9,999</span></div>
+            <div style="margin-top:12px;">
+              <button class="btn-sm" onclick="alert('Upgrading plan...')">⬆️ Upgrade Plan</button>
+              <button class="btn-sm" onclick="window.location.href='billing.html'">📄 View Invoices</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+    });
+
+    // ===== SIDEBAR =====
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { sidebar.classList.remove('open'); overlay.classList.remove('active'); }
+    });
+
+    // ===== ACTIONS =====
+    function editProject() {
+      alert('✏️ Edit project: Redirect to edit-project.html');
+      // window.location.href = 'edit-project.html?id=PRJ-2025-001';
+    }
+
+    function continueAI() {
+      alert('🤖 Continuing AI generation...');
+      // window.location.href = 'create-project.html?resume=PRJ-2025-001';
+    }
+
+    function duplicateProject() {
+      alert('📋 Duplicating project...');
+    }
+
+    function archiveProject() {
+      if (confirm('📦 Archive this project?')) {
+        alert('✅ Project archived');
+      }
+    }
+
+    function deleteProject() {
+      if (confirm('🗑️ Are you sure you want to delete this project? This action cannot be undone.')) {
+        alert('✅ Project deleted');
+        // window.location.href = 'my-projects.html';
+      }
+    }
+
+    // ============================================================
+    // 🔥 FIREBASE FIRESTORE INTEGRATION
+    // ============================================================
+    /*
+    import { getFirestore, doc, getDoc, onSnapshot } from 'firebase/firestore';
+    import { getAuth } from 'firebase/auth';
+
+    const db = getFirestore();
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    // Get project ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get('id') || 'PRJ-2025-001';
+
+    if (user && projectId) {
+      const docRef = doc(db, 'website_requests', projectId);
+      onSnapshot(docRef, (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.data();
+          // Update UI with Firestore data
+          document.querySelector('.project-header .title h2').textContent = data.websiteName || 'Project';
+          document.querySelector('.project-header .top-row .status-badge').textContent = data.status || 'Pending';
+          // Update all sections
+        }
+      });
+    }
+    */
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href.length > 1) {
+        link.addEventListener('click', function(e) {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+    });
+
+    console.log('🚀 project-details.html – Smile AI Web Studio');
+    console.log('📌 Central workspace for project management');
+    console.log('📌 Firebase Firestore ready (commented)');
+  </script>
+</body>
+</html>
