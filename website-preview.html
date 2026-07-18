@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Website Preview – Smile AI Web Studio</title>
+  <meta name="description" content="Preview your AI-generated website. Review design, content, and SEO before publishing." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --sidebar-width: 260px;
+      --header-height: 64px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 4px 24px rgba(0,0,0,0.04);
+      --shadow-card: 0 8px 32px -8px rgba(0,0,0,0.06);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100%;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(0,0,0,0.04);
+      padding: 20px 16px; overflow-y: auto; z-index: 1000;
+      transition: transform var(--transition);
+    }
+    .sidebar .logo {
+      font-size: 1.4rem; font-weight: 800; color: var(--primary);
+      display: flex; align-items: center; gap: 8px; padding: 0 8px 20px;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .sidebar .logo span { color: var(--secondary); }
+    .sidebar .logo small { font-size: 0.55rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; }
+
+    .sidebar-nav { margin-top: 16px; }
+    .sidebar-nav .nav-label { font-size: 0.7rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      color: #475569; transition: var(--transition); margin-bottom: 2px;
+    }
+    .sidebar-nav a:hover { background: #f1f5f9; color: var(--primary); }
+    .sidebar-nav a.active { background: #eff6ff; color: var(--primary); font-weight: 600; }
+    .sidebar-nav a .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+    .sidebar-nav a .badge {
+      margin-left: auto; background: var(--primary); color: white;
+      padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+    }
+    .sidebar-nav .logout { margin-top: 16px; border-top: 1px solid #eef2f6; padding-top: 12px; color: #EF4444; }
+    .sidebar-nav .logout:hover { background: #fef2f2; color: #EF4444; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
+
+    /* ===== HEADER ===== */
+    .top-header {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(16px);
+      padding: 0 24px; height: var(--header-height);
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      flex-wrap: wrap;
+    }
+    .top-header .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    .top-header .left { display: flex; align-items: center; gap: 14px; }
+    .top-header .left h1 { font-size: 1.1rem; font-weight: 700; }
+    .top-header .left h1 small { font-weight: 400; color: #94a3b8; font-size: 0.75rem; }
+    .top-header .left .status-badge {
+      padding: 2px 14px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+      background: #d1fae5; color: #065f46;
+    }
+    .top-header .right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .top-header .right .btn-sm {
+      padding: 6px 18px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+    }
+    .top-header .right .btn-sm:hover { border-color: var(--primary); color: var(--primary); }
+    .top-header .right .btn-sm.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .top-header .right .btn-sm.primary:hover { background: #1d4ed8; }
+    .top-header .right .btn-sm.success { background: var(--secondary); color: white; border-color: var(--secondary); }
+    .top-header .right .btn-sm.success:hover { background: #059669; }
+    .top-header .right .profile {
+      display: flex; align-items: center; gap: 10px; cursor: pointer;
+      padding: 4px 12px 4px 4px; border-radius: 60px; transition: var(--transition);
+    }
+    .top-header .right .profile:hover { background: #f1f5f9; }
+    .top-header .right .profile .avatar {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--primary);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.8rem;
+    }
+
+    /* ===== CONTENT ===== */
+    .content { padding: 16px 24px; max-width: 1600px; margin: 0 auto; }
+
+    /* ===== PREVIEW CONTROLS ===== */
+    .preview-controls {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      background: white; padding: 12px 20px; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; margin-bottom: 16px;
+    }
+    .preview-controls .device-group { display: flex; gap: 4px; }
+    .preview-controls .device-btn {
+      padding: 6px 14px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+    }
+    .preview-controls .device-btn:hover { border-color: var(--primary); }
+    .preview-controls .device-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .preview-controls .sep { color: #e2e8f0; }
+    .preview-controls .url-bar {
+      flex: 1; min-width: 150px; display: flex; align-items: center;
+      background: #f8fafc; border-radius: 60px; padding: 4px 16px;
+      border: 1px solid #eef2f6;
+    }
+    .preview-controls .url-bar .lock { color: #94a3b8; font-size: 0.8rem; }
+    .preview-controls .url-bar .url { font-size: 0.85rem; color: #475569; flex: 1; padding: 4px 8px; }
+
+    /* ===== PREVIEW FRAME ===== */
+    .preview-frame {
+      background: white; border-radius: var(--radius-lg); border: 1px solid #eef2f6;
+      overflow: hidden; position: relative; min-height: 500px;
+      transition: all 0.3s ease;
+    }
+    .preview-frame .loading-skeleton {
+      position: absolute; inset: 0; background: #f8fafc;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px; z-index: 2;
+    }
+    .preview-frame .loading-skeleton.hide { display: none; }
+    .preview-frame .loading-skeleton .spinner {
+      width: 40px; height: 40px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    .preview-frame .loading-skeleton .text { color: #94a3b8; font-size: 0.9rem; }
+    .preview-frame .error-state {
+      position: absolute; inset: 0; background: #fef2f2;
+      display: none; align-items: center; justify-content: center;
+      flex-direction: column; gap: 8px; z-index: 2;
+    }
+    .preview-frame .error-state.show { display: flex; }
+    .preview-frame .error-state .icon { font-size: 3rem; }
+    .preview-frame iframe {
+      width: 100%; height: 600px; border: none; transition: all 0.3s ease;
+    }
+    .preview-frame iframe.tablet { max-width: 768px; margin: 0 auto; display: block; }
+    .preview-frame iframe.mobile { max-width: 375px; margin: 0 auto; display: block; }
+
+    /* ===== BOTTOM GRID ===== */
+    .bottom-grid {
+      display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-top: 16px;
+    }
+    @media (max-width: 1024px) {
+      .bottom-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Cards */
+    .card {
+      background: white; border-radius: var(--radius-lg); border: 1px solid #eef2f6;
+      padding: 18px 20px; margin-bottom: 16px;
+    }
+    .card .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 12px;
+    }
+    .card .card-header h3 { font-weight: 700; font-size: 1rem; }
+    .card .card-header .badge-count {
+      background: #eef2f6; padding: 2px 12px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+    }
+
+    /* AI Actions */
+    .ai-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ai-actions .btn-ai {
+      padding: 6px 16px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; transition: var(--transition);
+      font-size: 0.8rem;
+    }
+    .ai-actions .btn-ai:hover { border-color: var(--primary); color: var(--primary); }
+    .ai-actions .btn-ai.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .ai-actions .btn-ai.primary:hover { background: #1d4ed8; }
+
+    /* SEO Scores */
+    .seo-scores { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .seo-score { text-align: center; padding: 8px; background: #f8fafc; border-radius: 12px; }
+    .seo-score .value { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
+    .seo-score .value.good { color: var(--secondary); }
+    .seo-score .value.ok { color: var(--accent); }
+    .seo-score .value.bad { color: #EF4444; }
+    .seo-score .label { font-size: 0.75rem; color: #475569; }
+
+    /* Review Actions */
+    .review-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .review-actions .btn-review {
+      padding: 8px 24px; border-radius: 60px; border: none; cursor: pointer;
+      font-weight: 600; font-size: 0.85rem; transition: var(--transition);
+    }
+    .btn-review.approve { background: var(--secondary); color: white; }
+    .btn-review.approve:hover { background: #059669; }
+    .btn-review.changes { background: var(--accent); color: #1e293b; }
+    .btn-review.changes:hover { background: #d48d0a; }
+    .btn-review.comment { background: #eef2f6; color: #475569; }
+    .btn-review.comment:hover { background: #e2e8f0; }
+
+    /* Deployment */
+    .deploy-status { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+    .deploy-status .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--secondary);
+    }
+    .deploy-status .dot.pending { background: var(--accent); }
+    .deploy-status .dot.error { background: #EF4444; }
+
+    /* Project Info */
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .info-item .label { font-size: 0.75rem; color: #94a3b8; }
+    .info-item .value { font-weight: 600; font-size: 0.9rem; }
+
+    /* ===== SIDEBAR OVERLAY ===== */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 999; backdrop-filter: blur(4px); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.active { display: block; }
+      .top-header .menu-toggle { display: block; }
+      .main-content { margin-left: 0; }
+      .top-header { padding: 0 16px; height: auto; gap: 10px; }
+      .top-header .right { width: 100%; }
+      .content { padding: 12px; }
+      .preview-controls { padding: 10px 14px; flex-wrap: wrap; }
+      .preview-controls .url-bar { width: 100%; }
+      .preview-frame iframe { height: 400px; }
+      .seo-scores { grid-template-columns: 1fr 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .top-header .left h1 { font-size: 0.9rem; }
+      .top-header .right .btn-sm { font-size: 0.7rem; padding: 4px 12px; }
+      .preview-frame iframe { height: 300px; }
+      .preview-controls .device-btn { font-size: 0.7rem; padding: 4px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">Smile<span>AI</span><small>Web Studio</small></div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Main</div>
+      <a href="customer-dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a href="create-project.html"><span class="icon">✨</span> Create Website</a>
+      <a href="my-projects.html"><span class="icon">🌐</span> My Projects <span class="badge">12</span></a>
+      <a href="project-details.html" class="active"><span class="icon">📋</span> Project Details</a>
+      <a href="#"><span class="icon">🎨</span> Templates</a>
+      <a href="#"><span class="icon">🤖</span> AI Generator</a>
+      <a href="portfolio.html"><span class="icon">📁</span> Portfolio</a>
+      <div class="nav-label" style="margin-top:12px;">Account</div>
+      <a href="#"><span class="icon">📄</span> Invoices</a>
+      <a href="#"><span class="icon">💳</span> Billing</a>
+      <a href="#"><span class="icon">🔔</span> Notifications <span class="badge">5</span></a>
+      <a href="#"><span class="icon">💬</span> Messages <span class="badge">2</span></a>
+      <a href="contact.html"><span class="icon">🛡️</span> Support</a>
+      <a href="#"><span class="icon">👤</span> Profile</a>
+      <a href="#"><span class="icon">⚙️</span> Settings</a>
+      <a href="login.html" class="logout"><span class="icon">🚪</span> Logout</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- HEADER -->
+    <header class="top-header">
+      <div class="left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <h1>👁️ Website Preview <small>Brand Pro Business</small></h1>
+        <span class="status-badge">Published</span>
+        <span style="font-size:0.75rem;color:#94a3b8;">v1.3.0</span>
+      </div>
+      <div class="right">
+        <button class="btn-sm" onclick="window.open('project-details.html','_blank')">📋 Back to Project</button>
+        <button class="btn-sm" onclick="alert('Share link copied!')">🔗 Share</button>
+        <button class="btn-sm success" onclick="alert('Publishing...')">🚀 Publish</button>
+        <div class="profile">
+          <span style="font-weight:600;font-size:0.85rem;">John</span>
+          <div class="avatar">JD</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <!-- Preview Controls -->
+      <div class="preview-controls">
+        <div class="device-group">
+          <button class="device-btn active" data-device="desktop" onclick="setDevice('desktop')">🖥️ Desktop</button>
+          <button class="device-btn" data-device="tablet" onclick="setDevice('tablet')">📱 Tablet</button>
+          <button class="device-btn" data-device="mobile" onclick="setDevice('mobile')">📱 Mobile</button>
+        </div>
+        <span class="sep">|</span>
+        <button class="device-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+        <button class="device-btn" onclick="refreshPreview()">🔄 Refresh</button>
+        <span class="sep">|</span>
+        <div class="url-bar">
+          <span class="lock">🔒</span>
+          <span class="url">preview.smileai.com/brand-pro-business</span>
+        </div>
+      </div>
+
+      <!-- Preview Frame -->
+      <div class="preview-frame" id="previewFrame">
+        <div class="loading-skeleton" id="loadingSkeleton">
+          <div class="spinner"></div>
+          <div class="text">Loading website preview...</div>
+        </div>
+        <div class="error-state" id="errorState">
+          <span class="icon">⚠️</span>
+          <h3>Preview Unavailable</h3>
+          <p style="color:#475569;">Please try refreshing or regenerate the website.</p>
+        </div>
+        <iframe id="previewIframe" src="demo.html?type=business" loading="lazy"></iframe>
+      </div>
+
+      <!-- Bottom Grid -->
+      <div class="bottom-grid">
+        <!-- LEFT COLUMN -->
+        <div>
+          <!-- AI Actions -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🤖 AI Actions</h3>
+            </div>
+            <div class="ai-actions">
+              <button class="btn-ai primary" onclick="regenerate()">⚡ Regenerate Website</button>
+              <button class="btn-ai" onclick="alert('Generating SEO...')">🔍 Generate SEO</button>
+              <button class="btn-ai" onclick="alert('Generating Content...')">✍️ Generate Content</button>
+              <button class="btn-ai" onclick="alert('Generating Images...')">🖼️ Generate Images</button>
+              <button class="btn-ai" onclick="alert('Optimizing...')">⚡ Optimize Performance</button>
+            </div>
+          </div>
+
+          <!-- Client Review -->
+          <div class="card">
+            <div class="card-header">
+              <h3>✅ Client Review</h3>
+            </div>
+            <div class="review-actions">
+              <button class="btn-review approve" onclick="approveWebsite()">✅ Approve Website</button>
+              <button class="btn-review changes" onclick="requestChanges()">✏️ Request Changes</button>
+              <button class="btn-review comment" onclick="addComment()">💬 Add Comment</button>
+            </div>
+            <div style="margin-top:12px;font-size:0.85rem;color:#94a3b8;">
+              Last reviewed: 2025-01-14 10:30
+            </div>
+          </div>
+
+          <!-- SEO Report -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📈 SEO Report</h3>
+              <span class="badge-count">Updated: Today</span>
+            </div>
+            <div class="seo-scores">
+              <div class="seo-score"><div class="value good">92</div><div class="label">SEO Score</div></div>
+              <div class="seo-score"><div class="value good">95</div><div class="label">Performance</div></div>
+              <div class="seo-score"><div class="value good">88</div><div class="label">Accessibility</div></div>
+              <div class="seo-score"><div class="value good">90</div><div class="label">Best Practices</div></div>
+            </div>
+            <div style="margin-top:10px;font-size:0.85rem;">
+              <div><strong>Meta Title:</strong> Brand Pro Business – Professional Solutions</div>
+              <div><strong>Meta Description:</strong> Brand Pro Solutions provides professional business services for growing companies.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div>
+          <!-- Deployment -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🚀 Deployment</h3>
+            </div>
+            <div class="deploy-status">
+              <span class="dot"></span>
+              <span>Ready for deployment</span>
+            </div>
+            <div style="margin-top:8px;font-size:0.85rem;">
+              <div>📦 Hosting: Vercel (Ready)</div>
+              <div>🔒 SSL: Active</div>
+              <div>🌐 Custom Domain: Available</div>
+            </div>
+            <div style="margin-top:10px;">
+              <button class="btn-sm" onclick="alert('Deploying to Vercel...')">⚡ Deploy to Vercel</button>
+              <button class="btn-sm" onclick="alert('Setting up domain...')">🌐 Setup Domain</button>
+            </div>
+          </div>
+
+          <!-- Downloads -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📥 Downloads</h3>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <button class="btn-sm" onclick="alert('Downloading ZIP...')">📦 Download ZIP</button>
+              <button class="btn-sm" onclick="alert('Downloading HTML...')">📄 Download HTML</button>
+              <button class="btn-sm" onclick="alert('Downloading Assets...')">📁 Download Assets</button>
+            </div>
+          </div>
+
+          <!-- Project Info -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📋 Project Info</h3>
+            </div>
+            <div class="info-grid">
+              <div class="info-item"><div class="label">Project Name</div><div class="value">Brand Pro Business</div></div>
+              <div class="info-item"><div class="label">Business</div><div class="value">Brand Pro Solutions</div></div>
+              <div class="info-item"><div class="label">Package</div><div class="value">Business Plan</div></div>
+              <div class="info-item"><div class="label">Completion</div><div class="value">100%</div></div>
+              <div class="info-item"><div class="label">Team</div><div class="value">John, Priya</div></div>
+              <div class="info-item"><div class="label">Last Updated</div><div class="value">2025-01-14</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+      setTimeout(() => {
+        document.getElementById('loadingSkeleton').classList.add('hide');
+      }, 800);
+    });
+
+    // ===== SIDEBAR =====
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { sidebar.classList.remove('open'); overlay.classList.remove('active'); }
+    });
+
+    // ===== PREVIEW CONTROLS =====
+    const iframe = document.getElementById('previewIframe');
+    let currentDevice = 'desktop';
+
+    function setDevice(device) {
+      currentDevice = device;
+      document.querySelectorAll('.device-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`.device-btn[data-device="${device}"]`).classList.add('active');
+      iframe.className = device === 'desktop' ? '' : device;
+    }
+
+    function toggleFullscreen() {
+      const frame = document.getElementById('previewFrame');
+      if (!document.fullscreenElement) {
+        frame.requestFullscreen?.() || frame.webkitRequestFullscreen?.();
+      } else {
+        document.exitFullscreen?.() || document.webkitExitFullscreen?.();
+      }
+    }
+
+    function refreshPreview() {
+      const skeleton = document.getElementById('loadingSkeleton');
+      skeleton.classList.remove('hide');
+      const src = iframe.src;
+      iframe.src = '';
+      setTimeout(() => {
+        iframe.src = src;
+        setTimeout(() => skeleton.classList.add('hide'), 800);
+      }, 300);
+    }
+
+    // ===== AI ACTIONS =====
+    function regenerate() {
+      if (confirm('🔄 Regenerate this website? AI will recreate the content and design.')) {
+        alert('🤖 AI regenerating website...');
+        refreshPreview();
+      }
+    }
+
+    // ===== REVIEW ACTIONS =====
+    function approveWebsite() {
+      if (confirm('✅ Approve this website and publish?')) {
+        alert('🎉 Website approved successfully!');
+      }
+    }
+
+    function requestChanges() {
+      const changes = prompt('✏️ Describe the changes you need:');
+      if (changes) {
+        alert('📝 Changes requested: ' + changes);
+      }
+    }
+
+    function addComment() {
+      const comment = prompt('💬 Add your comment:');
+      if (comment) {
+        alert('💬 Comment added: ' + comment);
+      }
+    }
+
+    // ============================================================
+    // 🔥 FIREBASE FIRESTORE INTEGRATION
+    // ============================================================
+    /*
+    import { getFirestore, doc, getDoc, onSnapshot, updateDoc } from 'firebase/firestore';
+    import { getAuth } from 'firebase/auth';
+
+    const db = getFirestore();
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    // Get project ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get('id') || 'PRJ-2025-001';
+
+    if (user && projectId) {
+      const docRef = doc(db, 'generated_websites', projectId);
+      onSnapshot(docRef, (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.data();
+          // Update preview URL, SEO scores, status, etc.
+          const previewUrl = data.previewUrl || 'demo.html?type=business';
+          iframe.src = previewUrl;
+          // Update SEO scores
+          document.querySelector('.seo-score .value').textContent = data.seoScore || '92';
+          document.querySelector('.seo-scores .value:nth-child(2)').textContent = data.performanceScore || '95';
+        }
+      });
+    }
+    */
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href.length > 1) {
+        link.addEventListener('click', function(e) {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+    });
+
+    console.log('🚀 website-preview.html – Smile AI Web Studio');
+    console.log('📌 Live preview with device controls, AI actions, and SEO report');
+    console.log('📌 Firebase Firestore ready (commented)');
+  </script>
+</body>
+</html>
