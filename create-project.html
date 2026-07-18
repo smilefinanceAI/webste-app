@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Create Project – Smile AI Web Studio</title>
+  <meta name="description" content="Submit your website project request. AI will generate a complete website based on your requirements." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --sidebar-width: 260px;
+      --header-height: 72px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 4px 24px rgba(0,0,0,0.04);
+      --shadow-card: 0 8px 32px -8px rgba(0,0,0,0.06);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100%;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(0,0,0,0.04);
+      padding: 20px 16px; overflow-y: auto; z-index: 1000;
+      transition: transform var(--transition);
+    }
+    .sidebar .logo {
+      font-size: 1.4rem; font-weight: 800; color: var(--primary);
+      display: flex; align-items: center; gap: 8px; padding: 0 8px 20px;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .sidebar .logo span { color: var(--secondary); }
+    .sidebar .logo small { font-size: 0.55rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; }
+
+    .sidebar-nav { margin-top: 16px; }
+    .sidebar-nav .nav-label { font-size: 0.7rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      color: #475569; transition: var(--transition); margin-bottom: 2px;
+    }
+    .sidebar-nav a:hover { background: #f1f5f9; color: var(--primary); }
+    .sidebar-nav a.active { background: #eff6ff; color: var(--primary); font-weight: 600; }
+    .sidebar-nav a .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+    .sidebar-nav a .badge {
+      margin-left: auto; background: var(--primary); color: white;
+      padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+    }
+    .sidebar-nav .logout { margin-top: 16px; border-top: 1px solid #eef2f6; padding-top: 12px; color: #EF4444; }
+    .sidebar-nav .logout:hover { background: #fef2f2; color: #EF4444; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
+
+    /* ===== HEADER ===== */
+    .top-header {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(16px);
+      padding: 0 32px; height: var(--header-height);
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .top-header .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    .top-header .right { display: flex; align-items: center; gap: 16px; }
+    .top-header .right .profile {
+      display: flex; align-items: center; gap: 10px; cursor: pointer;
+      padding: 4px 12px 4px 4px; border-radius: 60px; transition: var(--transition);
+    }
+    .top-header .right .profile:hover { background: #f1f5f9; }
+    .top-header .right .profile .avatar {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--primary);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem;
+    }
+
+    /* ===== CONTENT ===== */
+    .content { padding: 28px 32px; max-width: 900px; margin: 0 auto; }
+
+    /* Progress */
+    .progress-steps {
+      display: flex; justify-content: space-between; margin-bottom: 32px;
+      position: relative; padding: 0 20px;
+    }
+    .progress-steps::before {
+      content: ''; position: absolute; top: 16px; left: 40px; right: 40px;
+      height: 2px; background: #e2e8f0; z-index: 0;
+    }
+    .step-dot {
+      display: flex; flex-direction: column; align-items: center; z-index: 1;
+      cursor: pointer; transition: var(--transition);
+    }
+    .step-dot .dot {
+      width: 32px; height: 32px; border-radius: 50%; background: #e2e8f0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.75rem; color: #94a3b8;
+      transition: var(--transition); border: 2px solid transparent;
+    }
+    .step-dot.active .dot { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37,99,235,0.15); }
+    .step-dot.completed .dot { background: var(--secondary); color: white; border-color: var(--secondary); }
+    .step-dot .label { font-size: 0.65rem; margin-top: 4px; color: #94a3b8; font-weight: 500; text-align: center; }
+    .step-dot.active .label { color: var(--primary); }
+
+    /* Step Container */
+    .step-container {
+      display: none; background: white; padding: 32px; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; box-shadow: var(--shadow-card);
+      animation: fadeSlide 0.4s ease;
+    }
+    .step-container.active { display: block; }
+    @keyframes fadeSlide { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    .step-container h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 4px; }
+    .step-container .step-desc { color: #475569; margin-bottom: 20px; }
+
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      font-weight: 600; font-size: 0.9rem; display: block; margin-bottom: 4px; color: #1e293b;
+    }
+    .form-group label .required { color: #EF4444; margin-left: 2px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 10px 16px; border-radius: 60px; border: 1px solid #d1d9e6;
+      font-size: 0.95rem; transition: var(--transition); background: #fafcff;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+      background: white;
+    }
+    .form-group textarea { border-radius: 16px; min-height: 100px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group .error-msg { color: #EF4444; font-size: 0.8rem; margin-top: 4px; display: none; }
+    .form-group .error-msg.show { display: block; }
+    .form-group .form-error { border-color: #EF4444 !important; background: #fef2f2 !important; }
+
+    .checkbox-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.6rem; margin: 0.5rem 0;
+    }
+    .checkbox-grid label {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border-radius: 12px; background: #f8fafc;
+      border: 1px solid #eef2f6; cursor: pointer; transition: var(--transition);
+      font-weight: 500; font-size: 0.85rem;
+    }
+    .checkbox-grid label:hover { border-color: var(--primary); }
+    .checkbox-grid input[type="checkbox"] {
+      width: 18px; height: 18px; accent-color: var(--primary); flex-shrink: 0;
+    }
+
+    .color-picker-group { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .color-picker-group input[type="color"] {
+      width: 50px; height: 50px; padding: 0; border: 2px solid #eef2f6; border-radius: 50%;
+      cursor: pointer; background: none;
+    }
+    .color-picker-group input[type="color"]:focus { outline: none; border-color: var(--primary); }
+
+    .file-upload {
+      border: 2px dashed #d1d9e6; border-radius: 16px; padding: 1.5rem;
+      text-align: center; cursor: pointer; transition: var(--transition);
+      background: #fafcff;
+    }
+    .file-upload:hover { border-color: var(--primary); background: #f0f7ff; }
+    .file-upload .icon { font-size: 2.5rem; display: block; }
+    .file-upload .file-list { margin-top: 0.5rem; font-size: 0.85rem; color: #475569; }
+
+    .btn-group { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 32px;
+      border-radius: 60px; font-weight: 600; font-size: 1rem; border: none;
+      cursor: pointer; transition: var(--transition); box-shadow: 0 4px 14px rgba(37,99,235,0.15);
+    }
+    .btn-primary { background: linear-gradient(145deg, #2563EB, #1d4ed8); color: white; }
+    .btn-primary:hover { transform: scale(1.02); box-shadow: 0 8px 24px rgba(37,99,235,0.3); }
+    .btn-secondary { background: var(--secondary); color: white; }
+    .btn-secondary:hover { transform: scale(1.02); background: #059669; }
+    .btn-outline { background: transparent; border: 2px solid #e2e8f0; color: #475569; box-shadow: none; }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    .btn .spinner {
+      display: none; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.2);
+      border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite;
+    }
+    .btn.loading .spinner { display: inline-block; }
+    .btn.loading .btn-text { display: none; }
+
+    /* Review */
+    .review-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .review-item { padding: 8px 0; border-bottom: 1px solid #f1f5f9; }
+    .review-item .label { font-weight: 600; font-size: 0.85rem; color: #475569; }
+    .review-item .value { font-size: 0.95rem; }
+
+    /* Success */
+    .success-state {
+      display: none; text-align: center; padding: 2rem 0;
+    }
+    .success-state.active { display: block; }
+    .success-state .icon { font-size: 4rem; display: block; margin-bottom: 0.5rem; }
+    .success-state h2 { font-weight: 800; font-size: 1.8rem; }
+    .success-state p { color: #475569; }
+
+    /* ===== SIDEBAR OVERLAY ===== */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 999; backdrop-filter: blur(4px); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.active { display: block; }
+      .top-header .menu-toggle { display: block; }
+      .main-content { margin-left: 0; }
+      .top-header { padding: 0 16px; }
+      .content { padding: 16px; }
+      .step-container { padding: 20px; }
+      .form-row { grid-template-columns: 1fr; }
+      .review-grid { grid-template-columns: 1fr; }
+      .progress-steps { padding: 0 8px; }
+      .step-dot .label { display: none; }
+      .checkbox-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .checkbox-grid { grid-template-columns: 1fr; }
+      .btn-group { flex-direction: column; }
+      .btn-group .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">Smile<span>AI</span><small>Web Studio</small></div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Main</div>
+      <a href="customer-dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a href="create-project.html" class="active"><span class="icon">✨</span> Create Website</a>
+      <a href="#"><span class="icon">🌐</span> My Websites <span class="badge">12</span></a>
+      <a href="#"><span class="icon">📋</span> Website Requests <span class="badge">3</span></a>
+      <a href="#"><span class="icon">🎨</span> Templates</a>
+      <a href="#"><span class="icon">🤖</span> AI Generator</a>
+      <a href="portfolio.html"><span class="icon">📁</span> Portfolio</a>
+      <div class="nav-label" style="margin-top:12px;">Account</div>
+      <a href="#"><span class="icon">📄</span> Invoices</a>
+      <a href="#"><span class="icon">💳</span> Billing</a>
+      <a href="#"><span class="icon">🔔</span> Notifications <span class="badge">5</span></a>
+      <a href="#"><span class="icon">💬</span> Messages <span class="badge">2</span></a>
+      <a href="contact.html"><span class="icon">🛡️</span> Support</a>
+      <a href="#"><span class="icon">👤</span> Profile</a>
+      <a href="#"><span class="icon">⚙️</span> Settings</a>
+      <a href="login.html" class="logout"><span class="icon">🚪</span> Logout</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- HEADER -->
+    <header class="top-header">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <span style="font-weight:600;font-size:1.1rem;">Create New Project</span>
+      </div>
+      <div class="right">
+        <div class="profile">
+          <span style="font-weight:600;font-size:0.9rem;">John</span>
+          <div class="avatar">JD</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <!-- Progress -->
+      <div class="progress-steps" id="progressSteps">
+        <div class="step-dot active" data-step="0"><div class="dot">1</div><div class="label">Project</div></div>
+        <div class="step-dot" data-step="1"><div class="dot">2</div><div class="label">Business</div></div>
+        <div class="step-dot" data-step="2"><div class="dot">3</div><div class="label">Brand</div></div>
+        <div class="step-dot" data-step="3"><div class="dot">4</div><div class="label">Pages</div></div>
+        <div class="step-dot" data-step="4"><div class="dot">5</div><div class="label">Features</div></div>
+        <div class="step-dot" data-step="5"><div class="dot">6</div><div class="label">Reference</div></div>
+        <div class="step-dot" data-step="6"><div class="dot">7</div><div class="label">Review</div></div>
+        <div class="step-dot" data-step="7"><div class="dot">8</div><div class="label">Submit</div></div>
+      </div>
+
+      <!-- STEP 1: Project Information -->
+      <div class="step-container active" data-step="0">
+        <h2>📋 Project Information</h2>
+        <p class="step-desc">Tell us about your website project.</p>
+        <form id="step1Form">
+          <div class="form-group">
+            <label>Website Name <span class="required">*</span></label>
+            <input type="text" id="websiteName" placeholder="e.g. My Business Website" required />
+            <div class="error-msg" id="websiteNameError">Please enter a website name.</div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Business Name <span class="required">*</span></label>
+              <input type="text" id="businessName" placeholder="Your business name" required />
+              <div class="error-msg" id="businessNameError">Please enter your business name.</div>
+            </div>
+            <div class="form-group">
+              <label>Business Category</label>
+              <input type="text" id="businessCategory" placeholder="e.g. Healthcare, Education" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Website Type <span class="required">*</span></label>
+            <select id="websiteType" required>
+              <option value="">Select type</option>
+              <option value="landing">Landing Page</option>
+              <option value="business">Business Website</option>
+              <option value="portfolio">Portfolio</option>
+              <option value="restaurant">Restaurant</option>
+              <option value="hospital">Hospital</option>
+              <option value="school">School</option>
+              <option value="realestate">Real Estate</option>
+              <option value="ecommerce">E-commerce</option>
+              <option value="finance">Finance</option>
+              <option value="ngo">NGO</option>
+              <option value="other">Other</option>
+            </select>
+            <div class="error-msg" id="websiteTypeError">Please select a website type.</div>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" onclick="nextStep()">Next Step →</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 2: Business Details -->
+      <div class="step-container" data-step="1">
+        <h2>📝 Business Details</h2>
+        <p class="step-desc">Tell us more about your business and goals.</p>
+        <form id="step2Form">
+          <div class="form-group">
+            <label>Business Description <span class="required">*</span></label>
+            <textarea id="businessDesc" placeholder="Describe your business, what you do, and what you offer..." required></textarea>
+            <div class="error-msg" id="businessDescError">Please describe your business.</div>
+          </div>
+          <div class="form-group">
+            <label>Target Audience</label>
+            <input type="text" id="targetAudience" placeholder="e.g. Small business owners, parents, young professionals" />
+          </div>
+          <div class="form-group">
+            <label>Primary Goal</label>
+            <select id="primaryGoal">
+              <option value="">Select primary goal</option>
+              <option value="lead">Generate Leads</option>
+              <option value="sales">Drive Sales</option>
+              <option value="brand">Build Brand Awareness</option>
+              <option value="info">Share Information</option>
+              <option value="portfolio">Showcase Portfolio</option>
+              <option value="booking">Online Booking</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" id="city" placeholder="City" />
+            </div>
+            <div class="form-group">
+              <label>State</label>
+              <input type="text" id="state" placeholder="State" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <select id="country">
+              <option value="India">India</option>
+              <option value="USA">United States</option>
+              <option value="UK">United Kingdom</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="UAE">UAE</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline" onclick="prevStep()">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="nextStep()">Next Step →</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 3: Brand Identity -->
+      <div class="step-container" data-step="2">
+        <h2>🎨 Brand Identity</h2>
+        <p class="step-desc">Define your brand colors, logo, and style.</p>
+        <form id="step3Form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Primary Color</label>
+              <div class="color-picker-group">
+                <input type="color" id="primaryColor" value="#2563EB" />
+                <span style="font-size:0.85rem;color:#475569;">Choose your primary brand color</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Secondary Color</label>
+              <div class="color-picker-group">
+                <input type="color" id="secondaryColor" value="#10B981" />
+                <span style="font-size:0.85rem;color:#475569;">Choose your secondary color</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Font Preference</label>
+            <select id="fontPreference">
+              <option value="inter">Inter</option>
+              <option value="poppins">Poppins</option>
+              <option value="sans">Sans Serif</option>
+              <option value="serif">Serif</option>
+              <option value="modern">Modern</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Style</label>
+            <select id="stylePreference">
+              <option value="modern">Modern</option>
+              <option value="corporate">Corporate</option>
+              <option value="luxury">Luxury</option>
+              <option value="minimal">Minimal</option>
+              <option value="creative">Creative</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Upload Logo</label>
+            <div class="file-upload" id="logoUpload">
+              <span class="icon">🖼️</span>
+              <p><strong>Click to upload</strong> or drag your logo</p>
+              <p style="font-size:0.8rem;color:#94a3b8;">PNG, JPG, SVG (max 2MB)</p>
+              <input type="file" id="logoFile" accept="image/*" style="display:none;" />
+              <div class="file-list" id="logoList"></div>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline" onclick="prevStep()">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="nextStep()">Next Step →</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 4: Website Pages -->
+      <div class="step-container" data-step="3">
+        <h2>📄 Website Pages</h2>
+        <p class="step-desc">Select the pages you want on your website.</p>
+        <form id="step4Form">
+          <div class="checkbox-grid">
+            <label><input type="checkbox" class="page-check" checked /> Home</label>
+            <label><input type="checkbox" class="page-check" checked /> About</label>
+            <label><input type="checkbox" class="page-check" checked /> Services</label>
+            <label><input type="checkbox" class="page-check" /> Portfolio</label>
+            <label><input type="checkbox" class="page-check" /> Pricing</label>
+            <label><input type="checkbox" class="page-check" /> Blog</label>
+            <label><input type="checkbox" class="page-check" checked /> FAQ</label>
+            <label><input type="checkbox" class="page-check" checked /> Contact</label>
+          </div>
+          <div class="form-group">
+            <label>Custom Pages</label>
+            <input type="text" id="customPages" placeholder="e.g. Careers, Press, Gallery (comma separated)" />
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline" onclick="prevStep()">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="nextStep()">Next Step →</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 5: Features -->
+      <div class="step-container" data-step="4">
+        <h2>⚡ Features Required</h2>
+        <p class="step-desc">Select the features you need on your website.</p>
+        <form id="step5Form">
+          <div class="checkbox-grid">
+            <label><input type="checkbox" class="feature-check" checked /> WhatsApp Chat</label>
+            <label><input type="checkbox" class="feature-check" checked /> Contact Form</label>
+            <label><input type="checkbox" class="feature-check" /> Lead Form</label>
+            <label><input type="checkbox" class="feature-check" /> Booking System</label>
+            <label><input type="checkbox" class="feature-check" /> Payment Gateway</label>
+            <label><input type="checkbox" class="feature-check" /> Live Chat</label>
+            <label><input type="checkbox" class="feature-check" /> Google Maps</label>
+            <label><input type="checkbox" class="feature-check" /> Gallery</label>
+            <label><input type="checkbox" class="feature-check" /> Testimonials</label>
+            <label><input type="checkbox" class="feature-check" /> Reviews</label>
+            <label><input type="checkbox" class="feature-check" /> Admin Panel</label>
+            <label><input type="checkbox" class="feature-check" /> User Login</label>
+            <label><input type="checkbox" class="feature-check" /> Dashboard</label>
+            <label><input type="checkbox" class="feature-check" /> AI Chatbot</label>
+            <label><input type="checkbox" class="feature-check" checked /> SEO</label>
+            <label><input type="checkbox" class="feature-check" checked /> Analytics</label>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline" onclick="prevStep()">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="nextStep()">Next Step →</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 6: Reference -->
+      <div class="step-container" data-step="5">
+        <h2>🔗 Reference</h2>
+        <p class="step-desc">Share any references or special instructions.</p>
+        <form id="step6Form">
+          <div class="form-group">
+            <label>Reference Website URL</label>
+            <input type="url" id="referenceUrl" placeholder="https://example.com" />
+          </div>
+          <div class="form-group">
+            <label>Competitor URLs</label>
+            <input type="text" id="competitorUrls" placeholder="e.g. competitor1.com, competitor2.com" />
+          </div>
+          <div class="form-group">
+            <label>Special Instructions</label>
+            <textarea id="specialInstructions" placeholder="Any specific requirements, design preferences, or notes..." rows="4"></textarea>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline" onclick="prevStep()">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="nextStep()">Next Step →</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 7: Review -->
+      <div class="step-container" data-step="6">
+        <h2>📋 Review Your Project</h2>
+        <p class="step-desc">Review all the details before submitting.</p>
+        <div id="reviewContent"></div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-outline" onclick="prevStep()">← Edit</button>
+          <button type="button" class="btn btn-primary" onclick="submitProject()">Submit Project ✅</button>
+        </div>
+      </div>
+
+      <!-- STEP 8: Success -->
+      <div class="step-container" data-step="7">
+        <div class="success-state" id="successState">
+          <span class="icon">🎉</span>
+          <h2>Project Submitted Successfully!</h2>
+          <p>Your website request has been received. Our AI and team will process it shortly.</p>
+          <p style="font-size:0.9rem;color:#94a3b8;margin-top:4px;">Request ID: <span id="requestId">PRJ-2025-001</span></p>
+          <div class="btn-group" style="justify-content:center;">
+            <a href="customer-dashboard.html" class="btn btn-primary">Go to Dashboard</a>
+            <a href="create-project.html" class="btn btn-outline">Create Another Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+    });
+
+    // ===== SIDEBAR =====
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { sidebar.classList.remove('open'); overlay.classList.remove('active'); }
+    });
+
+    // ===== STEP NAVIGATION =====
+    let currentStep = 0;
+    const totalSteps = 8;
+    const stepContainers = document.querySelectorAll('.step-container');
+    const stepDots = document.querySelectorAll('.step-dot');
+    const formData = {};
+
+    function updateStep(step) {
+      stepContainers.forEach((el, i) => el.classList.toggle('active', i === step));
+      stepDots.forEach((dot, i) => {
+        dot.classList.remove('active', 'completed');
+        if (i === step) dot.classList.add('active');
+        else if (i < step) dot.classList.add('completed');
+      });
+      currentStep = step;
+      if (step === 6) generateReview();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextStep() {
+      if (currentStep < totalSteps - 1) {
+        if (!validateStep(currentStep)) return;
+        collectStepData(currentStep);
+        updateStep(currentStep + 1);
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 0) updateStep(currentStep - 1);
+    }
+
+    // ===== VALIDATION =====
+    function validateStep(step) {
+      if (step === 0) {
+        const name = document.getElementById('websiteName').value.trim();
+        const business = document.getElementById('businessName').value.trim();
+        const type = document.getElementById('websiteType').value;
+        let valid = true;
+        if (!name) { document.getElementById('websiteName').classList.add('form-error'); document.getElementById('websiteNameError').classList.add('show'); valid = false; }
+        else { document.getElementById('websiteName').classList.remove('form-error'); document.getElementById('websiteNameError').classList.remove('show'); }
+        if (!business) { document.getElementById('businessName').classList.add('form-error'); document.getElementById('businessNameError').classList.add('show'); valid = false; }
+        else { document.getElementById('businessName').classList.remove('form-error'); document.getElementById('businessNameError').classList.remove('show'); }
+        if (!type) { document.getElementById('websiteType').classList.add('form-error'); document.getElementById('websiteTypeError').classList.add('show'); valid = false; }
+        else { document.getElementById('websiteType').classList.remove('form-error'); document.getElementById('websiteTypeError').classList.remove('show'); }
+        return valid;
+      }
+      if (step === 1) {
+        const desc = document.getElementById('businessDesc').value.trim();
+        if (!desc) { document.getElementById('businessDesc').classList.add('form-error'); document.getElementById('businessDescError').classList.add('show'); return false; }
+        document.getElementById('businessDesc').classList.remove('form-error'); document.getElementById('businessDescError').classList.remove('show');
+        return true;
+      }
+      return true;
+    }
+
+    function collectStepData(step) {
+      if (step === 0) {
+        formData.websiteName = document.getElementById('websiteName').value.trim();
+        formData.businessName = document.getElementById('businessName').value.trim();
+        formData.businessCategory = document.getElementById('businessCategory').value.trim();
+        formData.websiteType = document.getElementById('websiteType').value;
+      }
+      if (step === 1) {
+        formData.businessDesc = document.getElementById('businessDesc').value.trim();
+        formData.targetAudience = document.getElementById('targetAudience').value.trim();
+        formData.primaryGoal = document.getElementById('primaryGoal').value;
+        formData.city = document.getElementById('city').value.trim();
+        formData.state = document.getElementById('state').value.trim();
+        formData.country = document.getElementById('country').value;
+      }
+      if (step === 2) {
+        formData.primaryColor = document.getElementById('primaryColor').value;
+        formData.secondaryColor = document.getElementById('secondaryColor').value;
+        formData.fontPreference = document.getElementById('fontPreference').value;
+        formData.stylePreference = document.getElementById('stylePreference').value;
+        const logoInput = document.getElementById('logoFile');
+        if (logoInput.files.length > 0) formData.logoFile = logoInput.files[0].name;
+      }
+      if (step === 3) {
+        formData.pages = [];
+        document.querySelectorAll('.page-check:checked').forEach(el => formData.pages.push(el.parentElement.textContent.trim()));
+        formData.customPages = document.getElementById('customPages').value.trim();
+      }
+      if (step === 4) {
+        formData.features = [];
+        document.querySelectorAll('.feature-check:checked').forEach(el => formData.features.push(el.parentElement.textContent.trim()));
+      }
+      if (step === 5) {
+        formData.referenceUrl = document.getElementById('referenceUrl').value.trim();
+        formData.competitorUrls = document.getElementById('competitorUrls').value.trim();
+        formData.specialInstructions = document.getElementById('specialInstructions').value.trim();
+      }
+    }
+
+    // ===== REVIEW =====
+    function generateReview() {
+      collectStepData(0); collectStepData(1); collectStepData(2);
+      collectStepData(3); collectStepData(4); collectStepData(5);
+      const container = document.getElementById('reviewContent');
+      const fields = [
+        { label: 'Website Name', value: formData.websiteName || '—' },
+        { label: 'Business Name', value: formData.businessName || '—' },
+        { label: 'Business Category', value: formData.businessCategory || '—' },
+        { label: 'Website Type', value: formData.websiteType || '—' },
+        { label: 'Business Description', value: formData.businessDesc || '—' },
+        { label: 'Target Audience', value: formData.targetAudience || '—' },
+        { label: 'Primary Goal', value: formData.primaryGoal || '—' },
+        { label: 'Location', value: [formData.city, formData.state, formData.country].filter(Boolean).join(', ') || '—' },
+        { label: 'Primary Color', value: formData.primaryColor || '—' },
+        { label: 'Secondary Color', value: formData.secondaryColor || '—' },
+        { label: 'Style', value: formData.stylePreference || '—' },
+        { label: 'Pages', value: (formData.pages || []).join(', ') || '—' },
+        { label: 'Custom Pages', value: formData.customPages || '—' },
+        { label: 'Features', value: (formData.features || []).join(', ') || '—' },
+        { label: 'Reference URL', value: formData.referenceUrl || '—' },
+        { label: 'Special Instructions', value: formData.specialInstructions || '—' }
+      ];
+      container.innerHTML = '<div class="review-grid">' + fields.map(f =>
+        `<div class="review-item"><span class="label">${f.label}</span><div class="value">${f.value}</div></div>`
+      ).join('') + '</div>';
+    }
+
+    // ===== SUBMIT =====
+    function submitProject() {
+      const btn = document.querySelector('.step-container.active .btn-primary');
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      // Generate Request ID
+      const requestId = 'PRJ-' + Date.now().toString().slice(-6);
+
+      // ============================================================
+      // 🔥 FIREBASE FIRESTORE INTEGRATION
+      // ============================================================
+      /*
+      import { getFirestore, collection, addDoc } from 'firebase/firestore';
+      import { getAuth } from 'firebase/auth';
+
+      const db = getFirestore();
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      addDoc(collection(db, 'website_requests'), {
+        ...formData,
+        userId: user?.uid || 'anonymous',
+        requestId: requestId,
+        status: 'pending',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      }).then(() => {
+        // Success
+      }).catch((error) => {
+        console.error('Firestore error:', error);
+      });
+      */
+
+      // ===== DEMO SUBMIT =====
+      setTimeout(() => {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+        document.getElementById('requestId').textContent = requestId;
+        document.getElementById('successState').classList.add('active');
+        document.querySelector('.step-container.active .btn-group').style.display = 'none';
+        document.querySelector('.step-container.active h2').style.display = 'none';
+        document.querySelector('.step-container.active .step-desc').style.display = 'none';
+      }, 1500);
+
+      console.log('🚀 Project submitted:', { ...formData, requestId, status: 'pending' });
+    }
+
+    // ===== FILE UPLOAD =====
+    document.getElementById('logoUpload').addEventListener('click', () => {
+      document.getElementById('logoFile').click();
+    });
+    document.getElementById('logoFile').addEventListener('change', function() {
+      if (this.files.length > 0) {
+        document.getElementById('logoList').innerHTML = `📄 ${this.files[0].name}`;
+      }
+    });
+
+    // ===== SMOOTH SCROLL FIX =====
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href.length > 1) {
+        link.addEventListener('click', function(e) {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+    });
+
+    console.log('🚀 create-project.html – Smile AI Web Studio');
+    console.log('📌 Multi-step project submission ready');
+    console.log('📌 Firebase: website_requests collection ready (commented)');
+  </script>
+</body>
+</html>
