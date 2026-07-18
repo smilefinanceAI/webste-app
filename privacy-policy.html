@@ -592,19 +592,27 @@
       link.addEventListener('click', () => document.getElementById('navbar').classList.remove('open'));
     });
 
-    // ===== SMOOTH SCROLL FOR TOC =====
-    document.querySelectorAll('.toc-list a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
+    // ===== SMOOTH SCROLL FIX =====
+    // Only applies to links starting with '#'
+    // External HTML pages (privacy-policy.html, etc.) open normally
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href.length > 1) {
+        link.addEventListener('click', function(e) {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      }
     });
 
     console.log('🚀 privacy-policy.html – Smile AI Web Studio');
-    console.log('📌 Premium Privacy Policy page with TOC and progress indicator');
+    console.log('📌 Premium Privacy Policy page with fixed navigation');
   </script>
 </body>
 </html>
