@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Project Manager – Smile AI Web Studio Control Center</title>
+  <meta name="description" content="Master control center for managing customer website projects, AI generation, and team collaboration." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --danger: #EF4444;
+      --bg-white: #ffffff;
+      --sidebar-width: 260px;
+      --header-height: 68px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 4px 24px rgba(0,0,0,0.04);
+      --shadow-card: 0 8px 32px -8px rgba(0,0,0,0.06);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f1f5f9;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100%;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(0,0,0,0.04);
+      padding: 20px 16px; overflow-y: auto; z-index: 1000;
+      transition: transform var(--transition);
+    }
+    .sidebar .logo {
+      font-size: 1.4rem; font-weight: 800; color: var(--primary);
+      display: flex; align-items: center; gap: 8px; padding: 0 8px 20px;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .sidebar .logo span { color: var(--secondary); }
+    .sidebar .logo small { font-size: 0.55rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; }
+
+    .sidebar-nav { margin-top: 16px; }
+    .sidebar-nav .nav-label { font-size: 0.7rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      color: #475569; transition: var(--transition); margin-bottom: 2px;
+    }
+    .sidebar-nav a:hover { background: #f1f5f9; color: var(--primary); }
+    .sidebar-nav a.active { background: #eff6ff; color: var(--primary); font-weight: 600; }
+    .sidebar-nav a .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+    .sidebar-nav a .badge {
+      margin-left: auto; background: var(--primary); color: white;
+      padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+    }
+    .sidebar-nav .logout {
+      margin-top: 16px; border-top: 1px solid #eef2f6; padding-top: 12px; color: #EF4444;
+      cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .sidebar-nav .logout:hover { background: #fef2f2; color: #EF4444; }
+    .sidebar-nav .logout .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
+
+    /* ===== HEADER ===== */
+    .top-header {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(16px);
+      padding: 0 32px; height: var(--header-height);
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .top-header .menu-toggle {
+      display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer;
+    }
+    .top-header .search {
+      display: flex; align-items: center; background: #f1f5f9; border-radius: 60px;
+      padding: 6px 16px; gap: 8px; flex: 1; max-width: 350px;
+    }
+    .top-header .search input {
+      border: none; background: transparent; padding: 8px 0;
+      font-size: 0.95rem; width: 100%; outline: none;
+    }
+    .top-header .search .icon { color: #94a3b8; }
+    .top-header .right {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .top-header .right .btn-sm {
+      padding: 6px 16px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .top-header .right .btn-sm:hover { border-color: var(--primary); color: var(--primary); }
+    .top-header .right .btn-sm.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .top-header .right .btn-sm.primary:hover { background: #1d4ed8; }
+    .top-header .right .profile {
+      display: flex; align-items: center; gap: 10px; cursor: pointer;
+      padding: 4px 12px 4px 4px; border-radius: 60px; transition: var(--transition);
+    }
+    .top-header .right .profile:hover { background: #f1f5f9; }
+    .top-header .right .profile .avatar {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--primary);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem;
+    }
+
+    /* ===== CONTENT ===== */
+    .content { padding: 20px 32px; }
+
+    /* ===== PROJECT HEADER ===== */
+    .project-header {
+      background: white; border-radius: var(--radius-lg); border: 1px solid #eef2f6;
+      padding: 20px 24px; margin-bottom: 20px;
+    }
+    .project-header .top-row {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .project-header .top-row .title h2 { font-size: 1.4rem; font-weight: 800; }
+    .project-header .top-row .title .sub {
+      display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.85rem; color: #475569; margin-top: 4px;
+    }
+    .project-header .top-row .status-badge {
+      padding: 4px 18px; border-radius: 100px; font-weight: 600; font-size: 0.85rem;
+      background: #dbeafe; color: #1e40af; display: inline-block;
+    }
+    .project-header .top-row .status-badge.completed { background: #d1fae5; color: #065f46; }
+    .project-header .top-row .status-badge.development { background: #fce7f3; color: #9d174d; }
+    .project-header .top-row .status-badge.ai { background: #ede9fe; color: #5b21b6; }
+    .project-header .top-row .status-badge.pending { background: #dbeafe; color: #1e40af; }
+    .project-header .top-row .status-badge.ready { background: #d1fae5; color: #065f46; }
+    .project-header .top-row .status-badge.review { background: #fef3c7; color: #92400e; }
+
+    .project-header .stats-row {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px; margin-top: 14px; padding-top: 14px; border-top: 1px solid #f1f5f9;
+    }
+    .project-header .stats-row .stat .label { font-size: 0.75rem; color: #94a3b8; }
+    .project-header .stats-row .stat .value { font-weight: 700; font-size: 0.95rem; }
+    .project-header .stats-row .stat .progress-bar {
+      height: 4px; background: #eef2f6; border-radius: 4px; margin-top: 4px; overflow: hidden;
+    }
+    .project-header .stats-row .stat .progress-bar .fill { height: 100%; border-radius: 4px; background: var(--primary); }
+
+    /* ===== GRID ===== */
+    .project-grid {
+      display: grid; grid-template-columns: 2fr 1fr; gap: 20px;
+    }
+    @media (max-width: 1024px) {
+      .project-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: white; border-radius: var(--radius-lg); border: 1px solid #eef2f6;
+      padding: 18px 20px; margin-bottom: 20px;
+    }
+    .card .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 12px;
+    }
+    .card .card-header h3 { font-weight: 700; font-size: 1rem; }
+    .card .card-header .badge-count {
+      background: #eef2f6; padding: 2px 12px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+    }
+    .card .card-header .edit-btn { font-size: 0.8rem; color: var(--primary); cursor: pointer; }
+
+    .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .overview-item .label { font-size: 0.75rem; color: #94a3b8; }
+    .overview-item .value { font-weight: 600; font-size: 0.9rem; }
+
+    .feature-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .feature-tag {
+      background: #f1f5f9; padding: 2px 14px; border-radius: 100px;
+      font-size: 0.75rem; font-weight: 500; color: #475569;
+    }
+    .feature-tag.active { background: #dbeafe; color: var(--primary); }
+
+    .color-preview { display: flex; gap: 12px; align-items: center; }
+    .color-swatch { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #eef2f6; }
+
+    .ai-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ai-actions .btn-ai {
+      padding: 6px 16px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; transition: var(--transition);
+      font-size: 0.8rem;
+    }
+    .ai-actions .btn-ai:hover { border-color: var(--primary); color: var(--primary); }
+    .ai-actions .btn-ai.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .ai-actions .btn-ai.primary:hover { background: #1d4ed8; }
+
+    .preview-frame {
+      background: #f8fafc; border-radius: var(--radius-lg); padding: 12px;
+      border: 1px solid #eef2f6;
+    }
+    .preview-frame .mockup {
+      width: 100%; height: 160px; background: #e2e8f0; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #94a3b8; font-size: 0.9rem;
+    }
+    .preview-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+
+    .file-item {
+      display: flex; align-items: center; gap: 12px; padding: 6px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .file-item:last-child { border-bottom: none; }
+    .file-item .icon { font-size: 1.2rem; }
+    .file-item .name { flex: 1; font-weight: 500; font-size: 0.9rem; }
+    .file-item .size { font-size: 0.8rem; color: #94a3b8; }
+    .file-item .download { cursor: pointer; color: var(--primary); font-size: 0.8rem; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 20px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 4px; top: 4px; bottom: 4px;
+      width: 2px; background: #e2e8f0;
+    }
+    .timeline-item {
+      position: relative; padding: 4px 0 4px 16px;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -12px; top: 10px;
+      width: 10px; height: 10px; border-radius: 50%; background: #e2e8f0;
+      border: 2px solid white; box-shadow: 0 0 0 2px #e2e8f0;
+    }
+    .timeline-item.completed::before { background: var(--secondary); box-shadow: 0 0 0 2px var(--secondary); }
+    .timeline-item.active::before { background: var(--primary); box-shadow: 0 0 0 2px var(--primary); }
+    .timeline-item .time { font-size: 0.7rem; color: #94a3b8; }
+    .timeline-item .title { font-weight: 500; font-size: 0.9rem; }
+
+    /* Communication */
+    .message-item { padding: 8px 0; border-bottom: 1px solid #f1f5f9; }
+    .message-item:last-child { border-bottom: none; }
+    .message-item .sender { font-weight: 600; font-size: 0.9rem; }
+    .message-item .time { font-size: 0.75rem; color: #94a3b8; }
+    .message-item .text { font-size: 0.9rem; color: #475569; margin-top: 2px; }
+
+    /* Payment */
+    .payment-item { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; }
+    .payment-item:last-child { border-bottom: none; }
+    .payment-item .amount { font-weight: 700; }
+
+    .project-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .project-actions .btn-action {
+      padding: 6px 20px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; font-weight: 500; font-size: 0.85rem;
+      transition: var(--transition);
+    }
+    .project-actions .btn-action:hover { border-color: var(--primary); color: var(--primary); }
+    .project-actions .btn-action.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .project-actions .btn-action.primary:hover { background: #1d4ed8; }
+    .project-actions .btn-action.success { background: var(--secondary); color: white; border-color: var(--secondary); }
+    .project-actions .btn-action.success:hover { background: #059669; }
+    .project-actions .btn-action.danger { border-color: var(--danger); color: var(--danger); }
+    .project-actions .btn-action.danger:hover { background: var(--danger); color: white; }
+
+    /* ===== SIDEBAR OVERLAY ===== */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 999; backdrop-filter: blur(4px); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.active { display: block; }
+      .top-header .menu-toggle { display: block; }
+      .main-content { margin-left: 0; }
+      .top-header { padding: 0 16px; flex-wrap: wrap; height: auto; gap: 8px; }
+      .top-header .search { max-width: 100%; flex: 1; }
+      .top-header .right { flex-wrap: wrap; }
+      .content { padding: 12px; }
+      .project-header { padding: 16px; }
+      .project-header .top-row .title h2 { font-size: 1.1rem; }
+      .overview-grid { grid-template-columns: 1fr; }
+      .project-actions .btn-action { padding: 4px 14px; font-size: 0.75rem; }
+    }
+    @media (max-width: 480px) {
+      .project-header .stats-row { grid-template-columns: 1fr 1fr; }
+      .preview-actions { flex-direction: column; }
+      .preview-actions .btn-sm { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">Smile<span>AI</span><small>Web Studio</small></div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Main</div>
+      <a href="admin-dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a href="website-requests.html"><span class="icon">📋</span> Website Requests <span class="badge">342</span></a>
+      <a href="project-manager.html" class="active"><span class="icon">📁</span> Project Manager</a>
+      <a href="customer-dashboard.html"><span class="icon">👤</span> Customer Dashboard</a>
+      <a href="create-project.html"><span class="icon">✨</span> Create Website</a>
+      <a href="templates.html"><span class="icon">🎨</span> Templates</a>
+      <a href="analytics.html"><span class="icon">📈</span> Analytics</a>
+      <a href="settings.html"><span class="icon">⚙️</span> Settings</a>
+      <div class="logout" onclick="logoutAdmin()"><span class="icon">🚪</span> Logout</div>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- HEADER -->
+    <header class="top-header">
+      <div style="display:flex;align-items:center;gap:12px;flex:1;">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <div class="search">
+          <span class="icon">🔍</span>
+          <input type="text" placeholder="Search projects..." />
+        </div>
+      </div>
+      <div class="right">
+        <button class="btn-sm" onclick="window.location.href='admin-dashboard.html'">📊 Dashboard</button>
+        <button class="btn-sm" onclick="window.location.href='website-requests.html'">📋 Requests</button>
+        <button class="btn-sm primary" onclick="saveProject()">💾 Save</button>
+        <a href="profile.html" class="profile">
+          <span style="font-weight:600;font-size:0.9rem;">Admin</span>
+          <div class="avatar">AD</div>
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <!-- Project Header -->
+      <div class="project-header">
+        <div class="top-row">
+          <div class="title">
+            <h2>Brand Pro Business</h2>
+            <div class="sub">
+              <span>🆔 REQ-001</span>
+              <span>👤 John Doe</span>
+              <span>🏢 Brand Pro Solutions</span>
+              <span>📂 Business</span>
+              <span>📦 Business Plan</span>
+            </div>
+          </div>
+          <div>
+            <span class="status-badge">In Progress</span>
+            <div style="margin-top:6px;font-size:0.85rem;color:#475569;">Priority: High</div>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat"><div class="label">Assigned To</div><div class="value">Priya Sharma</div></div>
+          <div class="stat"><div class="label">Deadline</div><div class="value">2025-01-21</div></div>
+          <div class="stat"><div class="label">Completion</div><div class="value">85%</div><div class="progress-bar"><div class="fill" style="width:85%;"></div></div></div>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="project-grid">
+        <!-- LEFT COLUMN -->
+        <div>
+          <!-- Project Overview -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📋 Project Overview</h3>
+              <span class="edit-btn" onclick="alert('Edit overview')">✏️ Edit</span>
+            </div>
+            <div class="overview-grid">
+              <div class="overview-item"><div class="label">Customer</div><div class="value">John Doe</div></div>
+              <div class="overview-item"><div class="label">Business</div><div class="value">Brand Pro Solutions</div></div>
+              <div class="overview-item"><div class="label">Package</div><div class="value">Business Plan</div></div>
+              <div class="overview-item"><div class="label">Website Type</div><div class="value">Business</div></div>
+              <div class="overview-item"><div class="label">Pages Required</div><div class="value">Home, About, Services, FAQ, Contact</div></div>
+              <div class="overview-item"><div class="label">Target Audience</div><div class="value">Corporate clients, SMEs</div></div>
+            </div>
+          </div>
+
+          <!-- Features & Brand -->
+          <div class="card">
+            <div class="card-header">
+              <h3>⚡ Features & Brand</h3>
+            </div>
+            <div style="margin-bottom:10px;">
+              <div style="font-weight:600;font-size:0.85rem;margin-bottom:4px;">Selected Features</div>
+              <div class="feature-tags">
+                <span class="feature-tag active">WhatsApp Chat</span>
+                <span class="feature-tag active">Contact Form</span>
+                <span class="feature-tag active">SEO</span>
+                <span class="feature-tag active">Analytics</span>
+                <span class="feature-tag">Lead Form</span>
+                <span class="feature-tag">Google Maps</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:0.85rem;margin-bottom:4px;">Brand Colors</div>
+              <div class="color-preview">
+                <div><div class="color-swatch" style="background:#2563EB;"></div>#2563EB</div>
+                <div><div class="color-swatch" style="background:#10B981;"></div>#10B981</div>
+                <div>Font: Inter</div>
+                <div>Style: Modern</div>
+              </div>
+            </div>
+            <div style="margin-top:10px;">
+              <div style="font-weight:600;font-size:0.85rem;margin-bottom:4px;">Logo</div>
+              <div class="file-item"><span class="icon">🖼️</span><span class="name">logo-brand-pro.png</span><span class="size">124KB</span><span class="download" onclick="alert('Downloading logo...')">⬇️</span></div>
+            </div>
+          </div>
+
+          <!-- AI Control Center -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🤖 AI Control Center</h3>
+            </div>
+            <div class="ai-actions">
+              <button class="btn-ai primary" onclick="generateWebsite()">⚡ Generate Website</button>
+              <button class="btn-ai" onclick="alert('Regenerating...')">🔄 Regenerate</button>
+              <button class="btn-ai" onclick="alert('Generating SEO...')">🔍 Generate SEO</button>
+              <button class="btn-ai" onclick="alert('Generating Content...')">✍️ Generate Content</button>
+              <button class="btn-ai" onclick="alert('Generating Images...')">🖼️ Generate Images</button>
+              <button class="btn-ai" onclick="alert('Generating Logo...')">🎨 Generate Logo</button>
+              <button class="btn-ai" onclick="alert('Generating Blog...')">📝 Generate Blog</button>
+              <button class="btn-ai" onclick="alert('Generating FAQ...')">❓ Generate FAQ</button>
+            </div>
+            <div style="margin-top:10px;font-size:0.85rem;color:#94a3b8;">
+              AI Status: <span style="color:var(--secondary);font-weight:600;">Ready</span> • Credits: 24 remaining
+            </div>
+          </div>
+
+          <!-- Live Preview -->
+          <div class="card">
+            <div class="card-header">
+              <h3>👁️ Live Preview</h3>
+            </div>
+            <div class="preview-frame">
+              <div class="mockup">🏢 Brand Pro Business</div>
+              <div class="preview-actions">
+                <button class="btn-sm" onclick="window.open('website-preview.html','_blank')">🖥️ Desktop</button>
+                <button class="btn-sm" onclick="alert('Tablet preview')">📱 Tablet</button>
+                <button class="btn-sm" onclick="alert('Mobile preview')">📱 Mobile</button>
+                <button class="btn-sm primary" onclick="window.open('website-preview.html','_blank')">🔗 Open Preview</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Code Manager -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📁 Code Manager</h3>
+              <span class="badge-count">3 files</span>
+            </div>
+            <div class="file-item"><span class="icon">📄</span><span class="name">index.html</span><span class="size">12KB</span><span class="download" onclick="alert('Downloading...')">⬇️</span></div>
+            <div class="file-item"><span class="icon">📄</span><span class="name">styles.css</span><span class="size">8KB</span><span class="download" onclick="alert('Downloading...')">⬇️</span></div>
+            <div class="file-item"><span class="icon">📄</span><span class="name">app.js</span><span class="size">6KB</span><span class="download" onclick="alert('Downloading...')">⬇️</span></div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn-sm" onclick="alert('Downloading ZIP...')">📦 Download ZIP</button>
+              <button class="btn-sm" onclick="alert('Uploading ZIP...')">📤 Upload ZIP</button>
+            </div>
+          </div>
+
+          <!-- Project Timeline -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📌 Project Timeline</h3>
+            </div>
+            <div class="timeline">
+              <div class="timeline-item completed"><div class="time">2025-01-10</div><div class="title">✅ Request Created</div></div>
+              <div class="timeline-item completed"><div class="time">2025-01-10</div><div class="title">✅ Payment Received</div></div>
+              <div class="timeline-item completed"><div class="time">2025-01-11</div><div class="title">✅ Assigned to Priya</div></div>
+              <div class="timeline-item completed"><div class="time">2025-01-11</div><div class="title">✅ AI Generation</div></div>
+              <div class="timeline-item active"><div class="time">2025-01-12</div><div class="title">🔵 Development</div></div>
+              <div class="timeline-item"><div class="time">—</div><div class="title">⏳ Testing</div></div>
+              <div class="timeline-item"><div class="time">—</div><div class="title">⏳ Customer Review</div></div>
+              <div class="timeline-item"><div class="time">—</div><div class="title">🚀 Published</div></div>
+              <div class="timeline-item"><div class="time">—</div><div class="title">✅ Completed</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div>
+          <!-- Project Actions -->
+          <div class="card">
+            <div class="card-header">
+              <h3>⚡ Project Actions</h3>
+            </div>
+            <div class="project-actions">
+              <button class="btn-action primary" onclick="saveProject()">💾 Save Changes</button>
+              <button class="btn-action success" onclick="approveProject()">✅ Approve</button>
+              <button class="btn-action" onclick="alert('Rejected')">❌ Reject</button>
+              <button class="btn-action" onclick="alert('Paused')">⏸️ Pause</button>
+              <button class="btn-action" onclick="alert('Resumed')">▶️ Resume</button>
+              <button class="btn-action" onclick="alert('Archived')">📦 Archive</button>
+              <button class="btn-action danger" onclick="deleteProject()">🗑️ Delete</button>
+              <button class="btn-action primary" onclick="publishWebsite()">🚀 Publish Website</button>
+              <button class="btn-action" onclick="sendToCustomer()">📤 Send to Customer</button>
+            </div>
+          </div>
+
+          <!-- Customer Communication -->
+          <div class="card">
+            <div class="card-header">
+              <h3>💬 Customer Communication</h3>
+              <button class="btn-sm" onclick="addComment()">+ Add</button>
+            </div>
+            <div class="message-item">
+              <div><span class="sender">John (Customer)</span> <span class="time">2025-01-14 10:30</span></div>
+              <div class="text">The website looks great! Ready for final review.</div>
+            </div>
+            <div class="message-item">
+              <div><span class="sender">Priya (Developer)</span> <span class="time">2025-01-14 09:15</span></div>
+              <div class="text">SEO optimization completed. All meta tags updated.</div>
+            </div>
+            <div class="message-item">
+              <div><span class="sender">AI System</span> <span class="time">2025-01-13 16:45</span></div>
+              <div class="text">AI generation completed successfully.</div>
+            </div>
+          </div>
+
+          <!-- Files -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📁 Files</h3>
+              <span class="badge-count">4 files</span>
+            </div>
+            <div class="file-item"><span class="icon">🖼️</span><span class="name">logo-brand-pro.png</span><span class="size">124KB</span><span class="download" onclick="alert('Downloading...')">⬇️</span></div>
+            <div class="file-item"><span class="icon">📄</span><span class="name">brand-guide.pdf</span><span class="size">2.4MB</span><span class="download" onclick="alert('Downloading...')">⬇️</span></div>
+            <div class="file-item"><span class="icon">🖼️</span><span class="name">hero-image.jpg</span><span class="size">856KB</span><span class="download" onclick="alert('Downloading...')">⬇️</span></div>
+            <div class="file-item"><span class="icon">📊</span><span class="name">website-data.json</span><span class="size">45KB</span><span class="download" onclick="alert('Downloading...')">⬇️</span></div>
+          </div>
+
+          <!-- Payment Summary -->
+          <div class="card">
+            <div class="card-header">
+              <h3>💳 Payment Summary</h3>
+            </div>
+            <div class="payment-item"><span>Package</span><span><strong>Business Plan</strong></span></div>
+            <div class="payment-item"><span>Amount</span><span class="amount">₹9,999.00</span></div>
+            <div class="payment-item"><span>GST (18%)</span><span>₹1,799.82</span></div>
+            <div class="payment-item"><span>Invoice</span><span>INV-2025-001</span></div>
+            <div class="payment-item"><span>Status</span><span style="color:var(--secondary);font-weight:600;">✅ Paid</span></div>
+            <div style="margin-top:10px;">
+              <button class="btn-sm" onclick="window.location.href='invoice-details.html'">📄 View Invoice</button>
+              <button class="btn-sm" onclick="alert('Upgrading plan...')">⬆️ Upgrade Plan</button>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🔔 Notifications</h3>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <button class="btn-sm" onclick="alert('Sending email...')">✉️ Email</button>
+              <button class="btn-sm" onclick="window.open('https://wa.me/917290977231','_blank')">💬 WhatsApp</button>
+              <button class="btn-sm" onclick="alert('Sending SMS...')">📱 SMS</button>
+            </div>
+            <div style="margin-top:8px;font-size:0.85rem;color:#94a3b8;">
+              Last notification: 2 hours ago
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+    });
+
+    // ===== SIDEBAR =====
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+      }
+    });
+
+    // ===== ACTIONS =====
+    function saveProject() {
+      alert('💾 Project saved successfully!');
+    }
+
+    function approveProject() {
+      if (confirm('Approve this project?')) {
+        alert('✅ Project approved!');
+        document.querySelector('.status-badge').textContent = 'Approved';
+        document.querySelector('.status-badge').className = 'status-badge completed';
+      }
+    }
+
+    function deleteProject() {
+      if (confirm('🗑️ Delete this project?')) {
+        alert('✅ Project deleted.');
+        window.location.href = 'admin-dashboard.html';
+      }
+    }
+
+    function publishWebsite() {
+      if (confirm('🚀 Publish this website?')) {
+        alert('✅ Website published successfully!');
+      }
+    }
+
+    function sendToCustomer() {
+      alert('📤 Website sent to customer for review.');
+    }
+
+    function generateWebsite() {
+      alert('🤖 AI generation started!');
+    }
+
+    function addComment() {
+      const comment = prompt('💬 Enter your comment:');
+      if (comment) {
+        alert('💬 Comment added: ' + comment);
+      }
+    }
+
+    function logoutAdmin() {
+      if (confirm('Logout?')) window.location.href = 'login.html';
+    }
+
+    // ============================================================
+    // 🔥 FIREBASE FIRESTORE INTEGRATION
+    // ============================================================
+    /*
+    import { getFirestore, doc, getDoc, updateDoc, onSnapshot } from 'firebase/firestore';
+    import { getAuth } from 'firebase/auth';
+
+    const db = getFirestore();
+    const auth = getAuth();
+
+    // Get project ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get('id') || 'REQ-001';
+
+    if (auth.currentUser && projectId) {
+      const docRef = doc(db, 'projects', projectId);
+      onSnapshot(docRef, (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.data();
+          // Update all UI sections with Firebase data
+          document.querySelector('.project-header .title h2').textContent = data.projectName || 'Project';
+          document.querySelector('.status-badge').textContent = data.status || 'Pending';
+          // ... update all fields
+        }
+      });
+
+      async function saveProject() {
+        await updateDoc(docRef, {
+          status: document.querySelector('.status-badge').textContent,
+          updatedAt: new Date().toISOString()
+        });
+      }
+    }
+    */
+
+    console.log('🚀 project-manager.html – Smile AI Web Studio');
+    console.log('📌 Master project management control center ready');
+    console.log('📌 Firestore real-time integration ready (commented)');
+  </script>
+</body>
+</html>
