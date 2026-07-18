@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Invoice Details – Smile AI Web Studio</title>
+  <meta name="description" content="View your invoice details for your AI website project. Download PDF, print, or share your invoice." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --sidebar-width: 260px;
+      --header-height: 64px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 4px 24px rgba(0,0,0,0.04);
+      --shadow-card: 0 8px 32px -8px rgba(0,0,0,0.06);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100%;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(0,0,0,0.04);
+      padding: 20px 16px; overflow-y: auto; z-index: 1000;
+      transition: transform var(--transition);
+    }
+    .sidebar .logo {
+      font-size: 1.4rem; font-weight: 800; color: var(--primary);
+      display: flex; align-items: center; gap: 8px; padding: 0 8px 20px;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .sidebar .logo span { color: var(--secondary); }
+    .sidebar .logo small { font-size: 0.55rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; }
+
+    .sidebar-nav { margin-top: 16px; }
+    .sidebar-nav .nav-label { font-size: 0.7rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      color: #475569; transition: var(--transition); margin-bottom: 2px;
+    }
+    .sidebar-nav a:hover { background: #f1f5f9; color: var(--primary); }
+    .sidebar-nav a.active { background: #eff6ff; color: var(--primary); font-weight: 600; }
+    .sidebar-nav a .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+    .sidebar-nav a .badge {
+      margin-left: auto; background: var(--primary); color: white;
+      padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+    }
+    .sidebar-nav .logout { margin-top: 16px; border-top: 1px solid #eef2f6; padding-top: 12px; color: #EF4444; }
+    .sidebar-nav .logout:hover { background: #fef2f2; color: #EF4444; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
+
+    /* ===== HEADER ===== */
+    .top-header {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(16px);
+      padding: 0 24px; height: var(--header-height);
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      flex-wrap: wrap;
+    }
+    .top-header .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    .top-header .left { display: flex; align-items: center; gap: 14px; }
+    .top-header .left h1 { font-size: 1.1rem; font-weight: 700; }
+    .top-header .left h1 small { font-weight: 400; color: #94a3b8; font-size: 0.75rem; }
+    .top-header .right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .top-header .right .btn-sm {
+      padding: 6px 18px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+    }
+    .top-header .right .btn-sm:hover { border-color: var(--primary); color: var(--primary); }
+    .top-header .right .btn-sm.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .top-header .right .btn-sm.primary:hover { background: #1d4ed8; }
+    .top-header .right .profile {
+      display: flex; align-items: center; gap: 10px; cursor: pointer;
+      padding: 4px 12px 4px 4px; border-radius: 60px; transition: var(--transition);
+    }
+    .top-header .right .profile:hover { background: #f1f5f9; }
+    .top-header .right .profile .avatar {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--primary);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.8rem;
+    }
+
+    /* ===== CONTENT ===== */
+    .content { padding: 24px 32px; max-width: 1100px; margin: 0 auto; }
+
+    /* ===== INVOICE WRAPPER ===== */
+    .invoice-wrapper {
+      background: white; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; padding: 32px 40px;
+      box-shadow: var(--shadow-card);
+    }
+    @media (max-width: 768px) {
+      .invoice-wrapper { padding: 20px; }
+    }
+
+    /* ===== INVOICE HEADER ===== */
+    .invoice-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 16px; margin-bottom: 24px;
+      padding-bottom: 20px; border-bottom: 2px solid #f1f5f9;
+    }
+    .invoice-header .brand h2 { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
+    .invoice-header .brand h2 span { color: var(--secondary); }
+    .invoice-header .brand .tagline { font-size: 0.8rem; color: #94a3b8; }
+    .invoice-header .invoice-meta { text-align: right; }
+    .invoice-header .invoice-meta .status {
+      padding: 4px 20px; border-radius: 100px; font-weight: 600; font-size: 0.85rem;
+      background: #d1fae5; color: #065f46; display: inline-block;
+    }
+    .invoice-header .invoice-meta .status.pending { background: #fef3c7; color: #92400e; }
+    .invoice-header .invoice-meta .status.refunded { background: #ede9fe; color: #5b21b6; }
+    .invoice-header .invoice-meta .status.failed { background: #fef2f2; color: #991b1b; }
+    .invoice-header .invoice-meta .number { font-size: 1.2rem; font-weight: 700; margin-top: 4px; }
+    .invoice-header .invoice-meta .date { font-size: 0.85rem; color: #94a3b8; }
+
+    /* ===== COMPANY & CUSTOMER ===== */
+    .parties-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+      margin-bottom: 24px; padding-bottom: 20px; border-bottom: 2px solid #f1f5f9;
+    }
+    @media (max-width: 600px) {
+      .parties-grid { grid-template-columns: 1fr; }
+    }
+    .party .label { font-size: 0.7rem; text-transform: uppercase; font-weight: 600; color: #94a3b8; letter-spacing: 0.5px; }
+    .party .name { font-weight: 700; font-size: 1rem; margin-top: 2px; }
+    .party .detail { font-size: 0.9rem; color: #475569; }
+    .party .gst { font-size: 0.85rem; color: #94a3b8; }
+
+    /* ===== PROJECT DETAILS ===== */
+    .project-details {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px; margin-bottom: 24px; padding-bottom: 20px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+    .project-detail .label { font-size: 0.7rem; text-transform: uppercase; font-weight: 600; color: #94a3b8; letter-spacing: 0.5px; }
+    .project-detail .value { font-weight: 600; font-size: 0.95rem; }
+
+    /* ===== PAYMENT BREAKDOWN ===== */
+    .breakdown {
+      max-width: 400px; margin-left: auto; margin-bottom: 24px;
+      padding-bottom: 20px; border-bottom: 2px solid #f1f5f9;
+    }
+    .breakdown-row {
+      display: flex; justify-content: space-between; padding: 4px 0;
+      font-size: 0.9rem;
+    }
+    .breakdown-row .label { color: #475569; }
+    .breakdown-row .value { font-weight: 500; }
+    .breakdown-row.total { font-weight: 700; font-size: 1.1rem; border-top: 2px solid #eef2f6; padding-top: 8px; margin-top: 4px; }
+    .breakdown-row.total .value { color: var(--primary); }
+
+    /* ===== TIMELINE ===== */
+    .timeline-section { margin: 20px 0; }
+    .timeline-section h4 { font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; }
+    .timeline-items { display: flex; gap: 16px; flex-wrap: wrap; }
+    .timeline-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; color: #475569;
+    }
+    .timeline-item .dot {
+      width: 10px; height: 10px; border-radius: 50%; background: #e2e8f0;
+    }
+    .timeline-item .dot.completed { background: var(--secondary); }
+    .timeline-item .dot.active { background: var(--primary); }
+
+    /* ===== ACTIONS ===== */
+    .invoice-actions {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-top: 20px; padding-top: 20px; border-top: 1px solid #f1f5f9;
+    }
+    .invoice-actions .btn-action {
+      padding: 8px 24px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; font-weight: 500; font-size: 0.85rem;
+      transition: var(--transition); display: inline-flex; align-items: center; gap: 6px;
+    }
+    .invoice-actions .btn-action:hover { border-color: var(--primary); color: var(--primary); }
+    .invoice-actions .btn-action.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .invoice-actions .btn-action.primary:hover { background: #1d4ed8; }
+
+    /* ===== SUPPORT ===== */
+    .support-section {
+      margin-top: 20px; padding: 16px 20px;
+      background: #f8fafc; border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .support-section .text { font-weight: 500; }
+    .support-section .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .support-section .btn-sm {
+      padding: 6px 16px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; font-size: 0.8rem; transition: var(--transition);
+    }
+    .support-section .btn-sm:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* ===== SIDEBAR OVERLAY ===== */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 999; backdrop-filter: blur(4px); }
+
+    /* ===== PRINT STYLES ===== */
+    @media print {
+      .sidebar, .top-header, .floating-btn, .support-section, .invoice-actions { display: none !important; }
+      .main-content { margin-left: 0 !important; }
+      .invoice-wrapper { border: none !important; box-shadow: none !important; padding: 20px !important; }
+      .invoice-header { border-bottom: 2px solid #eef2f6 !important; }
+      .parties-grid { border-bottom: 2px solid #eef2f6 !important; }
+      .project-details { border-bottom: 2px solid #eef2f6 !important; }
+      .breakdown { border-bottom: 2px solid #eef2f6 !important; }
+      body { background: white !important; }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.active { display: block; }
+      .top-header .menu-toggle { display: block; }
+      .main-content { margin-left: 0; }
+      .top-header { padding: 0 16px; height: auto; gap: 10px; }
+      .top-header .right { width: 100%; }
+      .content { padding: 12px; }
+      .invoice-wrapper { padding: 16px; }
+      .invoice-header { flex-direction: column; text-align: left; }
+      .invoice-header .invoice-meta { text-align: left; }
+      .parties-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .top-header .left h1 { font-size: 0.9rem; }
+      .breakdown { max-width: 100%; }
+      .invoice-actions .btn-action { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">Smile<span>AI</span><small>Web Studio</small></div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Main</div>
+      <a href="customer-dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a href="create-project.html"><span class="icon">✨</span> Create Website</a>
+      <a href="my-projects.html"><span class="icon">🌐</span> My Projects <span class="badge">12</span></a>
+      <a href="project-details.html"><span class="icon">📋</span> Project Details</a>
+      <a href="billing.html"><span class="icon">💳</span> Billing</a>
+      <a href="invoice-details.html" class="active"><span class="icon">📄</span> Invoice</a>
+      <a href="portfolio.html"><span class="icon">📁</span> Portfolio</a>
+      <div class="nav-label" style="margin-top:12px;">Account</div>
+      <a href="#"><span class="icon">🔔</span> Notifications <span class="badge">5</span></a>
+      <a href="#"><span class="icon">💬</span> Messages <span class="badge">2</span></a>
+      <a href="contact.html"><span class="icon">🛡️</span> Support</a>
+      <a href="#"><span class="icon">👤</span> Profile</a>
+      <a href="#"><span class="icon">⚙️</span> Settings</a>
+      <a href="login.html" class="logout"><span class="icon">🚪</span> Logout</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- HEADER -->
+    <header class="top-header">
+      <div class="left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <h1>📄 Invoice Details <small>INV-2025-001</small></h1>
+      </div>
+      <div class="right">
+        <button class="btn-sm" onclick="downloadPDF()">📥 Download PDF</button>
+        <button class="btn-sm" onclick="window.print()">🖨️ Print</button>
+        <button class="btn-sm primary" onclick="window.location.href='billing.html'">💳 Billing</button>
+        <div class="profile">
+          <span style="font-weight:600;font-size:0.85rem;">John</span>
+          <div class="avatar">JD</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <div class="invoice-wrapper" id="invoiceContent">
+        <!-- Invoice Header -->
+        <div class="invoice-header">
+          <div class="brand">
+            <h2>Smile<span>AI</span></h2>
+            <div class="tagline">Premium Website Development</div>
+          </div>
+          <div class="invoice-meta">
+            <span class="status" id="invoiceStatus">✅ Paid</span>
+            <div class="number" id="invoiceNumber">INV-2025-001</div>
+            <div class="date">Issued: <span id="invoiceDate">2025-01-14</span></div>
+            <div class="date">Due: <span id="invoiceDue">2025-01-28</span></div>
+          </div>
+        </div>
+
+        <!-- Company & Customer -->
+        <div class="parties-grid">
+          <div class="party">
+            <div class="label">From</div>
+            <div class="name">Smile AI Web Studio</div>
+            <div class="detail">Powered by Smile Financial Solution</div>
+            <div class="detail">📧 support@smileaiwebstudio.com</div>
+            <div class="detail">📞 +91 7290977231</div>
+            <div class="detail">🌐 web.smilefinancialsolution.com</div>
+            <div class="gst">GST: 22ABCDE1234F1Z5</div>
+          </div>
+          <div class="party">
+            <div class="label">Bill To</div>
+            <div class="name" id="customerName">John Doe</div>
+            <div class="detail" id="customerBusiness">Brand Pro Solutions</div>
+            <div class="detail" id="customerEmail">john@example.com</div>
+            <div class="detail" id="customerPhone">+91 98765 43210</div>
+            <div class="detail" id="customerAddress">Delhi, India</div>
+            <div class="gst" id="customerGst">GST: 33XYZ9876M1ZP</div>
+          </div>
+        </div>
+
+        <!-- Project Details -->
+        <div class="project-details">
+          <div class="project-detail">
+            <div class="label">Project</div>
+            <div class="value" id="projectName">Brand Pro Business</div>
+          </div>
+          <div class="project-detail">
+            <div class="label">Type</div>
+            <div class="value" id="projectType">Business Website</div>
+          </div>
+          <div class="project-detail">
+            <div class="label">Package</div>
+            <div class="value" id="projectPackage">Business Plan</div>
+          </div>
+          <div class="project-detail">
+            <div class="label">Delivery</div>
+            <div class="value" id="projectDelivery">24-48 hours</div>
+          </div>
+        </div>
+
+        <!-- Payment Breakdown -->
+        <div class="breakdown">
+          <div class="breakdown-row"><span class="label">Subtotal</span><span class="value" id="subtotal">₹9,999.00</span></div>
+          <div class="breakdown-row"><span class="label">Discount</span><span class="value" id="discount" style="color:var(--secondary);">-₹0.00</span></div>
+          <div class="breakdown-row"><span class="label">Coupon</span><span class="value" id="couponApplied">Not applied</span></div>
+          <div class="breakdown-row"><span class="label">GST (18%)</span><span class="value" id="gstAmount">₹1,799.82</span></div>
+          <div class="breakdown-row total"><span class="label">Grand Total</span><span class="value" id="grandTotal">₹11,798.82</span></div>
+          <div class="breakdown-row" style="margin-top:8px;">
+            <span class="label">Payment Method</span>
+            <span class="value" id="paymentMethod">UPI</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="label">Transaction ID</span>
+            <span class="value" id="transactionId">TXN-2025-001-ABCD</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="label">Payment Date</span>
+            <span class="value" id="paymentDate">2025-01-14 14:30</span>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline-section">
+          <h4>📌 Payment Timeline</h4>
+          <div class="timeline-items">
+            <div class="timeline-item"><span class="dot completed"></span> Invoice Generated</div>
+            <div class="timeline-item"><span class="dot completed"></span> Payment Received</div>
+            <div class="timeline-item"><span class="dot active"></span> Project Started</div>
+            <div class="timeline-item"><span class="dot"></span> In Progress</div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="invoice-actions">
+          <button class="btn-action primary" onclick="downloadPDF()">📥 Download PDF</button>
+          <button class="btn-action" onclick="window.print()">🖨️ Print Invoice</button>
+          <button class="btn-action" onclick="shareInvoice()">🔗 Share Invoice</button>
+          <button class="btn-action" onclick="emailInvoice()">✉️ Email Invoice</button>
+        </div>
+
+        <!-- Support -->
+        <div class="support-section">
+          <div class="text">💬 Need help with this invoice?</div>
+          <div class="actions">
+            <button class="btn-sm" onclick="window.open('https://wa.me/917290977231','_blank')">💬 WhatsApp</button>
+            <button class="btn-sm" onclick="window.location.href='tel:+917290977231'">📞 Call</button>
+            <button class="btn-sm" onclick="window.location.href='contact.html'">📧 Email</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+    });
+
+    // ===== SIDEBAR =====
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { sidebar.classList.remove('open'); overlay.classList.remove('active'); }
+    });
+
+    // ===== INVOICE ACTIONS =====
+    function downloadPDF() {
+      alert('📄 Downloading invoice PDF...');
+      // window.location.href = '/api/invoice/download/INV-2025-001';
+    }
+
+    function shareInvoice() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Invoice INV-2025-001',
+          text: 'Smile AI Web Studio Invoice',
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        alert('🔗 Share this invoice link: ' + window.location.href);
+      }
+    }
+
+    function emailInvoice() {
+      const subject = 'Invoice INV-2025-001 from Smile AI Web Studio';
+      const body = 'Please find your invoice attached.\n\nInvoice: INV-2025-001\nAmount: ₹11,798.82\nProject: Brand Pro Business\n\nThank you for choosing Smile AI Web Studio.';
+      window.location.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    }
+
+    // ============================================================
+    // 🔥 FIREBASE FIRESTORE INTEGRATION
+    // ============================================================
+    /*
+    import { getFirestore, doc, getDoc } from 'firebase/firestore';
+    import { getAuth } from 'firebase/auth';
+
+    const db = getFirestore();
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    // Get invoice ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const invoiceId = params.get('id') || 'INV-2025-001';
+
+    if (user && invoiceId) {
+      const docRef = doc(db, 'invoices', invoiceId);
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        // Update all invoice fields
+        document.getElementById('invoiceNumber').textContent = data.invoiceNumber;
+        document.getElementById('invoiceStatus').textContent = data.status;
+        document.getElementById('customerName').textContent = data.customerName;
+        document.getElementById('grandTotal').textContent = data.grandTotal;
+        // ... update all fields
+      }
+    }
+    */
+
+    console.log('🚀 invoice-details.html – Smile AI Web Studio');
+    console.log('📌 Premium invoice details with PDF, print, share, email actions');
+    console.log('📌 Firebase Firestore ready (commented)');
+  </script>
+</body>
+</html>
