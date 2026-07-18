@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Website Requests – Smile AI Web Studio CRM</title>
+  <meta name="description" content="Manage all website requests, track project status, and handle customer orders efficiently." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --danger: #EF4444;
+      --bg-white: #ffffff;
+      --sidebar-width: 260px;
+      --header-height: 68px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 4px 24px rgba(0,0,0,0.04);
+      --shadow-card: 0 8px 32px -8px rgba(0,0,0,0.06);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f1f5f9;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100%;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(0,0,0,0.04);
+      padding: 20px 16px; overflow-y: auto; z-index: 1000;
+      transition: transform var(--transition);
+    }
+    .sidebar .logo {
+      font-size: 1.4rem; font-weight: 800; color: var(--primary);
+      display: flex; align-items: center; gap: 8px; padding: 0 8px 20px;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .sidebar .logo span { color: var(--secondary); }
+    .sidebar .logo small { font-size: 0.55rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; }
+
+    .sidebar-nav { margin-top: 16px; }
+    .sidebar-nav .nav-label { font-size: 0.7rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      color: #475569; transition: var(--transition); margin-bottom: 2px;
+    }
+    .sidebar-nav a:hover { background: #f1f5f9; color: var(--primary); }
+    .sidebar-nav a.active { background: #eff6ff; color: var(--primary); font-weight: 600; }
+    .sidebar-nav a .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+    .sidebar-nav a .badge {
+      margin-left: auto; background: var(--primary); color: white;
+      padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+    }
+    .sidebar-nav .logout {
+      margin-top: 16px; border-top: 1px solid #eef2f6; padding-top: 12px; color: #EF4444;
+      cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .sidebar-nav .logout:hover { background: #fef2f2; color: #EF4444; }
+    .sidebar-nav .logout .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
+
+    /* ===== HEADER ===== */
+    .top-header {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(16px);
+      padding: 0 32px; height: var(--header-height);
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .top-header .menu-toggle {
+      display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer;
+    }
+    .top-header .search {
+      display: flex; align-items: center; background: #f1f5f9; border-radius: 60px;
+      padding: 6px 16px; gap: 8px; flex: 1; max-width: 350px;
+    }
+    .top-header .search input {
+      border: none; background: transparent; padding: 8px 0;
+      font-size: 0.95rem; width: 100%; outline: none;
+    }
+    .top-header .search .icon { color: #94a3b8; }
+    .top-header .right {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .top-header .right .btn-sm {
+      padding: 6px 16px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .top-header .right .btn-sm:hover { border-color: var(--primary); color: var(--primary); }
+    .top-header .right .btn-sm.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .top-header .right .btn-sm.primary:hover { background: #1d4ed8; }
+    .top-header .right .profile {
+      display: flex; align-items: center; gap: 10px; cursor: pointer;
+      padding: 4px 12px 4px 4px; border-radius: 60px; transition: var(--transition);
+    }
+    .top-header .right .profile:hover { background: #f1f5f9; }
+    .top-header .right .profile .avatar {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--primary);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem;
+    }
+    .top-header .right .live-counter {
+      background: #dbeafe; color: var(--primary); padding: 4px 14px;
+      border-radius: 100px; font-size: 0.8rem; font-weight: 600;
+    }
+
+    /* ===== CONTENT ===== */
+    .content { padding: 20px 32px; }
+
+    /* ===== FILTER BAR ===== */
+    .filter-bar {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 16px; background: white; padding: 12px 20px;
+      border-radius: var(--radius-lg); border: 1px solid #eef2f6;
+      align-items: center;
+    }
+    .filter-btn {
+      padding: 4px 16px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; font-size: 0.8rem;
+      transition: var(--transition);
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .filter-btn .count { background: #eef2f6; padding: 0 8px; border-radius: 100px; font-size: 0.65rem; margin-left: 4px; }
+    .filter-btn.active .count { background: rgba(255,255,255,0.2); color: white; }
+    .filter-bar .sep { color: #e2e8f0; }
+
+    /* ===== TABLE ===== */
+    .table-wrap { overflow-x: auto; background: white; border-radius: var(--radius-lg); border: 1px solid #eef2f6; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #f1f5f9; font-size: 0.85rem; }
+    th { background: #f8fafc; font-weight: 600; color: #475569; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.3px; position: sticky; top: 0; z-index: 2; }
+    tr:hover { background: #f8fafc; }
+    td .status-badge {
+      padding: 2px 12px; border-radius: 100px; font-size: 0.7rem; font-weight: 600; display: inline-block;
+    }
+    td .status-badge.pending { background: #dbeafe; color: #1e40af; }
+    td .status-badge.payment { background: #fef3c7; color: #92400e; }
+    td .status-badge.paid { background: #d1fae5; color: #065f46; }
+    td .status-badge.assigned { background: #ede9fe; color: #5b21b6; }
+    td .status-badge.ai { background: #fce7f3; color: #9d174d; }
+    td .status-badge.development { background: #fef3c7; color: #92400e; }
+    td .status-badge.testing { background: #fef3c7; color: #92400e; }
+    td .status-badge.ready { background: #d1fae5; color: #065f46; }
+    td .status-badge.delivered { background: #d1fae5; color: #065f46; }
+    td .status-badge.rejected { background: #fef2f2; color: #991b1b; }
+    td .status-badge.cancelled { background: #fef2f2; color: #991b1b; }
+    td .priority-high { color: #EF4444; font-weight: 600; }
+    td .priority-medium { color: #F59E0B; font-weight: 600; }
+    td .priority-low { color: #10B981; font-weight: 600; }
+    .action-btns { display: flex; gap: 4px; flex-wrap: wrap; }
+    .action-btns .btn-icon {
+      padding: 2px 8px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: transparent; cursor: pointer; font-size: 0.7rem;
+      transition: var(--transition);
+    }
+    .action-btns .btn-icon:hover { background: var(--primary); color: white; border-color: var(--primary); }
+    .action-btns .btn-icon.danger:hover { background: #EF4444; border-color: #EF4444; }
+
+    /* ===== SIDE PANEL ===== */
+    .side-panel {
+      position: fixed; top: 0; right: -480px; width: 480px; height: 100%;
+      background: white; box-shadow: -8px 0 32px rgba(0,0,0,0.08);
+      z-index: 1100; transition: right var(--transition); overflow-y: auto;
+      padding: 24px; border-left: 1px solid #eef2f6;
+    }
+    .side-panel.open { right: 0; }
+    .side-panel .close {
+      float: right; font-size: 1.5rem; cursor: pointer; color: #94a3b8;
+      background: none; border: none;
+    }
+    .side-panel .close:hover { color: #1e293b; }
+    .side-panel h3 { font-weight: 700; margin-bottom: 16px; }
+    .side-panel .detail-row { display: flex; padding: 6px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; }
+    .side-panel .detail-row .label { color: #94a3b8; width: 120px; flex-shrink: 0; }
+    .side-panel .detail-row .value { font-weight: 500; }
+    .side-panel .status-pipeline { display: flex; gap: 4px; flex-wrap: wrap; margin: 12px 0; }
+    .side-panel .status-pipeline .pipe {
+      padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; background: #eef2f6; color: #94a3b8;
+    }
+    .side-panel .status-pipeline .pipe.active { background: var(--primary); color: white; }
+    .side-panel .status-pipeline .pipe.completed { background: var(--secondary); color: white; }
+    .side-panel .comment-box { margin-top: 12px; }
+    .side-panel .comment-box textarea {
+      width: 100%; padding: 10px; border-radius: 12px; border: 1px solid #eef2f6;
+      resize: vertical; min-height: 60px; font-family: inherit; font-size: 0.85rem;
+    }
+    .side-panel .comment-box textarea:focus { outline: none; border-color: var(--primary); }
+    .side-panel .panel-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+
+    /* ===== OVERLAY ===== */
+    .panel-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3);
+      z-index: 1050; backdrop-filter: blur(4px);
+    }
+    .panel-overlay.active { display: block; }
+
+    /* ===== SIDEBAR OVERLAY ===== */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 999; backdrop-filter: blur(4px); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .side-panel { width: 400px; right: -400px; }
+    }
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.active { display: block; }
+      .top-header .menu-toggle { display: block; }
+      .main-content { margin-left: 0; }
+      .top-header { padding: 0 16px; flex-wrap: wrap; height: auto; gap: 8px; }
+      .top-header .search { max-width: 100%; flex: 1; }
+      .top-header .right { flex-wrap: wrap; }
+      .content { padding: 12px; }
+      .filter-bar { padding: 10px 14px; }
+      .side-panel { width: 100%; right: -100%; }
+      .side-panel.open { right: 0; }
+      .action-btns { flex-wrap: wrap; }
+    }
+    @media (max-width: 480px) {
+      .filter-btn { font-size: 0.7rem; padding: 2px 10px; }
+      .top-header .right .live-counter { font-size: 0.7rem; padding: 2px 10px; }
+      .top-header .right .btn-sm { font-size: 0.7rem; padding: 4px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">Smile<span>AI</span><small>Web Studio</small></div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Main</div>
+      <a href="admin-dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a href="website-requests.html" class="active"><span class="icon">📋</span> Website Requests <span class="badge">342</span></a>
+      <a href="project-manager.html"><span class="icon">📁</span> Project Manager</a>
+      <a href="customer-dashboard.html"><span class="icon">👤</span> Customer Dashboard</a>
+      <a href="create-project.html"><span class="icon">✨</span> Create Website</a>
+      <a href="templates.html"><span class="icon">🎨</span> Templates</a>
+      <a href="analytics.html"><span class="icon">📈</span> Analytics</a>
+      <a href="settings.html"><span class="icon">⚙️</span> Settings</a>
+      <div class="logout" onclick="logoutAdmin()"><span class="icon">🚪</span> Logout</div>
+    </nav>
+  </aside>
+
+  <!-- PANEL OVERLAY -->
+  <div class="panel-overlay" id="panelOverlay"></div>
+
+  <!-- SIDE PANEL -->
+  <div class="side-panel" id="sidePanel">
+    <button class="close" onclick="closePanel()">✕</button>
+    <h3 id="panelTitle">Request Details</h3>
+    <div id="panelContent">
+      <div class="detail-row"><span class="label">Request ID</span><span class="value" id="pRequestId">—</span></div>
+      <div class="detail-row"><span class="label">Project</span><span class="value" id="pProject">—</span></div>
+      <div class="detail-row"><span class="label">Customer</span><span class="value" id="pCustomer">—</span></div>
+      <div class="detail-row"><span class="label">Business</span><span class="value" id="pBusiness">—</span></div>
+      <div class="detail-row"><span class="label">Package</span><span class="value" id="pPackage">—</span></div>
+      <div class="detail-row"><span class="label">Amount</span><span class="value" id="pAmount">—</span></div>
+      <div class="detail-row"><span class="label">Payment Status</span><span class="value" id="pPayment">—</span></div>
+      <div class="detail-row"><span class="label">Project Status</span><span class="value" id="pStatus">—</span></div>
+      <div class="detail-row"><span class="label">Created</span><span class="value" id="pCreated">—</span></div>
+      <div class="detail-row"><span class="label">Deadline</span><span class="value" id="pDeadline">—</span></div>
+      <div class="detail-row"><span class="label">Assigned To</span><span class="value" id="pAssigned">—</span></div>
+      <div class="detail-row"><span class="label">Priority</span><span class="value" id="pPriority">—</span></div>
+      <div style="margin-top:12px;"><strong>Status Pipeline</strong></div>
+      <div class="status-pipeline" id="pPipeline">
+        <span class="pipe">Pending</span>
+        <span class="pipe">Review</span>
+        <span class="pipe">Payment</span>
+        <span class="pipe">Assigned</span>
+        <span class="pipe">AI</span>
+        <span class="pipe">Dev</span>
+        <span class="pipe">Testing</span>
+        <span class="pipe">Review</span>
+        <span class="pipe">Published</span>
+        <span class="pipe">Completed</span>
+      </div>
+      <div style="margin-top:12px;"><strong>Special Instructions</strong></div>
+      <div style="background:#f8fafc;padding:12px;border-radius:12px;font-size:0.85rem;color:#475569;" id="pInstructions">No special instructions</div>
+      <div class="comment-box">
+        <label style="font-weight:600;font-size:0.85rem;">Add Comment</label>
+        <textarea id="panelComment" placeholder="Add internal note or customer comment..."></textarea>
+        <button class="btn-sm primary" style="margin-top:4px;padding:6px 20px;" onclick="addComment()">Post Comment</button>
+      </div>
+      <div class="panel-actions">
+        <button class="btn-sm primary" onclick="openProject()">📋 Open Project</button>
+        <button class="btn-sm" onclick="assignDeveloper()">👨‍💻 Assign</button>
+        <button class="btn-sm" onclick="generateAI()">🤖 Generate AI</button>
+        <button class="btn-sm" onclick="previewWebsite()">👁️ Preview</button>
+        <button class="btn-sm" onclick="approveRequest()" style="border-color:var(--secondary);color:var(--secondary);">✅ Approve</button>
+        <button class="btn-sm" onclick="rejectRequest()" style="border-color:var(--danger);color:var(--danger);">❌ Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- HEADER -->
+    <header class="top-header">
+      <div style="display:flex;align-items:center;gap:12px;flex:1;">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <div class="search">
+          <span class="icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search by ID, customer, business, phone..." />
+        </div>
+      </div>
+      <div class="right">
+        <span class="live-counter" id="liveCounter">342 Total</span>
+        <button class="btn-sm" onclick="refreshTable()">🔄 Refresh</button>
+        <button class="btn-sm" onclick="exportCSV()">📥 Export CSV</button>
+        <button class="btn-sm primary" onclick="window.location.href='create-project.html'">+ New Request</button>
+        <a href="profile.html" class="profile">
+          <span style="font-weight:600;font-size:0.9rem;">Admin</span>
+          <div class="avatar">AD</div>
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <!-- Filter Bar -->
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all" onclick="applyFilter('all')">All <span class="count">342</span></button>
+        <button class="filter-btn" data-filter="pending" onclick="applyFilter('pending')">Pending <span class="count">24</span></button>
+        <button class="filter-btn" data-filter="payment" onclick="applyFilter('payment')">Payment Pending <span class="count">8</span></button>
+        <button class="filter-btn" data-filter="paid" onclick="applyFilter('paid')">Paid <span class="count">156</span></button>
+        <button class="filter-btn" data-filter="assigned" onclick="applyFilter('assigned')">Assigned <span class="count">32</span></button>
+        <button class="filter-btn" data-filter="ai" onclick="applyFilter('ai')">AI Processing <span class="count">15</span></button>
+        <button class="filter-btn" data-filter="development" onclick="applyFilter('development')">Development <span class="count">22</span></button>
+        <button class="filter-btn" data-filter="testing" onclick="applyFilter('testing')">Testing <span class="count">6</span></button>
+        <button class="filter-btn" data-filter="ready" onclick="applyFilter('ready')">Ready <span class="count">18</span></button>
+        <button class="filter-btn" data-filter="delivered" onclick="applyFilter('delivered')">Delivered <span class="count">156</span></button>
+        <span class="sep">|</span>
+        <button class="filter-btn" data-filter="rejected" onclick="applyFilter('rejected')">Rejected <span class="count">4</span></button>
+        <button class="filter-btn" data-filter="cancelled" onclick="applyFilter('cancelled')">Cancelled <span class="count">2</span></button>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrap">
+        <table id="requestTable">
+          <thead>
+            <tr>
+              <th style="width:10px;"><input type="checkbox" id="selectAll" onchange="toggleAll()" /></th>
+              <th>Request ID</th>
+              <th>Project</th>
+              <th>Customer</th>
+              <th>Business</th>
+              <th>Type</th>
+              <th>Package</th>
+              <th>Amount</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Assigned</th>
+              <th>Priority</th>
+              <th>Created</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Rendered by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+        <div style="font-size:0.85rem;color:#94a3b8;" id="rowCount">Showing 0 of 0 rows</div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn-sm" onclick="bulkAction('assign')">📋 Assign</button>
+          <button class="btn-sm" onclick="bulkAction('export')">📥 Export</button>
+          <button class="btn-sm" onclick="bulkAction('status')">🔄 Change Status</button>
+          <button class="btn-sm danger" onclick="bulkAction('delete')" style="border-color:var(--danger);color:var(--danger);">🗑️ Delete</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+      renderTable(requests);
+    });
+
+    // ===== SIDEBAR =====
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+        closePanel();
+      }
+    });
+
+    // ===== SAMPLE DATA =====
+    const requests = [
+      { id: 'REQ-001', project: 'Brand Pro Business', customer: 'John Doe', business: 'Brand Pro Solutions', type: 'Business', package: 'Business', amount: '₹9,999', payment: 'Paid', status: 'delivered', assigned: 'Priya', priority: 'High', created: '2025-01-14', deadline: '2025-01-21', instructions: 'Focus on corporate branding and lead generation.' },
+      { id: 'REQ-002', project: 'Flavors Restaurant', customer: 'Priya Singh', business: 'Flavors Restaurants', type: 'Restaurant', package: 'Premium', amount: '₹19,999', payment: 'Paid', status: 'development', assigned: 'Amit', priority: 'Medium', created: '2025-01-13', deadline: '2025-01-20', instructions: 'Need menu display and online ordering system.' },
+      { id: 'REQ-003', project: 'WealthBridge Finance', customer: 'Amit Sharma', business: 'WealthBridge Financial', type: 'Finance', package: 'Professional', amount: '₹14,999', payment: 'Pending', status: 'review', assigned: '—', priority: 'High', created: '2025-01-12', deadline: '2025-01-19', instructions: 'EMI calculators and loan application forms required.' },
+      { id: 'REQ-004', project: 'Dream Homes Realty', customer: 'Neha Gupta', business: 'Dream Homes Realty', type: 'Real Estate', package: 'Enterprise', amount: '₹29,999', payment: 'Paid', status: 'ai', assigned: 'Vikram', priority: 'High', created: '2025-01-11', deadline: '2025-01-25', instructions: 'Property listings with virtual tours.' },
+      { id: 'REQ-005', project: 'CityCare Clinic', customer: 'Vikram Rao', business: 'CityCare Healthcare', type: 'Clinic', package: 'Business', amount: '₹9,999', payment: 'Failed', status: 'pending', assigned: '—', priority: 'Medium', created: '2025-01-10', deadline: '2025-01-17', instructions: 'Appointment booking system needed.' },
+      { id: 'REQ-006', project: 'Excel Academy', customer: 'Ananya Gupta', business: 'Excel Academy Trust', type: 'School', package: 'Professional', amount: '₹14,999', payment: 'Paid', status: 'testing', assigned: 'Rahul', priority: 'Low', created: '2025-01-09', deadline: '2025-01-16', instructions: 'Course management and student portal.' },
+      { id: 'REQ-007', project: 'Royal Grand Hotel', customer: 'Rahul Singh', business: 'Royal Grand Hospitality', type: 'Hotel', package: 'Premium', amount: '₹19,999', payment: 'Paid', status: 'ready', assigned: 'Priya', priority: 'Medium', created: '2025-01-08', deadline: '2025-01-15', instructions: 'Room booking and gallery.' },
+      { id: 'REQ-008', project: 'Wanderlust Travel', customer: 'Sneha Patel', business: 'Wanderlust Travel Agency', type: 'Travel', package: 'Business', amount: '₹9,999', payment: 'Pending', status: 'assigned', assigned: 'Amit', priority: 'Low', created: '2025-01-07', deadline: '2025-01-14', instructions: 'Tour packages and booking system.' },
+      { id: 'REQ-009', project: 'ABC Corporate', customer: 'Rajesh Kumar', business: 'ABC Corporate Solutions', type: 'Business', package: 'Professional', amount: '₹14,999', payment: 'Rejected', status: 'rejected', assigned: '—', priority: 'Low', created: '2025-01-06', deadline: '—', instructions: '—' },
+      { id: 'REQ-010', project: 'Hope Foundation', customer: 'Deepa Sharma', business: 'Hope Foundation Trust', type: 'NGO', package: 'Business', amount: '₹9,999', payment: 'Paid', status: 'cancelled', assigned: '—', priority: 'Low', created: '2025-01-05', deadline: '—', instructions: 'Donation integration and volunteer management.' },
+    ];
+
+    let currentFilter = 'all';
+    let currentSearch = '';
+    let selectedRows = new Set();
+
+    // ===== RENDER TABLE =====
+    function renderTable(data) {
+      const tbody = document.getElementById('tableBody');
+      const filtered = data.filter(row => {
+        const matchFilter = currentFilter === 'all' || row.status === currentFilter;
+        const matchSearch = !currentSearch ||
+          row.id.toLowerCase().includes(currentSearch) ||
+          row.customer.toLowerCase().includes(currentSearch) ||
+          row.business.toLowerCase().includes(currentSearch) ||
+          row.project.toLowerCase().includes(currentSearch);
+        return matchFilter && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="14" style="text-align:center;padding:40px;color:#94a3b8;">No requests found matching your criteria.</td></tr>`;
+        document.getElementById('rowCount').textContent = 'Showing 0 of 0 rows';
+        document.getElementById('liveCounter').textContent = '0 Total';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(row => `
+        <tr onclick="openRow('${row.id}')" style="cursor:pointer;">
+          <td onclick="event.stopPropagation();">
+            <input type="checkbox" class="row-check" value="${row.id}" onchange="toggleRow('${row.id}')" ${selectedRows.has(row.id) ? 'checked' : ''} />
+          </td>
+          <td><a href="project-details.html?id=${row.id}" style="color:var(--primary);font-weight:600;">${row.id}</a></td>
+          <td><strong>${row.project}</strong></td>
+          <td><a href="profile.html?id=${row.id}" style="color:var(--primary);">${row.customer}</a></td>
+          <td>${row.business}</td>
+          <td>${row.type}</td>
+          <td>${row.package}</td>
+          <td>${row.amount}</td>
+          <td><span class="status-badge ${row.payment === 'Paid' ? 'paid' : row.payment === 'Pending' ? 'payment' : 'rejected'}">${row.payment}</span></td>
+          <td><span class="status-badge ${row.status}">${row.status.charAt(0).toUpperCase() + row.status.slice(1)}</span></td>
+          <td>${row.assigned || '—'}</td>
+          <td><span class="priority-${row.priority.toLowerCase()}">${row.priority}</span></td>
+          <td>${row.created}</td>
+          <td onclick="event.stopPropagation();">
+            <div class="action-btns">
+              <button class="btn-icon" onclick="openPanel('${row.id}')" title="View Details">📋</button>
+              <button class="btn-icon" onclick="window.location.href='project-details.html?id=${row.id}'" title="Open Project">📂</button>
+              <button class="btn-icon" onclick="assignDeveloper('${row.id}')" title="Assign">👨‍💻</button>
+              <button class="btn-icon" onclick="generateAI('${row.id}')" title="Generate AI">🤖</button>
+              <button class="btn-icon" onclick="window.open('website-preview.html?id=${row.id}','_blank')" title="Preview">👁️</button>
+              <button class="btn-icon danger" onclick="deleteRequest('${row.id}')" title="Delete">🗑️</button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+
+      document.getElementById('rowCount').textContent = `Showing ${filtered.length} of ${data.length} rows`;
+      document.getElementById('liveCounter').textContent = `${data.length} Total`;
+    }
+
+    // ===== FILTER =====
+    function applyFilter(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === filter);
+      });
+      renderTable(requests);
+    }
+
+    // ===== SEARCH =====
+    document.getElementById('searchInput').addEventListener('input', function() {
+      currentSearch = this.value.toLowerCase().trim();
+      renderTable(requests);
+    });
+
+    // ===== ROW SELECTION =====
+    function toggleRow(id) {
+      if (selectedRows.has(id)) selectedRows.delete(id);
+      else selectedRows.add(id);
+      document.getElementById('selectAll').checked = selectedRows.size === requests.length;
+    }
+
+    function toggleAll() {
+      const checked = document.getElementById('selectAll').checked;
+      selectedRows.clear();
+      if (checked) {
+        requests.forEach(r => selectedRows.add(r.id));
+      }
+      document.querySelectorAll('.row-check').forEach(cb => cb.checked = checked);
+    }
+
+    // ===== OPEN ROW =====
+    function openRow(id) {
+      openPanel(id);
+    }
+
+    // ===== SIDE PANEL =====
+    let currentPanelId = null;
+
+    function openPanel(id) {
+      const row = requests.find(r => r.id === id);
+      if (!row) return;
+      currentPanelId = id;
+      document.getElementById('panelTitle').textContent = `Request ${row.id}`;
+      document.getElementById('pRequestId').textContent = row.id;
+      document.getElementById('pProject').textContent = row.project;
+      document.getElementById('pCustomer').textContent = row.customer;
+      document.getElementById('pBusiness').textContent = row.business;
+      document.getElementById('pPackage').textContent = row.package;
+      document.getElementById('pAmount').textContent = row.amount;
+      document.getElementById('pPayment').textContent = row.payment;
+      document.getElementById('pStatus').textContent = row.status.charAt(0).toUpperCase() + row.status.slice(1);
+      document.getElementById('pCreated').textContent = row.created;
+      document.getElementById('pDeadline').textContent = row.deadline || '—';
+      document.getElementById('pAssigned').textContent = row.assigned || 'Unassigned';
+      document.getElementById('pPriority').textContent = row.priority;
+      document.getElementById('pInstructions').textContent = row.instructions || 'No special instructions';
+
+      // Pipeline
+      const stages = ['pending', 'review', 'payment', 'assigned', 'ai', 'development', 'testing', 'ready', 'delivered'];
+      const pipeline = document.getElementById('pPipeline');
+      pipeline.innerHTML = stages.map(s => {
+        const statusMap = {
+          pending: 'Pending',
+          review: 'Review',
+          payment: 'Payment',
+          assigned: 'Assigned',
+          ai: 'AI',
+          development: 'Dev',
+          testing: 'Testing',
+          ready: 'Ready',
+          delivered: 'Delivered'
+        };
+        let cls = 'pipe';
+        if (s === row.status) cls += ' active';
+        else if (stages.indexOf(s) < stages.indexOf(row.status)) cls += ' completed';
+        return `<span class="${cls}">${statusMap[s] || s}</span>`;
+      }).join('');
+
+      document.getElementById('sidePanel').classList.add('open');
+      document.getElementById('panelOverlay').classList.add('active');
+    }
+
+    function closePanel() {
+      document.getElementById('sidePanel').classList.remove('open');
+      document.getElementById('panelOverlay').classList.remove('active');
+    }
+
+    document.getElementById('panelOverlay').addEventListener('click', closePanel);
+
+    // ===== PANEL ACTIONS =====
+    function addComment() {
+      const comment = document.getElementById('panelComment').value.trim();
+      if (!comment) return alert('Please enter a comment.');
+      alert(`💬 Comment added: "${comment}"`);
+      document.getElementById('panelComment').value = '';
+    }
+
+    function openProject() {
+      if (currentPanelId) window.location.href = `project-details.html?id=${currentPanelId}`;
+    }
+
+    function assignDeveloper() {
+      const dev = prompt('Enter developer name to assign:');
+      if (dev && currentPanelId) {
+        const row = requests.find(r => r.id === currentPanelId);
+        if (row) { row.assigned = dev; renderTable(requests); closePanel(); }
+      }
+    }
+
+    function generateAI() {
+      if (currentPanelId) {
+        alert(`🤖 AI generation started for ${currentPanelId}`);
+        const row = requests.find(r => r.id === currentPanelId);
+        if (row) { row.status = 'ai'; renderTable(requests); closePanel(); }
+      }
+    }
+
+    function previewWebsite() {
+      if (currentPanelId) window.open(`website-preview.html?id=${currentPanelId}`, '_blank');
+    }
+
+    function approveRequest() {
+      if (currentPanelId) {
+        const row = requests.find(r => r.id === currentPanelId);
+        if (row) { row.status = 'ready'; renderTable(requests); closePanel(); alert('✅ Request approved!'); }
+      }
+    }
+
+    function rejectRequest() {
+      if (currentPanelId) {
+        if (confirm('Reject this request?')) {
+          const row = requests.find(r => r.id === currentPanelId);
+          if (row) { row.status = 'rejected'; renderTable(requests); closePanel(); alert('❌ Request rejected.'); }
+        }
+      }
+    }
+
+    function deleteRequest(id) {
+      if (confirm(`Delete request ${id}?`)) {
+        const idx = requests.findIndex(r => r.id === id);
+        if (idx > -1) { requests.splice(idx, 1); renderTable(requests); }
+      }
+    }
+
+    // ===== BULK ACTIONS =====
+    function bulkAction(action) {
+      const ids = Array.from(selectedRows);
+      if (ids.length === 0) return alert('Please select at least one row.');
+      if (action === 'assign') {
+        const dev = prompt('Assign to developer:');
+        if (dev) {
+          ids.forEach(id => {
+            const row = requests.find(r => r.id === id);
+            if (row) row.assigned = dev;
+          });
+          renderTable(requests);
+          selectedRows.clear();
+          alert(`✅ Assigned ${ids.length} requests to ${dev}`);
+        }
+      } else if (action === 'export') {
+        alert(`📥 Exporting ${ids.length} rows to CSV...`);
+      } else if (action === 'status') {
+        const status = prompt('Change status to (pending/review/paid/assigned/ai/development/testing/ready/delivered):');
+        if (status) {
+          ids.forEach(id => {
+            const row = requests.find(r => r.id === id);
+            if (row) row.status = status;
+          });
+          renderTable(requests);
+          selectedRows.clear();
+          alert(`✅ Status updated for ${ids.length} requests`);
+        }
+      } else if (action === 'delete') {
+        if (confirm(`Delete ${ids.length} requests?`)) {
+          ids.forEach(id => {
+            const idx = requests.findIndex(r => r.id === id);
+            if (idx > -1) requests.splice(idx, 1);
+          });
+          renderTable(requests);
+          selectedRows.clear();
+          alert(`✅ ${ids.length} requests deleted`);
+        }
+      }
+    }
+
+    // ===== OTHER FUNCTIONS =====
+    function refreshTable() {
+      renderTable(requests);
+      alert('🔄 Table refreshed!');
+    }
+
+    function exportCSV() {
+      alert('📥 Exporting all requests to CSV...');
+    }
+
+    function logoutAdmin() {
+      if (confirm('Logout?')) window.location.href = 'login.html';
+    }
+
+    // ============================================================
+    // 🔥 FIREBASE FIRESTORE INTEGRATION
+    // ============================================================
+    /*
+    import { getFirestore, collection, query, where, getDocs, onSnapshot, orderBy } from 'firebase/firestore';
+    import { getAuth } from 'firebase/auth';
+
+    const db = getFirestore();
+    const auth = getAuth();
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const q = query(collection(db, 'website_requests'), orderBy('createdAt', 'desc'));
+        onSnapshot(q, (snapshot) => {
+          const data = [];
+          snapshot.forEach(doc => {
+            data.push({ id: doc.id, ...doc.data() });
+          });
+          // Update requests array and re-render
+          // requests = data;
+          // renderTable(requests);
+        });
+      } else {
+        window.location.href = 'login.html';
+      }
+    });
+    */
+
+    console.log('🚀 website-requests.html – Smile AI Web Studio CRM');
+    console.log('📌 Master website requests management ready');
+    console.log('📌 Firestore real-time ready (commented)');
+  </script>
+</body>
+</html>
