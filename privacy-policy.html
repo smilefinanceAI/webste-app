@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Privacy Policy – Smile AI Web Studio</title>
+  <meta name="description" content="Read our Privacy Policy to understand how Smile AI Web Studio collects, uses, and protects your personal information. Your privacy matters to us." />
+  <meta name="keywords" content="privacy policy, data protection, GDPR, CCPA, information security, Smile AI" />
+  <link rel="canonical" href="https://web.smilefinancialsolution.com/privacy-policy.html" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Privacy Policy – Smile AI Web Studio" />
+  <meta property="og:description" content="Read our Privacy Policy to understand how Smile AI Web Studio collects, uses, and protects your personal information." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://web.smilefinancialsolution.com/privacy-policy.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD Schemas -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Smile AI Web Studio",
+      "url": "https://web.smilefinancialsolution.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-7290977231",
+        "contactType": "Sales"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://web.smilefinancialsolution.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://web.smilefinancialsolution.com/privacy-policy.html" }
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PrivacyPolicy",
+      "name": "Privacy Policy of Smile AI Web Studio",
+      "description": "Privacy Policy explaining how we collect, use, and protect user data.",
+      "url": "https://web.smilefinancialsolution.com/privacy-policy.html"
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --glass-bg: rgba(255,255,255,0.10);
+      --shadow-soft: 0 20px 50px -12px rgba(0,0,0,0.06);
+      --shadow-card: 0 12px 40px -8px rgba(0,0,0,0.04);
+      --radius-lg: 18px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #0b1a33;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+    /* ===== GLASS & UTILITY ===== */
+    .badge-pill {
+      background: var(--secondary);
+      color: white;
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 34px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.15);
+    }
+    .btn-primary {
+      background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      color: white;
+    }
+    .btn-primary:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 12px 30px rgba(37,99,235,0.30); }
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+    }
+    .btn-secondary:hover { transform: scale(1.03) translateY(-2px); background: #059669; }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary); color: white; }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .section-title span { color: var(--primary); }
+    .section-sub {
+      font-size: 1.1rem;
+      color: #475569;
+      max-width: 600px;
+    }
+    .text-center { text-align: center; }
+    .flex-center { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      padding: 16px 0; transition: var(--transition);
+      background: rgba(255,255,255,0.70); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    header.scrolled {
+      background: rgba(255,255,255,0.94); box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.6rem; font-weight: 800; color: var(--primary);
+      letter-spacing: -0.02em; display: flex; align-items: center; gap: 6px;
+    }
+    .logo span { color: var(--secondary); }
+    .logo small { font-size: 0.6rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; margin-left: 6px; }
+    nav { display: flex; align-items: center; gap: 2rem; }
+    nav a {
+      font-weight: 500; font-size: 0.95rem; color: #1e293b;
+      transition: var(--transition); position: relative;
+    }
+    nav a:hover { color: var(--primary); }
+    nav a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--primary);
+      transition: var(--transition);
+    }
+    nav a:hover::after { width: 100%; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 28px; height: 3px; background: #1e293b; border-radius: 4px; transition: var(--transition); }
+
+    /* ===== HERO ===== */
+    #policy-hero {
+      padding: 140px 0 60px;
+      background: linear-gradient(165deg, #f0f7ff 0%, #ffffff 100%);
+      position: relative; overflow: hidden;
+    }
+    #policy-hero .container {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem; font-weight: 900; line-height: 1.1; letter-spacing: -0.03em;
+    }
+    .hero-content h1 .highlight { color: var(--primary); }
+    .hero-content p {
+      font-size: 1.2rem; color: #334155; margin: 1.5rem 0 2rem;
+      max-width: 520px;
+    }
+    .breadcrumb { font-size: 0.9rem; color: #475569; margin-top: 1rem; }
+    .breadcrumb a { color: var(--primary); }
+    .breadcrumb span { color: #94a3b8; }
+    .hero-illustration {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 350"><circle cx="200" cy="175" r="140" fill="%232563EB" opacity="0.05"/><circle cx="200" cy="175" r="100" fill="%2310B981" opacity="0.04"/><circle cx="200" cy="175" r="60" fill="%23F59E0B" opacity="0.06"/><rect x="130" y="100" width="140" height="150" rx="16" fill="white" stroke="%232563EB" stroke-width="2.5"/><rect x="155" y="125" width="90" height="20" rx="10" fill="%232563EB"/><rect x="155" y="160" width="90" height="10" rx="5" fill="%23cbd5e1"/><rect x="155" y="180" width="90" height="10" rx="5" fill="%23cbd5e1"/><rect x="155" y="200" width="60" height="10" rx="5" fill="%23cbd5e1"/><circle cx="105" cy="100" r="20" fill="%23F59E0B" opacity="0.2"/><circle cx="310" cy="270" r="16" fill="%2310B981" opacity="0.15"/></svg>');
+      background-size: contain; background-repeat: no-repeat; background-position: center;
+      min-height: 350px; width: 100%;
+    }
+    .floating-shapes {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .floating-shapes span {
+      position: absolute; border-radius: 50%; background: var(--primary); opacity: 0.04;
+      animation: float 12s infinite alternate ease-in-out;
+    }
+    .floating-shapes span:nth-child(1) { width: 120px; height: 120px; top: 5%; left: 2%; }
+    .floating-shapes span:nth-child(2) { width: 160px; height: 160px; bottom: 5%; right: 3%; background: var(--accent); animation-delay: 0.5s; }
+    .floating-shapes span:nth-child(3) { width: 80px; height: 80px; top: 50%; right: 0%; background: var(--secondary); animation-delay: 1s; }
+    @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-40px) rotate(10deg); } }
+
+    /* ===== CONTENT ===== */
+    #policy-content {
+      padding: 40px 0 80px;
+      background: white;
+    }
+    .policy-layout {
+      display: grid; grid-template-columns: 280px 1fr; gap: 3rem;
+      align-items: start;
+    }
+    /* Sidebar */
+    .sidebar {
+      position: sticky; top: 100px;
+      background: #f8fafc; border-radius: var(--radius-lg);
+      padding: 1.5rem; border: 1px solid #eef2f6;
+    }
+    .sidebar .toc-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem; }
+    .sidebar .toc-list { list-style: none; }
+    .sidebar .toc-list li { margin-bottom: 0.5rem; }
+    .sidebar .toc-list a {
+      display: block; padding: 6px 12px; border-radius: 8px;
+      color: #475569; font-weight: 500; font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .sidebar .toc-list a:hover { background: #eef2f6; color: var(--primary); }
+    .sidebar .toc-list a.active { background: var(--primary); color: white; }
+
+    /* Main Content */
+    .main-content { max-width: 800px; }
+    .main-content .section {
+      margin-bottom: 2.5rem; padding-bottom: 2rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .main-content .section:last-child { border-bottom: none; }
+    .main-content .section h2 {
+      font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    .main-content .section .last-updated {
+      font-size: 0.85rem; color: #94a3b8; margin-bottom: 1rem;
+    }
+    .main-content .section p { color: #475569; margin-bottom: 1rem; }
+    .main-content .section ul { padding-left: 1.5rem; color: #475569; margin-bottom: 1rem; }
+    .main-content .section ul li { margin-bottom: 0.5rem; }
+    .main-content .section .highlight-box {
+      background: #f0f7ff; padding: 1.5rem; border-radius: var(--radius-lg);
+      border-left: 4px solid var(--primary);
+    }
+
+    /* Progress Indicator */
+    .progress-indicator {
+      position: fixed; top: 0; left: 0; width: 100%; height: 4px;
+      background: transparent; z-index: 999;
+    }
+    .progress-indicator .progress-bar {
+      height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.1s ease;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0b1a33; color: #cbd5e1; padding: 3rem 0;
+    }
+    footer .container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    footer a { display: block; margin: 6px 0; transition: var(--transition); }
+    footer a:hover { color: white; padding-left: 4px; }
+    footer .powered { margin-top: 2rem; border-top: 1px solid #1e293b; padding-top: 1.5rem; text-align: center; }
+
+    /* ===== FLOATING BUTTONS ===== */
+    .floating-btn {
+      position: fixed; right: 24px; z-index: 999;
+      width: 56px; height: 56px; border-radius: 60px;
+      background: var(--primary); color: white; border: none;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.25);
+      font-size: 1.5rem; cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .floating-btn:hover { transform: scale(1.08); }
+    .floating-btn.whatsapp { bottom: 100px; background: #25D366; }
+    .floating-btn.call { bottom: 170px; background: var(--secondary); }
+    .floating-btn.top { bottom: 30px; background: var(--accent); color: #0b1a33; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      #policy-hero .container { grid-template-columns: 1fr; text-align: center; }
+      .hero-content p { margin-left: auto; margin-right: auto; }
+      .policy-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      footer .container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+      nav.open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 2rem; gap: 1rem; box-shadow: var(--shadow-soft); border-radius: 0 0 24px 24px; }
+      .hero-content h1 { font-size: 2.4rem; }
+      .section-title { font-size: 2rem; }
+      footer .container { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 2rem; }
+      .btn { padding: 12px 24px; font-size: 0.9rem; }
+      .floating-btn { width: 48px; height: 48px; font-size: 1.2rem; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- PROGRESS INDICATOR -->
+  <div class="progress-indicator"><div class="progress-bar" id="progressBar"></div></div>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Smile<span>AI</span><small>Web Studio</small></a>
+      <nav id="navbar">
+        <a href="index.html">Home</a>
+        <a href="create-website.html">AI Builder</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="create-website.html" class="btn btn-primary" style="padding:8px 22px;font-size:0.85rem;">✨ Create Website</a>
+      </nav>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="policy-hero">
+    <div class="floating-shapes"><span></span><span></span><span></span></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="badge-pill" style="background:var(--primary);">Privacy</span>
+        <h1>Privacy <span class="highlight">Policy</span></h1>
+        <p>Your privacy matters to us. This policy explains how we collect, use, and protect your personal information when you interact with Smile AI Web Studio.</p>
+        <div class="flex-center" style="justify-content:flex-start;">
+          <a href="contact.html" class="btn btn-primary">Contact Us</a>
+          <a href="index.html" class="btn btn-outline">Back to Home</a>
+        </div>
+        <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Privacy Policy</span></div>
+      </div>
+      <div class="hero-illustration"></div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section id="policy-content">
+    <div class="container">
+      <div class="policy-layout">
+        <!-- Sidebar TOC -->
+        <aside class="sidebar" id="tocSidebar">
+          <div class="toc-title">📋 Table of Contents</div>
+          <ul class="toc-list" id="tocList">
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#information-collect">Information We Collect</a></li>
+            <li><a href="#how-we-use">How We Use Information</a></li>
+            <li><a href="#cookies">Cookies Policy</a></li>
+            <li><a href="#third-party">Third Party Services</a></li>
+            <li><a href="#firebase">Firebase Usage</a></li>
+            <li><a href="#ai-services">AI Services</a></li>
+            <li><a href="#data-security">Data Security</a></li>
+            <li><a href="#user-rights">User Rights</a></li>
+            <li><a href="#children-privacy">Children Privacy</a></li>
+            <li><a href="#changes">Changes To Policy</a></li>
+            <li><a href="#contact">Contact Information</a></li>
+          </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+          <!-- Introduction -->
+          <section id="introduction" class="section">
+            <h2>Introduction</h2>
+            <div class="last-updated">Last Updated: January 2025</div>
+            <p>Welcome to Smile AI Web Studio. Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or interact with us.</p>
+            <p>Please read this privacy policy carefully. By using our website and services, you consent to the collection and use of your personal information as described in this policy.</p>
+            <div class="highlight-box">
+              <strong>Our Commitment:</strong> We are committed to protecting your privacy and ensuring that your personal information is handled responsibly and securely.
+            </div>
+          </section>
+
+          <!-- Information We Collect -->
+          <section id="information-collect" class="section">
+            <h2>Information We Collect</h2>
+            <p>We collect information to provide better services to our users. This includes:</p>
+            <ul>
+              <li><strong>Personal Information:</strong> Name, email address, phone number, business name, and other contact details you provide.</li>
+              <li><strong>Website Information:</strong> Information about your business, industry, website requirements, and preferences.</li>
+              <li><strong>Usage Data:</strong> How you interact with our website, pages visited, time spent, and referring URLs.</li>
+              <li><strong>Device Information:</strong> IP address, browser type, operating system, and device type.</li>
+              <li><strong>Cookies & Tracking:</strong> We use cookies to enhance your experience and analyze website traffic.</li>
+            </ul>
+          </section>
+
+          <!-- How We Use Information -->
+          <section id="how-we-use" class="section">
+            <h2>How We Use Information</h2>
+            <p>We use your information for the following purposes:</p>
+            <ul>
+              <li>To provide and maintain our services</li>
+              <li>To generate AI-powered website demos and content</li>
+              <li>To communicate with you about your inquiries and projects</li>
+              <li>To improve our website, services, and user experience</li>
+              <li>To send updates, marketing communications, and promotional offers</li>
+              <li>To comply with legal obligations and enforce our terms</li>
+            </ul>
+          </section>
+
+          <!-- Cookies -->
+          <section id="cookies" class="section">
+            <h2>Cookies Policy</h2>
+            <p>We use cookies to enhance your experience, analyze site traffic, and personalize content. Cookies are small text files stored on your device that help us remember your preferences and improve your user experience.</p>
+            <p>You can control cookie preferences through your browser settings. However, disabling cookies may affect the functionality of certain features on our website.</p>
+            <p>We use both session cookies (which expire when you close your browser) and persistent cookies (which remain on your device for a longer period).</p>
+          </section>
+
+          <!-- Third Party Services -->
+          <section id="third-party" class="section">
+            <h2>Third Party Services</h2>
+            <p>We use third-party services to enhance our platform and provide better user experiences. These include:</p>
+            <ul>
+              <li><strong>Vercel:</strong> For website hosting and deployment</li>
+              <li><strong>Firebase/Firestore:</strong> For database and authentication services</li>
+              <li><strong>Google Analytics:</strong> For website traffic analysis and performance tracking</li>
+              <li><strong>Google Search Console:</strong> For SEO and search performance monitoring</li>
+              <li><strong>Payment Gateways:</strong> For secure transaction processing (Razorpay, PhonePe, etc.)</li>
+            </ul>
+            <p>These third-party services have their own privacy policies and data handling practices. We encourage you to review them.</p>
+          </section>
+
+          <!-- Firebase Usage -->
+          <section id="firebase" class="section">
+            <h2>Firebase Usage</h2>
+            <p>We use Google Firebase and Firestore to manage user data, store information, and provide real-time functionality. Firebase helps us:</p>
+            <ul>
+              <li>Store user preferences and account information</li>
+              <li>Manage website requests and project data</li>
+              <li>Enable secure authentication and authorization</li>
+              <li>Provide real-time updates and notifications</li>
+            </ul>
+            <p>All data stored in Firebase is encrypted and protected according to industry standards.</p>
+          </section>
+
+          <!-- AI Services -->
+          <section id="ai-services" class="section">
+            <h2>AI Services</h2>
+            <p>Our AI-powered website generator uses artificial intelligence to create content, design layouts, and generate SEO meta tags. When you use our AI services:</p>
+            <ul>
+              <li>Your business information is used to generate personalized website content</li>
+              <li>AI analysis is performed to optimize your website for search engines</li>
+              <li>Data may be processed through AI APIs (including Groq, OpenAI, Gemini, and Claude)</li>
+              <li>All data processing is performed securely and in compliance with privacy regulations</li>
+            </ul>
+          </section>
+
+          <!-- Data Security -->
+          <section id="data-security" class="section">
+            <h2>Data Security</h2>
+            <p>We take data security seriously and implement appropriate measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. These measures include:</p>
+            <ul>
+              <li>SSL/TLS encryption for all data transmission</li>
+              <li>Secure storage and encryption of sensitive data</li>
+              <li>Regular security audits and vulnerability assessments</li>
+              <li>Access controls and authentication mechanisms</li>
+              <li>Employee training on data protection and privacy</li>
+            </ul>
+            <div class="highlight-box">
+              <strong>Security Assurance:</strong> We continuously update our security practices to protect your information and comply with industry standards.
+            </div>
+          </section>
+
+          <!-- User Rights -->
+          <section id="user-rights" class="section">
+            <h2>Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+              <li><strong>Access:</strong> Request a copy of your personal data</li>
+              <li><strong>Correction:</strong> Update or correct inaccurate information</li>
+              <li><strong>Deletion:</strong> Request deletion of your personal data</li>
+              <li><strong>Restriction:</strong> Restrict the processing of your data</li>
+              <li><strong>Portability:</strong> Request transfer of your data to another provider</li>
+              <li><strong>Object:</strong> Object to the processing of your data for marketing purposes</li>
+            </ul>
+            <p>To exercise these rights, please contact us using the information below.</p>
+          </section>
+
+          <!-- Children Privacy -->
+          <section id="children-privacy" class="section">
+            <h2>Children's Privacy</h2>
+            <p>Our services are not intended for individuals under the age of 18. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided personal information, please contact us, and we will take appropriate action to remove the information.</p>
+          </section>
+
+          <!-- Changes -->
+          <section id="changes" class="section">
+            <h2>Changes To This Policy</h2>
+            <p>We may update this Privacy Policy from time to time to reflect changes in our practices, legal requirements, or industry standards. We will notify you of any significant changes by posting the updated policy on this page with a revised "Last Updated" date.</p>
+            <p>We encourage you to review this policy periodically to stay informed about how we protect your privacy.</p>
+          </section>
+
+          <!-- Contact -->
+          <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <p>If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us:</p>
+            <p><strong>📞 Phone:</strong> <a href="tel:+917290977231" style="color:var(--primary);">+91 7290977231</a></p>
+            <p><strong>💬 WhatsApp:</strong> <a href="https://wa.me/917290977231" style="color:var(--primary);" target="_blank">+91 7290977231</a></p>
+            <p><strong>✉️ Email:</strong> <a href="mailto:info@smileaiwebstudio.com" style="color:var(--primary);">info@smileaiwebstudio.com</a></p>
+            <p><strong>📍 Address:</strong> Delhi, India</p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div><h3 style="color:white;">Smile AI Web Studio</h3><p style="margin:0.5rem 0;">AI-powered website builder for businesses.</p></div>
+      <div><h4 style="color:white;">Quick Links</h4><a href="index.html">Home</a><a href="create-website.html">AI Builder</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="pricing.html">Pricing</a></div>
+      <div><h4 style="color:white;">Legal</h4><a href="privacy-policy.html">Privacy Policy</a><a href="#">Terms</a></div>
+      <div><h4 style="color:white;">Contact</h4><a href="https://wa.me/917290977231" target="_blank">WhatsApp</a><a href="tel:+917290977231">Call Now</a></div>
+    </div>
+    <div class="container powered">© 2025 Smile AI Web Studio. Powered by Smile Financial Solution.</div>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+  <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%2C%20I%20have%20a%20privacy%20question." class="floating-btn whatsapp" aria-label="WhatsApp">💬</a>
+  <a href="tel:+917290977231" class="floating-btn call" aria-label="Call">📞</a>
+  <button class="floating-btn top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+    });
+
+    // ===== HEADER SCROLL =====
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+
+      // Progress bar
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      // Active TOC item
+      const sections = document.querySelectorAll('.section');
+      const tocLinks = document.querySelectorAll('.toc-list a');
+      let current = '';
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 120) {
+          current = section.id;
+        }
+      });
+      tocLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    });
+
+    // ===== HAMBURGER =====
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navbar').classList.toggle('open');
+    });
+    document.querySelectorAll('#navbar a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('navbar').classList.remove('open'));
+    });
+
+    // ===== SMOOTH SCROLL FOR TOC =====
+    document.querySelectorAll('.toc-list a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    console.log('🚀 privacy-policy.html – Smile AI Web Studio');
+    console.log('📌 Premium Privacy Policy page with TOC and progress indicator');
+  </script>
+</body>
+</html>
