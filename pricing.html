@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Simple & Transparent Website Pricing – Smile AI Web Studio</title>
+  <meta name="description" content="Affordable website pricing plans for businesses of all sizes. Choose from Starter, Business, Professional, and Premium packages. Free demo available." />
+  <meta name="keywords" content="website pricing, affordable website packages, business website cost, website plans, Smile AI Web Studio" />
+  <link rel="canonical" href="https://web.smilefinancialsolution.com/pricing.html" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Simple & Transparent Website Pricing – Smile AI Web Studio" />
+  <meta property="og:description" content="Affordable website pricing plans for businesses of all sizes. Choose the perfect package for your business." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://web.smilefinancialsolution.com/pricing.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD Schemas -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Smile AI Web Studio",
+      "url": "https://web.smilefinancialsolution.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-7290977231",
+        "contactType": "Sales"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://web.smilefinancialsolution.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Pricing", "item": "https://web.smilefinancialsolution.com/pricing.html" }
+      ]
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --glass-bg: rgba(255,255,255,0.10);
+      --shadow-soft: 0 20px 50px -12px rgba(0,0,0,0.06);
+      --shadow-card: 0 12px 40px -8px rgba(0,0,0,0.04);
+      --radius-lg: 18px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+    /* ===== GLASS & UTILITY ===== */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+    }
+    .badge-pill {
+      background: var(--secondary);
+      color: white;
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 34px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.15);
+    }
+    .btn-primary {
+      background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      color: white;
+    }
+    .btn-primary:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 12px 30px rgba(37,99,235,0.30); }
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+    }
+    .btn-secondary:hover { transform: scale(1.03) translateY(-2px); background: #059669; }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary); color: white; }
+    .btn-accent {
+      background: var(--accent);
+      color: #0b1a33;
+    }
+    .btn-accent:hover { transform: scale(1.03) translateY(-2px); background: #d48d0a; }
+    .btn-sm {
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-sm-primary { background: var(--primary); color: white; }
+    .btn-sm-primary:hover { background: #1d4ed8; transform: scale(1.02); }
+    .btn-sm-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
+    .btn-sm-outline:hover { background: var(--primary); color: white; }
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .section-title span { color: var(--primary); }
+    .section-sub {
+      font-size: 1.2rem;
+      color: #475569;
+      max-width: 600px;
+    }
+    .text-center { text-align: center; }
+    .flex-center { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .mt-4 { margin-top: 2rem; }
+    .mb-4 { margin-bottom: 2rem; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      padding: 16px 0; transition: var(--transition);
+      background: rgba(255,255,255,0.70); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    header.scrolled {
+      background: rgba(255,255,255,0.94); box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.6rem; font-weight: 800; color: var(--primary);
+      letter-spacing: -0.02em; display: flex; align-items: center; gap: 6px;
+    }
+    .logo span { color: var(--secondary); }
+    .logo small { font-size: 0.6rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; margin-left: 6px; }
+    nav { display: flex; align-items: center; gap: 2rem; }
+    nav a {
+      font-weight: 500; font-size: 0.95rem; color: #1e293b;
+      transition: var(--transition); position: relative;
+    }
+    nav a:hover { color: var(--primary); }
+    nav a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--primary);
+      transition: var(--transition);
+    }
+    nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--primary); }
+    nav a.active::after { width: 100%; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 28px; height: 3px; background: #1e293b; border-radius: 4px; transition: var(--transition); }
+
+    /* ===== HERO ===== */
+    #pricing-hero {
+      padding: 140px 0 70px;
+      background: linear-gradient(165deg, #f0f7ff 0%, #ffffff 100%);
+      position: relative; overflow: hidden;
+    }
+    #pricing-hero .container {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem; font-weight: 900; line-height: 1.1; letter-spacing: -0.03em;
+    }
+    .hero-content h1 .highlight { color: var(--primary); }
+    .hero-content p {
+      font-size: 1.2rem; color: #334155; margin: 1.5rem 0 2rem;
+      max-width: 520px;
+    }
+    .breadcrumb { font-size: 0.9rem; color: #475569; margin-top: 1rem; }
+    .breadcrumb a { color: var(--primary); }
+    .breadcrumb span { color: #94a3b8; }
+    .hero-illustration {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="160" fill="%232563EB" opacity="0.05"/><circle cx="200" cy="200" r="120" fill="%2310B981" opacity="0.04"/><circle cx="200" cy="200" r="80" fill="%23F59E0B" opacity="0.06"/><rect x="145" y="115" width="110" height="130" rx="16" fill="white" stroke="%232563EB" stroke-width="2.5"/><rect x="165" y="135" width="70" height="14" rx="8" fill="%232563EB"/><rect x="165" y="165" width="70" height="8" rx="4" fill="%23cbd5e1"/><rect x="165" y="185" width="70" height="8" rx="4" fill="%23cbd5e1"/><rect x="165" y="205" width="45" height="8" rx="4" fill="%23cbd5e1"/><circle cx="110" cy="95" r="28" fill="%23F59E0B" opacity="0.20"/><circle cx="320" cy="295" r="22" fill="%2310B981" opacity="0.15"/></svg>');
+      background-size: contain; background-repeat: no-repeat; background-position: center;
+      min-height: 280px; width: 100%;
+    }
+    .floating-shapes {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .floating-shapes span {
+      position: absolute; border-radius: 50%; background: var(--primary); opacity: 0.04;
+      animation: float 12s infinite alternate ease-in-out;
+    }
+    .floating-shapes span:nth-child(1) { width: 120px; height: 120px; top: 5%; left: 2%; }
+    .floating-shapes span:nth-child(2) { width: 160px; height: 160px; bottom: 5%; right: 3%; background: var(--accent); animation-delay: 0.5s; }
+    .floating-shapes span:nth-child(3) { width: 80px; height: 80px; top: 50%; right: 0%; background: var(--secondary); animation-delay: 1s; }
+    @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-40px) rotate(10deg); } }
+
+    /* ===== PRICING GRID ===== */
+    #pricing-grid { padding: 80px 0; background: #f8fafc; }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .pricing-card {
+      background: white; padding: 2rem 1.8rem; border-radius: var(--radius-lg);
+      border: 2px solid #eef2f6; transition: var(--transition);
+      text-align: left;
+    }
+    .pricing-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-card); border-color: var(--primary); }
+    .pricing-card.popular {
+      border-color: var(--secondary);
+      background: #f0fdf4;
+    }
+    .pricing-card.popular:hover { border-color: var(--secondary); }
+    .pricing-card .popular-badge {
+      background: var(--secondary); color: white; padding: 4px 14px;
+      border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+      display: inline-block; margin-bottom: 0.5rem;
+    }
+    .pricing-card .price {
+      font-size: 2.8rem; font-weight: 800; color: var(--primary);
+    }
+    .pricing-card .price small {
+      font-size: 1rem; font-weight: 400; color: #475569;
+    }
+    .pricing-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .pricing-card .delivery { font-size: 0.85rem; color: var(--primary); font-weight: 600; margin: 0.5rem 0; }
+    .pricing-card ul { list-style: none; margin: 1rem 0; }
+    .pricing-card ul li { padding: 6px 0; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 8px; }
+    .pricing-card ul li::before { content: "✓"; color: var(--secondary); font-weight: 700; }
+    .pricing-card .btn-group { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+
+    /* ===== ADD-ONS ===== */
+    #addons { padding: 80px 0; background: white; }
+    .addons-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .addon-item {
+      background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .addon-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--primary); }
+    .addon-item .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+    .addon-item h3 { font-weight: 700; font-size: 1.1rem; }
+    .addon-item .price { color: var(--primary); font-weight: 600; }
+
+    /* ===== WHY ===== */
+    #why-pricing { padding: 80px 0; background: #f8fafc; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .why-item {
+      background: white; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; font-weight: 600; border: 1px solid #eef2f6;
+      transition: var(--transition);
+    }
+    .why-item:hover { background: var(--primary); color: white; transform: scale(1.02); }
+
+    /* ===== FAQ ===== */
+    #faq { padding: 80px 0; background: white; }
+    .faq-item {
+      background: #f8fafc; border-radius: 16px; margin-bottom: 1rem;
+      padding: 1.2rem 1.5rem; cursor: pointer; border: 1px solid #eef2f6;
+      transition: var(--transition);
+    }
+    .faq-item:hover { border-color: var(--primary); }
+    .faq-question { display: flex; justify-content: space-between; font-weight: 600; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; color: #475569; }
+    .faq-item.active .faq-answer { max-height: 200px; padding-top: 0.75rem; }
+
+    /* ===== CTA ===== */
+    #final-cta {
+      padding: 80px 0; background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      color: white; text-align: center;
+    }
+    #final-cta h2 { font-size: 2.8rem; font-weight: 800; }
+    #final-cta .btn { box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0b1a33; color: #cbd5e1; padding: 3rem 0;
+    }
+    footer .container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    footer a { display: block; margin: 6px 0; transition: var(--transition); }
+    footer a:hover { color: white; padding-left: 4px; }
+    footer .powered { margin-top: 2rem; border-top: 1px solid #1e293b; padding-top: 1.5rem; text-align: center; }
+
+    /* ===== FLOATING BUTTONS ===== */
+    .floating-btn {
+      position: fixed; right: 24px; z-index: 999;
+      width: 56px; height: 56px; border-radius: 60px;
+      background: var(--primary); color: white; border: none;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.25);
+      font-size: 1.5rem; cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .floating-btn:hover { transform: scale(1.08); }
+    .floating-btn.whatsapp { bottom: 100px; background: #25D366; }
+    .floating-btn.call { bottom: 170px; background: var(--secondary); }
+    .floating-btn.top { bottom: 30px; background: var(--accent); color: #0b1a33; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      #pricing-hero .container { grid-template-columns: 1fr; text-align: center; }
+      .hero-content p { margin-left: auto; margin-right: auto; }
+      footer .container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+      nav.open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 2rem; gap: 1rem; box-shadow: var(--shadow-soft); border-radius: 0 0 24px 24px; }
+      .hero-content h1 { font-size: 2.4rem; }
+      .section-title { font-size: 2rem; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      footer .container { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 2rem; }
+      .btn { padding: 12px 24px; font-size: 0.9rem; }
+      .floating-btn { width: 48px; height: 48px; font-size: 1.2rem; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Smile<span>AI</span><small>Web Studio</small></a>
+      <nav id="navbar">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="pricing.html" class="active">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn-primary" style="padding:8px 22px;font-size:0.85rem;">Get FREE Demo</a>
+      </nav>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="pricing-hero">
+    <div class="floating-shapes"><span></span><span></span><span></span></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="badge-pill" style="background:var(--primary);">Pricing</span>
+        <h1>Simple, Transparent <span class="highlight">Website Pricing</span></h1>
+        <p>Choose the perfect website package for your business. Affordable pricing with premium quality. No hidden charges.</p>
+        <div class="flex-center" style="justify-content:flex-start;">
+          <a href="contact.html" class="btn btn-primary">Get FREE Consultation</a>
+          <a href="contact.html" class="btn btn-secondary">Request FREE Demo</a>
+          <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20to%20know%20about%20your%20pricing." class="btn btn-outline">Chat on WhatsApp</a>
+        </div>
+        <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Pricing</span></div>
+      </div>
+      <div class="hero-illustration"></div>
+    </div>
+  </section>
+
+  <!-- PRICING GRID -->
+  <section id="pricing-grid">
+    <div class="container text-center">
+      <h2 class="section-title">Choose Your <span>Package</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Transparent pricing with everything you need to succeed.</p>
+      <div class="pricing-grid">
+        <!-- Starter -->
+        <div class="pricing-card">
+          <h3>Starter Website</h3>
+          <div class="price">₹999</div>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <ul>
+            <li>5 Pages</li>
+            <li>Mobile Responsive</li>
+            <li>Contact Form</li>
+            <li>WhatsApp Integration</li>
+            <li>SEO Ready</li>
+            <li>Google Analytics Setup</li>
+          </ul>
+          <div class="btn-group">
+            <a href="contact.html" class="btn-sm btn-sm-primary">Choose Plan</a>
+            <a href="contact.html" class="btn-sm btn-sm-outline">Request Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20the%20Starter%20Plan." class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Business -->
+        <div class="pricing-card popular">
+          <div class="popular-badge">🔥 Most Popular</div>
+          <h3>Business Website</h3>
+          <div class="price">₹2999</div>
+          <div class="delivery">⏱️ Delivery: 24-48 hours</div>
+          <ul>
+            <li>10 Pages</li>
+            <li>Mobile Responsive</li>
+            <li>Contact Forms</li>
+            <li>WhatsApp Integration</li>
+            <li>SEO Optimized</li>
+            <li>Google Business Profile</li>
+            <li>Speed Optimization</li>
+            <li>Lifetime Guidance</li>
+          </ul>
+          <div class="btn-group">
+            <a href="contact.html" class="btn-sm btn-sm-primary">Choose Plan</a>
+            <a href="contact.html" class="btn-sm btn-sm-outline">Request Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20the%20Business%20Plan." class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Professional -->
+        <div class="pricing-card">
+          <h3>Professional Website</h3>
+          <div class="price">₹4999</div>
+          <div class="delivery">⏱️ Delivery: 3-5 days</div>
+          <ul>
+            <li>15 Pages</li>
+            <li>Mobile Responsive</li>
+            <li>Contact Forms</li>
+            <li>WhatsApp Integration</li>
+            <li>Advanced SEO</li>
+            <li>Google Business Profile</li>
+            <li>Custom Design</li>
+            <li>Admin Panel</li>
+            <li>1 Year Support</li>
+          </ul>
+          <div class="btn-group">
+            <a href="contact.html" class="btn-sm btn-sm-primary">Choose Plan</a>
+            <a href="contact.html" class="btn-sm btn-sm-outline">Request Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20the%20Professional%20Plan." class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Premium -->
+        <div class="pricing-card">
+          <h3>Premium Website</h3>
+          <div class="price">₹7999</div>
+          <div class="delivery">⏱️ Delivery: 5-7 days</div>
+          <ul>
+            <li>25 Pages</li>
+            <li>Mobile Responsive</li>
+            <li>Custom Contact Forms</li>
+            <li>WhatsApp Integration</li>
+            <li>Advanced SEO</li>
+            <li>Google Business Profile</li>
+            <li>Premium Custom Design</li>
+            <li>Full Admin Panel</li>
+            <li>E-commerce Ready</li>
+            <li>2 Years Support</li>
+          </ul>
+          <div class="btn-group">
+            <a href="contact.html" class="btn-sm btn-sm-primary">Choose Plan</a>
+            <a href="contact.html" class="btn-sm btn-sm-outline">Request Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20the%20Premium%20Plan." class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- E-commerce -->
+        <div class="pricing-card">
+          <h3>E-commerce Website</h3>
+          <div class="price">₹9999</div>
+          <div class="delivery">⏱️ Delivery: 5-10 days</div>
+          <ul>
+            <li>Product Catalog</li>
+            <li>Mobile Responsive</li>
+            <li>Shopping Cart</li>
+            <li>Payment Gateway</li>
+            <li>WhatsApp Integration</li>
+            <li>SEO Optimized</li>
+            <li>Order Management</li>
+            <li>Customer Accounts</li>
+            <li>Admin Dashboard</li>
+            <li>1 Year Support</li>
+          </ul>
+          <div class="btn-group">
+            <a href="contact.html" class="btn-sm btn-sm-primary">Choose Plan</a>
+            <a href="contact.html" class="btn-sm btn-sm-outline">Request Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20the%20E-commerce%20Plan." class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+        <!-- Custom Web App -->
+        <div class="pricing-card">
+          <h3>Custom Web Application</h3>
+          <div class="price">Custom</div>
+          <div class="delivery">⏱️ Delivery: 10-15 days</div>
+          <ul>
+            <li>Custom Business Logic</li>
+            <li>Database Integration</li>
+            <li>User Authentication</li>
+            <li>Workflow Automation</li>
+            <li>Mobile Responsive</li>
+            <li>Scalable Architecture</li>
+            <li>Admin Dashboard</li>
+            <li>Security & Compliance</li>
+            <li>2 Years Support</li>
+          </ul>
+          <div class="btn-group">
+            <a href="contact.html" class="btn-sm btn-sm-primary">Contact Us</a>
+            <a href="contact.html" class="btn-sm btn-sm-outline">Request Demo</a>
+            <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20Custom%20Web%20Application." class="btn-sm btn-sm-whatsapp">Chat</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADD-ONS -->
+  <section id="addons">
+    <div class="container text-center">
+      <h2 class="section-title">Add-On <span>Services</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Enhance your website with these additional services.</p>
+      <div class="addons-grid">
+        <div class="addon-item"><span class="icon">🎨</span><h3>Logo Design</h3><span class="price">₹999</span></div>
+        <div class="addon-item"><span class="icon">📈</span><h3>SEO</h3><span class="price">₹1499</span></div>
+        <div class="addon-item"><span class="icon">📍</span><h3>Google Business Profile</h3><span class="price">₹799</span></div>
+        <div class="addon-item"><span class="icon">🛠️</span><h3>Website Maintenance</h3><span class="price">₹999/mo</span></div>
+        <div class="addon-item"><span class="icon">🌐</span><h3>Domain & Hosting</h3><span class="price">₹999/yr</span></div>
+        <div class="addon-item"><span class="icon">✉️</span><h3>Business Email</h3><span class="price">₹499/yr</span></div>
+        <div class="addon-item"><span class="icon">💳</span><h3>Payment Gateway</h3><span class="price">₹1999</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="why-pricing">
+    <div class="container text-center">
+      <h2 class="section-title">Why Our <span>Pricing</span></h2>
+      <div class="why-grid">
+        <div class="why-item">💰 Affordable</div>
+        <div class="why-item">🔍 Transparent</div>
+        <div class="why-item">🚫 No Hidden Charges</div>
+        <div class="why-item">⚡ Fast Delivery</div>
+        <div class="why-item">🔧 Future Support</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container text-center">
+      <h2 class="section-title">Frequently <span>Asked</span></h2>
+      <div style="max-width:700px;margin:2rem auto;text-align:left;">
+        <div class="faq-item"><div class="faq-question">What is included in the Starter plan? <span>+</span></div><div class="faq-answer">The Starter plan includes 5 pages, mobile responsive design, contact form, WhatsApp integration, SEO readiness, and Google Analytics setup.</div></div>
+        <div class="faq-item"><div class="faq-question">Which plan is best for a new business? <span>+</span></div><div class="faq-answer">The Business plan is most popular for new businesses. It includes 10 pages, SEO optimization, Google Business Profile, speed optimization, and lifetime guidance.</div></div>
+        <div class="faq-item"><div class="faq-question">Do you offer custom quotes? <span>+</span></div><div class="faq-answer">Yes, we offer custom quotes for Custom Web Applications and complex projects. Contact us for a personalized quote.</div></div>
+        <div class="faq-item"><div class="faq-question">Is there any hidden charge? <span>+</span></div><div class="faq-answer">No, our pricing is completely transparent. The price you see is the price you pay. No hidden fees.</div></div>
+        <div class="faq-item"><div class="faq-question">How long does delivery take? <span>+</span></div><div class="faq-answer">Most websites are delivered within 24-48 hours. Complex projects like E-commerce and Custom Web Apps take 5-10 days.</div></div>
+        <div class="faq-item"><div class="faq-question">Do you provide free demo? <span>+</span></div><div class="faq-answer">Yes, we provide a free website demo before any payment. Contact us to get started.</div></div>
+        <div class="faq-item"><div class="faq-question">Is the website mobile responsive? <span>+</span></div><div class="faq-answer">Absolutely. All our websites are fully responsive and work on all devices.</div></div>
+        <div class="faq-item"><div class="faq-question">Do you provide SEO with the website? <span>+</span></div><div class="faq-answer">Yes, we build SEO-ready websites with proper meta tags and structure. Our Business and Premium plans include advanced SEO.</div></div>
+        <div class="faq-item"><div class="faq-question">Can I update the website myself? <span>+</span></div><div class="faq-answer">Yes, we provide easy-to-use CMS or can train you to manage and update your website content.</div></div>
+        <div class="faq-item"><div class="faq-question">Do you offer maintenance support? <span>+</span></div><div class="faq-answer">Yes, we offer website maintenance plans starting at ₹999/month. Professional and Premium plans include 1-2 years of support.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="final-cta">
+    <div class="container">
+      <h2>Need a Custom Quote?</h2>
+      <p style="font-size:1.2rem;margin:1rem 0;">Let's discuss your project and find the perfect package.</p>
+      <div class="flex-center" style="margin-top:1.5rem;">
+        <a href="contact.html" class="btn btn-primary" style="background:white;color:var(--primary);">Get FREE Quote</a>
+        <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20custom%20quote." class="btn btn-secondary" style="background:white;color:var(--primary);">WhatsApp</a>
+        <a href="tel:+917290977231" class="btn btn-accent" style="background:white;color:var(--primary);">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div><h3 style="color:white;">Smile AI Web Studio</h3><p style="margin:0.5rem 0;">Premium website design and development for businesses across India.</p></div>
+      <div><h4 style="color:white;">Quick Links</h4><a href="index.html">Home</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
+      <div><h4 style="color:white;">Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+      <div><h4 style="color:white;">Contact</h4><a href="https://wa.me/917290977231" target="_blank">WhatsApp</a><a href="tel:+917290977231">Call Now</a></div>
+    </div>
+    <div class="container powered">© 2025 Smile AI Web Studio. Powered by Smile Financial Solution.</div>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+  <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20want%20to%20know%20about%20your%20pricing." class="floating-btn whatsapp" aria-label="WhatsApp">💬</a>
+  <a href="tel:+917290977231" class="floating-btn call" aria-label="Call">📞</a>
+  <button class="floating-btn top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+    });
+
+    // ===== HEADER SCROLL =====
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // ===== HAMBURGER =====
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navbar').classList.toggle('open');
+    });
+    document.querySelectorAll('#navbar a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('navbar').classList.remove('open'));
+    });
+
+    // ===== FAQ ACCORDION =====
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const sign = this.querySelector('.faq-question span');
+        if (sign) sign.textContent = this.classList.contains('active') ? '−' : '+';
+      });
+    });
+
+    // ===== SCROLL REVEAL =====
+    const revealItems = document.querySelectorAll('.pricing-card, .addon-item, .why-item, .faq-item');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+    revealItems.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      revealObserver.observe(el);
+    });
+
+    console.log('🚀 pricing.html – Smile AI Web Studio');
+  </script>
+</body>
+</html>
