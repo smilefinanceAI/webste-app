@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title id="dynamicTitle">Business Website Portfolio – Smile AI Web Studio</title>
+  <meta name="description" id="dynamicDescription" content="View our Business Website portfolio project. A modern, responsive, and SEO-optimized website designed to build trust and generate leads." />
+  <link rel="canonical" id="dynamicCanonical" href="https://web.smilefinancialsolution.com/portfolio-details.html?project=business" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" id="dynamicKeywords" content="business website, portfolio, web design, responsive website, SEO website" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" id="ogTitle" content="Business Website Portfolio – Smile AI Web Studio" />
+  <meta property="og:description" id="ogDescription" content="View our Business Website portfolio project. A modern, responsive, and SEO-optimized website designed to build trust and generate leads." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" id="ogUrl" content="https://web.smilefinancialsolution.com/portfolio-details.html?project=business" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD Schemas -->
+  <script id="jsonld-org" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Smile AI Web Studio",
+      "url": "https://web.smilefinancialsolution.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-7290977231",
+        "contactType": "Sales"
+      }
+    }
+  </script>
+  <script id="jsonld-breadcrumb" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://web.smilefinancialsolution.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://web.smilefinancialsolution.com/portfolio.html" },
+        { "@type": "ListItem", "position": 3, "name": "Business Website", "item": "https://web.smilefinancialsolution.com/portfolio-details.html?project=business" }
+      ]
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --glass-bg: rgba(255,255,255,0.10);
+      --shadow-soft: 0 20px 50px -12px rgba(0,0,0,0.06);
+      --shadow-card: 0 12px 40px -8px rgba(0,0,0,0.04);
+      --radius-lg: 18px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+    /* ===== GLASS & UTILITY ===== */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+    }
+    .badge-pill {
+      background: var(--secondary);
+      color: white;
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 34px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.15);
+    }
+    .btn-primary {
+      background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      color: white;
+    }
+    .btn-primary:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 12px 30px rgba(37,99,235,0.30); }
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+    }
+    .btn-secondary:hover { transform: scale(1.03) translateY(-2px); background: #059669; }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary); color: white; }
+    .btn-accent {
+      background: var(--accent);
+      color: #0b1a33;
+    }
+    .btn-accent:hover { transform: scale(1.03) translateY(-2px); background: #d48d0a; }
+    .btn-sm {
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-sm-primary { background: var(--primary); color: white; }
+    .btn-sm-primary:hover { background: #1d4ed8; transform: scale(1.02); }
+    .btn-sm-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
+    .btn-sm-outline:hover { background: var(--primary); color: white; }
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .section-title span { color: var(--primary); }
+    .section-sub {
+      font-size: 1.2rem;
+      color: #475569;
+      max-width: 600px;
+    }
+    .text-center { text-align: center; }
+    .flex-center { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .mt-4 { margin-top: 2rem; }
+    .mb-4 { margin-bottom: 2rem; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      padding: 16px 0; transition: var(--transition);
+      background: rgba(255,255,255,0.70); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    header.scrolled {
+      background: rgba(255,255,255,0.94); box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.6rem; font-weight: 800; color: var(--primary);
+      letter-spacing: -0.02em; display: flex; align-items: center; gap: 6px;
+    }
+    .logo span { color: var(--secondary); }
+    .logo small { font-size: 0.6rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; margin-left: 6px; }
+    nav { display: flex; align-items: center; gap: 2rem; }
+    nav a {
+      font-weight: 500; font-size: 0.95rem; color: #1e293b;
+      transition: var(--transition); position: relative;
+    }
+    nav a:hover { color: var(--primary); }
+    nav a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--primary);
+      transition: var(--transition);
+    }
+    nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--primary); }
+    nav a.active::after { width: 100%; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 28px; height: 3px; background: #1e293b; border-radius: 4px; transition: var(--transition); }
+
+    /* ===== HERO ===== */
+    #project-hero {
+      padding: 140px 0 70px;
+      background: linear-gradient(165deg, #f0f7ff 0%, #ffffff 100%);
+      position: relative; overflow: hidden;
+    }
+    #project-hero .container {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem; font-weight: 900; line-height: 1.1; letter-spacing: -0.03em;
+    }
+    .hero-content h1 .highlight { color: var(--primary); }
+    .hero-content p {
+      font-size: 1.2rem; color: #334155; margin: 1.5rem 0 2rem;
+      max-width: 520px;
+    }
+    .breadcrumb { font-size: 0.9rem; color: #475569; margin-top: 1rem; }
+    .breadcrumb a { color: var(--primary); }
+    .breadcrumb span { color: #94a3b8; }
+    .hero-mockup {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect x="40" y="20" width="320" height="260" rx="16" fill="white" stroke="%232563EB" stroke-width="2"/><rect x="60" y="40" width="100" height="12" rx="6" fill="%232563EB"/><rect x="180" y="40" width="80" height="12" rx="6" fill="%23cbd5e1"/><rect x="280" y="40" width="60" height="12" rx="6" fill="%23cbd5e1"/><rect x="60" y="70" width="280" height="120" rx="8" fill="%23f1f5f9"/><rect x="80" y="85" width="120" height="60" rx="8" fill="white" stroke="%23e2e8f0"/><rect x="220" y="85" width="100" height="60" rx="8" fill="%23e2e8f0"/><rect x="60" y="210" width="280" height="50" rx="8" fill="%23f1f5f9"/><circle cx="100" cy="235" r="10" fill="%232563EB" opacity="0.3"/><circle cx="130" cy="235" r="10" fill="%232563EB" opacity="0.3"/><circle cx="160" cy="235" r="10" fill="%232563EB" opacity="0.3"/></svg>');
+      background-size: contain; background-repeat: no-repeat; background-position: center;
+      min-height: 300px; width: 100%;
+    }
+    .floating-shapes {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .floating-shapes span {
+      position: absolute; border-radius: 50%; background: var(--primary); opacity: 0.04;
+      animation: float 12s infinite alternate ease-in-out;
+    }
+    .floating-shapes span:nth-child(1) { width: 120px; height: 120px; top: 5%; left: 2%; }
+    .floating-shapes span:nth-child(2) { width: 160px; height: 160px; bottom: 5%; right: 3%; background: var(--accent); animation-delay: 0.5s; }
+    .floating-shapes span:nth-child(3) { width: 80px; height: 80px; top: 50%; right: 0%; background: var(--secondary); animation-delay: 1s; }
+    @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-40px) rotate(10deg); } }
+
+    /* ===== OVERVIEW ===== */
+    #overview { padding: 80px 0; background: white; }
+    .overview-grid {
+      display: grid; grid-template-columns: 2fr 1fr; gap: 3rem;
+      align-items: start;
+    }
+    .overview-content p { font-size: 1.1rem; color: #475569; }
+    .overview-highlights {
+      background: #f8fafc; padding: 2rem; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6;
+    }
+    .overview-highlights li { list-style: none; padding: 8px 0; border-bottom: 1px solid #eef2f6; }
+    .overview-highlights li:last-child { border-bottom: none; }
+    .overview-highlights li::before { content: "✓ "; color: var(--secondary); font-weight: 700; }
+
+    /* ===== FEATURES ===== */
+    #features { padding: 80px 0; background: #f8fafc; }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .feature-card {
+      background: white; padding: 2rem; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; text-align: center; transition: var(--transition);
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+    .feature-card .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+    .feature-card h3 { font-weight: 700; font-size: 1.1rem; }
+
+    /* ===== PROCESS ===== */
+    #process { padding: 80px 0; background: white; }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .process-step {
+      background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .process-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+    .process-step .num { font-size: 2rem; font-weight: 800; color: var(--primary); opacity: 0.15; }
+    .process-step h3 { font-weight: 700; font-size: 0.85rem; margin: 0.5rem 0; }
+
+    /* ===== TECH STACK ===== */
+    #tech-stack { padding: 80px 0; background: #f8fafc; }
+    .tech-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .tech-item {
+      background: white; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .tech-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+
+    /* ===== GALLERY ===== */
+    #gallery { padding: 80px 0; background: white; }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .gallery-item {
+      background: #f8fafc; border-radius: var(--radius-lg); overflow: hidden;
+      height: 200px; display: flex; align-items: center; justify-content: center;
+      border: 1px solid #eef2f6; transition: var(--transition);
+      font-size: 3rem; color: #94a3b8;
+    }
+    .gallery-item:hover { transform: scale(1.02); box-shadow: var(--shadow-card); border-color: var(--primary); }
+
+    /* ===== RESULTS ===== */
+    #results { padding: 80px 0; background: #f8fafc; }
+    .results-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .result-item {
+      background: white; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .result-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+    .result-item .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+
+    /* ===== RELATED ===== */
+    #related { padding: 80px 0; background: white; }
+    .related-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .related-card {
+      background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+      cursor: pointer;
+    }
+    .related-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--primary); }
+    .related-card .icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+    .related-card h3 { font-weight: 700; font-size: 1rem; }
+
+    /* ===== DEMO FORM ===== */
+    #demo-form { padding: 80px 0; background: #f8fafc; }
+    .form-wrapper {
+      max-width: 700px; margin: 0 auto; background: white; padding: 2.5rem;
+      border-radius: var(--radius-lg); border: 1px solid #eef2f6; box-shadow: var(--shadow-card);
+    }
+    .form-wrapper input, .form-wrapper textarea, .form-wrapper select {
+      width: 100%; padding: 14px 18px; border-radius: 60px; border: 1px solid #d1d9e6;
+      font-size: 1rem; margin-bottom: 1rem; background: white;
+      transition: var(--transition);
+    }
+    .form-wrapper input:focus, .form-wrapper textarea:focus, .form-wrapper select:focus {
+      outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
+    }
+    .form-wrapper textarea { border-radius: 24px; min-height: 80px; resize: vertical; }
+
+    /* ===== CTA ===== */
+    #final-cta {
+      padding: 80px 0; background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      color: white; text-align: center;
+    }
+    #final-cta h2 { font-size: 2.8rem; font-weight: 800; }
+    #final-cta .btn { box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0b1a33; color: #cbd5e1; padding: 3rem 0;
+    }
+    footer .container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    footer a { display: block; margin: 6px 0; transition: var(--transition); }
+    footer a:hover { color: white; padding-left: 4px; }
+    footer .powered { margin-top: 2rem; border-top: 1px solid #1e293b; padding-top: 1.5rem; text-align: center; }
+
+    /* ===== FLOATING BUTTONS ===== */
+    .floating-btn {
+      position: fixed; right: 24px; z-index: 999;
+      width: 56px; height: 56px; border-radius: 60px;
+      background: var(--primary); color: white; border: none;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.25);
+      font-size: 1.5rem; cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .floating-btn:hover { transform: scale(1.08); }
+    .floating-btn.whatsapp { bottom: 100px; background: #25D366; }
+    .floating-btn.call { bottom: 170px; background: var(--secondary); }
+    .floating-btn.top { bottom: 30px; background: var(--accent); color: #0b1a33; }
+
+    /* ===== THANK YOU POPUP ===== */
+    .popup-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.35); backdrop-filter: blur(6px);
+      z-index: 2000; display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .popup-overlay.open { display: flex; }
+    .popup {
+      background: white; max-width: 460px; width: 100%; padding: 2.5rem;
+      border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);
+      text-align: center; animation: popIn 0.3s ease;
+    }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    .popup .close {
+      position: absolute; top: 16px; right: 20px; font-size: 1.8rem; cursor: pointer;
+      color: #94a3b8; transition: var(--transition);
+    }
+    .popup .close:hover { color: #1e293b; }
+    .popup .icon-big { font-size: 4rem; margin-bottom: 0.5rem; }
+    .popup h2 { font-weight: 800; margin-bottom: 0.5rem; }
+    .popup .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      #project-hero .container { grid-template-columns: 1fr; text-align: center; }
+      .hero-content p { margin-left: auto; margin-right: auto; }
+      .overview-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: repeat(4, 1fr); }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      footer .container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+      nav.open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 2rem; gap: 1rem; box-shadow: var(--shadow-soft); border-radius: 0 0 24px 24px; }
+      .hero-content h1 { font-size: 2.4rem; }
+      .section-title { font-size: 2rem; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      footer .container { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 2rem; }
+      .btn { padding: 12px 24px; font-size: 0.9rem; }
+      .process-steps { grid-template-columns: 1fr; }
+      .floating-btn { width: 48px; height: 48px; font-size: 1.2rem; right: 16px; }
+      .form-wrapper { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Smile<span>AI</span><small>Web Studio</small></a>
+      <nav id="navbar">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html" class="active">Portfolio</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn-primary" style="padding:8px 22px;font-size:0.85rem;">Get FREE Demo</a>
+      </nav>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <!-- HERO (dynamic) -->
+  <section id="project-hero">
+    <div class="floating-shapes"><span></span><span></span><span></span></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="badge-pill" style="background:var(--primary);" id="heroBadge">Portfolio</span>
+        <h1 id="heroTitle">Business <span class="highlight">Website</span> Portfolio</h1>
+        <p id="heroDesc">A modern, responsive, and SEO-optimized business website designed to build trust, showcase services, and generate leads for a growing company.</p>
+        <div class="flex-center" style="justify-content:flex-start;">
+          <a href="#" id="liveDemoBtn" class="btn btn-primary">View Live Demo</a>
+          <a href="contact.html" class="btn btn-secondary">Request Similar Website</a>
+          <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20liked%20your%20portfolio%20project." class="btn btn-outline">Chat on WhatsApp</a>
+        </div>
+        <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <a href="portfolio.html">Portfolio</a> <span>›</span> <span id="breadcrumbName">Business Website</span></div>
+      </div>
+      <div class="hero-mockup" id="heroMockup"></div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW (dynamic) -->
+  <section id="overview">
+    <div class="container">
+      <div class="overview-grid">
+        <div class="overview-content">
+          <h2 class="section-title" style="font-size:2.2rem;" id="overviewTitle">Project Overview</h2>
+          <p id="overviewDesc">A professional business website designed for a growing company looking to establish a strong online presence. The website showcases their services, builds trust with potential clients, and provides an easy way for visitors to get in touch.</p>
+          <br>
+          <p id="overviewDesc2">The project involved creating a modern, responsive, and SEO-optimized website that reflects the company's brand identity while providing a seamless user experience across all devices.</p>
+        </div>
+        <div class="overview-highlights">
+          <h3 style="margin-bottom:0.5rem;">Project Highlights</h3>
+          <ul id="overviewHighlights">
+            <li>Responsive Design</li>
+            <li>SEO Optimized</li>
+            <li>Fast Loading</li>
+            <li>Contact Forms</li>
+            <li>WhatsApp Integration</li>
+            <li>Google Analytics</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES (dynamic) -->
+  <section id="features">
+    <div class="container text-center">
+      <h2 class="section-title">Key <span>Features</span></h2>
+      <p class="section-sub" style="margin:0 auto;" id="featuresSub">What makes this project stand out.</p>
+      <div class="features-grid" id="featuresGrid">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container text-center">
+      <h2 class="section-title">Our Design <span>Process</span></h2>
+      <p class="section-sub" style="margin:0 auto;">How we brought this project to life.</p>
+      <div class="process-steps">
+        <div class="process-step"><div class="num">01</div><h3>Research</h3></div>
+        <div class="process-step"><div class="num">02</div><h3>Planning</h3></div>
+        <div class="process-step"><div class="num">03</div><h3>Wireframe</h3></div>
+        <div class="process-step"><div class="num">04</div><h3>UI Design</h3></div>
+        <div class="process-step"><div class="num">05</div><h3>Development</h3></div>
+        <div class="process-step"><div class="num">06</div><h3>Testing</h3></div>
+        <div class="process-step"><div class="num">07</div><h3>Deployment</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK (dynamic) -->
+  <section id="tech-stack">
+    <div class="container text-center">
+      <h2 class="section-title">Technology <span>Stack</span></h2>
+      <p class="section-sub" style="margin:0 auto;" id="techSub">Technologies used in this project.</p>
+      <div class="tech-grid" id="techGrid">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY (dynamic) -->
+  <section id="gallery">
+    <div class="container text-center">
+      <h2 class="section-title">Project <span>Gallery</span></h2>
+      <p class="section-sub" style="margin:0 auto;">A glimpse into the design and development process.</p>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS (dynamic) -->
+  <section id="results">
+    <div class="container text-center">
+      <h2 class="section-title">Business <span>Results</span></h2>
+      <p class="section-sub" style="margin:0 auto;" id="resultsSub">What this project delivered.</p>
+      <div class="results-grid" id="resultsGrid">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED PROJECTS (dynamic) -->
+  <section id="related">
+    <div class="container text-center">
+      <h2 class="section-title">Related <span>Projects</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Explore more of our work.</p>
+      <div class="related-grid" id="relatedGrid">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO FORM -->
+  <section id="demo-form">
+    <div class="container text-center">
+      <h2 class="section-title">Need a Similar <span>Website?</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Fill the form and we'll create a custom demo for you.</p>
+      <div class="form-wrapper" style="margin-top:2rem;">
+        <form id="demoForm" onsubmit="handleDemoForm(event)">
+          <input type="text" id="demoName" placeholder="Your Full Name" required />
+          <input type="tel" id="demoPhone" placeholder="Phone Number" required />
+          <input type="text" id="demoBusiness" placeholder="Business Name" required />
+          <input type="text" id="demoType" placeholder="Business Type (e.g. Clinic, Restaurant)" />
+          <textarea id="demoRequirement" placeholder="Tell us about your requirement..."></textarea>
+          <input type="text" id="demoBudget" placeholder="Budget (e.g. ₹999, ₹2999, ₹4999)" />
+          <input type="url" id="demoReference" placeholder="Reference Website URL (if any)" />
+          <button type="submit" class="btn btn-primary" style="width:100%;">🚀 Request Similar Website</button>
+        </form>
+        <p style="margin-top:0.8rem;font-size:0.85rem;color:#94a3b8;">We'll respond on WhatsApp within 2 hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="final-cta">
+    <div class="container">
+      <h2>Need a Website Like This?</h2>
+      <p style="font-size:1.2rem;margin:1rem 0;">Let's build something amazing for your business.</p>
+      <div class="flex-center" style="margin-top:1.5rem;">
+        <a href="contact.html" class="btn btn-primary" style="background:white;color:var(--primary);">Request FREE Demo</a>
+        <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20need%20a%20website%20like%20your%20portfolio." class="btn btn-secondary" style="background:white;color:var(--primary);">WhatsApp</a>
+        <a href="tel:+917290977231" class="btn btn-accent" style="background:white;color:var(--primary);">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div><h3 style="color:white;">Smile AI Web Studio</h3><p style="margin:0.5rem 0;">Premium website design and development for businesses across India.</p></div>
+      <div><h4 style="color:white;">Quick Links</h4><a href="index.html">Home</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
+      <div><h4 style="color:white;">Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+      <div><h4 style="color:white;">Contact</h4><a href="https://wa.me/917290977231" target="_blank">WhatsApp</a><a href="tel:+917290977231">Call Now</a></div>
+    </div>
+    <div class="container powered">© 2025 Smile AI Web Studio. Powered by Smile Financial Solution.</div>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+  <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20liked%20your%20portfolio%20project." class="floating-btn whatsapp" aria-label="WhatsApp">💬</a>
+  <a href="tel:+917290977231" class="floating-btn call" aria-label="Call">📞</a>
+  <button class="floating-btn top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <!-- THANK YOU POPUP -->
+  <div class="popup-overlay" id="thankYouPopup">
+    <div class="popup">
+      <span class="close" onclick="closeThankYou()">&times;</span>
+      <div class="icon-big">🎉</div>
+      <h2>Thank You!</h2>
+      <p style="color:#475569;">Your request has been received.</p>
+      <p style="color:#475569;margin-bottom:0.5rem;">Our team will contact you shortly.</p>
+      <div class="btn-group">
+        <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20filled%20the%20portfolio%20form." target="_blank" class="btn btn-secondary" style="background:var(--secondary);color:white;">Open WhatsApp</a>
+        <a href="portfolio.html" class="btn btn-outline">Back to Portfolio</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+      initPage();
+    });
+
+    // ===== HEADER SCROLL =====
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // ===== HAMBURGER =====
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navbar').classList.toggle('open');
+    });
+    document.querySelectorAll('#navbar a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('navbar').classList.remove('open'));
+    });
+
+    // ===== POPUP =====
+    function closeThankYou() {
+      document.getElementById('thankYouPopup').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('thankYouPopup').addEventListener('click', function(e) {
+      if (e.target === this) closeThankYou();
+    });
+
+    // ===== DEMO FORM =====
+    function handleDemoForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('demoName').value.trim();
+      const phone = document.getElementById('demoPhone').value.trim();
+      const business = document.getElementById('demoBusiness').value.trim();
+      const type = document.getElementById('demoType').value.trim();
+      const requirement = document.getElementById('demoRequirement').value.trim();
+      const budget = document.getElementById('demoBudget').value.trim();
+      const reference = document.getElementById('demoReference').value.trim();
+
+      const projectKey = getProjectKey();
+      const data = projectData[projectKey] || projectData['business'];
+
+      const msg = `Hello Smile AI Web Studio,%0A%0A🧑‍💼 Name: ${name}%0A📞 Phone: ${phone}%0A🏢 Business: ${business}%0A📂 Type: ${type}%0A📋 Project: ${data.name}%0A📝 Requirement: ${requirement}%0A💰 Budget: ${budget || 'Not specified'}%0A🔗 Reference: ${reference || 'None'}%0A%0A🚀 I liked the ${data.name} portfolio. I want a similar website.`;
+      window.open(`https://wa.me/917290977231?text=${msg}`, '_blank');
+      document.getElementById('thankYouPopup').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('demoForm').reset();
+    }
+
+    // ============================================================
+    // ===== PROJECT DATA =====
+    // ============================================================
+
+    const projectData = {
+      business: {
+        name: 'Business Website',
+        icon: '🏢',
+        badge: 'Professional Business Website',
+        title: 'Business <span class="highlight">Website</span> Portfolio',
+        desc: 'A modern, responsive, and SEO-optimized business website designed to build trust, showcase services, and generate leads for a growing company.',
+        overview: 'A professional business website designed for a growing company looking to establish a strong online presence. The website showcases their services, builds trust with potential clients, and provides an easy way for visitors to get in touch.',
+        overview2: 'The project involved creating a modern, responsive, and SEO-optimized website that reflects the company\'s brand identity while providing a seamless user experience across all devices.',
+        highlights: ['Responsive Design', 'SEO Optimized', 'Fast Loading', 'Contact Forms', 'WhatsApp Integration', 'Google Analytics'],
+        features: [
+          { icon: '🎨', name: 'Custom Design' },
+          { icon: '📱', name: 'Mobile Responsive' },
+          { icon: '🔍', name: 'SEO Optimized' },
+          { icon: '⚡', name: 'Fast Performance' },
+          { icon: '📝', name: 'Contact Forms' },
+          { icon: '💬', name: 'WhatsApp Integration' }
+        ],
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'Vercel', 'Google Analytics', 'SEO Ready'],
+        gallery: ['🎨', '📱', '💻', '📊', '🚀', '🌐'],
+        results: [
+          { icon: '📈', name: 'Professional Presence' },
+          { icon: '📱', name: 'Better User Experience' },
+          { icon: '🤝', name: 'Improved Trust' },
+          { icon: '⚡', name: 'Fast Website' },
+          { icon: '🔍', name: 'SEO Ready' }
+        ],
+        related: ['finance', 'restaurant', 'clinic', 'school', 'realestate', 'landing'],
+        demo: 'demo-business.html'
+      },
+      finance: {
+        name: 'Finance Website',
+        icon: '💰',
+        badge: 'Finance & Loan DSA Website',
+        title: 'Finance <span class="highlight">Website</span> Portfolio',
+        desc: 'A trustworthy finance website designed with loan calculators, application forms, and trust-building elements to convert leads.',
+        overview: 'A finance website designed for a loan DSA company looking to build trust and generate leads. The website includes loan calculators, application forms, and service pages.',
+        overview2: 'We focused on creating a professional, trustworthy design that helps clients understand financial services and feel confident in choosing the company.',
+        highlights: ['Loan Calculators', 'Application Forms', 'Trust Building Design', 'SEO Optimized', 'WhatsApp Integration', 'Fast Loading'],
+        features: [
+          { icon: '💰', name: 'Loan Calculators' },
+          { icon: '📱', name: 'Mobile Responsive' },
+          { icon: '📝', name: 'Application Forms' },
+          { icon: '🔒', name: 'Secure Design' },
+          { icon: '💬', name: 'WhatsApp Integration' },
+          { icon: '📊', name: 'Analytics Ready' }
+        ],
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'Vercel', 'Calculator System', 'SEO Ready'],
+        gallery: ['💰', '📱', '💻', '📊', '🔒', '🌐'],
+        results: [
+          { icon: '📈', name: 'Lead Generation' },
+          { icon: '🤝', name: 'Built Trust' },
+          { icon: '📱', name: 'Mobile Friendly' },
+          { icon: '⚡', name: 'Fast Website' },
+          { icon: '🔍', name: 'SEO Ready' }
+        ],
+        related: ['business', 'realestate', 'insurance', 'loan', 'clinic', 'school'],
+        demo: 'demo-finance.html'
+      },
+      restaurant: {
+        name: 'Restaurant Website',
+        icon: '🍽️',
+        badge: 'Restaurant Website',
+        title: 'Restaurant <span class="highlight">Website</span> Portfolio',
+        desc: 'A beautiful restaurant website with menu display, online ordering, and reservation systems designed to attract and serve customers.',
+        overview: 'A restaurant website designed for a popular dining establishment. The website features digital menu management, online ordering, and table reservations.',
+        overview2: 'We created a visually appealing and functional website that showcases the restaurant\'s ambiance, menu, and makes it easy for customers to order or book a table.',
+        highlights: ['Digital Menu Management', 'Online Ordering', 'Table Reservations', 'Food Gallery', 'Location Map', 'Customer Reviews'],
+        features: [
+          { icon: '🍽️', name: 'Menu Display' },
+          { icon: '📱', name: 'Mobile Responsive' },
+          { icon: '🛒', name: 'Online Ordering' },
+          { icon: '📅', name: 'Reservation System' },
+          { icon: '📍', name: 'Location Map' },
+          { icon: '⭐', name: 'Customer Reviews' }
+        ],
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'Vercel', 'Reservation System', 'SEO Ready'],
+        gallery: ['🍽️', '📱', '💻', '📅', '⭐', '🌐'],
+        results: [
+          { icon: '📈', name: 'Increased Orders' },
+          { icon: '🤝', name: 'Attracted Customers' },
+          { icon: '📱', name: 'Mobile Friendly' },
+          { icon: '💰', name: 'Grew Revenue' }
+        ],
+        related: ['business', 'clinic', 'realestate', 'finance', 'school', 'landing'],
+        demo: 'demo-restaurant.html'
+      },
+      clinic: {
+        name: 'Clinic Website',
+        icon: '🏥',
+        badge: 'Clinic Website',
+        title: 'Clinic <span class="highlight">Website</span> Portfolio',
+        desc: 'A patient-friendly clinic website with appointment booking, doctor profiles, and health resources designed to build trust and attract patients.',
+        overview: 'A clinic website designed for a healthcare provider to connect with patients, share health information, and manage appointments.',
+        overview2: 'The website includes doctor profiles, appointment booking, health resources, and contact information to help the clinic provide better patient care.',
+        highlights: ['Appointment Booking', 'Doctor Profiles', 'Health Resources', 'Patient Resources', 'Location Map', 'WhatsApp Integration'],
+        features: [
+          { icon: '📅', name: 'Appointment Booking' },
+          { icon: '📱', name: 'Mobile Responsive' },
+          { icon: '👨‍⚕️', name: 'Doctor Profiles' },
+          { icon: '📝', name: 'Health Resources' },
+          { icon: '📍', name: 'Location Map' },
+          { icon: '💬', name: 'WhatsApp Integration' }
+        ],
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'Vercel', 'Appointment System', 'SEO Ready'],
+        gallery: ['🏥', '📱', '💻', '📅', '👨‍⚕️', '🌐'],
+        results: [
+          { icon: '🤝', name: 'Built Trust' },
+          { icon: '📈', name: 'Attracted Patients' },
+          { icon: '📱', name: 'Easy Appointment' },
+          { icon: '🌐', name: 'Online Presence' }
+        ],
+        related: ['business', 'school', 'finance', 'realestate', 'hospital', 'doctor'],
+        demo: 'demo-clinic.html'
+      },
+      school: {
+        name: 'School Website',
+        icon: '🏫',
+        badge: 'School Website',
+        title: 'School <span class="highlight">Website</span> Portfolio',
+        desc: 'An engaging school website with course management, admission forms, and student resources designed to attract students and engage the community.',
+        overview: 'A school website designed for an educational institution to provide information about programs, admissions, events, and resources for students and parents.',
+        overview2: 'We included course and program pages, admission management, events calendar, and student resources to help the institution connect with the community.',
+        highlights: ['Course Management', 'Admission Forms', 'Events Calendar', 'Staff Profiles', 'Student Resources', 'Analytics Ready'],
+        features: [
+          { icon: '🎓', name: 'Course Management' },
+          { icon: '📱', name: 'Mobile Responsive' },
+          { icon: '📝', name: 'Admission Forms' },
+          { icon: '📅', name: 'Events Calendar' },
+          { icon: '👨‍🏫', name: 'Staff Profiles' },
+          { icon: '📊', name: 'Analytics Ready' }
+        ],
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'Vercel', 'CMS Ready', 'SEO Ready'],
+        gallery: ['🏫', '📱', '💻', '📅', '🎓', '🌐'],
+        results: [
+          { icon: '🎓', name: 'Attracted Students' },
+          { icon: '📈', name: 'Online Presence' },
+          { icon: '🤝', name: 'Built Trust' },
+          { icon: '🌐', name: 'Community Engagement' }
+        ],
+        related: ['business', 'clinic', 'finance', 'realestate', 'college', 'coaching'],
+        demo: 'demo-school.html'
+      },
+      realestate: {
+        name: 'Real Estate Website',
+        icon: '🏡',
+        badge: 'Real Estate Website',
+        title: 'Real Estate <span class="highlight">Website</span> Portfolio',
+        desc: 'A professional real estate website with property listings, virtual tours, and agent profiles designed to showcase properties and attract buyers.',
+        overview: 'A real estate website designed for agents and brokers to showcase properties, provide virtual tours, and make it easy for clients to find their dream home.',
+        overview2: 'We included property listing management, virtual tour integration, agent and broker profiles, and contact forms to help close more deals.',
+        highlights: ['Property Listings', 'Virtual Tours', 'Agent Profiles', 'Advanced Search', 'Property Galleries', 'Analytics Ready'],
+        features: [
+          { icon: '🏠', name: 'Property Listings' },
+          { icon: '📱', name: 'Mobile Responsive' },
+          { icon: '🎥', name: 'Virtual Tours' },
+          { icon: '🔍', name: 'Advanced Search' },
+          { icon: '👨‍💼', name: 'Agent Profiles' },
+          { icon: '📊', name: 'Analytics Ready' }
+        ],
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'Vercel', 'Property Management', 'SEO Ready'],
+        gallery: ['🏡', '📱', '💻', '🎥', '🔍', '🌐'],
+        results: [
+          { icon: '🏠', name: 'Showcase Properties' },
+          { icon: '📈', name: 'Attract Buyers' },
+          { icon: '🤝', name: 'Built Trust' },
+          { icon: '💰', name: 'Closed More Deals' }
+        ],
+        related: ['business', 'finance', 'construction', 'travel', 'landing', 'portfolio'],
+        demo: 'demo-realestate.html'
+      },
+      travel: {
+        name: 'Travel Website',
+        icon: '✈️',
+        badge: 'Travel Agency Website',
+        title: 'Travel <span class="highlight">Website</span> Portfolio',
+        desc: 'A stunning travel website with tour packages, booking systems, and destination guides designed to inspire and convert visitors.',
+        overview: 'A travel website designed for a travel agency to showcase destinations, sell tour packages, and manage bookings.',
+        overview2: 'We included tour package management, booking and enquiry forms, destination guides, and photo galleries to help the agency grow.',
+        highlights: ['Tour Package Management', 'Booking System', 'Destination Guides', 'Photo Galleries', 'Customer Reviews', 'Analytics Ready'],
+        features: [
+          { icon: '✈️', name: 'Tour Packages' },
+          { icon: '📱', name: 'Mobile Responsive' },
+          { icon: '📅', name: 'Booking System' },
+          { icon: '📍', name: 'Destination Guides' },
+          { icon: '⭐', name: 'Customer Reviews' },
+          { icon: '📊', name: 'Analytics Ready' }
+        ],
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'Vercel', 'Booking System', 'SEO Ready'],
+        gallery: ['✈️', '📱', '💻', '📅', '⭐', '🌐'],
+        results: [
+          { icon: '🌍', name: 'Global Reach' },
+          { icon: '📈', name: 'Increased Bookings' },
+          { icon: '🤝', name: 'Built Trust' },
+          { icon: '💰', name: 'Grew Revenue' }
+        ],
+        related: ['business', 'realestate', 'hotel', 'landing', 'portfolio', 'finance'],
+        demo: 'demo-travel.html'
+      },
+      hotel: {
+        name: 'Hotel Website',
+        icon: '🏨',
+        badge: 'Luxury Hotel Website',
+        title: 'Hotel <span class="highlight">Website</span> Portfolio',
+        desc: 'A luxurious hotel website with room booking, gallery, and guest services information designed to attract and convert guests.',
+        overview: 'A hotel website designed for a luxury property to showcase its beauty, provide room details, and make booking easy for guests.',
+        overview2: 'We included room booking systems, photo galleries, amenity listings, and guest services information to enhance the guest experience.',
+        highlights: ['Room Booking', 'Photo Gallery', 'Amenities Listing', 'Guest Services', 'Location Map', 'Reviews Integration'],
+        features: [
+          { icon: '🛏️', name: 'Room Booking' },
+          { icon: '📱', name: 'Mobile Responsive' },
+          { icon: '📸', name: 'Photo Gallery' },
+          { icon: '🧖', name: 'Amenities' },
+          { icon: '📍', name: 'Location Map' },
+          { icon: '⭐', name: 'Guest Reviews' }
+        ],
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'Vercel', 'Booking System', 'SEO Ready'],
+        gallery: ['🏨', '📱', '💻', '📸', '🛏️', '🌐'],
+        results: [
+          { icon: '📈', name: 'Increased Bookings' },
+          { icon: '🤝', name: 'Built Trust' },
+          { icon: '📱', name: 'Mobile Friendly' },
+          { icon: '💰', name: 'Grew Revenue' }
+        ],
+        related: ['restaurant', 'travel', 'business', 'realestate', 'landing', 'finance'],
+        demo: 'demo-hotel.html'
+      },
+      landing: {
+        name: 'Landing Page',
+        icon: '🚀',
+        badge: 'High-Converting Landing Page',
+        title: 'Landing Page <span class="highlight">Portfolio</span>',
+        desc: 'A high-converting landing page designed for product launches, campaigns, and lead generation with clear call-to-actions.',
+        overview: 'A landing page designed for a marketing campaign to convert visitors into leads or customers with clear call-to-actions.',
+        overview2: 'We used data-driven design principles to create a landing page that maximizes conversions, with each element carefully placed to guide visitors toward taking action.',
+        highlights: ['Conversion Optimized', 'Clear Call-to-Action', 'A/B Testing Ready', 'Fast Loading', 'Mobile Responsive', 'Analytics Tracking'],
+        features: [
+          { icon: '🎯', name: 'Conversion Focused' },
+          { icon: '📱', name: 'Mobile Responsive' },
+          { icon: '⚡', name: 'Fast Loading' },
+          { icon: '📊', name: 'A/B Testing Ready' },
+          { icon: '📝', name: 'Lead Capture Forms' },
+          { icon: '🔍', name: 'SEO Optimized' }
+        ],
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'Vercel', 'Analytics', 'A/B Testing'],
+        gallery: ['🚀', '📱', '💻', '📊', '🎯', '🌐'],
+        results: [
+          { icon: '📈', name: 'High Conversions' },
+          { icon: '🎯', name: 'Targeted Marketing' },
+          { icon: '📊', name: 'Track Performance' },
+          { icon: '💰', name: 'Maximize ROI' }
+        ],
+        related: ['business', 'ecommerce', 'portfolio', 'restaurant', 'clinic', 'finance'],
+        demo: 'demo-landing.html'
+      },
+      ecommerce: {
+        name: 'E-commerce Website',
+        icon: '🛍️',
+        badge: 'Full-Featured E-commerce',
+        title: 'E-commerce <span class="highlight">Website</span> Portfolio',
+        desc: 'A full-featured e-commerce website with payment integration, inventory management, and order tracking designed to sell products online.',
+        overview: 'An e-commerce website designed for a retail brand to sell products online with shopping cart functionality, secure payment processing, and inventory management.',
+        overview2: 'We built a secure, scalable, and easy-to-manage e-commerce website from product catalogs to shipping integration.',
+        highlights: ['Secure Payment', 'Product Catalog', 'Order Tracking', 'Shopping Cart', 'Customer Accounts', 'Admin Dashboard'],
+        features: [
+          { icon: '💳', name: 'Payment Gateway' },
+          { icon: '📱', name: 'Mobile Responsive' },
+          { icon: '🛒', name: 'Shopping Cart' },
+          { icon: '🔒', name: 'Secure Checkout' },
+          { icon: '📦', name: 'Order Management' },
+          { icon: '📊', name: 'Analytics Ready' }
+        ],
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'Firebase', 'Vercel', 'Payment Gateway'],
+        gallery: ['🛍️', '📱', '💻', '💳', '📦', '🌐'],
+        results: [
+          { icon: '💰', name: 'Sell Online' },
+          { icon: '📈', name: 'Increase Revenue' },
+          { icon: '🌐', name: 'Global Reach' },
+          { icon: '🔄', name: 'Inventory Management' }
+        ],
+        related: ['business', 'retail', 'portfolio', 'landing', 'restaurant', 'finance'],
+        demo: 'demo-ecommerce.html'
+      }
+    };
+
+    // Project aliases
+    const projectAliases = {
+      'business': 'business',
+      'finance': 'finance',
+      'restaurant': 'restaurant',
+      'clinic': 'clinic',
+      'school': 'school',
+      'realestate': 'realestate',
+      'travel': 'travel',
+      'hotel': 'hotel',
+      'landing': 'landing',
+      'ecommerce': 'ecommerce',
+      'portfolio': 'portfolio'
+    };
+
+    // ===== HELPER: Get project key =====
+    function getProjectKey() {
+      const params = new URLSearchParams(window.location.search);
+      let project = params.get('project') || 'business';
+      project = project.toLowerCase().trim().replace(/\s+/g, '');
+      if (projectAliases[project]) {
+        project = projectAliases[project];
+      }
+      if (!projectData[project]) {
+        project = 'business';
+      }
+      return project;
+    }
+
+    // ===== HELPER: Related projects =====
+    function getRelatedProjects(projectKey) {
+      const data = projectData[projectKey];
+      if (!data) return ['business', 'finance', 'restaurant', 'clinic', 'school', 'realestate'];
+      const related = data.related || [];
+      const mapped = related.map(key => {
+        if (projectData[key]) return key;
+        return 'business';
+      });
+      const unique = [...new Set(mapped)];
+      while (unique.length < 6) {
+        const fallbacks = ['business', 'finance', 'restaurant', 'clinic', 'school', 'realestate'];
+        for (const fb of fallbacks) {
+          if (!unique.includes(fb)) unique.push(fb);
+          if (unique.length >= 6) break;
+        }
+      }
+      return unique.slice(0, 6);
+    }
+
+    // ===== RENDER PAGE =====
+    function initPage() {
+      const projectKey = getProjectKey();
+      const data = projectData[projectKey] || projectData['business'];
+
+      // SEO
+      document.getElementById('dynamicTitle').textContent = `${data.name} Portfolio – Smile AI Web Studio`;
+      document.getElementById('dynamicDescription').content = data.desc;
+      document.getElementById('dynamicCanonical').href = `https://web.smilefinancialsolution.com/portfolio-details.html?project=${projectKey}`;
+      document.getElementById('dynamicKeywords').content = `${data.name.toLowerCase()}, portfolio, web design, website development, ${data.name} website`;
+      document.getElementById('ogTitle').content = `${data.name} Portfolio – Smile AI Web Studio`;
+      document.getElementById('ogDescription').content = data.desc;
+      document.getElementById('ogUrl').content = `https://web.smilefinancialsolution.com/portfolio-details.html?project=${projectKey}`;
+
+      // Breadcrumb Schema
+      const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://web.smilefinancialsolution.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://web.smilefinancialsolution.com/portfolio.html" },
+          { "@type": "ListItem", "position": 3, "name": data.name, "item": `https://web.smilefinancialsolution.com/portfolio-details.html?project=${projectKey}` }
+        ]
+      };
+      document.getElementById('jsonld-breadcrumb').textContent = JSON.stringify(breadcrumbSchema);
+
+      // HERO
+      document.getElementById('heroBadge').textContent = data.badge;
+      document.getElementById('heroTitle').innerHTML = data.title;
+      document.getElementById('heroDesc').textContent = data.desc;
+      document.getElementById('breadcrumbName').textContent = data.name;
+      document.getElementById('liveDemoBtn').href = data.demo || '#';
+
+      // OVERVIEW
+      document.getElementById('overviewTitle').textContent = data.name + ' Overview';
+      document.getElementById('overviewDesc').textContent = data.overview;
+      document.getElementById('overviewDesc2').textContent = data.overview2 || '';
+      const highlightsList = document.getElementById('overviewHighlights');
+      highlightsList.innerHTML = '';
+      data.highlights.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        highlightsList.appendChild(li);
+      });
+
+      // FEATURES
+      const featuresGrid = document.getElementById('featuresGrid');
+      featuresGrid.innerHTML = '';
+      data.features.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'feature-card';
+        card.innerHTML = `<span class="icon">${item.icon}</span><h3>${item.name}</h3>`;
+        featuresGrid.appendChild(card);
+      });
+      document.getElementById('featuresSub').textContent = `Key features of the ${data.name}.`;
+
+      // TECH STACK
+      const techGrid = document.getElementById('techGrid');
+      techGrid.innerHTML = '';
+      data.tech.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'tech-item';
+        card.textContent = item;
+        techGrid.appendChild(card);
+      });
+      document.getElementById('techSub').textContent = `Technologies used in this ${data.name} project.`;
+
+      // GALLERY
+      const galleryGrid = document.getElementById('galleryGrid');
+      galleryGrid.innerHTML = '';
+      data.gallery.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.textContent = item;
+        galleryGrid.appendChild(div);
+      });
+
+      // RESULTS
+      const resultsGrid = document.getElementById('resultsGrid');
+      resultsGrid.innerHTML = '';
+      data.results.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'result-item';
+        card.innerHTML = `<span class="icon">${item.icon}</span><h3>${item.name}</h3>`;
+        resultsGrid.appendChild(card);
+      });
+      document.getElementById('resultsSub').textContent = `Results delivered by the ${data.name}.`;
+
+      // RELATED PROJECTS
+      const relatedGrid = document.getElementById('relatedGrid');
+      relatedGrid.innerHTML = '';
+      const relatedKeys = getRelatedProjects(projectKey);
+      relatedKeys.forEach(key => {
+        const relData = projectData[key];
+        if (relData) {
+          const card = document.createElement('div');
+          card.className = 'related-card';
+          card.innerHTML = `<span class="icon">${relData.icon}</span><h3>${relData.name}</h3>`;
+          card.addEventListener('click', () => {
+            window.location.href = `portfolio-details.html?project=${key}`;
+          });
+          relatedGrid.appendChild(card);
+        }
+      });
+
+      console.log(`📄 Portfolio details loaded: ${data.name} (${projectKey})`);
+    }
+
+    // ===== SCROLL REVEAL =====
+    const revealItems = document.querySelectorAll('.feature-card, .result-item, .tech-item, .related-card, .gallery-item, .process-step');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+    revealItems.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      revealObserver.observe(el);
+    });
+
+    console.log('🚀 portfolio-details.html – Dynamic portfolio page');
+    console.log('📌 Supported projects: ' + Object.keys(projectData).join(', '));
+  </script>
+</body>
+</html>
