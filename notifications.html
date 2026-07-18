@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Notifications – Smile AI Web Studio</title>
+  <meta name="description" content="View and manage all your notifications. Stay updated on projects, payments, AI generation, and more." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Notifications – Smile AI Web Studio" />
+  <meta property="og:description" content="View and manage all your notifications." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://web.smilefinancialsolution.com/notifications.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Smile AI Web Studio",
+      "url": "https://web.smilefinancialsolution.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-7290977231",
+        "contactType": "Sales"
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --sidebar-width: 260px;
+      --header-height: 64px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 4px 24px rgba(0,0,0,0.04);
+      --shadow-card: 0 8px 32px -8px rgba(0,0,0,0.06);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100%;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(0,0,0,0.04);
+      padding: 20px 16px; overflow-y: auto; z-index: 1000;
+      transition: transform var(--transition);
+    }
+    .sidebar .logo {
+      font-size: 1.4rem; font-weight: 800; color: var(--primary);
+      display: flex; align-items: center; gap: 8px; padding: 0 8px 20px;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .sidebar .logo span { color: var(--secondary); }
+    .sidebar .logo small { font-size: 0.55rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; }
+
+    .sidebar-nav { margin-top: 16px; }
+    .sidebar-nav .nav-label { font-size: 0.7rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: 12px; font-weight: 500; font-size: 0.9rem;
+      color: #475569; transition: var(--transition); margin-bottom: 2px;
+    }
+    .sidebar-nav a:hover { background: #f1f5f9; color: var(--primary); }
+    .sidebar-nav a.active { background: #eff6ff; color: var(--primary); font-weight: 600; }
+    .sidebar-nav a .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+    .sidebar-nav a .badge {
+      margin-left: auto; background: var(--primary); color: white;
+      padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+    }
+    .sidebar-nav .logout { margin-top: 16px; border-top: 1px solid #eef2f6; padding-top: 12px; color: #EF4444; }
+    .sidebar-nav .logout:hover { background: #fef2f2; color: #EF4444; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
+
+    /* ===== HEADER ===== */
+    .top-header {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(16px);
+      padding: 0 24px; height: var(--header-height);
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      flex-wrap: wrap;
+    }
+    .top-header .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    .top-header .left { display: flex; align-items: center; gap: 14px; }
+    .top-header .left h1 { font-size: 1.1rem; font-weight: 700; }
+    .top-header .left h1 .unread-count {
+      background: #EF4444; color: white; padding: 1px 10px;
+      border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+      margin-left: 8px;
+    }
+    .top-header .right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .top-header .right .btn-sm {
+      padding: 6px 18px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+    }
+    .top-header .right .btn-sm:hover { border-color: var(--primary); color: var(--primary); }
+    .top-header .right .btn-sm.primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .top-header .right .btn-sm.primary:hover { background: #1d4ed8; }
+    .top-header .right .profile {
+      display: flex; align-items: center; gap: 10px; cursor: pointer;
+      padding: 4px 12px 4px 4px; border-radius: 60px; transition: var(--transition);
+    }
+    .top-header .right .profile:hover { background: #f1f5f9; }
+    .top-header .right .profile .avatar {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--primary);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.8rem;
+    }
+
+    /* ===== CONTENT ===== */
+    .content { padding: 20px 24px; max-width: 1200px; margin: 0 auto; }
+
+    /* ===== FILTERS ===== */
+    .filter-bar {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 20px; background: white; padding: 12px 20px;
+      border-radius: var(--radius-lg); border: 1px solid #eef2f6;
+    }
+    .filter-btn {
+      padding: 4px 16px; border-radius: 60px; border: 1px solid #eef2f6;
+      background: white; cursor: pointer; font-size: 0.8rem;
+      transition: var(--transition);
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .filter-btn .count { background: #eef2f6; padding: 0 8px; border-radius: 100px; font-size: 0.7rem; margin-left: 4px; }
+    .filter-btn.active .count { background: rgba(255,255,255,0.2); color: white; }
+
+    /* ===== SEARCH ===== */
+    .search-bar {
+      display: flex; align-items: center; gap: 8px;
+      background: #f8fafc; border-radius: 60px; padding: 6px 16px;
+      border: 1px solid #eef2f6; flex: 1; min-width: 150px;
+    }
+    .search-bar input {
+      border: none; background: transparent; padding: 6px 0;
+      font-size: 0.85rem; width: 100%; outline: none;
+    }
+    .search-bar .icon { color: #94a3b8; }
+
+    /* ===== NOTIFICATION LIST ===== */
+    .notif-list { display: flex; flex-direction: column; gap: 4px; }
+
+    /* ===== NOTIFICATION CARD ===== */
+    .notif-card {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 18px; background: white; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; transition: var(--transition);
+      cursor: pointer;
+    }
+    .notif-card:hover { border-color: var(--primary); box-shadow: var(--shadow-soft); }
+    .notif-card.unread { background: #f0f7ff; border-color: #dbeafe; }
+    .notif-card .icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+    .notif-card .content { flex: 1; min-width: 0; }
+    .notif-card .content .title { font-weight: 600; font-size: 0.95rem; }
+    .notif-card .content .desc { font-size: 0.9rem; color: #475569; margin: 2px 0; }
+    .notif-card .content .meta {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      font-size: 0.75rem; color: #94a3b8; margin-top: 4px;
+    }
+    .notif-card .content .meta .category {
+      padding: 1px 10px; border-radius: 100px; background: #eef2f6;
+      font-weight: 500;
+    }
+    .notif-card .content .meta .priority {
+      padding: 1px 10px; border-radius: 100px; font-weight: 500;
+    }
+    .notif-card .content .meta .priority.high { background: #fef2f2; color: #991b1b; }
+    .notif-card .content .meta .priority.medium { background: #fef3c7; color: #92400e; }
+    .notif-card .content .meta .priority.low { background: #d1fae5; color: #065f46; }
+    .notif-card .actions {
+      display: flex; gap: 4px; flex-shrink: 0;
+    }
+    .notif-card .actions .btn-icon {
+      width: 32px; height: 32px; border-radius: 50%; border: none;
+      background: transparent; cursor: pointer; transition: var(--transition);
+      font-size: 0.9rem; display: flex; align-items: center; justify-content: center;
+    }
+    .notif-card .actions .btn-icon:hover { background: #f1f5f9; }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      text-align: center; padding: 60px 20px; background: white;
+      border-radius: var(--radius-lg); border: 1px solid #eef2f6;
+    }
+    .empty-state .icon { font-size: 4rem; display: block; margin-bottom: 12px; }
+    .empty-state h3 { font-weight: 700; font-size: 1.4rem; }
+    .empty-state p { color: #475569; margin-bottom: 16px; }
+    .empty-state .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== SIDEBAR OVERLAY ===== */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 999; backdrop-filter: blur(4px); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.active { display: block; }
+      .top-header .menu-toggle { display: block; }
+      .main-content { margin-left: 0; }
+      .top-header { padding: 0 16px; height: auto; gap: 10px; }
+      .top-header .right { width: 100%; }
+      .content { padding: 12px; }
+      .notif-card { flex-wrap: wrap; }
+      .notif-card .actions { width: 100%; justify-content: flex-end; margin-top: 4px; }
+      .filter-bar { padding: 10px 14px; }
+    }
+    @media (max-width: 480px) {
+      .top-header .left h1 { font-size: 0.9rem; }
+      .filter-bar { gap: 4px; }
+      .filter-btn { font-size: 0.7rem; padding: 2px 12px; }
+      .notif-card { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">Smile<span>AI</span><small>Web Studio</small></div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Main</div>
+      <a href="customer-dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a href="create-project.html"><span class="icon">✨</span> Create Website</a>
+      <a href="my-projects.html"><span class="icon">🌐</span> My Projects <span class="badge">12</span></a>
+      <a href="project-details.html"><span class="icon">📋</span> Project Details</a>
+      <a href="billing.html"><span class="icon">💳</span> Billing</a>
+      <a href="notifications.html" class="active"><span class="icon">🔔</span> Notifications <span class="badge">5</span></a>
+      <a href="profile.html"><span class="icon">👤</span> Profile</a>
+      <a href="portfolio.html"><span class="icon">📁</span> Portfolio</a>
+      <div class="nav-label" style="margin-top:12px;">Account</div>
+      <a href="#"><span class="icon">💬</span> Messages <span class="badge">2</span></a>
+      <a href="settings.html"><span class="icon">⚙️</span> Settings</a>
+      <a href="contact.html"><span class="icon">🛡️</span> Support</a>
+      <a href="login.html" class="logout"><span class="icon">🚪</span> Logout</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- HEADER -->
+    <header class="top-header">
+      <div class="left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <h1>🔔 Notifications <span class="unread-count" id="unreadCounter">5 unread</span></h1>
+      </div>
+      <div class="right">
+        <div class="search-bar">
+          <span class="icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search notifications..." />
+        </div>
+        <button class="btn-sm" onclick="markAllRead()">✅ Mark All Read</button>
+        <button class="btn-sm" onclick="deleteAll()">🗑️ Delete All</button>
+        <div class="profile">
+          <span style="font-weight:600;font-size:0.85rem;">John</span>
+          <div class="avatar">JD</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <!-- Filter Bar -->
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all" onclick="filterNotifications('all')">All <span class="count">12</span></button>
+        <button class="filter-btn" data-filter="unread" onclick="filterNotifications('unread')">Unread <span class="count">5</span></button>
+        <button class="filter-btn" data-filter="read" onclick="filterNotifications('read')">Read <span class="count">7</span></button>
+        <button class="filter-btn" data-filter="projects" onclick="filterNotifications('projects')">📋 Projects <span class="count">4</span></button>
+        <button class="filter-btn" data-filter="payments" onclick="filterNotifications('payments')">💳 Payments <span class="count">3</span></button>
+        <button class="filter-btn" data-filter="ai" onclick="filterNotifications('ai')">🤖 AI <span class="count">2</span></button>
+        <button class="filter-btn" data-filter="messages" onclick="filterNotifications('messages')">💬 Messages <span class="count">1</span></button>
+        <button class="filter-btn" data-filter="security" onclick="filterNotifications('security')">🔒 Security <span class="count">1</span></button>
+      </div>
+
+      <!-- Notification List -->
+      <div class="notif-list" id="notifList">
+        <!-- Dynamic -->
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <span class="icon">🎉</span>
+        <h3>You're all caught up!</h3>
+        <p>No notifications to display. Keep building amazing websites!</p>
+        <div class="btn-group">
+          <button class="btn-sm primary" onclick="window.location.href='create-project.html'" style="background:var(--primary);color:white;border-color:var(--primary);padding:8px 24px;border-radius:60px;border:none;cursor:pointer;">✨ Create Website</button>
+          <button class="btn-sm" onclick="window.location.href='customer-dashboard.html'" style="padding:8px 24px;border-radius:60px;border:1px solid #eef2f6;background:white;cursor:pointer;">📊 Go Dashboard</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+      renderNotifications();
+    });
+
+    // ===== SIDEBAR =====
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { sidebar.classList.remove('open'); overlay.classList.remove('active'); }
+    });
+
+    // ===== SAMPLE NOTIFICATIONS =====
+    let notifications = [
+      { id: 1, icon: '📋', title: 'Project Submitted', desc: 'Your website request for "Brand Pro Business" has been submitted for review.', time: '2 minutes ago', category: 'projects', read: false, priority: 'medium', action: 'View Project', actionUrl: 'project-details.html' },
+      { id: 2, icon: '✅', title: 'Project Approved', desc: '"Brand Pro Business" has been approved by the team. AI generation will start soon.', time: '15 minutes ago', category: 'projects', read: false, priority: 'high', action: 'View Project', actionUrl: 'project-details.html' },
+      { id: 3, icon: '🤖', title: 'AI Generation Started', desc: 'AI is now generating content for "Brand Pro Business" website.', time: '1 hour ago', category: 'ai', read: false, priority: 'medium', action: 'View Progress', actionUrl: 'website-preview.html' },
+      { id: 4, icon: '💳', title: 'Payment Received', desc: 'Payment of ₹11,798.82 received for "Brand Pro Business". Invoice: INV-2025-001', time: '2 hours ago', category: 'payments', read: true, priority: 'high', action: 'View Invoice', actionUrl: 'invoice-details.html' },
+      { id: 5, icon: '📄', title: 'Invoice Generated', desc: 'Invoice INV-2025-001 has been generated for "Brand Pro Business".', time: '3 hours ago', category: 'payments', read: true, priority: 'low', action: 'View Invoice', actionUrl: 'invoice-details.html' },
+      { id: 6, icon: '🤖', title: 'AI Generation Completed', desc: 'AI has completed generating content for "Brand Pro Business". Ready for review.', time: '4 hours ago', category: 'ai', read: true, priority: 'medium', action: 'Preview Website', actionUrl: 'website-preview.html' },
+      { id: 7, icon: '💬', title: 'New Message from Support', desc: 'Priya (Support Team) has replied to your query about SEO optimization.', time: '5 hours ago', category: 'messages', read: true, priority: 'low', action: 'View Message', actionUrl: 'messages.html' },
+      { id: 8, icon: '🔒', title: 'Security Alert', desc: 'New login detected from Chrome, Windows on 2025-01-14 at 14:30.', time: '1 day ago', category: 'security', read: true, priority: 'high', action: 'View Activity', actionUrl: 'settings.html' },
+      { id: 9, icon: '✅', title: 'Project Completed', desc: '"Brand Pro Business" has been successfully completed and is ready for deployment.', time: '2 days ago', category: 'projects', read: true, priority: 'medium', action: 'View Project', actionUrl: 'project-details.html' },
+      { id: 10, icon: '🚀', title: 'Website Published', desc: 'Your website "Brand Pro Business" is now live at preview.smileai.com/brand-pro-business', time: '3 days ago', category: 'projects', read: true, priority: 'high', action: 'View Website', actionUrl: 'website-preview.html' },
+      { id: 11, icon: '📋', title: 'New Project Created', desc: 'Your project "Flavors Restaurant" has been created successfully.', time: '5 days ago', category: 'projects', read: true, priority: 'low', action: 'View Project', actionUrl: 'project-details.html' },
+      { id: 12, icon: '💳', title: 'Payment Failed', desc: 'Payment for "WealthBridge Finance" failed. Please update your payment method.', time: '6 days ago', category: 'payments', read: true, priority: 'high', action: 'Retry Payment', actionUrl: 'billing.html' }
+    ];
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    // ===== RENDER NOTIFICATIONS =====
+    function renderNotifications() {
+      const list = document.getElementById('notifList');
+      const empty = document.getElementById('emptyState');
+
+      // Filter and search
+      let filtered = notifications;
+
+      if (currentFilter === 'unread') filtered = filtered.filter(n => !n.read);
+      else if (currentFilter === 'read') filtered = filtered.filter(n => n.read);
+      else if (currentFilter !== 'all') filtered = filtered.filter(n => n.category === currentFilter);
+
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(n =>
+          n.title.toLowerCase().includes(q) ||
+          n.desc.toLowerCase().includes(q) ||
+          n.category.includes(q)
+        );
+      }
+
+      // Update unread counter
+      const unreadCount = notifications.filter(n => !n.read).length;
+      document.getElementById('unreadCounter').textContent = unreadCount + ' unread';
+
+      // Update filter counts
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const filter = btn.dataset.filter;
+        let count = 0;
+        if (filter === 'all') count = notifications.length;
+        else if (filter === 'unread') count = notifications.filter(n => !n.read).length;
+        else if (filter === 'read') count = notifications.filter(n => n.read).length;
+        else count = notifications.filter(n => n.category === filter).length;
+        const countEl = btn.querySelector('.count');
+        if (countEl) countEl.textContent = count;
+      });
+
+      if (filtered.length === 0) {
+        list.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      list.innerHTML = filtered.map(n => `
+        <div class="notif-card ${n.read ? '' : 'unread'}" data-id="${n.id}" onclick="openNotification(${n.id})">
+          <span class="icon">${n.icon}</span>
+          <div class="content">
+            <div class="title">${n.title}</div>
+            <div class="desc">${n.desc}</div>
+            <div class="meta">
+              <span>🕐 ${n.time}</span>
+              <span class="category">${n.category}</span>
+              <span class="priority ${n.priority}">${n.priority}</span>
+            </div>
+          </div>
+          <div class="actions" onclick="event.stopPropagation();">
+            <button class="btn-icon" onclick="markRead(${n.id})" title="Mark as read">✅</button>
+            <button class="btn-icon" onclick="archiveNotif(${n.id})" title="Archive">📦</button>
+            <button class="btn-icon" onclick="deleteNotif(${n.id})" title="Delete">🗑️</button>
+            <button class="btn-icon" onclick="openAction(${n.id})" title="${n.action}" style="background:var(--primary);color:white;width:32px;height:32px;border-radius:50%;border:none;cursor:pointer;font-size:0.7rem;font-weight:600;">→</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ===== FILTER =====
+    function filterNotifications(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === filter);
+      });
+      renderNotifications();
+    }
+
+    // ===== SEARCH =====
+    document.getElementById('searchInput').addEventListener('input', function() {
+      searchQuery = this.value;
+      renderNotifications();
+    });
+
+    // ===== ACTIONS =====
+    function openNotification(id) {
+      const notif = notifications.find(n => n.id === id);
+      if (notif) {
+        if (!notif.read) {
+          notif.read = true;
+          renderNotifications();
+        }
+        if (notif.actionUrl) {
+          window.location.href = notif.actionUrl;
+        } else {
+          alert('📋 Notification: ' + notif.title);
+        }
+      }
+    }
+
+    function markRead(id) {
+      const notif = notifications.find(n => n.id === id);
+      if (notif) {
+        notif.read = true;
+        renderNotifications();
+      }
+    }
+
+    function archiveNotif(id) {
+      const notif = notifications.find(n => n.id === id);
+      if (notif) {
+        if (confirm(`📦 Archive "${notif.title}"?`)) {
+          notifications = notifications.filter(n => n.id !== id);
+          renderNotifications();
+        }
+      }
+    }
+
+    function deleteNotif(id) {
+      const notif = notifications.find(n => n.id === id);
+      if (notif) {
+        if (confirm(`🗑️ Delete "${notif.title}"?`)) {
+          notifications = notifications.filter(n => n.id !== id);
+          renderNotifications();
+        }
+      }
+    }
+
+    function openAction(id) {
+      const notif = notifications.find(n => n.id === id);
+      if (notif && notif.actionUrl) {
+        window.location.href = notif.actionUrl;
+      } else if (notif) {
+        alert('🔗 ' + notif.action);
+      }
+    }
+
+    function markAllRead() {
+      if (confirm('✅ Mark all notifications as read?')) {
+        notifications.forEach(n => n.read = true);
+        renderNotifications();
+      }
+    }
+
+    function deleteAll() {
+      if (confirm('🗑️ Delete all notifications?')) {
+        notifications = [];
+        renderNotifications();
+      }
+    }
+
+    // ============================================================
+    // 🔥 FIREBASE FIRESTORE REAL-TIME INTEGRATION
+    // ============================================================
+    /*
+    import { getFirestore, collection, query, where, onSnapshot, orderBy, updateDoc, doc, deleteDoc, addDoc } from 'firebase/firestore';
+    import { getAuth } from 'firebase/auth';
+
+    const db = getFirestore();
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+      const q = query(
+        collection(db, 'notifications'),
+        where('userId', '==', user.uid),
+        orderBy('createdAt', 'desc')
+      );
+
+      // Real-time listener
+      onSnapshot(q, (snapshot) => {
+        const notifs = [];
+        snapshot.forEach(doc => {
+          notifs.push({ id: doc.id, ...doc.data() });
+        });
+        notifications = notifs;
+        renderNotifications();
+      });
+
+      // Mark as read
+      async function markRead(id) {
+        await updateDoc(doc(db, 'notifications', id), { read: true });
+      }
+
+      // Delete
+      async function deleteNotif(id) {
+        await deleteDoc(doc(db, 'notifications', id));
+      }
+    }
+    */
+
+    console.log('🚀 notifications.html – Smile AI Web Studio');
+    console.log('📌 Premium notification center with filters, search, and actions');
+    console.log('📌 Firebase real-time ready (commented)');
+  </script>
+</body>
+</html>
