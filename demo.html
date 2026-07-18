@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title id="dynamicTitle">Business Website Demo – Smile AI Web Studio</title>
+  <meta name="description" id="dynamicDescription" content="Explore our professional business website demo. Modern, responsive, and SEO-optimized design for your business." />
+  <link rel="canonical" id="dynamicCanonical" href="https://web.smilefinancialsolution.com/demo.html?type=business" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" id="dynamicKeywords" content="business website demo, professional website, web design, responsive website" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" id="ogTitle" content="Business Website Demo – Smile AI Web Studio" />
+  <meta property="og:description" id="ogDescription" content="Explore our professional business website demo. Modern, responsive, and SEO-optimized." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" id="ogUrl" content="https://web.smilefinancialsolution.com/demo.html?type=business" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD Schemas (dynamic) -->
+  <script id="jsonld-org" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Smile AI Web Studio",
+      "url": "https://web.smilefinancialsolution.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-7290977231",
+        "contactType": "Sales"
+      }
+    }
+  </script>
+  <script id="jsonld-breadcrumb" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://web.smilefinancialsolution.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Demo", "item": "https://web.smilefinancialsolution.com/demo.html" }
+      ]
+    }
+  </script>
+  <script id="jsonld-faq" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": []
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2563EB;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg-white: #ffffff;
+      --glass-bg: rgba(255,255,255,0.10);
+      --shadow-soft: 0 20px 50px -12px rgba(0,0,0,0.06);
+      --shadow-card: 0 12px 40px -8px rgba(0,0,0,0.04);
+      --radius-lg: 18px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #0b1a33;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+    /* ===== GLASS & UTILITY ===== */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+    }
+    .badge-pill {
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 34px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.15);
+    }
+    .btn-primary {
+      background: linear-gradient(145deg, #2563EB, #1d4ed8);
+      color: white;
+    }
+    .btn-primary:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 12px 30px rgba(37,99,235,0.30); }
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+    }
+    .btn-secondary:hover { transform: scale(1.03) translateY(-2px); background: #059669; }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary); color: white; }
+    .btn-accent {
+      background: var(--accent);
+      color: #0b1a33;
+    }
+    .btn-accent:hover { transform: scale(1.03) translateY(-2px); background: #d48d0a; }
+    .btn-sm {
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-sm-primary { background: var(--primary); color: white; }
+    .btn-sm-primary:hover { background: #1d4ed8; transform: scale(1.02); }
+    .btn-sm-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
+    .btn-sm-outline:hover { background: var(--primary); color: white; }
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .section-title span { color: var(--primary); }
+    .section-sub {
+      font-size: 1.2rem;
+      color: #475569;
+      max-width: 600px;
+    }
+    .text-center { text-align: center; }
+    .flex-center { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .mt-4 { margin-top: 2rem; }
+    .mb-4 { margin-bottom: 2rem; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: white; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #loader.hide { opacity: 0; pointer-events: none; }
+    .loader-spinner {
+      width: 48px; height: 48px; border: 4px solid #e2e8f0;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      padding: 16px 0; transition: var(--transition);
+      background: rgba(255,255,255,0.70); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    header.scrolled {
+      background: rgba(255,255,255,0.94); box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.6rem; font-weight: 800; color: var(--primary);
+      letter-spacing: -0.02em; display: flex; align-items: center; gap: 6px;
+    }
+    .logo span { color: var(--secondary); }
+    .logo small { font-size: 0.6rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; margin-left: 6px; }
+    nav { display: flex; align-items: center; gap: 2rem; }
+    nav a {
+      font-weight: 500; font-size: 0.95rem; color: #1e293b;
+      transition: var(--transition); position: relative;
+    }
+    nav a:hover { color: var(--primary); }
+    nav a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--primary);
+      transition: var(--transition);
+    }
+    nav a:hover::after { width: 100%; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 28px; height: 3px; background: #1e293b; border-radius: 4px; transition: var(--transition); }
+
+    /* ===== HERO ===== */
+    #hero {
+      padding: 140px 0 80px;
+      position: relative; overflow: hidden;
+    }
+    #hero .container {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center;
+    }
+    .hero-content h1 {
+      font-size: 3.5rem; font-weight: 900; line-height: 1.1; letter-spacing: -0.03em;
+    }
+    .hero-content h1 .highlight { color: var(--primary); }
+    .hero-content p {
+      font-size: 1.2rem; color: #334155; margin: 1.5rem 0 2rem;
+      max-width: 520px;
+    }
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 2rem;
+    }
+    .hero-stats .stat .number { font-size: 2.2rem; font-weight: 800; color: var(--primary); }
+    .hero-stats .stat .label { font-size: 0.9rem; color: #475569; }
+    .hero-illustration {
+      min-height: 300px; width: 100%; background-size: contain;
+      background-repeat: no-repeat; background-position: center;
+    }
+    .floating-shapes {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .floating-shapes span {
+      position: absolute; border-radius: 50%; opacity: 0.04;
+      animation: float 12s infinite alternate ease-in-out;
+    }
+    .floating-shapes span:nth-child(1) { width: 120px; height: 120px; top: 5%; left: 2%; }
+    .floating-shapes span:nth-child(2) { width: 160px; height: 160px; bottom: 5%; right: 3%; animation-delay: 0.5s; }
+    .floating-shapes span:nth-child(3) { width: 80px; height: 80px; top: 50%; right: 0%; animation-delay: 1s; }
+    @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-40px) rotate(10deg); } }
+
+    /* ===== ABOUT ===== */
+    #about { padding: 80px 0; background: white; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      align-items: center;
+    }
+    .about-grid .content p { color: #475569; font-size: 1.05rem; margin-bottom: 1rem; }
+    .about-values {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .about-values .value { text-align: center; padding: 1rem; background: #f8fafc; border-radius: var(--radius-lg); border: 1px solid #eef2f6; }
+    .about-values .value .icon { font-size: 2rem; display: block; margin-bottom: 0.3rem; }
+
+    /* ===== SERVICES ===== */
+    #services { padding: 80px 0; }
+    .service-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .service-card {
+      padding: 2rem; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; text-align: center; transition: var(--transition);
+      background: white;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); border-color: var(--primary); }
+    .service-card .icon { font-size: 2.8rem; display: block; margin-bottom: 0.5rem; }
+    .service-card h3 { font-weight: 700; font-size: 1.1rem; }
+
+    /* ===== INDUSTRIES ===== */
+    #industries { padding: 80px 0; }
+    .industry-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .industry-item {
+      background: white; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .industry-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+
+    /* ===== GALLERY ===== */
+    #gallery { padding: 80px 0; background: white; }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .gallery-item {
+      border-radius: var(--radius-lg); overflow: hidden; height: 200px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid #eef2f6; transition: var(--transition);
+      font-size: 3rem; color: #94a3b8; background: #f8fafc;
+    }
+    .gallery-item:hover { transform: scale(1.02); box-shadow: var(--shadow-card); border-color: var(--primary); }
+
+    /* ===== ACHIEVEMENTS ===== */
+    #achievements { padding: 80px 0; }
+    .achieve-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+      margin-top: 2rem;
+    }
+    .achieve-item { text-align: center; }
+    .achieve-item .number { font-size: 3rem; font-weight: 800; color: var(--primary); }
+    .achieve-item .label { color: #475569; }
+
+    /* ===== WHY CHOOSE ===== */
+    #why-choose { padding: 80px 0; background: white; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .why-item {
+      background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .why-item:hover { background: var(--primary); color: white; transform: scale(1.02); }
+    .why-item .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+
+    /* ===== PROCESS ===== */
+    #process { padding: 80px 0; }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .process-step {
+      background: white; padding: 1.5rem; border-radius: var(--radius-lg);
+      text-align: center; border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .process-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+    .process-step .num { font-size: 2rem; font-weight: 800; color: var(--primary); opacity: 0.15; }
+    .process-step h3 { font-weight: 700; font-size: 0.9rem; margin: 0.5rem 0; }
+
+    /* ===== PRICING ===== */
+    #pricing { padding: 80px 0; background: white; }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+      margin-top: 2rem;
+    }
+    .pricing-card {
+      background: #f8fafc; padding: 2rem; border-radius: var(--radius-lg);
+      text-align: center; border: 2px solid transparent; transition: var(--transition);
+    }
+    .pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+    .pricing-card.highlight { border-color: var(--secondary); background: white; }
+    .pricing-card .price { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+
+    /* ===== TESTIMONIALS ===== */
+    #testimonials { padding: 80px 0; background: white; }
+    .testimonial-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .testimonial-card {
+      background: #f8fafc; padding: 1.5rem; border-radius: var(--radius-lg);
+      border: 1px solid #eef2f6; transition: var(--transition);
+    }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+    .testimonial-card .quote { font-style: italic; color: #475569; }
+    .testimonial-card .author { font-weight: 600; margin-top: 0.5rem; }
+
+    /* ===== FAQ ===== */
+    #faq { padding: 80px 0; }
+    .faq-item {
+      background: white; border-radius: 16px; margin-bottom: 1rem;
+      padding: 1.2rem 1.5rem; cursor: pointer; border: 1px solid #eef2f6;
+      transition: var(--transition);
+    }
+    .faq-item:hover { border-color: var(--primary); }
+    .faq-question { display: flex; justify-content: space-between; font-weight: 600; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; color: #475569; }
+    .faq-item.active .faq-answer { max-height: 200px; padding-top: 0.75rem; }
+
+    /* ===== CONTACT ===== */
+    #contact { padding: 80px 0; background: white; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      margin-top: 2rem;
+    }
+    .contact-form input, .contact-form textarea, .contact-form select {
+      width: 100%; padding: 14px 18px; border-radius: 60px; border: 1px solid #d1d9e6;
+      font-size: 1rem; margin-bottom: 1rem; background: white;
+      transition: var(--transition);
+    }
+    .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+      outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
+    }
+    .contact-form textarea { border-radius: 24px; min-height: 120px; resize: vertical; }
+    .map-placeholder {
+      background: #f8fafc; border-radius: var(--radius-lg); height: 300px;
+      display: flex; align-items: center; justify-content: center;
+      color: #94a3b8; border: 1px solid #eef2f6;
+    }
+
+    /* ===== CTA ===== */
+    #final-cta {
+      padding: 60px 0;
+      color: white; text-align: center;
+    }
+    #final-cta .btn { box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0b1a33; color: #cbd5e1; padding: 3rem 0;
+    }
+    footer .container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    footer a { display: block; margin: 6px 0; transition: var(--transition); }
+    footer a:hover { color: white; padding-left: 4px; }
+    footer .powered { margin-top: 2rem; border-top: 1px solid #1e293b; padding-top: 1.5rem; text-align: center; }
+
+    /* ===== FLOATING BUTTONS ===== */
+    .floating-btn {
+      position: fixed; right: 24px; z-index: 999;
+      width: 56px; height: 56px; border-radius: 60px;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.25);
+      font-size: 1.5rem; cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center;
+      border: none; color: white;
+    }
+    .floating-btn:hover { transform: scale(1.08); }
+    .floating-btn.whatsapp { bottom: 100px; background: #25D366; }
+    .floating-btn.call { bottom: 170px; background: var(--secondary); }
+    .floating-btn.top { bottom: 30px; background: var(--accent); color: #0b1a33; }
+
+    /* ===== THANK YOU POPUP ===== */
+    .popup-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.35); backdrop-filter: blur(6px);
+      z-index: 2000; display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .popup-overlay.open { display: flex; }
+    .popup {
+      background: white; max-width: 460px; width: 100%; padding: 2.5rem;
+      border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);
+      text-align: center; animation: popIn 0.3s ease;
+    }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    .popup .close {
+      position: absolute; top: 16px; right: 20px; font-size: 1.8rem; cursor: pointer;
+      color: #94a3b8; transition: var(--transition);
+    }
+    .popup .close:hover { color: #1e293b; }
+    .popup .icon-big { font-size: 4rem; margin-bottom: 0.5rem; }
+    .popup h2 { font-weight: 800; margin-bottom: 0.5rem; }
+    .popup .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      #hero .container { grid-template-columns: 1fr; text-align: center; }
+      .hero-content p { margin-left: auto; margin-right: auto; }
+      .hero-stats { justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .achieve-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: repeat(3, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      footer .container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+      nav.open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 2rem; gap: 1rem; box-shadow: var(--shadow-soft); border-radius: 0 0 24px 24px; }
+      .hero-content h1 { font-size: 2.4rem; }
+      .section-title { font-size: 2rem; }
+      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+      .achieve-grid { grid-template-columns: 1fr 1fr; }
+      .about-values { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      footer .container { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 2rem; }
+      .btn { padding: 12px 24px; font-size: 0.9rem; }
+      .achieve-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .floating-btn { width: 48px; height: 48px; font-size: 1.2rem; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader"><div class="loader-spinner"></div></div>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo" id="brandLogo">Smile<span>AI</span><small>Web Studio</small></a>
+      <nav id="navbar">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#industries">Industries</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+        <a href="contact.html" class="btn btn-primary" style="padding:8px 22px;font-size:0.85rem;">Get Quote</a>
+      </nav>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <!-- HERO (dynamic) -->
+  <section id="hero">
+    <div class="floating-shapes"><span></span><span></span><span></span></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="badge-pill" id="heroBadge" style="background:var(--primary);color:white;">Demo</span>
+        <h1 id="heroTitle">Professional <span class="highlight">Business</span> Website Demo</h1>
+        <p id="heroDesc">A modern, responsive, and SEO-optimized website designed to help your business grow and succeed online.</p>
+        <div class="flex-center" style="justify-content:flex-start;">
+          <a href="#contact" class="btn btn-primary" id="heroBtn1">Get Quote</a>
+          <a href="contact.html" class="btn btn-outline" id="heroBtn2">Request Similar Website</a>
+        </div>
+        <div class="hero-stats" id="heroStats">
+          <div class="stat"><div class="number" data-count="500">0</div><div class="label">Clients Served</div></div>
+          <div class="stat"><div class="number" data-count="98">0</div><div class="label">Satisfaction %</div></div>
+          <div class="stat"><div class="number" data-count="50">0</div><div class="label">Expert Team</div></div>
+        </div>
+      </div>
+      <div class="hero-illustration" id="heroIllustration"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT (dynamic) -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="content">
+          <span class="badge-pill" id="aboutBadge" style="background:var(--primary);color:white;">About Us</span>
+          <h2 class="section-title" style="font-size:2.4rem;" id="aboutTitle">Who We <span>Are</span></h2>
+          <p id="aboutDesc">A leading business solutions provider dedicated to helping organizations achieve their goals through innovative strategies and cutting-edge technology.</p>
+          <p id="aboutDesc2">With years of experience across multiple industries, we deliver results that drive growth and transform businesses.</p>
+          <div class="about-values" id="aboutValues">
+            <div class="value"><span class="icon">🎯</span><strong>Mission</strong><br>Empower businesses</div>
+            <div class="value"><span class="icon">👁️</span><strong>Vision</strong><br>Transform industries</div>
+            <div class="value"><span class="icon">💎</span><strong>Values</strong><br>Integrity & Excellence</div>
+          </div>
+        </div>
+        <div id="aboutIllustration" style="background:#f8fafc;border-radius:var(--radius-lg);padding:2rem;border:1px solid #eef2f6;display:flex;align-items:center;justify-content:center;font-size:6rem;color:#e2e8f0;">🏢</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES (dynamic) -->
+  <section id="services">
+    <div class="container text-center">
+      <h2 class="section-title" id="servicesTitle">Our <span>Services</span></h2>
+      <p class="section-sub" style="margin:0 auto;" id="servicesSub">Comprehensive solutions for modern businesses.</p>
+      <div class="service-grid" id="serviceGrid">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES (dynamic) -->
+  <section id="industries">
+    <div class="container text-center">
+      <h2 class="section-title" id="industriesTitle">Industries We <span>Serve</span></h2>
+      <p class="section-sub" style="margin:0 auto;" id="industriesSub">Expert solutions across multiple sectors.</p>
+      <div class="industry-grid" id="industryGrid">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY (dynamic) -->
+  <section id="gallery">
+    <div class="container text-center">
+      <h2 class="section-title" id="galleryTitle">Our <span>Gallery</span></h2>
+      <p class="section-sub" style="margin:0 auto;" id="gallerySub">A glimpse into our work.</p>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS (dynamic) -->
+  <section id="achievements">
+    <div class="container text-center">
+      <h2 class="section-title" id="achieveTitle">Our <span>Achievements</span></h2>
+      <div class="achieve-grid" id="achieveGrid">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE (dynamic) -->
+  <section id="why-choose">
+    <div class="container text-center">
+      <h2 class="section-title" id="whyTitle">Why <span>Choose Us</span></h2>
+      <div class="why-grid" id="whyGrid">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container text-center">
+      <h2 class="section-title">Our <span>Process</span></h2>
+      <p class="section-sub" style="margin:0 auto;">How we bring your vision to life.</p>
+      <div class="process-steps">
+        <div class="process-step"><div class="num">01</div><h3>Research</h3></div>
+        <div class="process-step"><div class="num">02</div><h3>Planning</h3></div>
+        <div class="process-step"><div class="num">03</div><h3>Design</h3></div>
+        <div class="process-step"><div class="num">04</div><h3>Development</h3></div>
+        <div class="process-step"><div class="num">05</div><h3>Testing</h3></div>
+        <div class="process-step"><div class="num">06</div><h3>Launch</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING (dynamic) -->
+  <section id="pricing">
+    <div class="container text-center">
+      <h2 class="section-title" id="pricingTitle">Simple <span>Pricing</span></h2>
+      <p class="section-sub" style="margin:0 auto;" id="pricingSub">Choose the perfect plan for your business.</p>
+      <div class="pricing-grid" id="pricingGrid">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (dynamic) -->
+  <section id="testimonials">
+    <div class="container text-center">
+      <h2 class="section-title" id="testimonialTitle">Client <span>Testimonials</span></h2>
+      <div class="testimonial-grid" id="testimonialGrid">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ (dynamic) -->
+  <section id="faq">
+    <div class="container text-center">
+      <h2 class="section-title" id="faqTitle">Frequently <span>Asked</span></h2>
+      <div style="max-width:700px;margin:2rem auto;text-align:left;" id="faqContainer">
+        <!-- Dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container text-center">
+      <h2 class="section-title">Get In <span>Touch</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Let's discuss how we can help your business grow.</p>
+      <div class="contact-grid">
+        <form class="contact-form" id="contactForm" onsubmit="handleContact(event)">
+          <input type="text" id="contactName" placeholder="Your Name" required />
+          <input type="tel" id="contactPhone" placeholder="Phone Number" required />
+          <input type="email" id="contactEmail" placeholder="Email Address" required />
+          <input type="text" id="contactBusiness" placeholder="Business Name" required />
+          <input type="text" id="contactType" placeholder="Business Type" />
+          <textarea id="contactMessage" placeholder="Tell us about your requirement..." required></textarea>
+          <input type="text" id="contactBudget" placeholder="Budget (e.g. ₹999, ₹2999, ₹4999)" />
+          <input type="url" id="contactReference" placeholder="Reference Website URL (if any)" />
+          <button type="submit" class="btn btn-primary" style="width:100%;">Send Enquiry</button>
+        </form>
+        <div>
+          <div class="map-placeholder" id="mapPlaceholder">📍 Google Map Placeholder<br><span style="font-size:0.85rem;">Delhi, India</span></div>
+          <div style="margin-top:1.5rem;text-align:left;">
+            <p><strong>📞 Phone:</strong> <a href="tel:+917290977231" style="color:var(--primary);">+91 7290977231</a></p>
+            <p><strong>✉️ Email:</strong> <a href="mailto:info@smilewebstudio.com" style="color:var(--primary);">info@smilewebstudio.com</a></p>
+            <p><strong>📍 Address:</strong> Delhi, India</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="final-cta">
+    <div class="container">
+      <h2 id="ctaTitle">Ready to Build Your Website?</h2>
+      <p style="font-size:1.2rem;margin:1rem 0;" id="ctaSub">Let's create something amazing for your business.</p>
+      <div class="flex-center">
+        <a href="contact.html" class="btn btn-primary" id="ctaBtn1" style="background:white;color:var(--primary);">Request Similar Website</a>
+        <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20liked%20this%20demo." class="btn btn-secondary" id="ctaBtn2" style="background:white;color:var(--primary);">WhatsApp</a>
+        <a href="tel:+917290977231" class="btn btn-accent" id="ctaBtn3" style="background:white;color:var(--primary);">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div><h3 style="color:white;" id="footerBrand">Smile AI Web Studio</h3><p style="margin:0.5rem 0;" id="footerTagline">Premium website design and development for businesses across India.</p></div>
+      <div><h4 style="color:white;">Quick Links</h4><a href="#hero">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#industries">Industries</a></div>
+      <div><h4 style="color:white;">Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+      <div><h4 style="color:white;">Contact</h4><a href="https://wa.me/917290977231" target="_blank">WhatsApp</a><a href="tel:+917290977231">Call Now</a></div>
+    </div>
+    <div class="container powered">© 2025 Smile AI Web Studio. Powered by Smile Financial Solution.</div>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+  <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20liked%20this%20demo." class="floating-btn whatsapp" aria-label="WhatsApp">💬</a>
+  <a href="tel:+917290977231" class="floating-btn call" aria-label="Call">📞</a>
+  <button class="floating-btn top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <!-- THANK YOU POPUP -->
+  <div class="popup-overlay" id="thankYouPopup">
+    <div class="popup">
+      <span class="close" onclick="closeThankYou()">&times;</span>
+      <div class="icon-big">🎉</div>
+      <h2>Thank You!</h2>
+      <p style="color:#475569;">Your enquiry has been received.</p>
+      <p style="color:#475569;margin-bottom:0.5rem;">Our team will contact you shortly.</p>
+      <div class="btn-group">
+        <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%20Web%20Studio%2C%20I%20sent%20an%20enquiry." target="_blank" class="btn btn-secondary" style="background:var(--secondary);color:white;">Open WhatsApp</a>
+        <a href="#hero" class="btn btn-outline">Back to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================================
+    // ===== DYNAMIC DATA ENGINE =====
+    // ============================================================
+
+    // ===== INDUSTRY DATA =====
+    const industryData = {
+      business: {
+        brand: 'Business Pro Solutions',
+        tagline: 'Your Business Growth Partner',
+        colors: { primary: '#2563EB', secondary: '#10B981', accent: '#F59E0B', bg: '#f0f7ff' },
+        hero: {
+          title: 'Professional <span class="highlight">Business</span> Website Demo',
+          desc: 'A modern, responsive, and SEO-optimized website designed to help your business grow and succeed online.',
+          badge: 'Business Solutions'
+        },
+        about: {
+          title: 'Who We <span>Are</span>',
+          desc: 'A leading business solutions provider dedicated to helping organizations achieve their goals through innovative strategies and cutting-edge technology.',
+          desc2: 'With years of experience across multiple industries, we deliver results that drive growth and transform businesses.',
+          mission: 'Empower businesses',
+          vision: 'Transform industries',
+          values: 'Integrity & Excellence'
+        },
+        services: [
+          { icon: '📊', name: 'Consulting' },
+          { icon: '💻', name: 'Digital Solutions' },
+          { icon: '🌐', name: 'Web Development' },
+          { icon: '📈', name: 'Marketing' },
+          { icon: '📝', name: 'Registration' },
+          { icon: '⚖️', name: 'Compliance' }
+        ],
+        industries: ['Manufacturing', 'Finance', 'Healthcare', 'Education', 'Retail', 'Technology'],
+        gallery: ['🏢', '💻', '📊', '🌐', '📈', '🤝'],
+        achievements: [
+          { number: 500, label: 'Clients Served' },
+          { number: 98, label: 'Satisfaction %' },
+          { number: 50, label: 'Expert Team' },
+          { number: 10, label: 'Years Experience' }
+        ],
+        why: [
+          { icon: '⚡', name: 'Fast & Reliable' },
+          { icon: '💎', name: 'Expert Team' },
+          { icon: '🤝', name: 'Trusted Partner' },
+          { icon: '📈', name: 'Proven Results' },
+          { icon: '💰', name: 'Competitive Pricing' },
+          { icon: '🔧', name: 'End-to-End Support' }
+        ],
+        pricing: [
+          { name: 'Starter', price: '₹999', features: ['5 Pages', 'Contact Form', 'WhatsApp'] },
+          { name: 'Business', price: '₹2999', features: ['10 Pages', 'SEO', 'Google Business'] },
+          { name: 'Premium', price: '₹4999', features: ['20 Pages', 'Ecommerce', 'Custom Design'] }
+        ],
+        testimonials: [
+          { quote: '"Transformed our business operations. Their expertise is unmatched."', author: '– Suresh Mehta, CEO' },
+          { quote: '"We saw immediate improvements. Highly recommended!"', author: '– Anita Reddy, Founder' },
+          { quote: '"Professional, reliable, and results-driven."', author: '– Deepak Singh, Director' }
+        ],
+        faq: [
+          { q: 'What services do you offer?', a: 'We offer business consulting, digital solutions, web development, marketing, registration, and compliance.' },
+          { q: 'How can I get started?', a: 'Contact us through the form or call us. We\'ll understand your needs and provide a tailored solution.' },
+          { q: 'Do you serve clients across India?', a: 'Yes, we serve clients across India with our comprehensive business solutions.' },
+          { q: 'What industries do you specialize in?', a: 'We work with manufacturing, finance, healthcare, education, retail, and technology.' }
+        ],
+        meta: {
+          title: 'Business Website Demo – Smile AI Web Studio',
+          desc: 'Explore our professional business website demo. Modern, responsive, and SEO-optimized design for your business.',
+          keywords: 'business website demo, professional website, web design, responsive website'
+        },
+        cta: {
+          title: 'Ready to Build Your Business Website?',
+          sub: 'Let\'s create something amazing for your business.',
+          btn1: 'Request Similar Website',
+          btn2: 'WhatsApp',
+          btn3: 'Call Now'
+        }
+      },
+      finance: {
+        brand: 'WealthBridge Financial',
+        tagline: 'Your Trusted Financial Partner',
+        colors: { primary: '#1E3A5F', secondary: '#2E7D32', accent: '#F9A825', bg: '#f5f7fa' },
+        hero: {
+          title: 'Professional <span class="highlight">Finance</span> Website Demo',
+          desc: 'A trustworthy finance website designed with loan calculators, application forms, and trust-building elements to convert leads.',
+          badge: 'Financial Solutions'
+        },
+        about: {
+          title: 'About <span>WealthBridge</span>',
+          desc: 'WealthBridge Financial is a premier financial services provider offering innovative solutions for individuals and businesses.',
+          desc2: 'With decades of combined experience, we help clients achieve their financial goals with confidence.',
+          mission: 'Build Financial Security',
+          vision: 'Financial Freedom for All',
+          values: 'Trust & Integrity'
+        },
+        services: [
+          { icon: '💰', name: 'Loans' },
+          { icon: '🏦', name: 'Investment' },
+          { icon: '🛡️', name: 'Insurance' },
+          { icon: '📊', name: 'Wealth Management' },
+          { icon: '🧾', name: 'Tax Planning' },
+          { icon: '📈', name: 'Financial Consulting' }
+        ],
+        industries: ['Banking', 'Insurance', 'Investment', 'Real Estate', 'Corporate', 'Retail'],
+        gallery: ['💰', '🏦', '📊', '🛡️', '🧾', '📈'],
+        achievements: [
+          { number: 1000, label: 'Clients Served' },
+          { number: 97, label: 'Satisfaction %' },
+          { number: 75, label: 'Expert Team' },
+          { number: 15, label: 'Years Experience' }
+        ],
+        why: [
+          { icon: '🔒', name: 'Secure & Trusted' },
+          { icon: '💎', name: 'Expert Advisors' },
+          { icon: '🤝', name: 'Client First' },
+          { icon: '📈', name: 'Proven Results' },
+          { icon: '💰', name: 'Competitive Rates' },
+          { icon: '🔧', name: 'Full Support' }
+        ],
+        pricing: [
+          { name: 'Basic', price: '₹999', features: ['Consultation', 'Financial Plan', 'Email Support'] },
+          { name: 'Premium', price: '₹2999', features: ['Full Analysis', 'Investment Advice', 'Priority Support'] },
+          { name: 'Elite', price: '₹4999', features: ['Complete Planning', 'Tax Optimization', 'Dedicated Advisor'] }
+        ],
+        testimonials: [
+          { quote: '"WealthBridge transformed our financial planning. Highly professional!"', author: '– Rajesh Kumar, Business Owner' },
+          { quote: '"Their expertise in investment strategy is unmatched."', author: '– Priya Singh, Investor' },
+          { quote: '"Trustworthy and results-driven financial partners."', author: '– Amit Sharma, CFO' }
+        ],
+        faq: [
+          { q: 'What financial services do you offer?', a: 'We offer loans, investment, insurance, wealth management, tax planning, and financial consulting.' },
+          { q: 'How can I start investing?', a: 'Contact us for a consultation. We\'ll create a personalized investment plan for you.' },
+          { q: 'Do you serve individuals and businesses?', a: 'Yes, we serve both individuals and businesses across India.' },
+          { q: 'What makes you different?', a: 'We provide personalized, transparent, and result-driven financial solutions.' }
+        ],
+        meta: {
+          title: 'Finance Website Demo – Smile AI Web Studio',
+          desc: 'Explore our professional finance website demo. Trustworthy, responsive, and lead-generating design.',
+          keywords: 'finance website demo, financial services, loan website, investment website'
+        },
+        cta: {
+          title: 'Secure Your Financial Future Today',
+          sub: 'Let\'s build a financial plan that works for you.',
+          btn1: 'Request Similar Website',
+          btn2: 'WhatsApp',
+          btn3: 'Call Now'
+        }
+      },
+      restaurant: {
+        brand: 'Flavors Restaurant',
+        tagline: 'Exquisite Dining Experience',
+        colors: { primary: '#C62828', secondary: '#E65100', accent: '#F9A825', bg: '#fef9f5' },
+        hero: {
+          title: 'Beautiful <span class="highlight">Restaurant</span> Website Demo',
+          desc: 'A stunning restaurant website with menu display, online ordering, and reservation systems to attract and serve customers.',
+          badge: 'Restaurant Solutions'
+        },
+        about: {
+          title: 'About <span>Flavors</span>',
+          desc: 'Flavors Restaurant brings you an exquisite dining experience with authentic cuisine and warm hospitality.',
+          desc2: 'Our team is passionate about creating memorable dining experiences for every guest.',
+          mission: 'Delicious Food, Happy Guests',
+          vision: 'India\'s Favorite Restaurant',
+          values: 'Quality, Service, Passion'
+        },
+        services: [
+          { icon: '🍽️', name: 'Menu Design' },
+          { icon: '🛒', name: 'Online Ordering' },
+          { icon: '📅', name: 'Reservations' },
+          { icon: '📱', name: 'Mobile App' },
+          { icon: '⭐', name: 'Reviews' },
+          { icon: '🎂', name: 'Events' }
+        ],
+        industries: ['Restaurants', 'Cafes', 'Hotels', 'Food Trucks', 'Bars', 'Catering'],
+        gallery: ['🍽️', '🥘', '🍷', '🍰', '☕', '⭐'],
+        achievements: [
+          { number: 5000, label: 'Happy Customers' },
+          { number: 98, label: 'Satisfaction %' },
+          { number: 50, label: 'Team Members' },
+          { number: 8, label: 'Years of Excellence' }
+        ],
+        why: [
+          { icon: '⭐', name: 'Best Quality' },
+          { icon: '🍳', name: 'Expert Chefs' },
+          { icon: '📍', name: 'Prime Location' },
+          { icon: '💎', name: 'Luxury Ambiance' },
+          { icon: '🔄', name: 'Fresh Ingredients' },
+          { icon: '🤝', name: 'Great Service' }
+        ],
+        pricing: [
+          { name: 'Basic', price: '₹999', features: ['Menu Display', 'Contact Form', 'Location Map'] },
+          { name: 'Pro', price: '₹1999', features: ['Online Ordering', 'Reservation', 'Reviews'] },
+          { name: 'Premium', price: '₹2999', features: ['Full System', 'Mobile App', 'Analytics'] }
+        ],
+        testimonials: [
+          { quote: '"The most amazing dining experience we\'ve ever had!"', author: '– Rahul & Family' },
+          { quote: '"Authentic flavors and exceptional service."', author: '– Sneha Patel, Food Critic' },
+          { quote: '"Flavors is our go-to place for special occasions."', author: '– Vikram Singh' }
+        ],
+        faq: [
+          { q: 'Do you take reservations?', a: 'Yes, we accept reservations online and by phone.' },
+          { q: 'Do you offer vegetarian options?', a: 'Yes, we have a wide range of vegetarian and vegan options.' },
+          { q: 'Can I order online?', a: 'Yes, you can order online through our website or app.' },
+          { q: 'Do you cater events?', a: 'Yes, we provide catering services for events and parties.' }
+        ],
+        meta: {
+          title: 'Restaurant Website Demo – Smile AI Web Studio',
+          desc: 'Explore our stunning restaurant website demo. Beautiful design with menu display, online ordering, and reservations.',
+          keywords: 'restaurant website demo, online ordering, restaurant design, menu website'
+        },
+        cta: {
+          title: 'Create Your Restaurant Website Today',
+          sub: 'Let\'s build a beautiful online presence for your restaurant.',
+          btn1: 'Request Similar Website',
+          btn2: 'WhatsApp',
+          btn3: 'Call Now'
+        }
+      },
+      clinic: {
+        brand: 'CityCare Clinic',
+        tagline: 'Caring for Your Health',
+        colors: { primary: '#00695C', secondary: '#00897B', accent: '#26A69A', bg: '#f0f7f4' },
+        hero: {
+          title: 'Patient-Friendly <span class="highlight">Clinic</span> Website Demo',
+          desc: 'A professional clinic website with appointment booking, doctor profiles, and health resources to build trust and attract patients.',
+          badge: 'Healthcare Solutions'
+        },
+        about: {
+          title: 'About <span>CityCare</span>',
+          desc: 'CityCare Clinic is a leading healthcare provider dedicated to delivering compassionate, high-quality medical care.',
+          desc2: 'With a team of experienced doctors and state-of-the-art facilities, we ensure the best care for our patients.',
+          mission: 'Health for All',
+          vision: 'Healthcare Excellence',
+          values: 'Care, Compassion, Quality'
+        },
+        services: [
+          { icon: '🩺', name: 'Consultations' },
+          { icon: '📅', name: 'Appointments' },
+          { icon: '🔬', name: 'Diagnostics' },
+          { icon: '💊', name: 'Pharmacy' },
+          { icon: '🏥', name: 'Emergency' },
+          { icon: '🧠', name: 'Specialists' }
+        ],
+        industries: ['Hospitals', 'Clinics', 'Diagnostics', 'Pharmacy', 'Wellness', 'Healthcare'],
+        gallery: ['🏥', '🩺', '🔬', '💊', '📋', '❤️'],
+        achievements: [
+          { number: 10000, label: 'Patients Treated' },
+          { number: 99, label: 'Satisfaction %' },
+          { number: 80, label: 'Expert Doctors' },
+          { number: 12, label: 'Years of Service' }
+        ],
+        why: [
+          { icon: '❤️', name: 'Compassionate Care' },
+          { icon: '👨‍⚕️', name: 'Expert Doctors' },
+          { icon: '🏥', name: 'Modern Facilities' },
+          { icon: '📅', name: 'Easy Appointment' },
+          { icon: '🔬', name: 'Advanced Diagnostics' },
+          { icon: '💬', name: 'Patient Support' }
+        ],
+        pricing: [
+          { name: 'Basic', price: '₹999', features: ['Consultation', 'Appointment', 'Contact Form'] },
+          { name: 'Pro', price: '₹1999', features: ['Doctor Profiles', 'Health Resources', 'Reviews'] },
+          { name: 'Premium', price: '₹2999', features: ['Full System', 'Patient Portal', 'Analytics'] }
+        ],
+        testimonials: [
+          { quote: '"CityCare provided exceptional care for my family."', author: '– Ananya Gupta' },
+          { quote: '"The doctors are highly professional and caring."', author: '– Rajesh Kumar' },
+          { quote: '"Best healthcare experience in the city."', author: '– Priya Sharma' }
+        ],
+        faq: [
+          { q: 'How do I book an appointment?', a: 'You can book an appointment online through our website or by phone.' },
+          { q: 'Do you accept insurance?', a: 'Yes, we accept most major health insurance plans.' },
+          { q: 'What are your visiting hours?', a: 'We are open Monday to Saturday, 9 AM to 8 PM.' },
+          { q: 'Do you provide emergency services?', a: 'Yes, we have 24/7 emergency services available.' }
+        ],
+        meta: {
+          title: 'Clinic Website Demo – Smile AI Web Studio',
+          desc: 'Explore our professional clinic website demo. Patient-friendly design with appointment booking and doctor profiles.',
+          keywords: 'clinic website demo, healthcare website, doctor website, appointment booking'
+        },
+        cta: {
+          title: 'Build Your Healthcare Website Today',
+          sub: 'Let\'s create a patient-friendly online presence for your clinic.',
+          btn1: 'Request Similar Website',
+          btn2: 'WhatsApp',
+          btn3: 'Call Now'
+        }
+      },
+      school: {
+        brand: 'Excel Academy',
+        tagline: 'Empowering Future Leaders',
+        colors: { primary: '#0D47A1', secondary: '#1565C0', accent: '#FDD835', bg: '#f5f8ff' },
+        hero: {
+          title: 'Engaging <span class="highlight">School</span> Website Demo',
+          desc: 'A comprehensive school website with course management, admission forms, and student resources to attract and engage students.',
+          badge: 'Education Solutions'
+        },
+        about: {
+          title: 'About <span>Excel Academy</span>',
+          desc: 'Excel Academy is a premier educational institution committed to providing quality education and holistic development.',
+          desc2: 'With experienced faculty and modern infrastructure, we nurture the leaders of tomorrow.',
+          mission: 'Quality Education for All',
+          vision: 'Excellence in Education',
+          values: 'Knowledge, Discipline, Integrity'
+        },
+        services: [
+          { icon: '📚', name: 'Academic Programs' },
+          { icon: '🎓', name: 'Admissions' },
+          { icon: '🏫', name: 'Campus' },
+          { icon: '👨‍🏫', name: 'Faculty' },
+          { icon: '📅', name: 'Events' },
+          { icon: '📱', name: 'Student Portal' }
+        ],
+        industries: ['Schools', 'Colleges', 'Coaching', 'Online Education', 'Training', 'Academies'],
+        gallery: ['🏫', '📚', '🎓', '👨‍🏫', '📅', '🌐'],
+        achievements: [
+          { number: 2000, label: 'Students Enrolled' },
+          { number: 98, label: 'Pass Rate %' },
+          { number: 120, label: 'Expert Faculty' },
+          { number: 25, label: 'Years of Excellence' }
+        ],
+        why: [
+          { icon: '📚', name: 'Quality Education' },
+          { icon: '👨‍🏫', name: 'Expert Faculty' },
+          { icon: '🏫', name: 'Modern Campus' },
+          { icon: '🎓', name: 'Student Success' },
+          { icon: '📱', name: 'Digital Learning' },
+          { icon: '🤝', name: 'Parent Community' }
+        ],
+        pricing: [
+          { name: 'Basic', price: '₹999', features: ['School Info', 'Admission Form', 'Contact'] },
+          { name: 'Pro', price: '₹1999', features: ['Course Management', 'Events Calendar', 'Faculty'] },
+          { name: 'Premium', price: '₹2999', features: ['Student Portal', 'Analytics', 'Full System'] }
+        ],
+        testimonials: [
+          { quote: '"Excel Academy transformed our child\'s education."', author: '– Parents of Aarav' },
+          { quote: '"The best decision we made for our children."', author: '– Mrs. Sharma' },
+          { quote: '"Outstanding faculty and learning environment."', author: '– Mr. Singh' }
+        ],
+        faq: [
+          { q: 'How do I apply for admission?', a: 'You can apply online through our admission portal or visit our campus.' },
+          { q: 'What programs do you offer?', a: 'We offer K-12, undergraduate, and postgraduate programs.' },
+          { q: 'What are the facilities?', a: 'We have modern classrooms, labs, library, sports facilities, and more.' },
+          { q: 'Do you offer scholarships?', a: 'Yes, we offer merit-based and need-based scholarships.' }
+        ],
+        meta: {
+          title: 'School Website Demo – Smile AI Web Studio',
+          desc: 'Explore our comprehensive school website demo. Engaging design with course management and student resources.',
+          keywords: 'school website demo, education website, college website, admission website'
+        },
+        cta: {
+          title: 'Build Your School Website Today',
+          sub: 'Let\'s create an engaging online presence for your institution.',
+          btn1: 'Request Similar Website',
+          btn2: 'WhatsApp',
+          btn3: 'Call Now'
+        }
+      },
+      realestate: {
+        brand: 'Dream Homes Realty',
+        tagline: 'Your Dream Home Awaits',
+        colors: { primary: '#4E342E', secondary: '#6D4C41', accent: '#F9A825', bg: '#faf8f5' },
+        hero: {
+          title: 'Luxury <span class="highlight">Real Estate</span> Website Demo',
+          desc: 'A premium real estate website with property listings, virtual tours, and agent profiles to showcase properties and attract buyers.',
+          badge: 'Real Estate Solutions'
+        },
+        about: {
+          title: 'About <span>Dream Homes</span>',
+          desc: 'Dream Homes Realty is a premier real estate company dedicated to helping clients find their perfect property.',
+          desc2: 'With years of experience and a portfolio of luxury properties, we ensure a seamless property buying experience.',
+          mission: 'Find Your Dream Home',
+          vision: 'India\'s Most Trusted Realty',
+          values: 'Trust, Quality, Excellence'
+        },
+        services: [
+          { icon: '🏡', name: 'Property Sales' },
+          { icon: '🏗️', name: 'Construction' },
+          { icon: '🔑', name: 'Property Management' },
+          { icon: '📊', name: 'Valuation' },
+          { icon: '🏠', name: 'Interior Design' },
+          { icon: '🤝', name: 'Consulting' }
+        ],
+        industries: ['Residential', 'Commercial', 'Luxury', 'Industrial', 'Land', 'Rental'],
+        gallery: ['🏡', '🏗️', '🔑', '🏠', '📊', '🌆'],
+        achievements: [
+          { number: 500, label: 'Properties Sold' },
+          { number: 99, label: 'Satisfaction %' },
+          { number: 80, label: 'Expert Team' },
+          { number: 15, label: 'Years of Trust' }
+        ],
+        why: [
+          { icon: '🏡', name: 'Luxury Properties' },
+          { icon: '🤝', name: 'Trusted Partner' },
+          { icon: '📊', name: 'Market Experts' },
+          { icon: '🔑', name: 'Seamless Process' },
+          { icon: '💰', name: 'Best Value' },
+          { icon: '🌆', name: 'Prime Locations' }
+        ],
+        pricing: [
+          { name: 'Basic', price: '₹999', features: ['Listings', 'Contact Form', 'Location'] },
+          { name: 'Pro', price: '₹1999', features: ['Virtual Tours', 'Agent Profiles', 'Search'] },
+          { name: 'Premium', price: '₹2999', features: ['Full System', 'Analytics', 'CRM'] }
+        ],
+        testimonials: [
+          { quote: '"Dream Homes helped us find our perfect home."', author: '– Rahul & Priya' },
+          { quote: '"Professional and trustworthy real estate partners."', author: '– Mr. Sharma' },
+          { quote: '"Exceptional service from start to finish."', author: '– Neha Gupta' }
+        ],
+        faq: [
+          { q: 'How do I find a property?', a: 'Browse our listings or contact us for personalized property suggestions.' },
+          { q: 'Do you offer property management?', a: 'Yes, we provide comprehensive property management services.' },
+          { q: 'What areas do you cover?', a: 'We cover major cities across India.' },
+          { q: 'Can I schedule a viewing?', a: 'Yes, contact us to schedule a property viewing.' }
+        ],
+        meta: {
+          title: 'Real Estate Website Demo – Smile AI Web Studio',
+          desc: 'Explore our luxury real estate website demo. Premium design with property listings and virtual tours.',
+          keywords: 'real estate website demo, property website, luxury homes, realty website'
+        },
+        cta: {
+          title: 'Build Your Real Estate Website Today',
+          sub: 'Let\'s create a stunning online presence for your properties.',
+          btn1: 'Request Similar Website',
+          btn2: 'WhatsApp',
+          btn3: 'Call Now'
+        }
+      },
+      hospital: {
+        brand: 'Apex Hospital',
+        tagline: 'Excellence in Healthcare',
+        colors: { primary: '#0D47A1', secondary: '#1A237E', accent: '#4FC3F7', bg: '#f0f5ff' },
+        hero: {
+          title: 'Comprehensive <span class="highlight">Hospital</span> Website Demo',
+          desc: 'A professional hospital website with department pages, doctor profiles, and patient services to enhance patient care.',
+          badge: 'Hospital Solutions'
+        },
+        about: {
+          title: 'About <span>Apex Hospital</span>',
+          desc: 'Apex Hospital is a multi-specialty healthcare facility dedicated to providing world-class medical care.',
+          desc2: 'With cutting-edge technology and a team of renowned specialists, we deliver excellence in healthcare.',
+          mission: 'Saving Lives, Healing Hearts',
+          vision: 'Healthcare Excellence',
+          values: 'Care, Innovation, Compassion'
+        },
+        services: [
+          { icon: '🩺', name: 'Medical Services' },
+          { icon: '🔬', name: 'Diagnostics' },
+          { icon: '🏥', name: 'Emergency Care' },
+          { icon: '🧠', name: 'Specialties' },
+          { icon: '💊', name: 'Pharmacy' },
+          { icon: '📋', name: 'Patient Portal' }
+        ],
+        industries: ['Hospitals', 'Medical Centers', 'Specialty Clinics', 'Healthcare Networks'],
+        gallery: ['🏥', '🩺', '🔬', '🧠', '💊', '📋'],
+        achievements: [
+          { number: 50000, label: 'Patients Treated' },
+          { number: 99, label: 'Satisfaction %' },
+          { number: 200, label: 'Expert Doctors' },
+          { number: 20, label: 'Years of Service' }
+        ],
+        why: [
+          { icon: '🏥', name: 'World-Class Care' },
+          { icon: '👨‍⚕️', name: 'Expert Doctors' },
+          { icon: '🔬', name: 'Advanced Technology' },
+          { icon: '📅', name: 'Easy Appointments' },
+          { icon: '🤝', name: 'Patient Centric' },
+          { icon: '⭐', name: 'Accredited' }
+        ],
+        pricing: [
+          { name: 'Basic', price: '₹1999', features: ['Department Pages', 'Doctor Profiles', 'Appointments'] },
+          { name: 'Pro', price: '₹3999', features: ['Patient Portal', 'Health Resources', 'Analytics'] },
+          { name: 'Premium', price: '₹5999', features: ['Full System', 'CRM', '24/7 Support'] }
+        ],
+        testimonials: [
+          { quote: '"Apex Hospital saved my life. I\'m forever grateful."', author: '– Patient' },
+          { quote: '"The best medical care I have ever received."', author: '– Family Member' },
+          { quote: '"Exceptional doctors and state-of-the-art facilities."', author: '– Healthcare Professional' }
+        ],
+        faq: [
+          { q: 'What services do you offer?', a: 'We offer comprehensive medical, surgical, and emergency services across all specialties.' },
+          { q: 'How do I book an appointment?', a: 'You can book online through our patient portal or call our helpline.' },
+          { q: 'Do you accept insurance?', a: 'Yes, we accept all major health insurance plans.' },
+          { q: 'Is emergency care available 24/7?', a: 'Yes, our emergency department is open 24/7 for all medical emergencies.' }
+        ],
+        meta: {
+          title: 'Hospital Website Demo – Smile AI Web Studio',
+          desc: 'Explore our comprehensive hospital website demo. Professional design with department pages and patient services.',
+          keywords: 'hospital website demo, healthcare website, medical website, patient portal'
+        },
+        cta: {
+          title: 'Build Your Hospital Website Today',
+          sub: 'Let\'s create a comprehensive online presence for your healthcare facility.',
+          btn1: 'Request Similar Website',
+          btn2: 'WhatsApp',
+          btn3: 'Call Now'
+        }
+      },
+      hotel: {
+        brand: 'The Royal Grand',
+        tagline: 'Experience Luxury at its Finest',
+        colors: { primary: '#1A1A2E', secondary: '#16213E', accent: '#F5C842', bg: '#faf8f5' },
+        hero: {
+          title: 'Luxury <span class="highlight">Hotel</span> Website Demo',
+          desc: 'A premium hotel website with room booking, gallery, and guest services information designed to attract and convert guests.',
+          badge: 'Hotel Solutions'
+        },
+        about: {
+          title: 'About <span>The Royal Grand</span>',
+          desc: 'The Royal Grand is a luxury hotel offering an unmatched experience of elegance, comfort, and world-class hospitality.',
+          desc2: 'With a legacy of excellence, we have been the preferred choice for discerning travelers.',
+          mission: 'Luxury Redefined',
+          vision: 'India\'s Premier Hotel',
+          values: 'Excellence, Warmth, Elegance'
+        },
+        services: [
+          { icon: '🛏️', name: 'Luxury Rooms' },
+          { icon: '🍽️', name: 'Fine Dining' },
+          { icon: '🏊', name: 'Pool & Spa' },
+          { icon: '🎯', name: 'Events' },
+          { icon: '🚗', name: 'Concierge' },
+          { icon: '⭐', name: 'Guest Services' }
+        ],
+        industries: ['Hotels', 'Resorts', 'Boutique Hotels', 'Luxury Stays'],
+        gallery: ['🏨', '🛏️', '🍽️', '🏊', '🎯', '⭐'],
+        achievements: [
+          { number: 10000, label: 'Happy Guests' },
+          { number: 98, label: 'Satisfaction %' },
+          { number: 150, label: 'Staff Members' },
+          { number: 15, label: 'Years of Excellence' }
+        ],
+        why: [
+          { icon: '⭐', name: 'Luxury Experience' },
+          { icon: '🏨', name: 'Premier Location' },
+          { icon: '👨‍🍳', name: 'Top Chefs' },
+          { icon: '🏊', name: 'World-Class Amenities' },
+          { icon: '🤝', name: 'Exceptional Service' },
+          { icon: '💎', name: 'Unmatched Quality' }
+        ],
+        pricing: [
+          { name: 'Standard', price: '₹999', features: ['Room Gallery', 'Amenities', 'Contact'] },
+          { name: 'Luxury', price: '₹1999', features: ['Room Booking', 'Reviews', 'Gallery'] },
+          { name: 'Royal', price: '₹2999', features: ['Full System', 'Analytics', 'CRM'] }
+        ],
+        testimonials: [
+          { quote: '"The Royal Grand exceeded all our expectations."', author: '– Mr. & Mrs. Sharma' },
+          { quote: '"The best hotel experience in India."', author: '– International Guest' },
+          { quote: '"Unforgettable luxury and warm hospitality."', author: '– Business Traveler' }
+        ],
+        faq: [
+          { q: 'How do I book a room?', a: 'You can book directly through our website or call our reservation desk.' },
+          { q: 'What amenities do you offer?', a: 'We offer a pool, spa, fine dining, fitness center, and more.' },
+          { q: 'Do you host events?', a: 'Yes, we host weddings, conferences, and special events.' },
+          { q: 'What is the check-in time?', a: 'Check-in is at 2 PM and check-out at 12 PM.' }
+        ],
+        meta: {
+          title: 'Hotel Website Demo – Smile AI Web Studio',
+          desc: 'Explore our luxury hotel website demo. Premium design with room booking and guest services.',
+          keywords: 'hotel website demo, luxury hotel, hospitality website, room booking'
+        },
+        cta: {
+          title: 'Build Your Hotel Website Today',
+          sub: 'Let\'s create a luxurious online presence for your hotel.',
+          btn1: 'Request Similar Website',
+          btn2: 'WhatsApp',
+          btn3: 'Call Now'
+        }
+      }
+    };
+
+    // ===== HELPER: Get industry type =====
+    function getIndustryType() {
+      const params = new URLSearchParams(window.location.search);
+      let type = params.get('type') || 'business';
+      type = type.toLowerCase().trim().replace(/\s+/g, '');
+      if (!industryData[type]) type = 'business';
+      return type;
+    }
+
+    // ===== APPLY DYNAMIC THEME =====
+    function applyTheme(data) {
+      const colors = data.colors;
+      document.documentElement.style.setProperty('--primary', colors.primary);
+      document.documentElement.style.setProperty('--secondary', colors.secondary);
+      document.documentElement.style.setProperty('--accent', colors.accent);
+
+      // Hero background
+      document.getElementById('hero').style.background = `linear-gradient(165deg, ${colors.bg} 0%, #ffffff 100%)`;
+
+      // Badge
+      const badge = document.querySelector('#hero .badge-pill');
+      if (badge) { badge.style.background = colors.primary; badge.style.color = 'white'; }
+
+      // Floating shapes colors
+      const shapes = document.querySelectorAll('.floating-shapes span');
+      if (shapes.length >= 3) {
+        shapes[0].style.background = colors.primary;
+        shapes[1].style.background = colors.accent;
+        shapes[2].style.background = colors.secondary;
+      }
+
+      // CTA background
+      document.getElementById('final-cta').style.background = `linear-gradient(145deg, ${colors.primary}, ${colors.secondary})`;
+
+      // Buttons in CTA
+      const ctaBtns = document.querySelectorAll('#final-cta .btn');
+      ctaBtns.forEach(btn => {
+        btn.style.setProperty('--primary', colors.primary);
+        btn.style.setProperty('--secondary', colors.secondary);
+        btn.style.setProperty('--accent', colors.accent);
+      });
+    }
+
+    // ===== RENDER PAGE =====
+    function initPage() {
+      const type = getIndustryType();
+      const data = industryData[type] || industryData['business'];
+
+      // Apply theme
+      applyTheme(data);
+
+      // SEO
+      document.getElementById('dynamicTitle').textContent = data.meta.title;
+      document.getElementById('dynamicDescription').content = data.meta.desc;
+      document.getElementById('dynamicCanonical').href = `https://web.smilefinancialsolution.com/demo.html?type=${type}`;
+      document.getElementById('dynamicKeywords').content = data.meta.keywords;
+      document.getElementById('ogTitle').content = data.meta.title;
+      document.getElementById('ogDescription').content = data.meta.desc;
+      document.getElementById('ogUrl').content = `https://web.smilefinancialsolution.com/demo.html?type=${type}`;
+
+      // Brand
+      document.getElementById('brandLogo').innerHTML = data.brand;
+      document.getElementById('footerBrand').textContent = data.brand;
+      document.getElementById('footerTagline').textContent = data.tagline;
+
+      // Hero
+      document.getElementById('heroBadge').textContent = data.hero.badge;
+      document.getElementById('heroTitle').innerHTML = data.hero.title;
+      document.getElementById('heroDesc').textContent = data.hero.desc;
+      document.getElementById('heroBtn1').textContent = 'Get Quote';
+      document.getElementById('heroBtn2').textContent = 'Request Similar Website';
+
+      // Hero Illustration
+      const heroIllus = document.getElementById('heroIllustration');
+      heroIllus.style.background = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect x="40" y="20" width="320" height="260" rx="16" fill="white" stroke="${data.colors.primary}" stroke-width="2"/><rect x="60" y="40" width="120" height="14" rx="7" fill="${data.colors.primary}"/><rect x="200" y="40" width="80" height="14" rx="7" fill="%23cbd5e1"/><rect x="300" y="40" width="50" height="14" rx="7" fill="%23cbd5e1"/><rect x="60" y="75" width="280" height="130" rx="10" fill="%23f1f5f9"/><rect x="80" y="95" width="240" height="20" rx="10" fill="%23e2e8f0"/><rect x="80" y="125" width="240" height="20" rx="10" fill="%23e2e8f0"/><rect x="80" y="155" width="240" height="20" rx="10" fill="%23e2e8f0"/><rect x="60" y="225" width="280" height="40" rx="20" fill="${data.colors.primary}" opacity="0.15"/></svg>')`;
+      heroIllus.style.backgroundSize = 'contain';
+      heroIllus.style.backgroundRepeat = 'no-repeat';
+      heroIllus.style.backgroundPosition = 'center';
+
+      // About
+      document.getElementById('aboutBadge').textContent = 'About Us';
+      document.getElementById('aboutTitle').innerHTML = data.about.title;
+      document.getElementById('aboutDesc').textContent = data.about.desc;
+      document.getElementById('aboutDesc2').textContent = data.about.desc2;
+      document.getElementById('aboutIllustration').textContent = data.about.illustration || '🏢';
+      const values = document.querySelectorAll('#aboutValues .value');
+      if (values.length >= 3) {
+        values[0].querySelector('strong').textContent = data.about.mission.split(' ')[0] + ' ' + data.about.mission.split(' ')[1];
+        values[0].querySelector('br').nextSibling.textContent = data.about.mission;
+        values[1].querySelector('strong').textContent = data.about.vision.split(' ')[0] + ' ' + data.about.vision.split(' ')[1];
+        values[1].querySelector('br').nextSibling.textContent = data.about.vision;
+        values[2].querySelector('strong').textContent = data.about.values.split(' ')[0];
+        values[2].querySelector('br').nextSibling.textContent = data.about.values;
+      }
+
+      // Services
+      document.getElementById('servicesTitle').innerHTML = 'Our <span>Services</span>';
+      document.getElementById('servicesSub').textContent = 'Comprehensive solutions for modern businesses.';
+      const serviceGrid = document.getElementById('serviceGrid');
+      serviceGrid.innerHTML = '';
+      data.services.forEach(s => {
+        const card = document.createElement('div');
+        card.className = 'service-card';
+        card.innerHTML = `<span class="icon">${s.icon}</span><h3>${s.name}</h3>`;
+        serviceGrid.appendChild(card);
+      });
+
+      // Industries
+      document.getElementById('industriesTitle').innerHTML = 'Industries We <span>Serve</span>';
+      document.getElementById('industriesSub').textContent = 'Expert solutions across multiple sectors.';
+      const industryGrid = document.getElementById('industryGrid');
+      industryGrid.innerHTML = '';
+      data.industries.forEach(i => {
+        const item = document.createElement('div');
+        item.className = 'industry-item';
+        item.textContent = i;
+        industryGrid.appendChild(item);
+      });
+
+      // Gallery
+      document.getElementById('galleryTitle').innerHTML = 'Our <span>Gallery</span>';
+      document.getElementById('gallerySub').textContent = 'A glimpse into our work.';
+      const galleryGrid = document.getElementById('galleryGrid');
+      galleryGrid.innerHTML = '';
+      data.gallery.forEach(g => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.textContent = g;
+        galleryGrid.appendChild(item);
+      });
+
+      // Achievements
+      document.getElementById('achieveTitle').innerHTML = 'Our <span>Achievements</span>';
+      const achieveGrid = document.getElementById('achieveGrid');
+      achieveGrid.innerHTML = '';
+      data.achievements.forEach(a => {
+        const item = document.createElement('div');
+        item.className = 'achieve-item';
+        item.innerHTML = `<div class="number" data-count="${a.number}">0</div><div class="label">${a.label}</div>`;
+        achieveGrid.appendChild(item);
+      });
+
+      // Why Choose
+      document.getElementById('whyTitle').innerHTML = 'Why <span>Choose Us</span>';
+      const whyGrid = document.getElementById('whyGrid');
+      whyGrid.innerHTML = '';
+      data.why.forEach(w => {
+        const item = document.createElement('div');
+        item.className = 'why-item';
+        item.innerHTML = `<span class="icon">${w.icon}</span>${w.name}`;
+        whyGrid.appendChild(item);
+      });
+
+      // Pricing
+      document.getElementById('pricingTitle').innerHTML = 'Simple <span>Pricing</span>';
+      document.getElementById('pricingSub').textContent = 'Choose the perfect plan for your business.';
+      const pricingGrid = document.getElementById('pricingGrid');
+      pricingGrid.innerHTML = '';
+      data.pricing.forEach((p, idx) => {
+        const card = document.createElement('div');
+        card.className = 'pricing-card' + (idx === 1 ? ' highlight' : '');
+        card.innerHTML = `
+          <h3>${p.name}</h3>
+          <div class="price">${p.price}</div>
+          <ul style="list-style:none;margin:1rem 0;text-align:left;">
+            ${p.features.map(f => `<li style="padding:4px 0;">✔ ${f}</li>`).join('')}
+          </ul>
+          <a href="#contact" class="btn btn-primary" style="padding:8px 24px;font-size:0.85rem;">Get Started</a>
+        `;
+        pricingGrid.appendChild(card);
+      });
+
+      // Testimonials
+      document.getElementById('testimonialTitle').innerHTML = 'Client <span>Testimonials</span>';
+      const testimonialGrid = document.getElementById('testimonialGrid');
+      testimonialGrid.innerHTML = '';
+      data.testimonials.forEach(t => {
+        const card = document.createElement('div');
+        card.className = 'testimonial-card';
+        card.innerHTML = `<p class="quote">${t.quote}</p><p class="author">${t.author}</p>`;
+        testimonialGrid.appendChild(card);
+      });
+
+      // FAQ
+      document.getElementById('faqTitle').innerHTML = 'Frequently <span>Asked</span>';
+      const faqContainer = document.getElementById('faqContainer');
+      faqContainer.innerHTML = '';
+      data.faq.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'faq-item';
+        div.innerHTML = `
+          <div class="faq-question">${item.q} <span>+</span></div>
+          <div class="faq-answer">${item.a}</div>
+        `;
+        faqContainer.appendChild(div);
+      });
+
+      // Update FAQ Schema
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": data.faq.map(item => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": item.a
+          }
+        }))
+      };
+      document.getElementById('jsonld-faq').textContent = JSON.stringify(faqSchema);
+
+      // CTA
+      document.getElementById('ctaTitle').textContent = data.cta.title;
+      document.getElementById('ctaSub').textContent = data.cta.sub;
+      document.getElementById('ctaBtn1').textContent = data.cta.btn1;
+      document.getElementById('ctaBtn2').textContent = data.cta.btn2;
+      document.getElementById('ctaBtn3').textContent = data.cta.btn3;
+
+      // Re-run counter animation
+      setTimeout(() => {
+        document.querySelectorAll('.number[data-count]').forEach(counter => {
+          const target = parseInt(counter.dataset.count);
+          let current = 0;
+          const increment = target / 50;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) { counter.textContent = target + (target === 98 ? '%' : '+'); clearInterval(timer); }
+            else counter.textContent = Math.floor(current);
+          }, 20);
+        });
+      }, 500);
+
+      console.log(`🚀 Demo loaded: ${data.brand} (${type})`);
+    }
+
+    // ===== CONTACT FORM =====
+    function handleContact(e) {
+      e.preventDefault();
+      const name = document.getElementById('contactName').value.trim();
+      const phone = document.getElementById('contactPhone').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const business = document.getElementById('contactBusiness').value.trim();
+      const type = document.getElementById('contactType').value.trim();
+      const message = document.getElementById('contactMessage').value.trim();
+      const budget = document.getElementById('contactBudget').value.trim();
+      const reference = document.getElementById('contactReference').value.trim();
+
+      const dataType = getIndustryType();
+      const data = industryData[dataType] || industryData['business'];
+
+      const msg = `Hello Smile AI Web Studio,%0A%0A🧑‍💼 Name: ${name}%0A📞 Phone: ${phone}%0A✉️ Email: ${email}%0A🏢 Business: ${business}%0A📂 Type: ${type || data.brand}%0A📝 Message: ${message}%0A💰 Budget: ${budget || 'Not specified'}%0A🔗 Reference: ${reference || 'None'}%0A%0A🚀 I liked the ${data.brand} website demo. I want a similar website.`;
+      window.open(`https://wa.me/917290977231?text=${msg}`, '_blank');
+      document.getElementById('thankYouPopup').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('contactForm').reset();
+    }
+
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hide');
+      initPage();
+    });
+
+    // ===== HEADER SCROLL =====
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // ===== HAMBURGER =====
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navbar').classList.toggle('open');
+    });
+    document.querySelectorAll('#navbar a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('navbar').classList.remove('open'));
+    });
+
+    // ===== FAQ ACCORDION =====
+    document.addEventListener('click', function(e) {
+      const faqItem = e.target.closest('.faq-item');
+      if (faqItem) {
+        faqItem.classList.toggle('active');
+        const sign = faqItem.querySelector('.faq-question span');
+        if (sign) sign.textContent = faqItem.classList.contains('active') ? '−' : '+';
+      }
+    });
+
+    // ===== POPUP =====
+    function closeThankYou() {
+      document.getElementById('thankYouPopup').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('thankYouPopup').addEventListener('click', function(e) {
+      if (e.target === this) closeThankYou();
+    });
+
+    // ===== SCROLL REVEAL =====
+    const revealItems = document.querySelectorAll('.service-card, .why-item, .industry-item, .gallery-item, .testimonial-card, .faq-item, .pricing-card, .achieve-item, .process-step');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+    revealItems.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      revealObserver.observe(el);
+    });
+
+    console.log('🚀 demo.html – Smile AI Web Studio');
+    console.log('📌 Supported industries: ' + Object.keys(industryData).join(', '));
+    console.log('📌 Use demo.html?type=industry to load different demos');
+  </script>
+</body>
+</html>
