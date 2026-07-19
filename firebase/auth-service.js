@@ -1,272 +1,263 @@
+// ======================================================
+// Smile AI Web Studio
 // firebase/auth-service.js
+// Part 01
+// ======================================================
 
 import { auth, db } from "./firebase-config.js";
 
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup,
   GoogleAuthProvider,
+  signInWithPopup,
   sendEmailVerification,
   sendPasswordResetEmail,
   updateProfile,
   signOut,
   onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
 import {
   doc,
-  getDoc,
   setDoc,
+  getDoc,
   serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-// ===============================
-// GOOGLE PROVIDER
-// ===============================
+// ======================================================
+// Google Provider
+// ======================================================
 
 const googleProvider = new GoogleAuthProvider();
 
-// ===============================
-// SIGNUP
-// ===============================
+// ======================================================
+// Current User
+// ======================================================
 
-export async function signupUser(userData) {
+export function getCurrentUser(callback) {
 
-  const {
-    name,
-    email,
-    password,
-    phone,
-    businessName,
-    country,
-    state,
-    city,
-    accountType,
-    newsletter
-  } = userData;
+    onAuthStateChanged(auth, (user) => {
 
-  try {
-
-    const credential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    const user = credential.user;
-
-    await updateProfile(user, {
-      displayName: name
-    });
-
-    await sendEmailVerification(user);
-
-    await setDoc(doc(db, "users", user.uid), {
-
-      uid: user.uid,
-
-      name,
-
-      email,
-
-      phone,
-
-      businessName,
-
-      country,
-
-      state,
-
-      city,
-
-      accountType,
-
-      newsletter,
-
-      role: accountType,
-
-      status: "active",
-
-      emailVerified: false,
-
-      createdAt: serverTimestamp()
+        callback(user);
 
     });
-
-    return {
-      success: true,
-      message: "Account Created Successfully"
-    };
-
-  } catch (error) {
-
-    return {
-      success: false,
-      message: error.message
-    };
-
-  }
 
 }
 
-// ===============================
-// LOGIN
-// ===============================
+// ======================================================
+// Signup Function
+// ======================================================
 
-export async function loginUser(email, password) {
+export async function signup(data) {
 
-  try {
+    try {
 
-    const credential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+        const credential =
+            await createUserWithEmailAndPassword(
+                auth,
+                data.email,
+                data.password
+            );
 
-    const user = credential.user;
+        const user = credential.user;
 
-    if (!user.emailVerified) {
+        await updateProfile(user, {
 
-      return {
-        success: false,
-        message: "Please verify your email first."
-      };
+            displayName: data.name
+
+        });
+
+        await sendEmailVerification(user);
+
+        await setDoc(doc(db, "users", user.uid), {
+
+            uid: user.uid,
+
+            name: data.name,
+
+            email: data.email,
+
+            phone: data.phone,
+
+            businessName: data.businessName || "",
+
+            country: data.country || "",
+
+            state: data.state || "",
+
+            city: data.city || "",
+
+            accountType: data.accountType,
+
+            newsletter: data.newsletter,
+
+            role: data.accountType,
+
+            status: "active",
+
+            emailVerified: false,
+
+            createdAt: serverTimestamp()
+
+        });
+
+        return {
+
+            success: true,
+
+            message: "Account Created Successfully"
+
+        };
 
     }
 
-    return {
-      success: true,
-      user
-    };
+    catch (error) {
 
-  } catch (error) {
+        return {
 
-    return {
-      success: false,
-      message: error.message
-    };
+            success: false,
 
-  }
+            code: error.code,
+
+            message: error.message
+
+        };
+
+    }
 
 }
 
-// ===============================
-// GOOGLE LOGIN
-// ===============================
+// ======================================================
+// Login Function
+// ======================================================
+
+export async function login(email, password) {
+
+    try {
+
+        const credential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        const user = credential.user;
+
+        if (!user.emailVerified) {
+
+            return {
+
+                success: false,
+
+                message: "Please verify your email."
+
+            };
+
+        }
+
+        return {
+
+            success: true,
+
+            user
+
+        };
+
+    }
+
+    catch (error) {
+
+        return {
+
+            success: false,
+
+            code: error.code,
+
+            message: error.message
+
+        };
+
+    }
+
+}
+
+// ======================================================
+// Google Login
+// ======================================================
 
 export async function googleLogin() {
 
-  try {
+    try {
 
-    const result = await signInWithPopup(auth, googleProvider);
+        const result =
+            await signInWithPopup(auth, googleProvider);
 
-    const user = result.user;
+        const user = result.user;
 
-    const ref = doc(db, "users", user.uid);
+        const ref = doc(db, "users", user.uid);
 
-    const snap = await getDoc(ref);
+        const snap = await getDoc(ref);
 
-    if (!snap.exists()) {
+        if (!snap.exists()) {
 
-      await setDoc(ref, {
+            await setDoc(ref, {
 
-        uid: user.uid,
+                uid: user.uid,
 
-        name: user.displayName,
+                name: user.displayName,
 
-        email: user.email,
+                email: user.email,
 
-        phone: user.phoneNumber || "",
+                phone: user.phoneNumber || "",
 
-        businessName: "",
+                businessName: "",
 
-        country: "",
+                country: "",
 
-        state: "",
+                state: "",
 
-        city: "",
+                city: "",
 
-        accountType: "customer",
+                accountType: "customer",
 
-        newsletter: true,
+                role: "customer",
 
-        role: "customer",
+                newsletter: true,
 
-        status: "active",
+                status: "active",
 
-        emailVerified: true,
+                emailVerified: true,
 
-        createdAt: serverTimestamp()
+                createdAt: serverTimestamp()
 
-      });
+            });
+
+        }
+
+        return {
+
+            success: true,
+
+            user
+
+        };
 
     }
 
-    return {
-      success: true,
-      user
-    };
+    catch (error) {
 
-  } catch (error) {
+        return {
 
-    return {
-      success: false,
-      message: error.message
-    };
+            success: false,
 
-  }
+            code: error.code,
 
-}
+            message: error.message
 
-// ===============================
-// RESET PASSWORD
-// ===============================
+        };
 
-export async function forgotPassword(email) {
-
-  try {
-
-    await sendPasswordResetEmail(auth, email);
-
-    return {
-      success: true,
-      message: "Password reset email sent."
-    };
-
-  } catch (error) {
-
-    return {
-      success: false,
-      message: error.message
-    };
-
-  }
-
-}
-
-// ===============================
-// LOGOUT
-// ===============================
-
-export async function logoutUser() {
-
-  await signOut(auth);
-
-  window.location.href = "login.html";
-
-}
-
-// ===============================
-// CURRENT USER
-// ===============================
-
-export function currentUser(callback) {
-
-  onAuthStateChanged(auth, (user) => {
-
-    callback(user);
-
-  });
+    }
 
 }
