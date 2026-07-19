@@ -1,618 +1,1160 @@
-// js/auth.js
-import { 
-  auth, 
-  db, 
-  signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
-  FacebookAuthProvider,
-  GithubAuthProvider,
-  OAuthProvider,
-  sendPasswordResetEmail,
-  onAuthStateChanged,
-  signOut,
-  doc,
-  setDoc,
-  getDoc,
-  updateDoc,
-  serverTimestamp,
-  collection,
-  query,
-  where,
-  getDocs
-} from './firebase-service.js';
+// ======================================================
+// Smile AI Web Studio
+// auth.js
+// Part 1
+// Firebase Authentication
+// ======================================================
 
-// ============================================================
-// DOM REFS
-// ============================================================
+import {
+auth,
+db,
 
-// Login
-const loginForm = document.getElementById('loginForm');
-const loginEmail = document.getElementById('loginEmail');
-const loginPassword = document.getElementById('loginPassword');
-const loginBtn = document.getElementById('loginBtn');
-const loginMessage = document.getElementById('loginMessage');
-const rememberMe = document.getElementById('rememberMe');
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+signOut,
+onAuthStateChanged,
+sendPasswordResetEmail,
+signInWithPopup,
 
-// Signup
-const signupForm = document.getElementById('signupForm');
-const signupName = document.getElementById('signupName');
-const signupEmail = document.getElementById('signupEmail');
-const signupPhone = document.getElementById('signupPhone');
-const businessName = document.getElementById('businessName');
-const businessType = document.getElementById('businessType');
-const websiteGoal = document.getElementById('websiteGoal');
-const signupPassword = document.getElementById('signupPassword');
-const confirmPassword = document.getElementById('confirmPassword');
-const referralCode = document.getElementById('referralCode');
-const acceptTerms = document.getElementById('acceptTerms');
-const signupBtn = document.getElementById('signupBtn');
-const signupMessage = document.getElementById('signupMessage');
+GoogleAuthProvider,
+FacebookAuthProvider,
+GithubAuthProvider,
+OAuthProvider,
 
-// Social buttons
-const googleLoginBtn = document.getElementById('googleLogin');
-const facebookLoginBtn = document.getElementById('facebookLogin');
-const githubLoginBtn = document.getElementById('githubLogin');
-const microsoftLoginBtn = document.getElementById('microsoftLogin');
-const googleSignupBtn = document.getElementById('googleSignup');
-const facebookSignupBtn = document.getElementById('facebookSignup');
-const githubSignupBtn = document.getElementById('githubSignup');
-const microsoftSignupBtn = document.getElementById('microsoftSignup');
+doc,
+setDoc,
+getDoc,
+updateDoc,
+serverTimestamp
 
-// ============================================================
-// HELPER FUNCTIONS
-// ============================================================
+} from "./firebase-service.js";
 
-function showMessage(element, message, isError = true) {
-  if (!element) return;
-  element.textContent = message;
-  element.className = 'message-area';
-  if (isError) {
-    element.classList.add('error');
-  } else {
-    element.classList.add('success');
-  }
+
+// =======================================
+// DOM
+// =======================================
+
+// LOGIN
+
+const loginForm=document.getElementById("loginForm");
+const loginEmail=document.getElementById("loginEmail");
+const loginPassword=document.getElementById("loginPassword");
+const loginBtn=document.getElementById("loginBtn");
+const loginMessage=document.getElementById("loginMessage");
+const rememberMe=document.getElementById("rememberMe");
+
+// SIGNUP
+
+const signupForm=document.getElementById("signupForm");
+
+const signupName=document.getElementById("signupName");
+const signupEmail=document.getElementById("signupEmail");
+const signupPhone=document.getElementById("signupPhone");
+
+const businessName=document.getElementById("businessName");
+const businessType=document.getElementById("businessType");
+const websiteGoal=document.getElementById("websiteGoal");
+
+const signupPassword=document.getElementById("signupPassword");
+const confirmPassword=document.getElementById("confirmPassword");
+
+const referralCode=document.getElementById("referralCode");
+const acceptTerms=document.getElementById("acceptTerms");
+
+const signupBtn=document.getElementById("signupBtn");
+const signupMessage=document.getElementById("signupMessage");
+
+// SOCIAL
+
+const googleLogin=document.getElementById("googleLogin");
+const facebookLogin=document.getElementById("facebookLogin");
+const githubLogin=document.getElementById("githubLogin");
+const microsoftLogin=document.getElementById("microsoftLogin");
+
+const googleSignup=document.getElementById("googleSignup");
+const facebookSignup=document.getElementById("facebookSignup");
+const githubSignup=document.getElementById("githubSignup");
+const microsoftSignup=document.getElementById("microsoftSignup");
+
+
+// =======================================
+// Providers
+// =======================================
+
+const googleProvider=new GoogleAuthProvider();
+
+const facebookProvider=new FacebookAuthProvider();
+
+const githubProvider=new GithubAuthProvider();
+
+const microsoftProvider=new OAuthProvider("microsoft.com");
+
+
+// =======================================
+// Helper Functions
+// =======================================
+
+function showMessage(element,message,type="error"){
+
+if(!element) return;
+
+element.innerHTML=message;
+
+element.classList.remove("success","error");
+
+element.classList.add(type);
+
 }
 
-function clearMessage(element) {
-  if (!element) return;
-  element.textContent = '';
-  element.className = 'message-area';
+function clearMessage(element){
+
+if(!element) return;
+
+element.innerHTML="";
+
+element.classList.remove("success","error");
+
 }
 
-function setLoading(button, isLoading, originalText = '') {
-  if (!button) return;
-  if (isLoading) {
-    button.disabled = true;
-    const span = button.querySelector('span') || button;
-    const text = span.textContent || button.textContent;
-    button.dataset.originalText = text;
-    span.innerHTML = '<span class="loader-spinner"></span> Processing…';
-  } else {
-    button.disabled = false;
-    const span = button.querySelector('span') || button;
-    span.textContent = originalText || button.dataset.originalText || 'Submit';
-  }
+function setLoading(button,status){
+
+if(!button) return;
+
+button.disabled=status;
+
+if(status){
+
+button.dataset.oldText=button.innerHTML;
+
+button.innerHTML="Please Wait...";
+
+}else{
+
+button.innerHTML=button.dataset.oldText;
+
 }
 
-function validateEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function validatePassword(password) {
-  const minLength = 8;
-  const hasUpper = /[A-Z]/.test(password);
-  const hasLower = /[a-z]/.test(password);
-  const hasNumber = /\d/.test(password);
-  const hasSpecial = /[^a-zA-Z0-9]/.test(password);
-  return password.length >= minLength && hasUpper && hasLower && hasNumber && hasSpecial;
+function validateEmail(email){
+
+return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 }
 
-function getErrorMessage(error) {
-  const code = error.code || '';
-  switch (code) {
-    case 'auth/user-not-found':
-      return 'No account found with this email.';
-    case 'auth/wrong-password':
-      return 'Incorrect password. Please try again.';
-    case 'auth/email-already-in-use':
-      return 'Account already exists. Please sign in.';
-    case 'auth/invalid-email':
-      return 'Invalid email address.';
-    case 'auth/weak-password':
-      return 'Password is too weak. Use at least 8 characters with uppercase, lowercase, number, and special character.';
-    case 'auth/too-many-requests':
-      return 'Too many attempts. Please try again later.';
-    case 'auth/network-request-failed':
-      return 'Network error. Check your connection.';
-    case 'auth/popup-closed-by-user':
-      return 'Sign-in popup closed. Please try again.';
-    case 'auth/cancelled-popup-request':
-      return 'Sign-in cancelled. Please try again.';
-    case 'auth/account-exists-with-different-credential':
-      return 'An account exists with the same email but different sign-in method.';
-    default:
-      return error.message || 'An unexpected error occurred.';
-  }
+function validatePassword(password){
+
+const uppercase=/[A-Z]/.test(password);
+
+const lowercase=/[a-z]/.test(password);
+
+const number=/[0-9]/.test(password);
+
+const special=/[^A-Za-z0-9]/.test(password);
+
+return(
+
+password.length>=8 &&
+
+uppercase &&
+
+lowercase &&
+
+number &&
+
+special
+
+);
+
 }
 
-// ============================================================
-// CREATE / UPDATE FIRESTORE USER
-// ============================================================
 
-async function createOrUpdateUser(user, additionalData = {}) {
-  if (!user) return;
-  
-  const userRef = doc(db, 'users', user.uid);
-  const userDoc = await getDoc(userRef);
-  
-  const now = serverTimestamp();
-  const baseData = {
-    uid: user.uid,
-    email: user.email,
-    name: user.displayName || additionalData.name || '',
-    photoURL: user.photoURL || '',
-    provider: additionalData.provider || 'email',
-    lastLogin: now,
-    status: 'active'
-  };
+// =======================================
+// Firebase Error Messages
+// =======================================
 
-  if (!userDoc.exists()) {
-    // New user
-    const newUserData = {
-      ...baseData,
-      phone: additionalData.phone || '',
-      businessName: additionalData.businessName || '',
-      businessType: additionalData.businessType || '',
-      websiteGoal: additionalData.websiteGoal || '',
-      role: 'customer',
-      referralCode: additionalData.referralCode || '',
-      createdAt: now,
-      createdVia: additionalData.provider || 'email'
-    };
-    await setDoc(userRef, newUserData);
-    return { isNew: true, data: newUserData };
-  } else {
-    // Existing user
-    await updateDoc(userRef, {
-      lastLogin: now,
-      status: 'active'
-    });
-    const existingData = userDoc.data();
-    return { isNew: false, data: existingData };
-  }
+function firebaseError(error){
+
+switch(error.code){
+
+case "auth/user-not-found":
+
+return "Account not found.";
+
+case "auth/wrong-password":
+
+return "Wrong password.";
+
+case "auth/email-already-in-use":
+
+return "Email already registered.";
+
+case "auth/invalid-email":
+
+return "Invalid email.";
+
+case "auth/network-request-failed":
+
+return "Check internet connection.";
+
+case "auth/too-many-requests":
+
+return "Too many attempts. Try later.";
+
+case "auth/weak-password":
+
+return "Weak password.";
+
+default:
+
+return error.message;
+
 }
 
-// ============================================================
-// REDIRECT BASED ON ROLE
-// ============================================================
-
-function redirectToDashboard(userData) {
-  const role = userData?.role || 'customer';
-  if (role === 'admin') {
-    window.location.href = 'admin-dashboard.html';
-  } else {
-    window.location.href = 'customer-dashboard.html';
-  }
 }
+// ======================================================
+// PART 2
+// EMAIL LOGIN / SIGNUP / RESET PASSWORD
+// ======================================================
 
-// ============================================================
-// LOGIN WITH EMAIL / PASSWORD
-// ============================================================
 
-async function loginWithEmail(email, password, remember = false) {
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    
-    // Update lastLogin in Firestore
-    await createOrUpdateUser(user, { provider: 'email' });
-    
-    // Get user data for role
-    const userRef = doc(db, 'users', user.uid);
-    const userDoc = await getDoc(userRef);
-    const userData = userDoc.exists() ? userDoc.data() : { role: 'customer' };
-    
-    showMessage(loginMessage, '✅ Login successful! Redirecting…', false);
-    setTimeout(() => {
-      redirectToDashboard(userData);
-    }, 800);
-    
-    return { success: true, user, userData };
-  } catch (error) {
-    showMessage(loginMessage, getErrorMessage(error), true);
-    return { success: false, error };
-  }
-}
+// ==============================
+// LOGIN
+// ==============================
 
-// ============================================================
-// SIGNUP WITH EMAIL / PASSWORD
-// ============================================================
+async function loginWithEmail(email, password) {
 
-async function signupWithEmail(email, password, userData) {
-  try {
-    // Validate password strength
-    if (!validatePassword(password)) {
-      showMessage(signupMessage, 'Password must be at least 8 characters with uppercase, lowercase, number, and special character.', true);
-      return { success: false };
-    }
-
-    // Check if user already exists (pre-check)
     try {
-      const usersRef = collection(db, 'users');
-      const q = query(usersRef, where('email', '==', email));
-      const querySnapshot = await getDocs(q);
-      if (!querySnapshot.empty) {
-        showMessage(signupMessage, 'Account already exists. Please sign in.', true);
-        return { success: false };
-      }
-    } catch (e) {
-      // Continue with signup if query fails
+
+        setLoading(loginBtn, true);
+        clearMessage(loginMessage);
+
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        const user = userCredential.user;
+
+        const userRef = doc(db, "users", user.uid);
+
+        await updateDoc(userRef, {
+            lastLogin: serverTimestamp()
+        });
+
+        showMessage(
+            loginMessage,
+            "Login Successful...",
+            "success"
+        );
+
+        return user;
+
+    } catch (error) {
+
+        showMessage(
+            loginMessage,
+            firebaseError(error),
+            "error"
+        );
+
+        return null;
+
+    } finally {
+
+        setLoading(loginBtn, false);
+
     }
 
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-
-    // Save to Firestore
-    await createOrUpdateUser(user, {
-      ...userData,
-      provider: 'email',
-      name: userData.name || '',
-      phone: userData.phone || '',
-      businessName: userData.businessName || '',
-      businessType: userData.businessType || '',
-      websiteGoal: userData.websiteGoal || '',
-      referralCode: userData.referralCode || ''
-    });
-
-    // Get user data for role
-    const userRef = doc(db, 'users', user.uid);
-    const userDoc = await getDoc(userRef);
-    const userDocData = userDoc.exists() ? userDoc.data() : { role: 'customer' };
-
-    showMessage(signupMessage, '✅ Account created! Redirecting…', false);
-    setTimeout(() => {
-      redirectToDashboard(userDocData);
-    }, 800);
-
-    return { success: true, user, userData: userDocData };
-  } catch (error) {
-    showMessage(signupMessage, getErrorMessage(error), true);
-    return { success: false, error };
-  }
 }
 
-// ============================================================
-// SOCIAL LOGIN / SIGNUP
-// ============================================================
 
-async function socialLogin(provider, isSignup = false, additionalData = {}) {
-  const messageElement = isSignup ? signupMessage : loginMessage;
-  const buttonElement = isSignup ? signupBtn : loginBtn;
-  
-  try {
-    let authProvider;
-    let providerName = 'social';
-    
-    if (provider === 'google') {
-      authProvider = new GoogleAuthProvider();
-      providerName = 'google';
-    } else if (provider === 'facebook') {
-      authProvider = new FacebookAuthProvider();
-      providerName = 'facebook';
-    } else if (provider === 'github') {
-      authProvider = new GithubAuthProvider();
-      providerName = 'github';
-    } else if (provider === 'microsoft') {
-      authProvider = new OAuthProvider('microsoft.com');
-      providerName = 'microsoft';
-    } else {
-      throw new Error('Unsupported provider');
+
+// ==============================
+// SIGNUP
+// ==============================
+
+async function signupWithEmail(data){
+
+    try{
+
+        setLoading(signupBtn,true);
+
+        clearMessage(signupMessage);
+
+        const credential =
+        await createUserWithEmailAndPassword(
+
+            auth,
+
+            data.email,
+
+            data.password
+
+        );
+
+        const user=credential.user;
+
+        await setDoc(
+
+            doc(db,"users",user.uid),
+
+            {
+
+                uid:user.uid,
+
+                name:data.name,
+
+                email:data.email,
+
+                phone:data.phone,
+
+                businessName:data.businessName,
+
+                businessType:data.businessType,
+
+                websiteGoal:data.websiteGoal,
+
+                referralCode:data.referralCode,
+
+                role:"customer",
+
+                provider:"email",
+
+                status:"active",
+
+                createdAt:serverTimestamp(),
+
+                lastLogin:serverTimestamp()
+
+            }
+
+        );
+
+        showMessage(
+
+            signupMessage,
+
+            "Account Created Successfully.",
+
+            "success"
+
+        );
+
+        return user;
+
     }
 
-    const result = await signInWithPopup(auth, authProvider);
-    const user = result.user;
+    catch(error){
 
-    // Create or update user in Firestore
-    const userData = await createOrUpdateUser(user, {
-      ...additionalData,
-      provider: providerName,
-      name: user.displayName || additionalData.name || '',
-      phone: additionalData.phone || '',
-      businessName: additionalData.businessName || '',
-      businessType: additionalData.businessType || '',
-      websiteGoal: additionalData.websiteGoal || '',
-      referralCode: additionalData.referralCode || ''
-    });
+        showMessage(
 
-    // Get user data for role
-    const userRef = doc(db, 'users', user.uid);
-    const userDoc = await getDoc(userRef);
-    const userDocData = userDoc.exists() ? userDoc.data() : { role: 'customer' };
+            signupMessage,
 
-    showMessage(messageElement, `✅ Signed in with ${providerName}! Redirecting…`, false);
-    setTimeout(() => {
-      redirectToDashboard(userDocData);
-    }, 800);
+            firebaseError(error),
 
-    return { success: true, user, userData: userDocData };
-  } catch (error) {
-    showMessage(messageElement, getErrorMessage(error), true);
-    return { success: false, error };
-  }
-}
+            "error"
 
-// ============================================================
-// FORGOT PASSWORD
-// ============================================================
+        );
 
-async function resetPassword(email) {
-  try {
-    await sendPasswordResetEmail(auth, email);
-    return { success: true, message: 'Password reset email sent. Check your inbox.' };
-  } catch (error) {
-    return { success: false, message: getErrorMessage(error) };
-  }
-}
+        return null;
 
-// ============================================================
-// LOGOUT
-// ============================================================
-
-async function logout() {
-  try {
-    await signOut(auth);
-    window.location.href = 'login.html';
-    return { success: true };
-  } catch (error) {
-    console.error('Logout error:', error);
-    return { success: false, error };
-  }
-}
-
-// ============================================================
-// GET CURRENT USER
-// ============================================================
-
-function getCurrentUser() {
-  return auth.currentUser;
-}
-
-// ============================================================
-// CHECK AUTH STATE
-// ============================================================
-
-function checkAuth(callback) {
-  return onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      try {
-        const userRef = doc(db, 'users', user.uid);
-        const userDoc = await getDoc(userRef);
-        const userData = userDoc.exists() ? userDoc.data() : { role: 'customer' };
-        callback({ user, userData, isAuthenticated: true });
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-        callback({ user, userData: null, isAuthenticated: true });
-      }
-    } else {
-      callback({ user: null, userData: null, isAuthenticated: false });
-    }
-  });
-}
-
-// ============================================================
-// EVENT LISTENERS
-// ============================================================
-
-// -------- LOGIN FORM --------
-if (loginForm) {
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    clearMessage(loginMessage);
-    
-    const email = loginEmail.value.trim();
-    const password = loginPassword.value;
-    const remember = rememberMe ? rememberMe.checked : false;
-
-    if (!email || !password) {
-      showMessage(loginMessage, 'Please enter both email and password.', true);
-      return;
     }
 
-    if (!validateEmail(email)) {
-      showMessage(loginMessage, 'Please enter a valid email address.', true);
-      return;
+    finally{
+
+        setLoading(signupBtn,false);
+
     }
 
-    setLoading(loginBtn, true);
-    await loginWithEmail(email, password, remember);
-    setLoading(loginBtn, false);
-  });
 }
 
-// -------- SIGNUP FORM --------
-if (signupForm) {
-  signupForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    clearMessage(signupMessage);
 
-    const name = signupName.value.trim();
-    const email = signupEmail.value.trim();
-    const phone = signupPhone.value.trim();
-    const business = businessName.value.trim();
-    const type = businessType.value;
-    const goal = websiteGoal.value;
-    const password = signupPassword.value;
-    const confirm = confirmPassword.value;
-    const referral = referralCode.value.trim();
-    const terms = acceptTerms.checked;
 
-    // Validation
-    if (!name) { showMessage(signupMessage, 'Full name is required.', true); return; }
-    if (!email || !validateEmail(email)) { showMessage(signupMessage, 'Valid email is required.', true); return; }
-    if (!phone || phone.length < 10) { showMessage(signupMessage, 'Valid phone number is required.', true); return; }
-    if (!business) { showMessage(signupMessage, 'Business name is required.', true); return; }
-    if (!type) { showMessage(signupMessage, 'Please select business category.', true); return; }
-    if (!goal) { showMessage(signupMessage, 'Please select website goal.', true); return; }
-    if (!password) { showMessage(signupMessage, 'Password is required.', true); return; }
-    if (!confirm) { showMessage(signupMessage, 'Please confirm your password.', true); return; }
-    if (password !== confirm) { showMessage(signupMessage, 'Passwords do not match.', true); return; }
-    if (!terms) { showMessage(signupMessage, 'You must accept Terms & Conditions.', true); return; }
+// ==============================
+// PASSWORD RESET
+// ==============================
 
-    if (!validatePassword(password)) {
-      showMessage(signupMessage, 'Password must be at least 8 characters with uppercase, lowercase, number, and special character.', true);
-      return;
+async function resetPassword(email){
+
+    try{
+
+        await sendPasswordResetEmail(
+
+            auth,
+
+            email
+
+        );
+
+        alert(
+
+            "Password reset email sent."
+
+        );
+
     }
 
-    const userData = {
-      name,
-      phone,
-      businessName: business,
-      businessType: type,
-      websiteGoal: goal,
-      referralCode: referral,
-      provider: 'email'
-    };
+    catch(error){
 
-    setLoading(signupBtn, true);
-    await signupWithEmail(email, password, userData);
-    setLoading(signupBtn, false);
-  });
-}
+        alert(
 
-// -------- SOCIAL LOGIN (Login Page) --------
-if (googleLoginBtn) {
-  googleLoginBtn.addEventListener('click', () => socialLogin('google', false));
-}
-if (facebookLoginBtn) {
-  facebookLoginBtn.addEventListener('click', () => socialLogin('facebook', false));
-}
-if (githubLoginBtn) {
-  githubLoginBtn.addEventListener('click', () => socialLogin('github', false));
-}
-if (microsoftLoginBtn) {
-  microsoftLoginBtn.addEventListener('click', () => socialLogin('microsoft', false));
-}
+            firebaseError(error)
 
-// -------- SOCIAL SIGNUP (Signup Page) --------
-if (googleSignupBtn) {
-  googleSignupBtn.addEventListener('click', async () => {
-    const name = signupName?.value.trim() || '';
-    const phone = signupPhone?.value.trim() || '';
-    const business = businessName?.value.trim() || '';
-    const type = businessType?.value || '';
-    const goal = websiteGoal?.value || '';
-    const referral = referralCode?.value.trim() || '';
-    const terms = acceptTerms?.checked || false;
+        );
 
-    if (!terms) {
-      showMessage(signupMessage, 'You must accept Terms & Conditions.', true);
-      return;
     }
 
-    const additionalData = { name, phone, businessName: business, businessType: type, websiteGoal: goal, referralCode: referral };
-    await socialLogin('google', true, additionalData);
-  });
-}
-if (facebookSignupBtn) {
-  facebookSignupBtn.addEventListener('click', async () => {
-    const name = signupName?.value.trim() || '';
-    const phone = signupPhone?.value.trim() || '';
-    const business = businessName?.value.trim() || '';
-    const type = businessType?.value || '';
-    const goal = websiteGoal?.value || '';
-    const referral = referralCode?.value.trim() || '';
-    const terms = acceptTerms?.checked || false;
-
-    if (!terms) {
-      showMessage(signupMessage, 'You must accept Terms & Conditions.', true);
-      return;
-    }
-
-    const additionalData = { name, phone, businessName: business, businessType: type, websiteGoal: goal, referralCode: referral };
-    await socialLogin('facebook', true, additionalData);
-  });
-}
-if (githubSignupBtn) {
-  githubSignupBtn.addEventListener('click', async () => {
-    const name = signupName?.value.trim() || '';
-    const phone = signupPhone?.value.trim() || '';
-    const business = businessName?.value.trim() || '';
-    const type = businessType?.value || '';
-    const goal = websiteGoal?.value || '';
-    const referral = referralCode?.value.trim() || '';
-    const terms = acceptTerms?.checked || false;
-
-    if (!terms) {
-      showMessage(signupMessage, 'You must accept Terms & Conditions.', true);
-      return;
-    }
-
-    const additionalData = { name, phone, businessName: business, businessType: type, websiteGoal: goal, referralCode: referral };
-    await socialLogin('github', true, additionalData);
-  });
-}
-if (microsoftSignupBtn) {
-  microsoftSignupBtn.addEventListener('click', async () => {
-    const name = signupName?.value.trim() || '';
-    const phone = signupPhone?.value.trim() || '';
-    const business = businessName?.value.trim() || '';
-    const type = businessType?.value || '';
-    const goal = websiteGoal?.value || '';
-    const referral = referralCode?.value.trim() || '';
-    const terms = acceptTerms?.checked || false;
-
-    if (!terms) {
-      showMessage(signupMessage, 'You must accept Terms & Conditions.', true);
-      return;
-    }
-
-    const additionalData = { name, phone, businessName: business, businessType: type, websiteGoal: goal, referralCode: referral };
-    await socialLogin('microsoft', true, additionalData);
-  });
 }
 
-// ============================================================
-// EXPOSE FUNCTIONS FOR GLOBAL USE
-// ============================================================
 
-window.auth = {
-  logout,
-  getCurrentUser,
-  checkAuth,
-  resetPassword,
-  loginWithEmail,
-  signupWithEmail,
-  socialLogin,
-  createOrUpdateUser
+
+// ==============================
+// LOGIN FORM
+// ==============================
+
+if(loginForm){
+
+loginForm.addEventListener(
+
+"submit",
+
+async function(e){
+
+e.preventDefault();
+
+const email=loginEmail.value.trim();
+
+const password=loginPassword.value;
+
+if(!validateEmail(email)){
+
+showMessage(
+
+loginMessage,
+
+"Enter valid email."
+
+);
+
+return;
+
+}
+
+if(password.length<8){
+
+showMessage(
+
+loginMessage,
+
+"Password is invalid."
+
+);
+
+return;
+
+}
+
+const user=
+
+await loginWithEmail(
+
+email,
+
+password
+
+);
+
+if(user){
+
+window.location.href=
+
+"customer-dashboard.html";
+
+}
+
+});
+
+}
+
+
+
+// ==============================
+// SIGNUP FORM
+// ==============================
+
+if(signupForm){
+
+signupForm.addEventListener(
+
+"submit",
+
+async function(e){
+
+e.preventDefault();
+
+const data={
+
+name:signupName.value.trim(),
+
+email:signupEmail.value.trim(),
+
+phone:signupPhone.value.trim(),
+
+businessName:businessName.value.trim(),
+
+businessType:businessType.value,
+
+websiteGoal:websiteGoal.value,
+
+password:signupPassword.value,
+
+confirmPassword:confirmPassword.value,
+
+referralCode:referralCode.value.trim()
+
 };
 
-// ============================================================
-// AUTO-REDIRECT IF ALREADY LOGGED IN (on login/signup pages)
-// ============================================================
+if(data.name==""){
 
-const isLoginPage = window.location.pathname.includes('login.html') || 
-                     window.location.pathname === '/' || 
-                     window.location.pathname === '/login';
-const isSignupPage = window.location.pathname.includes('signup.html');
+showMessage(
 
-// Only check on login/signup pages to avoid loops
-if (isLoginPage || isSignupPage) {
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      try {
-        const userRef = doc(db, 'users', user.uid);
-        const userDoc = await getDoc(userRef);
-        const userData = userDoc.exists() ? userDoc.data() : { role: 'customer' };
-        redirectToDashboard(userData);
-      } catch (error) {
-        console.error('Error redirecting:', error);
-        // Still redirect even if firestore fails
-        window.location.href = 'customer-dashboard.html';
-      }
-    }
-  });
+signupMessage,
+
+"Enter your name."
+
+);
+
+return;
+
 }
 
-console.log('✅ auth.js loaded successfully');
+if(!validateEmail(data.email)){
+
+showMessage(
+
+signupMessage,
+
+"Invalid Email"
+
+);
+
+return;
+
+}
+
+if(!validatePassword(data.password)){
+
+showMessage(
+
+signupMessage,
+
+"Password is weak."
+
+);
+
+return;
+
+}
+
+if(data.password!=data.confirmPassword){
+
+showMessage(
+
+signupMessage,
+
+"Passwords do not match."
+
+);
+
+return;
+
+}
+
+if(!acceptTerms.checked){
+
+showMessage(
+
+signupMessage,
+
+"Accept Terms & Conditions."
+
+);
+
+return;
+
+}
+
+const user=
+
+await signupWithEmail(data);
+
+if(user){
+
+window.location.href=
+
+"customer-dashboard.html";
+
+}
+
+});
+
+}
+// ======================================================
+// PART 3
+// SOCIAL LOGIN
+// ======================================================
+
+
+// =======================================
+// CREATE / UPDATE USER
+// =======================================
+
+async function createOrUpdateSocialUser(user, providerName) {
+
+    const userRef = doc(db, "users", user.uid);
+
+    const snapshot = await getDoc(userRef);
+
+    if (!snapshot.exists()) {
+
+        await setDoc(userRef, {
+
+            uid: user.uid,
+
+            name: user.displayName || "",
+
+            email: user.email || "",
+
+            phone: user.phoneNumber || "",
+
+            businessName: "",
+
+            businessType: "",
+
+            websiteGoal: "",
+
+            referralCode: "",
+
+            role: "customer",
+
+            provider: providerName,
+
+            photoURL: user.photoURL || "",
+
+            status: "active",
+
+            createdAt: serverTimestamp(),
+
+            lastLogin: serverTimestamp()
+
+        });
+
+    } else {
+
+        await updateDoc(userRef, {
+
+            lastLogin: serverTimestamp(),
+
+            photoURL: user.photoURL || "",
+
+            provider: providerName,
+
+            status: "active"
+
+        });
+
+    }
+
+}
+
+
+
+// =======================================
+// SOCIAL LOGIN
+// =======================================
+
+async function socialLogin(provider, providerName) {
+
+    try {
+
+        const result = await signInWithPopup(auth, provider);
+
+        const user = result.user;
+
+        await createOrUpdateSocialUser(
+
+            user,
+
+            providerName
+
+        );
+
+        window.location.href =
+
+        "customer-dashboard.html";
+
+    }
+
+    catch(error){
+
+        if(loginMessage){
+
+            showMessage(
+
+                loginMessage,
+
+                firebaseError(error),
+
+                "error"
+
+            );
+
+        }
+
+        if(signupMessage){
+
+            showMessage(
+
+                signupMessage,
+
+                firebaseError(error),
+
+                "error"
+
+            );
+
+        }
+
+    }
+
+}
+
+
+
+// =======================================
+// GOOGLE
+// =======================================
+
+if(googleLogin){
+
+googleLogin.addEventListener(
+
+"click",
+
+()=>{
+
+socialLogin(
+
+googleProvider,
+
+"google"
+
+);
+
+}
+
+);
+
+}
+
+if(googleSignup){
+
+googleSignup.addEventListener(
+
+"click",
+
+()=>{
+
+socialLogin(
+
+googleProvider,
+
+"google"
+
+);
+
+}
+
+);
+
+}
+
+
+
+// =======================================
+// FACEBOOK
+// =======================================
+
+if(facebookLogin){
+
+facebookLogin.addEventListener(
+
+"click",
+
+()=>{
+
+socialLogin(
+
+facebookProvider,
+
+"facebook"
+
+);
+
+}
+
+);
+
+}
+
+if(facebookSignup){
+
+facebookSignup.addEventListener(
+
+"click",
+
+()=>{
+
+socialLogin(
+
+facebookProvider,
+
+"facebook"
+
+);
+
+}
+
+);
+
+}
+
+
+
+// =======================================
+// GITHUB
+// =======================================
+
+if(githubLogin){
+
+githubLogin.addEventListener(
+
+"click",
+
+()=>{
+
+socialLogin(
+
+githubProvider,
+
+"github"
+
+);
+
+}
+
+);
+
+}
+
+if(githubSignup){
+
+githubSignup.addEventListener(
+
+"click",
+
+()=>{
+
+socialLogin(
+
+githubProvider,
+
+"github"
+
+);
+
+}
+
+);
+
+}
+
+
+
+// =======================================
+// MICROSOFT
+// =======================================
+
+if(microsoftLogin){
+
+microsoftLogin.addEventListener(
+
+"click",
+
+()=>{
+
+socialLogin(
+
+microsoftProvider,
+
+"microsoft"
+
+);
+
+}
+
+);
+
+}
+
+if(microsoftSignup){
+
+microsoftSignup.addEventListener(
+
+"click",
+
+()=>{
+
+socialLogin(
+
+microsoftProvider,
+
+"microsoft"
+
+);
+
+}
+
+);
+
+}
+// ======================================================
+// PART 4
+// SESSION | LOGOUT | AUTH CHECK | ROLE REDIRECT
+// ======================================================
+
+
+// =======================================
+// LOGOUT
+// =======================================
+
+async function logout() {
+
+    try {
+
+        await signOut(auth);
+
+        window.location.href = "login.html";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+
+
+// =======================================
+// CURRENT USER
+// =======================================
+
+function getCurrentUser() {
+
+    return auth.currentUser;
+
+}
+
+
+
+// =======================================
+// CHECK AUTH
+// =======================================
+
+function checkAuth() {
+
+    return new Promise((resolve) => {
+
+        onAuthStateChanged(auth, (user) => {
+
+            resolve(user);
+
+        });
+
+    });
+
+}
+
+
+
+// =======================================
+// ROLE BASED REDIRECT
+// =======================================
+
+async function redirectUser(user) {
+
+    if (!user) {
+
+        window.location.href = "login.html";
+
+        return;
+
+    }
+
+    try {
+
+        const userRef = doc(db, "users", user.uid);
+
+        const snapshot = await getDoc(userRef);
+
+        if (!snapshot.exists()) {
+
+            window.location.href = "customer-dashboard.html";
+
+            return;
+
+        }
+
+        const data = snapshot.data();
+
+        if (data.role === "admin") {
+
+            window.location.href = "admin-dashboard.html";
+
+        }
+
+        else {
+
+            window.location.href = "customer-dashboard.html";
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        window.location.href = "customer-dashboard.html";
+
+    }
+
+}
+
+
+
+// =======================================
+// AUTO SESSION
+// =======================================
+
+const page = window.location.pathname;
+
+
+
+const isLoginPage =
+
+page.includes("login.html");
+
+
+
+const isSignupPage =
+
+page.includes("signup.html");
+
+
+
+if (isLoginPage || isSignupPage) {
+
+    onAuthStateChanged(
+
+        auth,
+
+        async (user) => {
+
+            if (user) {
+
+                await redirectUser(user);
+
+            }
+
+        }
+
+    );
+
+}
+
+
+
+// =======================================
+// PROTECT DASHBOARD
+// =======================================
+
+const protectedPages = [
+
+"customer-dashboard.html",
+
+"admin-dashboard.html"
+
+];
+
+
+
+const currentPage =
+
+page.split("/").pop();
+
+
+
+if (protectedPages.includes(currentPage)) {
+
+    onAuthStateChanged(
+
+        auth,
+
+        async (user) => {
+
+            if (!user) {
+
+                window.location.href =
+
+                "login.html";
+
+            }
+
+        }
+
+    );
+
+}
+
+
+
+// =======================================
+// GLOBAL EXPORT
+// =======================================
+
+window.auth = {
+
+logout,
+
+getCurrentUser,
+
+checkAuth,
+
+loginWithEmail,
+
+signupWithEmail,
+
+resetPassword
+
+};
+
+
+
+console.log("✅ auth.js loaded successfully");
