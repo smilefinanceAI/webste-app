@@ -2,31 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
-  <title>Login – Smile AI Web Studio | AI Website Builder Dashboard</title>
-  <meta name="description" content="Sign in to your Smile AI Web Studio account to manage your AI websites, projects, leads and business dashboard." />
-  <meta name="keywords" content="login, sign in, AI website builder, dashboard, account" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Login · Smile AI Web Studio</title>
+  <meta name="description" content="Sign in to Smile AI Web Studio – AI website builder, digital agency & business automation platform by Smile Financial Solution." />
+  <meta name="keywords" content="AI website builder, digital agency, business automation, login, Smile AI, financial solution" />
   <link rel="canonical" href="https://web.smilefinancialsolution.com/login.html" />
-  <meta name="robots" content="noindex, follow" />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Login – Smile AI Web Studio" />
-  <meta property="og:description" content="Sign in to your Smile AI Web Studio account to manage your AI websites, projects, leads and business dashboard." />
+  <meta property="og:title" content="Login · Smile AI Web Studio" />
+  <meta property="og:description" content="Access your AI-powered business automation dashboard." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://web.smilefinancialsolution.com/login.html" />
+  <meta property="og:image" content="https://web.smilefinancialsolution.com/assets/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- JSON-LD Schemas -->
+  <meta name="twitter:title" content="Login · Smile AI Web Studio" />
+  <meta name="twitter:description" content="Secure login for Smile AI Web Studio." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😊</text></svg>" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "Smile AI Web Studio",
+      "name": "Smile Financial Solution",
       "url": "https://web.smilefinancialsolution.com",
+      "logo": "https://web.smilefinancialsolution.com/assets/logo.png",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+91-7290977231",
-        "contactType": "Sales"
+        "telephone": "+917290977231",
+        "contactType": "customer service"
       }
     }
   </script>
@@ -34,838 +36,894 @@
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "Login – Smile AI Web Studio",
-      "description": "Sign in to your Smile AI Web Studio account.",
-      "url": "https://web.smilefinancialsolution.com/login.html"
+      "name": "Login - Smile AI Web Studio",
+      "description": "Login page for Smile AI Web Studio platform.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://web.smilefinancialsolution.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Login" }
+        ]
+      }
     }
   </script>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
   <style>
-    /* ===== RESET & VARIABLES ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --primary: #2563EB;
-      --secondary: #10B981;
-      --accent: #F59E0B;
-      --bg-white: #ffffff;
-      --glass-bg: rgba(255,255,255,0.10);
-      --shadow-soft: 0 20px 50px -12px rgba(0,0,0,0.06);
-      --shadow-card: 0 12px 40px -8px rgba(0,0,0,0.04);
-      --radius-lg: 18px;
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
-    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #ffffff;
-      color: #0b1a33;
-      line-height: 1.6;
-      overflow-x: hidden;
+      background: #f6f9fc;
+      color: #0b1a2e;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
-    a { text-decoration: none; color: inherit; }
 
-    /* ===== GLASS & UTILITY ===== */
-    .badge-pill {
-      background: var(--secondary);
-      color: white;
-      padding: 6px 18px;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      display: inline-block;
-      letter-spacing: 0.3px;
+    /* glassmorphism base */
+    .glass {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 20px 40px -12px rgba(0, 20, 40, 0.15);
     }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 34px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 1rem;
-      border: none;
-      cursor: pointer;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 14px rgba(37,99,235,0.15);
-    }
-    .btn-primary {
-      background: linear-gradient(145deg, #2563EB, #1d4ed8);
-      color: white;
-    }
-    .btn-primary:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 12px 30px rgba(37,99,235,0.30); }
-    .btn-secondary {
-      background: var(--secondary);
-      color: white;
-    }
-    .btn-secondary:hover { transform: scale(1.03) translateY(-2px); background: #059669; }
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-    }
-    .btn-outline:hover { background: var(--primary); color: white; }
-    .btn-google { background: #ffffff; color: #1e293b; border: 1px solid #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-    .btn-google:hover { background: #f8fafc; transform: scale(1.02); }
-    .btn-microsoft { background: #2b2b2b; color: white; }
-    .btn-microsoft:hover { background: #1a1a1a; transform: scale(1.02); }
-    .btn-github { background: #24292e; color: white; }
-    .btn-github:hover { background: #1a1d21; transform: scale(1.02); }
-    .btn-facebook { background: #1877f2; color: white; }
-    .btn-facebook:hover { background: #1664d9; transform: scale(1.02); }
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 0.5rem;
-    }
-    .section-title span { color: var(--primary); }
 
-    /* ===== LOADER ===== */
-    #loader {
-      position: fixed; inset: 0; background: white; z-index: 9999;
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.6s ease;
-    }
-    #loader.hide { opacity: 0; pointer-events: none; }
-    .loader-spinner {
-      width: 48px; height: 48px; border: 4px solid #e2e8f0;
-      border-top-color: var(--primary); border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ===== HEADER ===== */
+    /* header */
     header {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      padding: 16px 0; transition: var(--transition);
-      background: rgba(255,255,255,0.70); backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      transition: box-shadow 0.2s;
     }
     header.scrolled {
-      background: rgba(255,255,255,0.94); box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
     }
-    .header-inner {
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .logo {
-      font-size: 1.6rem; font-weight: 800; color: var(--primary);
-      letter-spacing: -0.02em; display: flex; align-items: center; gap: 6px;
-    }
-    .logo span { color: var(--secondary); }
-    .logo small { font-size: 0.6rem; font-weight: 500; color: #475569; background: #eef2f6; padding: 2px 10px; border-radius: 100px; margin-left: 6px; }
-    nav { display: flex; align-items: center; gap: 2rem; }
-    nav a {
-      font-weight: 500; font-size: 0.95rem; color: #1e293b;
-      transition: var(--transition); position: relative;
-    }
-    nav a:hover { color: var(--primary); }
-    nav a::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 2px; background: var(--primary);
-      transition: var(--transition);
-    }
-    nav a:hover::after { width: 100%; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 28px; height: 3px; background: #1e293b; border-radius: 4px; transition: var(--transition); }
 
-    /* ===== LOGIN PAGE ===== */
-    #login-page {
-      min-height: 100vh;
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
       display: flex;
       align-items: center;
-      padding: 100px 0 60px;
-      background: linear-gradient(165deg, #f0f7ff 0%, #ffffff 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    #login-page .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 28px;
-      width: 100%;
+      justify-content: space-between;
+      height: 72px;
     }
 
-    /* ===== LEFT SIDE ===== */
-    .login-left {
-      position: relative;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      color: #0b1a2e;
     }
-    .login-left .hero-illustration {
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="160" fill="%232563EB" opacity="0.05"/><circle cx="200" cy="200" r="120" fill="%2310B981" opacity="0.04"/><circle cx="200" cy="200" r="80" fill="%23F59E0B" opacity="0.06"/><rect x="130" y="110" width="140" height="150" rx="16" fill="white" stroke="%232563EB" stroke-width="2.5"/><rect x="155" y="135" width="90" height="20" rx="10" fill="%232563EB"/><rect x="155" y="170" width="90" height="10" rx="5" fill="%23cbd5e1"/><rect x="155" y="190" width="90" height="10" rx="5" fill="%23cbd5e1"/><rect x="155" y="210" width="60" height="10" rx="5" fill="%23cbd5e1"/><circle cx="105" cy="100" r="20" fill="%23F59E0B" opacity="0.2"/><circle cx="310" cy="280" r="16" fill="%2310B981" opacity="0.15"/><rect x="170" y="245" width="60" height="25" rx="12" fill="%232563EB" opacity="0.15"/><text x="200" y="262" font-family="Inter" font-size="12" fill="%232563EB" opacity="0.3" text-anchor="middle">AI Dashboard</text></svg>');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      min-height: 350px;
+    .logo-icon {
+      background: linear-gradient(145deg, #2563eb, #7c3aed);
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #1e2f44;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      letter-spacing: -0.01em;
+    }
+    nav a:hover {
+      color: #2563eb;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #d0d9e8;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #1e2f44;
+      transition: all 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-outline:hover {
+      border-color: #2563eb;
+      background: rgba(37, 99, 235, 0.04);
+    }
+
+    .btn-primary {
+      background: #0b1a2e;
+      border: none;
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: white;
+      transition: all 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(11, 26, 46, 0.08);
+    }
+    .btn-primary:hover {
+      background: #1e2f44;
+      transform: scale(1.02);
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .mobile-menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: #0b1a2e;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    /* mobile nav */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      padding: 24px 20px 32px;
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    .mobile-nav a {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+      text-decoration: none;
+      color: #0b1a2e;
+      font-weight: 500;
+    }
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+
+    /* main */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+
+    .login-grid {
+      max-width: 1200px;
       width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 40px;
+      align-items: center;
     }
-    .login-left h1 {
+
+    /* left illustration */
+    .illustration-area {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .illustration-area h1 {
       font-size: 2.8rem;
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-top: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      background: linear-gradient(145deg, #0b1a2e, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .login-left h1 .highlight { color: var(--primary); }
-    .login-left p {
+    .illustration-area p {
       font-size: 1.1rem;
-      color: #475569;
-      margin: 1rem 0 0;
+      color: #2d4059;
       max-width: 400px;
     }
-    .floating-shapes {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
+    .illustration-box {
+      background: linear-gradient(145deg, #eef3fc, #ffffff);
+      border-radius: 40px;
+      padding: 24px 24px 10px 24px;
+      box-shadow: 0 30px 50px -20px rgba(0,20,40,0.12);
+      display: flex;
+      justify-content: center;
     }
-    .floating-shapes span {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--primary);
-      opacity: 0.04;
-      animation: float 12s infinite alternate ease-in-out;
-    }
-    .floating-shapes span:nth-child(1) { width: 100px; height: 100px; top: 5%; left: 2%; }
-    .floating-shapes span:nth-child(2) { width: 140px; height: 140px; bottom: 5%; right: 3%; background: var(--accent); animation-delay: 0.5s; }
-    .floating-shapes span:nth-child(3) { width: 70px; height: 70px; top: 50%; right: 0%; background: var(--secondary); animation-delay: 1s; }
-    @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-40px) rotate(10deg); } }
-
-    /* ===== RIGHT SIDE - LOGIN CARD ===== */
-    .login-card {
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.30);
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
-      border-radius: var(--radius-lg);
-      padding: 2.5rem 3rem;
+    .illustration-svg {
       width: 100%;
-      max-width: 440px;
-      margin: 0 auto;
+      max-width: 340px;
+      height: auto;
     }
-    .login-card .card-header { margin-bottom: 1.5rem; }
-    .login-card .card-header h2 { font-size: 1.8rem; font-weight: 800; }
-    .login-card .card-header p { color: #475569; font-size: 0.95rem; }
 
-    .form-group { margin-bottom: 1.2rem; }
-    .form-group label {
+    /* right card */
+    .login-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 40px;
+      padding: 40px 36px;
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 40px 80px -24px rgba(0, 20, 40, 0.16);
+      transition: transform 0.2s;
+    }
+
+    .login-card h2 {
+      font-size: 1.8rem;
       font-weight: 600;
-      font-size: 0.9rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .login-card .sub {
+      color: #4a5b72;
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .form-group label {
       display: block;
-      margin-bottom: 4px;
-      color: #1e293b;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: #1e2f44;
     }
     .form-group input {
       width: 100%;
-      padding: 12px 18px;
-      border-radius: 60px;
-      border: 1px solid #d1d9e6;
+      padding: 14px 16px;
+      border-radius: 28px;
+      border: 1px solid #e2e9f3;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(4px);
       font-size: 1rem;
-      transition: var(--transition);
-      background: #f8fafc;
+      transition: border 0.2s, box-shadow 0.2s;
+      outline: none;
+      color: #0b1a2e;
     }
     .form-group input:focus {
-      outline: none;
-      border-color: var(--primary);
+      border-color: #2563eb;
       box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
-      background: white;
     }
-    .form-group .input-wrapper {
+
+    .password-wrapper {
       position: relative;
     }
-    .form-group .input-wrapper .toggle-password {
+    .password-wrapper input {
+      padding-right: 48px;
+    }
+    .toggle-password {
       position: absolute;
       right: 16px;
       top: 50%;
       transform: translateY(-50%);
-      background: none;
+      background: transparent;
       border: none;
       cursor: pointer;
-      color: #94a3b8;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      color: #6a7e98;
       padding: 4px;
     }
-    .form-group .input-wrapper .toggle-password:hover { color: #475569; }
-    .form-options {
+
+    .flex-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin: 0.5rem 0 1.2rem;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin: 12px 0 24px;
     }
-    .form-options .remember {
+    .remember {
       display: flex;
       align-items: center;
       gap: 8px;
       font-size: 0.9rem;
-      color: #475569;
-      cursor: pointer;
+      color: #1e2f44;
     }
-    .form-options .remember input[type="checkbox"] {
+    .remember input {
       width: 18px;
       height: 18px;
-      accent-color: var(--primary);
-      cursor: pointer;
+      accent-color: #2563eb;
+      margin: 0;
     }
-    .form-options .forgot {
+    .forgot-link {
       font-size: 0.9rem;
-      color: var(--primary);
+      color: #2563eb;
+      text-decoration: none;
       font-weight: 500;
     }
-    .form-options .forgot:hover { text-decoration: underline; }
-
-    .login-btn {
-      width: 100%;
-      padding: 14px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      justify-content: center;
-      margin-top: 0.5rem;
+    .forgot-link:hover {
+      text-decoration: underline;
     }
-    .login-btn .spinner {
-      display: none;
+
+    .btn-login {
+      width: 100%;
+      padding: 16px;
+      border-radius: 60px;
+      border: none;
+      background: #0b1a2e;
+      color: white;
+      font-weight: 600;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 8px 20px rgba(11,26,46,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .btn-login:hover {
+      background: #1e2f44;
+      transform: scale(1.01);
+    }
+    .btn-login:disabled {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .loader-spinner {
+      display: inline-block;
       width: 22px;
       height: 22px;
-      border: 3px solid rgba(255,255,255,0.2);
+      border: 2.5px solid rgba(255,255,255,0.2);
       border-top-color: white;
       border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
     }
-    .login-btn.loading .spinner { display: inline-block; }
-    .login-btn.loading .btn-text { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ===== SOCIAL LOGIN ===== */
+    .message-area {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      min-height: 28px;
+      color: #2563eb;
+      font-weight: 500;
+    }
+    .message-area.error {
+      color: #dc2626;
+    }
+    .message-area.success {
+      color: #16a34a;
+    }
+
+    /* social */
     .social-divider {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      margin: 1.5rem 0;
+      gap: 16px;
+      margin: 28px 0 20px;
     }
-    .social-divider::before,
-    .social-divider::after {
+    .social-divider::before, .social-divider::after {
       content: '';
       flex: 1;
       height: 1px;
-      background: #e2e8f0;
+      background: #dce3ef;
     }
     .social-divider span {
       font-size: 0.85rem;
-      color: #94a3b8;
-      white-space: nowrap;
+      color: #6a7e98;
+      font-weight: 500;
     }
+
     .social-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.8rem;
-    }
-    .social-buttons .btn {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       justify-content: center;
-      padding: 10px 16px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      width: 100%;
     }
-    .social-buttons .btn-full {
-      grid-column: 1 / -1;
+    .social-btn {
+      flex: 1 0 auto;
+      min-width: 56px;
+      padding: 12px 18px;
+      border-radius: 60px;
+      border: 1px solid #e2e9f3;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(4px);
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #1e2f44;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .social-btn:hover {
+      background: white;
+      border-color: #b3c6e0;
+      box-shadow: 0 8px 16px -8px rgba(0,20,40,0.08);
+      transform: translateY(-1px);
+    }
+    .social-btn svg {
+      width: 20px;
+      height: 20px;
     }
 
-    .signup-link {
+    .signup-helper {
       text-align: center;
-      margin-top: 1.5rem;
+      margin-top: 28px;
       font-size: 0.95rem;
-      color: #475569;
+      color: #2d4059;
     }
-    .signup-link a {
-      color: var(--primary);
-      font-weight: 700;
+    .signup-helper a {
+      color: #2563eb;
+      font-weight: 600;
+      text-decoration: none;
     }
-    .signup-link a:hover { text-decoration: underline; }
-
-    /* ===== MESSAGES ===== */
-    .error-msg {
-      color: #EF4444;
-      font-size: 0.85rem;
-      margin-top: 4px;
-      display: none;
-    }
-    .error-msg.show { display: block; }
-    .success-msg {
-      color: var(--secondary);
-      font-size: 0.85rem;
-      margin-top: 4px;
-      display: none;
-    }
-    .success-msg.show { display: block; }
-    .form-error {
-      border-color: #EF4444 !important;
-      background: #fef2f2 !important;
-    }
-    .form-error:focus {
-      border-color: #EF4444 !important;
-      box-shadow: 0 0 0 4px rgba(239,68,68,0.08) !important;
+    .signup-helper a:hover {
+      text-decoration: underline;
     }
 
-    /* ===== FOOTER ===== */
+    /* footer */
     footer {
-      background: #0b1a33;
-      color: #cbd5e1;
-      padding: 2rem 0;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255,255,255,0.4);
+      padding: 40px 24px 20px;
+      margin-top: 20px;
     }
-    footer .container {
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 30px;
+    }
+    .footer-grid h4 {
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #0b1a2e;
+    }
+    .footer-grid a {
+      display: block;
+      text-decoration: none;
+      color: #2d4059;
+      font-size: 0.9rem;
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .footer-grid a:hover {
+      color: #2563eb;
+    }
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 28px auto 0;
+      border-top: 1px solid rgba(0,0,0,0.04);
+      padding-top: 20px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #4a5b72;
     }
-    footer a {
-      transition: var(--transition);
-      font-size: 0.9rem;
+    .social-icons {
+      display: flex;
+      gap: 14px;
     }
-    footer a:hover { color: white; }
-    footer .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    footer .powered { font-size: 0.85rem; opacity: 0.7; }
+    .social-icons a {
+      color: #2d4059;
+      transition: color 0.2s;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      color: #2563eb;
+    }
 
-    /* ===== FLOATING BUTTONS ===== */
+    /* floating buttons */
     .floating-btn {
       position: fixed;
-      right: 24px;
-      z-index: 999;
+      bottom: 28px;
+      right: 28px;
       width: 56px;
       height: 56px;
       border-radius: 60px;
-      background: var(--primary);
+      background: #0b1a2e;
       color: white;
       border: none;
-      box-shadow: 0 8px 24px rgba(37,99,235,0.25);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
       font-size: 1.5rem;
       cursor: pointer;
-      transition: var(--transition);
+      transition: all 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 100;
+      text-decoration: none;
     }
-    .floating-btn:hover { transform: scale(1.08); }
-    .floating-btn.whatsapp { bottom: 100px; background: #25D366; }
-    .floating-btn.call { bottom: 170px; background: var(--secondary); }
-    .floating-btn.top { bottom: 30px; background: var(--accent); color: #0b1a33; }
+    .floating-btn:hover {
+      transform: scale(1.08);
+      background: #1e2f44;
+    }
+    .floating-whatsapp {
+      bottom: 100px;
+      background: #25d366;
+    }
+    .floating-whatsapp:hover {
+      background: #20b85a;
+    }
 
-    /* ===== RESPONSIVE ===== */
+    .back-top {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      width: 48px;
+      height: 48px;
+      border-radius: 60px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      font-size: 1.2rem;
+      color: #0b1a2e;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 90;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .back-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .back-top:hover {
+      background: white;
+      transform: translateY(-3px);
+    }
+
+    /* responsive */
     @media (max-width: 1024px) {
-      #login-page .container { grid-template-columns: 1fr; gap: 2rem; }
-      .login-left { text-align: center; }
-      .login-left p { margin-left: auto; margin-right: auto; }
-      .login-card { max-width: 100%; }
+      .login-grid {
+        grid-template-columns: 1fr;
+        max-width: 540px;
+      }
+      .illustration-area {
+        display: none;
+      }
     }
+
     @media (max-width: 768px) {
-      nav { display: none; }
-      .hamburger { display: flex; }
-      nav.open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 2rem; gap: 1rem; box-shadow: var(--shadow-soft); border-radius: 0 0 24px 24px; }
-      .login-left h1 { font-size: 2rem; }
-      .login-card { padding: 1.8rem 1.5rem; }
-      .social-buttons { grid-template-columns: 1fr; }
-      .social-buttons .btn-full { grid-column: auto; }
-      footer .container { flex-direction: column; text-align: center; }
+      header nav a:not(.nav-actions a) { display: none; }
+      .mobile-menu-toggle { display: flex; }
+      .mobile-nav.open { display: flex; }
+      .login-card { padding: 32px 24px; }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .floating-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+        bottom: 20px;
+        right: 20px;
+      }
+      .floating-whatsapp { bottom: 80px; }
+      .back-top { left: 20px; bottom: 20px; width: 44px; height: 44px; }
     }
+
     @media (max-width: 480px) {
-      .login-left h1 { font-size: 1.6rem; }
-      .login-card { padding: 1.5rem 1.2rem; }
-      .btn { padding: 12px 20px; font-size: 0.9rem; }
-      .floating-btn { width: 48px; height: 48px; font-size: 1.2rem; right: 16px; }
+      .header-container { padding: 0 16px; height: 64px; }
+      .login-card { padding: 24px 16px; border-radius: 28px; }
+      .social-btn { min-width: 48px; padding: 10px 12px; font-size: 0.8rem; }
+      .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <!-- LOADER -->
-  <div id="loader"><div class="loader-spinner"></div></div>
 
-  <!-- HEADER -->
-  <header id="header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo">Smile<span>AI</span><small>Web Studio</small></a>
-      <nav id="navbar">
-        <a href="index.html">Home</a>
-        <a href="create-website.html">AI Builder</a>
-        <a href="services.html">Services</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="about.html">About</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-        <a href="login.html" class="btn btn-primary" style="padding:8px 22px;font-size:0.85rem;">Sign In</a>
-      </nav>
-      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+<header id="header">
+  <div class="header-container">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">😊</span>
+      <span>Smile AI</span>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-outline" style="border-color:#2563eb; color:#2563eb;">Login</a>
+        <a href="signup.html" class="btn-primary">Get Started</a>
+      </div>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" style="font-weight:600; color:#2563eb;">Login</a>
+    <a href="signup.html" style="font-weight:600;">Sign Up</a>
+  </div>
+</header>
+
+<main>
+  <div class="login-grid">
+    <div class="illustration-area">
+      <h1>Welcome back,<br />future builder.</h1>
+      <p>Access your AI-powered workspace &amp; automation tools.</p>
+      <div class="illustration-box">
+        <svg class="illustration-svg" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="22" width="176" height="116" rx="24" fill="white" stroke="#dce3ef" stroke-width="1.5" />
+          <rect x="32" y="40" width="64" height="12" rx="6" fill="#2563eb" opacity="0.12" />
+          <rect x="32" y="60" width="96" height="12" rx="6" fill="#2563eb" opacity="0.08" />
+          <rect x="32" y="80" width="80" height="12" rx="6" fill="#2563eb" opacity="0.06" />
+          <circle cx="156" cy="46" r="16" fill="#eef3fc" stroke="#dce3ef" stroke-width="1.2" />
+          <circle cx="156" cy="46" r="8" fill="#2563eb" opacity="0.15" />
+          <path d="M148 90 L168 110 L148 110 L140 98 L148 90Z" fill="#2563eb" opacity="0.08" />
+          <path d="M130 120 L170 120 L165 130 L135 130 L130 120Z" fill="#0b1a2e" opacity="0.04" />
+        </svg>
+      </div>
+      <p style="font-size:0.9rem; color:#4a5b72;">Secure · Fast · AI-driven</p>
     </div>
-  </header>
 
-  <!-- LOGIN PAGE -->
-  <section id="login-page">
-    <div class="floating-shapes"><span></span><span></span><span></span></div>
-    <div class="container">
-      <!-- Left Side -->
-      <div class="login-left">
-        <div class="hero-illustration"></div>
-        <h1>Welcome <span class="highlight">Back</span></h1>
-        <p>Sign in to manage your AI websites, projects, leads and business dashboard.</p>
+    <div class="login-card">
+      <h2>Sign in</h2>
+      <p class="sub">to continue to your dashboard</p>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginEmail">Email address</label>
+          <input type="email" id="loginEmail" placeholder="you@company.com" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password" />
+            <button type="button" class="toggle-password" id="togglePassword" aria-label="Show password">👁️</button>
+          </div>
+        </div>
+        <div class="flex-row">
+          <label class="remember">
+            <input type="checkbox" id="rememberMe" /> Remember me
+          </label>
+          <a href="forgot-password.html" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn-login" id="loginBtn">
+          <span id="loginBtnText">Sign in</span>
+        </button>
+
+        <div id="loginMessage" class="message-area"></div>
+      </form>
+
+      <div class="social-divider"><span>or continue with</span></div>
+      <div class="social-buttons">
+        <button class="social-btn" id="googleLogin"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google</button>
+        <button class="social-btn" id="facebookLogin"><svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</button>
+        <button class="social-btn" id="githubLogin"><svg viewBox="0 0 24 24"><path fill="#181717" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.123-.3-.535-1.52.117-3.16 0 0 1.008-.322 3.3 1.23.96-.267 1.98-.399 3-.399s2.04.132 3 .399c2.292-1.552 3.3-1.23 3.3-1.23.653 1.64.24 2.86.118 3.16.768.84 1.233 1.91 1.233 3.22 0 4.61-2.804 5.62-5.476 5.92.43.37.824 1.102.824 2.22 0 1.602-.015 2.894-.015 3.287 0 .322.216.694.825.577C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</button>
+        <button class="social-btn" id="microsoftLogin"><svg viewBox="0 0 24 24"><path fill="#F25022" d="M11.4 11.4H0V0h11.4v11.4z"/><path fill="#7FBA00" d="M24 11.4H12.6V0H24v11.4z"/><path fill="#00A4EF" d="M11.4 24H0V12.6h11.4V24z"/><path fill="#FFB900" d="M24 24H12.6V12.6H24V24z"/></svg> Microsoft</button>
       </div>
 
-      <!-- Right Side - Login Card -->
-      <div class="login-card">
-        <div class="card-header">
-          <h2>Sign In</h2>
-          <p>Enter your credentials to access your account</p>
-        </div>
-
-        <!-- Login Form -->
-        <form id="loginForm" novalidate>
-          <div class="form-group">
-            <label for="loginEmail">Email Address</label>
-            <input type="email" id="loginEmail" placeholder="you@example.com" required />
-            <div class="error-msg" id="emailError">Please enter a valid email address.</div>
-          </div>
-
-          <div class="form-group">
-            <label for="loginPassword">Password</label>
-            <div class="input-wrapper">
-              <input type="password" id="loginPassword" placeholder="Enter your password" required />
-              <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password visibility">👁️</button>
-            </div>
-            <div class="error-msg" id="passwordError">Please enter your password.</div>
-          </div>
-
-          <div class="form-options">
-            <label class="remember">
-              <input type="checkbox" id="rememberMe" />
-              Remember me
-            </label>
-            <a href="forgot-password.html" class="forgot">Forgot password?</a>
-          </div>
-
-          <button type="submit" class="btn btn-primary login-btn" id="loginBtn">
-            <span class="btn-text">Sign In</span>
-            <span class="spinner"></span>
-          </button>
-        </form>
-
-        <!-- Success/Error Messages -->
-        <div id="loginMessage" class="success-msg" style="text-align:center;margin-top:0.5rem;"></div>
-
-        <!-- Social Divider -->
-        <div class="social-divider">
-          <span>Or continue with</span>
-        </div>
-
-        <!-- Social Login -->
-        <div class="social-buttons">
-          <button class="btn btn-google btn-full" id="googleLogin">
-            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-            Continue with Google
-          </button>
-          <button class="btn btn-microsoft" id="microsoftLogin">
-            <svg width="18" height="18" viewBox="0 0 23 23"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="12" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="12" width="10" height="10" fill="#00A4EF"/><rect x="12" y="12" width="10" height="10" fill="#FFB900"/></svg>
-            Microsoft
-          </button>
-          <button class="btn btn-github" id="githubLogin">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.15 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.62.24 2.85.12 3.15.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </button>
-          <button class="btn btn-facebook" id="facebookLogin">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            Facebook
-          </button>
-        </div>
-
-        <div class="signup-link">
-          Don't have an account? <a href="signup.html">Create Account</a>
-        </div>
+      <div class="signup-helper">
+        Don’t have an account? <a href="signup.html">Sign up free</a>
       </div>
     </div>
-  </section>
+  </div>
+</main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="about.html">About</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-        <a href="privacy-policy.html">Privacy</a>
-        <a href="terms-and-conditions.html">Terms</a>
-      </div>
-      <div class="powered">© 2025 Smile AI Web Studio. Powered by Smile Financial Solution.</div>
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>Smile AI Web Studio</h4>
+      <p style="color:#2d4059; font-size:0.9rem; max-width:260px;">AI website builder &amp; business automation by Smile Financial Solution.</p>
+      <p style="margin-top:8px; font-size:0.9rem; color:#2d4059;">📞 +91 7290977231</p>
     </div>
-  </footer>
+    <div>
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <a href="faq.html">FAQ</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+    </div>
+    <div>
+      <h4>Quick links</h4>
+      <a href="index.html">Home</a>
+      <a href="services.html">AI Builder</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Smile Financial Solution. All rights reserved.</span>
+    <div class="social-icons">
+      <a href="#" aria-label="Twitter">🐦</a>
+      <a href="#" aria-label="LinkedIn">🔗</a>
+      <a href="#" aria-label="YouTube">▶️</a>
+    </div>
+  </div>
+</footer>
 
-  <!-- FLOATING BUTTONS -->
-  <a href="https://wa.me/917290977231?text=Hello%20Smile%20AI%2C%20I%20need%20help%20with%20login." class="floating-btn whatsapp" aria-label="WhatsApp">💬</a>
-  <a href="tel:+917290977231" class="floating-btn call" aria-label="Call">📞</a>
-  <button class="floating-btn top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<a href="https://wa.me/917290977231" class="floating-btn floating-whatsapp" aria-label="WhatsApp" target="_blank">💬</a>
+<a href="tel:+917290977231" class="floating-btn" aria-label="Call">📞</a>
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
 
-  <script>
-    // ============================================================
-    // ===== LOADER =====
-    // ============================================================
-    window.addEventListener('load', () => {
-      document.getElementById('loader').classList.add('hide');
-    });
-
-    // ============================================================
-    // ===== HEADER SCROLL =====
-    // ============================================================
-    window.addEventListener('scroll', () => {
-      const header = document.getElementById('header');
-      if (window.scrollY > 60) header.classList.add('scrolled');
-      else header.classList.remove('scrolled');
-    });
-
-    // ============================================================
-    // ===== HAMBURGER =====
-    // ============================================================
-    document.getElementById('hamburger').addEventListener('click', () => {
-      document.getElementById('navbar').classList.toggle('open');
-    });
-    document.querySelectorAll('#navbar a').forEach(link => {
-      link.addEventListener('click', () => document.getElementById('navbar').classList.remove('open'));
-    });
-
-    // ============================================================
-    // ===== TOGGLE PASSWORD VISIBILITY =====
-    // ============================================================
-    document.getElementById('togglePassword').addEventListener('click', function() {
-      const input = document.getElementById('loginPassword');
-      const type = input.type === 'password' ? 'text' : 'password';
-      input.type = type;
-      this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
-    });
-
-    // ============================================================
-    // ===== FORM VALIDATION & LOGIN =====
-    // ============================================================
+<!-- UI JavaScript only -->
+<script>
+  (function() {
+    // loader (simulate spinner on button)
+    const loginBtn = document.getElementById('loginBtn');
+    const loginBtnText = document.getElementById('loginBtnText');
     const loginForm = document.getElementById('loginForm');
+    const loginMessage = document.getElementById('loginMessage');
     const loginEmail = document.getElementById('loginEmail');
     const loginPassword = document.getElementById('loginPassword');
-    const emailError = document.getElementById('emailError');
-    const passwordError = document.getElementById('passwordError');
-    const loginMessage = document.getElementById('loginMessage');
-    const loginBtn = document.getElementById('loginBtn');
+    const rememberMe = document.getElementById('rememberMe');
+    const togglePassword = document.getElementById('togglePassword');
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const header = document.getElementById('header');
+    const backTop = document.getElementById('backTop');
 
-    // Validate email
-    function validateEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    // Show error
-    function showError(input, errorEl, message) {
-      input.classList.add('form-error');
-      errorEl.textContent = message;
-      errorEl.classList.add('show');
-    }
-
-    // Clear error
-    function clearError(input, errorEl) {
-      input.classList.remove('form-error');
-      errorEl.classList.remove('show');
-    }
-
-    // Real-time validation
-    loginEmail.addEventListener('blur', function() {
-      if (this.value && !validateEmail(this.value)) {
-        showError(this, emailError, 'Please enter a valid email address.');
+    // ---------- sticky header ----------
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 20) {
+        header.classList.add('scrolled');
       } else {
-        clearError(this, emailError);
+        header.classList.remove('scrolled');
+      }
+      // back to top
+      if (window.scrollY > 400) {
+        backTop.classList.add('visible');
+      } else {
+        backTop.classList.remove('visible');
       }
     });
 
-    loginEmail.addEventListener('input', function() {
-      if (this.value && !validateEmail(this.value)) {
-        showError(this, emailError, 'Please enter a valid email address.');
+    // ---------- back to top ----------
+    backTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ---------- mobile menu ----------
+    mobileToggle.addEventListener('click', function() {
+      mobileNav.classList.toggle('open');
+    });
+
+    // ---------- toggle password ----------
+    togglePassword.addEventListener('click', function() {
+      const field = document.getElementById('loginPassword');
+      if (field.type === 'password') {
+        field.type = 'text';
+        togglePassword.textContent = '🙈';
       } else {
-        clearError(this, emailError);
+        field.type = 'password';
+        togglePassword.textContent = '👁️';
       }
     });
 
-    loginPassword.addEventListener('blur', function() {
-      if (this.value && this.value.length < 6) {
-        showError(this, passwordError, 'Password must be at least 6 characters.');
-      } else if (!this.value) {
-        showError(this, passwordError, 'Please enter your password.');
-      } else {
-        clearError(this, passwordError);
-      }
-    });
-
-    loginPassword.addEventListener('input', function() {
-      if (this.value && this.value.length < 6) {
-        showError(this, passwordError, 'Password must be at least 6 characters.');
-      } else if (!this.value) {
-        showError(this, passwordError, 'Please enter your password.');
-      } else {
-        clearError(this, passwordError);
-      }
-    });
-
-    // Form submit
+    // ---------- form validation + loading ----------
     loginForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      let isValid = true;
+      // clear previous message
+      loginMessage.textContent = '';
+      loginMessage.className = 'message-area';
 
-      // Validate email
       const email = loginEmail.value.trim();
-      if (!email || !validateEmail(email)) {
-        showError(loginEmail, emailError, 'Please enter a valid email address.');
-        isValid = false;
-      } else {
-        clearError(loginEmail, emailError);
+      const password = loginPassword.value.trim();
+
+      // simple validation
+      if (!email || !password) {
+        loginMessage.textContent = 'Please enter both email and password.';
+        loginMessage.className = 'message-area error';
+        return;
+      }
+      if (!email.includes('@') || !email.includes('.')) {
+        loginMessage.textContent = 'Please enter a valid email address.';
+        loginMessage.className = 'message-area error';
+        return;
+      }
+      if (password.length < 6) {
+        loginMessage.textContent = 'Password must be at least 6 characters.';
+        loginMessage.className = 'message-area error';
+        return;
       }
 
-      // Validate password
-      const password = loginPassword.value;
-      if (!password || password.length < 6) {
-        showError(loginPassword, passwordError, 'Password must be at least 6 characters.');
-        isValid = false;
-      } else {
-        clearError(loginPassword, passwordError);
-      }
-
-      if (!isValid) return;
-
-      // ============================================================
-      // 🔥 FIREBASE AUTHENTICATION INTEGRATION
-      // ============================================================
-      // Uncomment when Firebase is ready:
-      /*
-      import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-      import { getFirestore, doc, getDoc } from 'firebase/firestore';
-
-      // Show loading state
-      loginBtn.classList.add('loading');
+      // show loader
       loginBtn.disabled = true;
+      loginBtnText.innerHTML = '<span class="loader-spinner"></span> Signing in…';
 
-      const auth = getAuth();
-      const db = getFirestore();
-
-      signInWithEmailAndPassword(auth, email, password)
-        .then(async (userCredential) => {
-          const user = userCredential.user;
-
-          // Check user role from Firestore
-          const userDoc = await getDoc(doc(db, 'users', user.uid));
-          const userData = userDoc.data();
-
-          loginMessage.textContent = '✅ Login successful! Redirecting...';
-          loginMessage.className = 'success-msg show';
-
-          // Role-based redirect
-          setTimeout(() => {
-            if (userData?.role === 'admin') {
-              window.location.href = 'admin-dashboard.html';
-            } else {
-              window.location.href = 'customer-dashboard.html';
-            }
-          }, 1500);
-        })
-        .catch((error) => {
-          loginBtn.classList.remove('loading');
-          loginBtn.disabled = false;
-
-          let errorMsg = 'Invalid email or password. Please try again.';
-          if (error.code === 'auth/user-not-found') {
-            errorMsg = 'No account found with this email.';
-          } else if (error.code === 'auth/wrong-password') {
-            errorMsg = 'Incorrect password. Please try again.';
-          } else if (error.code === 'auth/too-many-requests') {
-            errorMsg = 'Too many failed attempts. Please try again later.';
-          }
-
-          loginMessage.textContent = '❌ ' + errorMsg;
-          loginMessage.className = 'error-msg show';
-          loginMessage.style.color = '#EF4444';
-        });
-      */
-
-      // ============================================================
-      // DEMO LOGIN (Remove when Firebase is ready)
-      // ============================================================
-      loginBtn.classList.add('loading');
-      loginBtn.disabled = true;
-
-      setTimeout(() => {
-        loginBtn.classList.remove('loading');
+      // simulate UI loading (auth will be handled by auth.js)
+      // this is just visual feedback – no actual auth
+      setTimeout(function() {
+        // reset button – auth.js will take over
         loginBtn.disabled = false;
-
-        // Demo redirect
-        loginMessage.textContent = '✅ Login successful! (Demo)';
-        loginMessage.className = 'success-msg show';
-        loginMessage.style.color = '#10B981';
-
-        setTimeout(() => {
-          // Redirect to customer dashboard (or admin for demo)
-          // window.location.href = 'customer-dashboard.html';
-          alert('🚀 Login successful! (Demo mode - redirect to dashboard)');
-          loginMessage.textContent = '';
-          loginMessage.className = '';
-        }, 1500);
-      }, 1500);
+        loginBtnText.textContent = 'Sign in';
+        // show success message (will be replaced by real auth)
+        loginMessage.textContent = '✅ Ready for authentication (auth.js)';
+        loginMessage.className = 'message-area success';
+      }, 1400);
     });
 
-    // ============================================================
-    // ===== SOCIAL LOGIN PLACEHOLDERS =====
-    // ============================================================
-    document.getElementById('googleLogin').addEventListener('click', function() {
-      /*
-      // Firebase Google Auth
-      import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-      const provider = new GoogleAuthProvider();
-      signInWithPopup(getAuth(), provider).then(result => {
-        window.location.href = 'customer-dashboard.html';
-      }).catch(error => console.error(error));
-      */
-      alert('🔵 Google Sign-In (Firebase ready)');
-    });
-
-    document.getElementById('microsoftLogin').addEventListener('click', function() {
-      alert('🔵 Microsoft Sign-In (Firebase ready)');
-    });
-
-  
-
-    // ============================================================
-    // ===== SMOOTH SCROLL FIX =====
-    // ============================================================
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      const href = link.getAttribute('href');
-      if (href && href.length > 1) {
-        link.addEventListener('click', function(e) {
-          const target = document.querySelector(href);
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
+    // ---------- social buttons: only UI, no alerts ----------
+    const socialBtns = ['googleLogin', 'facebookLogin', 'githubLogin', 'microsoftLogin'];
+    socialBtns.forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) {
+        btn.addEventListener('click', function() {
+          // UI only – no alert, no demo. just a subtle feedback
+          loginMessage.textContent = `🔐 ${id.replace('Login','')} sign-in UI ready (auth.js will handle)`;
+          loginMessage.className = 'message-area';
+          setTimeout(() => {
+            if (loginMessage.textContent.includes('auth.js')) {
+              loginMessage.textContent = '';
+            }
+          }, 3000);
         });
       }
     });
 
-    console.log('🚀 login.html – Smile AI Web Studio');
-    console.log('📌 Firebase Authentication ready (commented)');
-    console.log('📌 Role-based redirect: customer-dashboard.html | admin-dashboard.html');
-  </script>
-  <script type="module" src="js/auth.js"></script>
+    // ---------- accessibility: remember me (just UI) ----------
+    // (no action needed)
+
+    console.log('✅ login.html UI ready – auth.js will handle Firebase.');
+  })();
+</script>
+
+<!-- Firebase auth will be injected via auth.js -->
+<script type="module" src="js/auth.js"></script>
 </body>
 </html>
