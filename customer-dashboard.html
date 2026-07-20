@@ -8,35 +8,39 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Customer Dashboard | Smile AI Web Studio</title>
+<title>
 
-<meta name="description"
+Customer Dashboard | Smile AI Web Studio
+
+</title>
+
+<meta
+name="description"
 content="Smile AI Web Studio Customer Dashboard">
 
-<meta name="robots"
-content="noindex,nofollow">
+<link
+rel="icon"
+href="images/favicon.png">
 
-<meta name="theme-color"
-content="#2563eb">
+<link
+rel="stylesheet"
+href="css/dashboard.css">
 
-<link rel="icon"
-href="assets/favicon.png">
-
-<link rel="preconnect"
+<link
+rel="preconnect"
 href="https://fonts.googleapis.com">
 
-<link rel="preconnect"
+<link
+rel="preconnect"
 href="https://fonts.gstatic.com"
 crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
 rel="stylesheet">
 
-<link rel="stylesheet"
+<link
+rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-<link rel="stylesheet"
-href="css/customer-dashboard.css">
 
 </head>
 
@@ -46,31 +50,23 @@ href="css/customer-dashboard.css">
 
 <div id="loader">
 
-<div class="loader-box">
-
-<div class="loader-circle"></div>
-
-<h3>Loading Dashboard...</h3>
+<div class="spinner"></div>
 
 </div>
 
-</div>
+<!-- Dashboard -->
 
-<!-- App -->
-
-<div id="dashboardApp">
+<div class="dashboardContainer">
 
 <!-- Sidebar -->
 
-<aside id="sidebar">
-
-<div class="sidebar-top">
+<aside class="sidebar">
 
 <div class="logo">
 
 <img
-src="assets/logo.png"
-id="companyLogo">
+src="images/logo.png"
+alt="Logo">
 
 <h2>
 
@@ -80,51 +76,11 @@ Smile AI
 
 </div>
 
-<button id="sidebarToggle">
+<ul class="sidebarMenu">
 
-<i class="fa-solid fa-bars"></i>
+<li class="active">
 
-</button>
-
-</div>
-
-<!-- User -->
-
-<div class="sidebar-user">
-
-<img
-
-id="userPhoto"
-
-src="assets/default-user.png"
-
-alt="User">
-
-<h3 id="sidebarUserName">
-
-Loading...
-
-</h3>
-
-<p id="sidebarUserEmail">
-
-Loading...
-
-</p>
-
-</div>
-
-<!-- Menu -->
-
-<nav>
-
-<ul>
-
-<li>
-
-<a
-href="#dashboard"
-id="menuDashboard">
+<a href="#">
 
 <i class="fa-solid fa-house"></i>
 
@@ -136,9 +92,7 @@ Dashboard
 
 <li>
 
-<a
-href="#websites"
-id="menuWebsites">
+<a href="#myWebsites">
 
 <i class="fa-solid fa-globe"></i>
 
@@ -150,9 +104,55 @@ My Websites
 
 <li>
 
-<a
-href="#orders"
-id="menuOrders">
+<a href="#builder">
+
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+
+AI Builder
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#domains">
+
+<i class="fa-solid fa-earth-asia"></i>
+
+Domains
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#hosting">
+
+<i class="fa-solid fa-server"></i>
+
+Hosting
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#billing">
+
+<i class="fa-solid fa-file-invoice"></i>
+
+Billing
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#orders">
 
 <i class="fa-solid fa-cart-shopping"></i>
 
@@ -164,23 +164,7 @@ Orders
 
 <li>
 
-<a
-href="#invoice"
-id="menuInvoices">
-
-<i class="fa-solid fa-file-invoice"></i>
-
-Invoices
-
-</a>
-
-</li>
-
-<li>
-
-<a
-href="#wallet"
-id="menuWallet">
+<a href="#wallet">
 
 <i class="fa-solid fa-wallet"></i>
 
@@ -192,9 +176,7 @@ Wallet
 
 <li>
 
-<a
-href="#support"
-id="menuSupport">
+<a href="#support">
 
 <i class="fa-solid fa-headset"></i>
 
@@ -206,13 +188,11 @@ Support
 
 <li>
 
-<a
-href="#profile"
-id="menuProfile">
+<a href="#settings">
 
-<i class="fa-solid fa-user"></i>
+<i class="fa-solid fa-gear"></i>
 
-Profile
+Settings
 
 </a>
 
@@ -220,87 +200,59 @@ Profile
 
 <li>
 
-<button id="logoutBtn">
+<a href="#" id="logoutBtn">
 
 <i class="fa-solid fa-right-from-bracket"></i>
 
 Logout
 
-</button>
+</a>
 
 </li>
 
 </ul>
 
-</nav>
-
 </aside>
 
 <!-- Main -->
 
-<div id="mainContent">
+<main class="mainContent">
 
 <!-- Header -->
 
-<header id="topHeader">
+<header class="topHeader">
 
-<div class="left">
-
-<button id="mobileMenu">
-
-<i class="fa-solid fa-bars"></i>
-
-</button>
+<div>
 
 <h1>
 
-Customer Dashboard
+Welcome Back 👋
 
 </h1>
 
-</div>
+<p>
 
-<div class="right">
+Manage your business from one dashboard.
 
-<div class="searchBox">
-
-<input
-
-type="search"
-
-id="searchWebsite"
-
-placeholder="Search Website...">
-
-<i class="fa-solid fa-search"></i>
+</p>
 
 </div>
+
+<div class="headerRight">
 
 <button id="notificationBtn">
 
 <i class="fa-solid fa-bell"></i>
 
-<span id="notificationCount">
-
-0
-
-</span>
-
 </button>
 
-<button id="darkModeToggle">
-
-<i class="fa-solid fa-moon"></i>
-
-</button>
-
-<div class="profileArea">
+<div class="profileBox">
 
 <img
 
-id="headerUserPhoto"
+id="userPhoto"
 
-src="assets/default-user.png">
+src="images/default-user.png">
 
 <div>
 
@@ -324,603 +276,6 @@ Loading...
 
 </header>
 
-<!-- Main Area -->
+<!-- Dashboard Content -->
 
-<main id="dashboardContent">
-
-  <!-- ===================================================== -->
-<!-- Welcome Section -->
-<!-- ===================================================== -->
-
-<section id="welcomeSection">
-
-    <div class="welcomeCard">
-
-        <div class="welcomeLeft">
-
-            <span class="welcomeBadge">
-                👋 Welcome Back
-            </span>
-
-            <h2>
-                Hello,
-                <span id="welcomeUserName">
-                    Loading...
-                </span>
-            </h2>
-
-            <p>
-                Manage your websites, hosting, domains, invoices and AI tools from one dashboard.
-            </p>
-
-            <div class="welcomeButtons">
-
-                <button id="createWebsiteBtn">
-                    <i class="fa-solid fa-plus"></i>
-                    Create Website
-                </button>
-
-                <button id="upgradePlanBtn">
-                    <i class="fa-solid fa-crown"></i>
-                    Upgrade Plan
-                </button>
-
-            </div>
-
-        </div>
-
-        <div class="welcomeRight">
-
-            <div class="membershipCard">
-
-                <h3>Current Plan</h3>
-
-                <h2 id="currentPlan">
-                    Free Plan
-                </h2>
-
-                <p>
-                    Next Renewal
-                </p>
-
-                <h4 id="renewDate">
-                    --
-                </h4>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ===================================================== -->
-<!-- Statistics -->
-<!-- ===================================================== -->
-
-<section id="statisticsSection">
-
-<div class="statsGrid">
-
-<div class="statCard">
-
-<i class="fa-solid fa-globe"></i>
-
-<h3 id="totalWebsites">
-0
-</h3>
-
-<p>Total Websites</p>
-
-</div>
-
-<div class="statCard">
-
-<i class="fa-solid fa-earth-asia"></i>
-
-<h3 id="publishedWebsites">
-0
-</h3>
-
-<p>Published</p>
-
-</div>
-
-<div class="statCard">
-
-<i class="fa-solid fa-pen"></i>
-
-<h3 id="draftWebsites">
-0
-</h3>
-
-<p>Draft</p>
-
-</div>
-
-<div class="statCard">
-
-<i class="fa-solid fa-cart-shopping"></i>
-
-<h3 id="totalOrders">
-0
-</h3>
-
-<p>Total Orders</p>
-
-</div>
-
-<div class="statCard">
-
-<i class="fa-solid fa-file-invoice"></i>
-
-<h3 id="totalInvoices">
-0
-</h3>
-
-<p>Invoices</p>
-
-</div>
-
-<div class="statCard">
-
-<i class="fa-solid fa-wallet"></i>
-
-<h3 id="walletBalance">
-₹0
-</h3>
-
-<p>Wallet</p>
-
-</div>
-
-<div class="statCard">
-
-<i class="fa-solid fa-server"></i>
-
-<h3 id="storageUsed">
-0 GB
-</h3>
-
-<p>Storage Used</p>
-
-</div>
-
-<div class="statCard">
-
-<i class="fa-solid fa-hard-drive"></i>
-
-<h3 id="hostingCount">
-0
-</h3>
-
-<p>Hosting</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ===================================================== -->
-<!-- Quick Actions -->
-<!-- ===================================================== -->
-
-<section id="quickActionsSection">
-
-<h2>
-
-Quick Actions
-
-</h2>
-
-<div class="quickGrid">
-
-<button id="actionCreateWebsite">
-
-<i class="fa-solid fa-laptop-code"></i>
-
-<span>Create Website</span>
-
-</button>
-
-<button id="actionTemplates">
-
-<i class="fa-solid fa-layer-group"></i>
-
-<span>Templates</span>
-
-</button>
-
-<button id="actionDomain">
-
-<i class="fa-solid fa-globe"></i>
-
-<span>Buy Domain</span>
-
-</button>
-
-<button id="actionHosting">
-
-<i class="fa-solid fa-server"></i>
-
-<span>Hosting</span>
-
-</button>
-
-<button id="actionAI">
-
-<i class="fa-solid fa-robot"></i>
-
-<span>AI Builder</span>
-
-</button>
-
-<button id="actionInvoice">
-
-<i class="fa-solid fa-file-invoice"></i>
-
-<span>Invoices</span>
-
-</button>
-
-<button id="actionWallet">
-
-<i class="fa-solid fa-wallet"></i>
-
-<span>Wallet</span>
-
-</button>
-
-<button id="actionSupport">
-
-<i class="fa-solid fa-headset"></i>
-
-<span>Support</span>
-
-</button>
-
-</div>
-
-</section>
-
-<!-- ===================================================== -->
-<!-- Today's Activity -->
-<!-- ===================================================== -->
-
-<section id="todayActivity">
-
-<div class="activityCard">
-
-<h2>
-
-Today's Activity
-
-</h2>
-
-<ul id="activityList">
-
-<li>No recent activity found.</li>
-
-</ul>
-
-</div>
-
-<div class="walletSummary">
-
-<h2>
-
-Wallet Summary
-
-</h2>
-
-<h1 id="walletAmount">
-
-₹0
-
-</h1>
-
-<p>
-
-Referral Earnings
-
-</p>
-
-<h3 id="referralAmount">
-
-₹0
-
-</h3>
-
-<button id="withdrawBtn">
-
-Withdraw
-
-</button>
-
-</div>
-
-</section>
-
-<!-- ===================================================== -->
-<!-- MY WEBSITES -->
-<!-- ===================================================== -->
-
-<section id="myWebsitesSection">
-
-    <div class="sectionHeader">
-
-        <div>
-
-            <h2>
-                <i class="fa-solid fa-globe"></i>
-                My Websites
-            </h2>
-
-            <p>
-                Manage all your AI websites from one place.
-            </p>
-
-        </div>
-
-        <button id="newWebsiteBtn" class="primaryBtn">
-            <i class="fa-solid fa-plus"></i>
-            Create Website
-        </button>
-
-    </div>
-
-
-    <!-- Search + Filter -->
-
-    <div class="websiteToolbar">
-
-        <input
-            type="text"
-            id="websiteSearch"
-            placeholder="Search website..."
-        >
-
-        <select id="websiteFilter">
-
-            <option value="all">
-                All Websites
-            </option>
-
-            <option value="published">
-                Published
-            </option>
-
-            <option value="draft">
-                Draft
-            </option>
-
-            <option value="hosting">
-                Hosting Active
-            </option>
-
-            <option value="expired">
-                Expired
-            </option>
-
-        </select>
-
-    </div>
-
-
-    <!-- Website Table -->
-
-    <div class="tableWrapper">
-
-        <table id="websiteTable">
-
-            <thead>
-
-            <tr>
-
-                <th>Website</th>
-
-                <th>Domain</th>
-
-                <th>Status</th>
-
-                <th>Plan</th>
-
-                <th>Created</th>
-
-                <th>Visitors</th>
-
-                <th>Actions</th>
-
-            </tr>
-
-            </thead>
-
-
-            <tbody id="websiteTableBody">
-
-                <tr>
-
-                    <td colspan="7" style="text-align:center;padding:40px;">
-
-                        <i class="fa-solid fa-earth-americas"
-                           style="font-size:55px;color:#ccc;"></i>
-
-                        <br><br>
-
-                        No website found.
-
-                        <br><br>
-
-                        <button
-                        id="emptyCreateWebsiteBtn"
-                        class="primaryBtn">
-
-                            Create Your First Website
-
-                        </button>
-
-                    </td>
-
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</section>
-
-
-
-<!-- ===================================================== -->
-<!-- WEBSITE DETAILS MODAL -->
-<!-- ===================================================== -->
-
-<div
-id="websiteModal"
-class="dashboardModal">
-
-<div class="modalContent">
-
-<div class="modalHeader">
-
-<h2>
-
-Website Details
-
-</h2>
-
-<button id="closeWebsiteModal">
-
-<i class="fa-solid fa-xmark"></i>
-
-</button>
-
-</div>
-
-<div class="modalBody">
-
-<div class="detailRow">
-
-<strong>Name</strong>
-
-<span id="modalWebsiteName">
-
---
-
-</span>
-
-</div>
-
-<div class="detailRow">
-
-<strong>Domain</strong>
-
-<span id="modalWebsiteDomain">
-
---
-
-</span>
-
-</div>
-
-<div class="detailRow">
-
-<strong>Status</strong>
-
-<span id="modalWebsiteStatus">
-
---
-
-</span>
-
-</div>
-
-<div class="detailRow">
-
-<strong>Hosting</strong>
-
-<span id="modalWebsiteHosting">
-
---
-
-</span>
-
-</div>
-
-<div class="detailRow">
-
-<strong>SSL</strong>
-
-<span id="modalWebsiteSSL">
-
---
-
-</span>
-
-</div>
-
-<div class="detailRow">
-
-<strong>Visitors</strong>
-
-<span id="modalWebsiteVisitors">
-
-0
-
-</span>
-
-</div>
-
-<div class="detailRow">
-
-<strong>Created</strong>
-
-<span id="modalWebsiteCreated">
-
---
-
-</span>
-
-</div>
-
-</div>
-
-<div class="modalFooter">
-
-<button
-id="previewWebsiteBtn">
-
-Preview
-
-</button>
-
-<button
-id="editWebsiteBtn">
-
-Edit
-
-</button>
-
-<button
-id="publishWebsiteBtn">
-
-Publish
-
-</button>
-
-<button
-id="deleteWebsiteBtn">
-
-Delete
-
-</button>
-
-</div>
-
-</div>
-
-</div>
+<div id="dashboardContent">
