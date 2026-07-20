@@ -317,3 +317,268 @@ font-size:13px;
 color:var(--text-light);
 
 }
+
+/* =====================================================
+   DASHBOARD SECTIONS
+===================================================== */
+
+#dashboardContent{
+display:flex;
+flex-direction:column;
+gap:25px;
+}
+
+.dashboardSection{
+background:#fff;
+padding:25px;
+border-radius:18px;
+box-shadow:var(--shadow);
+}
+
+.sectionTitle{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.sectionTitle h2{
+font-size:24px;
+font-weight:700;
+color:var(--text);
+}
+
+.sectionTitle p{
+margin-top:5px;
+color:var(--text-light);
+font-size:14px;
+}
+
+/* =====================================================
+   OVERVIEW CARDS
+===================================================== */
+
+.overviewGrid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;
+}
+
+.overviewCard{
+background:#fff;
+border-radius:18px;
+padding:22px;
+display:flex;
+align-items:center;
+gap:18px;
+box-shadow:var(--shadow);
+transition:.3s;
+}
+
+.overviewCard:hover{
+transform:translateY(-6px);
+}
+
+.cardIcon{
+width:65px;
+height:65px;
+border-radius:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+color:#fff;
+}
+
+.blue{
+background:#2563eb;
+}
+
+.green{
+background:#16a34a;
+}
+
+.orange{
+background:#f59e0b;
+}
+
+.purple{
+background:#7c3aed;
+}
+
+.cardInfo h5{
+font-size:14px;
+color:var(--text-light);
+font-weight:500;
+}
+
+.cardInfo h2{
+font-size:28px;
+margin:8px 0;
+}
+
+.cardInfo p{
+font-size:13px;
+color:var(--text-light);
+}
+
+/* =====================================================
+   QUICK ACTIONS
+===================================================== */
+
+.actionGrid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+}
+
+.actionCard{
+background:#fff;
+border-radius:16px;
+padding:22px;
+box-shadow:var(--shadow);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:14px;
+transition:.3s;
+}
+
+.actionCard:hover{
+background:var(--primary);
+color:#fff;
+transform:translateY(-5px);
+}
+
+.actionCard i{
+font-size:32px;
+}
+
+.actionCard span{
+font-size:15px;
+font-weight:600;
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.primaryBtn,
+.secondaryBtn,
+.successBtn,
+.dangerBtn{
+
+padding:12px 22px;
+border-radius:12px;
+font-size:15px;
+font-weight:600;
+transition:.3s;
+
+}
+
+.primaryBtn{
+background:var(--primary);
+color:#fff;
+}
+
+.primaryBtn:hover{
+background:var(--primary-dark);
+}
+
+.secondaryBtn{
+background:#eef2ff;
+color:var(--primary);
+}
+
+.secondaryBtn:hover{
+background:#dbeafe;
+}
+
+.successBtn{
+background:#16a34a;
+color:#fff;
+}
+
+.successBtn:hover{
+background:#15803d;
+}
+
+.dangerBtn{
+background:#dc2626;
+color:#fff;
+}
+
+.dangerBtn:hover{
+background:#b91c1c;
+}
+
+/* =====================================================
+   DASHBOARD CARD
+===================================================== */
+
+.dashboardCard{
+background:#fff;
+border-radius:18px;
+padding:22px;
+box-shadow:var(--shadow);
+margin-bottom:20px;
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.dashboardTable{
+width:100%;
+border-collapse:collapse;
+}
+
+.dashboardTable thead{
+background:#f8fafc;
+}
+
+.dashboardTable th,
+.dashboardTable td{
+padding:16px;
+text-align:left;
+border-bottom:1px solid #e5e7eb;
+font-size:14px;
+}
+
+.dashboardTable th{
+font-weight:700;
+}
+
+.dashboardTable tbody tr:hover{
+background:#f9fafb;
+}
+
+/* =====================================================
+   STATUS ROW
+===================================================== */
+
+.statusRow{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:14px 0;
+font-size:15px;
+}
+
+.statusRow strong{
+color:var(--primary);
+}
+
+/* =====================================================
+   BUTTON GROUP
+===================================================== */
+
+.buttonGroup{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:20px;
+}
