@@ -1,1 +1,319 @@
+/* =====================================================
+   Smile AI Web Studio
+   Customer Dashboard
+   Production CSS
+   Part 01
+===================================================== */
 
+/* ---------- Google Font ---------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ---------- Reset ---------- */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+background:#f5f7fb;
+color:#1f2937;
+overflow-x:hidden;
+
+}
+
+/* ---------- Variables ---------- */
+
+:root{
+
+--primary:#2563eb;
+--primary-dark:#1d4ed8;
+
+--success:#16a34a;
+--warning:#f59e0b;
+--danger:#dc2626;
+
+--white:#ffffff;
+
+--text:#1f2937;
+--text-light:#6b7280;
+
+--border:#e5e7eb;
+
+--shadow:
+0 10px 25px rgba(0,0,0,.08);
+
+--radius:18px;
+
+}
+
+/* ---------- Links ---------- */
+
+a{
+
+text-decoration:none;
+color:inherit;
+
+}
+
+/* ---------- Images ---------- */
+
+img{
+
+max-width:100%;
+display:block;
+
+}
+
+/* ---------- Buttons ---------- */
+
+button{
+
+font-family:'Poppins',sans-serif;
+cursor:pointer;
+border:none;
+outline:none;
+transition:.30s;
+
+}
+
+/* ---------- Dashboard ---------- */
+
+.dashboardContainer{
+
+display:flex;
+min-height:100vh;
+
+}
+
+/* =====================================================
+SIDEBAR
+===================================================== */
+
+.sidebar{
+
+width:280px;
+background:#0f172a;
+color:#fff;
+
+position:fixed;
+
+top:0;
+left:0;
+
+height:100vh;
+
+overflow-y:auto;
+
+padding:25px;
+
+z-index:999;
+
+}
+
+/* Logo */
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+margin-bottom:35px;
+
+}
+
+.logo img{
+
+width:55px;
+height:55px;
+
+border-radius:50%;
+
+}
+
+.logo h2{
+
+font-size:22px;
+font-weight:700;
+
+}
+
+/* Menu */
+
+.sidebarMenu{
+
+list-style:none;
+
+}
+
+.sidebarMenu li{
+
+margin-bottom:8px;
+
+}
+
+.sidebarMenu li a{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+padding:14px 18px;
+
+border-radius:12px;
+
+transition:.30s;
+
+font-weight:500;
+
+}
+
+.sidebarMenu li a i{
+
+width:22px;
+text-align:center;
+
+font-size:18px;
+
+}
+
+.sidebarMenu li:hover a{
+
+background:rgba(255,255,255,.10);
+
+}
+
+.sidebarMenu li.active a{
+
+background:var(--primary);
+
+}
+
+/* =====================================================
+MAIN
+===================================================== */
+
+.mainContent{
+
+margin-left:280px;
+
+flex:1;
+
+padding:30px;
+
+}
+
+/* =====================================================
+HEADER
+===================================================== */
+
+.topHeader{
+
+background:#fff;
+
+padding:22px 28px;
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:25px;
+
+}
+
+.topHeader h1{
+
+font-size:28px;
+
+font-weight:700;
+
+color:var(--text);
+
+}
+
+.topHeader p{
+
+color:var(--text-light);
+
+margin-top:4px;
+
+}
+
+.headerRight{
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+}
+
+/* Notification */
+
+#notificationBtn{
+
+width:48px;
+height:48px;
+
+border-radius:50%;
+
+background:#f3f4f6;
+
+font-size:18px;
+
+}
+
+/* Profile */
+
+.profileBox{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+.profileBox img{
+
+width:52px;
+height:52px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+}
+
+.profileBox h4{
+
+font-size:16px;
+
+}
+
+.profileBox p{
+
+font-size:13px;
+
+color:var(--text-light);
+
+}
