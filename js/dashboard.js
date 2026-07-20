@@ -663,3 +663,176 @@ await loadDashboardData();
 
 console.log("Dashboard JS Part 03-B Loaded");
 
+/* ==========================================================
+   DASHBOARD.JS
+   PART 03-C
+   EDIT • DELETE • PUBLISH
+========================================================== */
+
+/* ==========================================================
+   EDIT WEBSITE
+========================================================== */
+
+async function editWebsite(id){
+
+try{
+
+const ref=doc(db,"websites",id);
+
+const snap=await getDoc(ref);
+
+if(!snap.exists()){
+
+alert("Website Not Found");
+
+return;
+
+}
+
+const data=snap.data();
+
+const newName=prompt("Website Name",data.name);
+
+if(!newName) return;
+
+await updateDoc(ref,{
+
+name:newName,
+
+updatedAt:serverTimestamp()
+
+});
+
+alert("Website Updated");
+
+await refreshDashboard();
+
+}
+
+catch(error){
+
+console.error(error);
+
+alert(error.message);
+
+}
+
+}
+
+/* ==========================================================
+   DELETE WEBSITE
+========================================================== */
+
+async function deleteWebsite(id){
+
+const ok=confirm("Delete this website?");
+
+if(!ok) return;
+
+try{
+
+await deleteDoc(
+
+doc(db,"websites",id)
+
+);
+
+alert("Website Deleted");
+
+await refreshDashboard();
+
+}
+
+catch(error){
+
+console.error(error);
+
+}
+
+}
+
+/* ==========================================================
+   PUBLISH WEBSITE
+========================================================== */
+
+async function publishWebsite(id){
+
+try{
+
+await updateDoc(
+
+doc(db,"websites",id),
+
+{
+
+status:"Live",
+
+published:true,
+
+publishedAt:serverTimestamp(),
+
+updatedAt:serverTimestamp()
+
+}
+
+);
+
+alert("Website Published");
+
+await refreshDashboard();
+
+}
+
+catch(error){
+
+console.error(error);
+
+}
+
+}
+
+/* ==========================================================
+   BUTTON EVENTS
+========================================================== */
+
+function attachWebsiteEvents(){
+
+document.querySelectorAll(".editWebsite")
+
+.forEach(btn=>{
+
+btn.onclick=()=>{
+
+editWebsite(btn.dataset.id);
+
+};
+
+});
+
+document.querySelectorAll(".deleteWebsite")
+
+.forEach(btn=>{
+
+btn.onclick=()=>{
+
+deleteWebsite(btn.dataset.id);
+
+};
+
+});
+
+document.querySelectorAll(".publishWebsite")
+
+.forEach(btn=>{
+
+btn.onclick=()=>{
+
+publishWebsite(btn.dataset.id);
+
+};
+
+});
+
+}
+
+console.log("Dashboard JS Part 03-C Loaded");
