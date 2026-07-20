@@ -815,3 +815,378 @@ Not Connected
 </section>
 
   
+<!-- ===================================================== -->
+<!-- HOSTING & DEPLOYMENT -->
+<!-- ===================================================== -->
+
+<section id="hosting" class="dashboardSection">
+
+<div class="sectionTitle">
+<div>
+<h2>Hosting & Deployment</h2>
+<p>Manage hosting, SSL, deployment and backups.</p>
+</div>
+</div>
+
+<div class="dashboardGrid">
+
+<!-- Hosting -->
+
+<div class="dashboardCard">
+
+<h3>
+<i class="fa-solid fa-server"></i>
+Hosting
+</h3>
+
+<div class="statusRow">
+<span>Hosting Status</span>
+<strong id="hostingStatus">
+Active
+</strong>
+</div>
+
+<div class="statusRow">
+<span>Storage</span>
+<strong id="hostingStorage">
+0 GB / 10 GB
+</strong>
+</div>
+
+<div class="statusRow">
+<span>Bandwidth</span>
+<strong id="hostingBandwidth">
+0 GB
+</strong>
+</div>
+
+<div class="buttonGroup">
+
+<button
+id="upgradeHostingBtn"
+class="primaryBtn">
+
+Upgrade
+
+</button>
+
+<button
+id="hostingDetailsBtn"
+class="secondaryBtn">
+
+Details
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SSL -->
+
+<div class="dashboardCard">
+
+<h3>
+
+<i class="fa-solid fa-lock"></i>
+
+SSL Certificate
+
+</h3>
+
+<div class="statusRow">
+
+<span>Status</span>
+
+<strong id="sslStatus">
+
+Active
+
+</strong>
+
+</div>
+
+<div class="statusRow">
+
+<span>Expiry</span>
+
+<strong id="sslExpiry">
+
+Loading...
+
+</strong>
+
+</div>
+
+<button
+id="renewSSLBtn"
+class="primaryBtn">
+
+Renew SSL
+
+</button>
+
+</div>
+
+
+<!-- Deployment -->
+
+<div class="dashboardCard">
+
+<h3>
+
+<i class="fa-solid fa-rocket"></i>
+
+Deployment
+
+</h3>
+
+<div class="statusRow">
+
+<span>Last Deploy</span>
+
+<strong id="lastDeploy">
+
+Never
+
+</strong>
+
+</div>
+
+<div class="statusRow">
+
+<span>Status</span>
+
+<strong id="deployStatus">
+
+Ready
+
+</strong>
+
+</div>
+
+<div class="buttonGroup">
+
+<button
+id="deployNowBtn"
+class="successBtn">
+
+Deploy Now
+
+</button>
+
+<button
+id="deploymentLogsBtn"
+class="secondaryBtn">
+
+Logs
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- GitHub -->
+
+<div class="dashboardCard">
+
+<h3>
+
+<i class="fa-brands fa-github"></i>
+
+GitHub
+
+</h3>
+
+<div class="statusRow">
+
+<span>Repository</span>
+
+<strong id="githubRepo">
+
+Not Connected
+
+</strong>
+
+</div>
+
+<button
+id="connectGithubBtn"
+class="primaryBtn">
+
+Connect GitHub
+
+</button>
+
+</div>
+
+
+<!-- Vercel -->
+
+<div class="dashboardCard">
+
+<h3>
+
+<i class="fa-solid fa-cloud"></i>
+
+Vercel
+
+</h3>
+
+<div class="statusRow">
+
+<span>Project</span>
+
+<strong id="vercelProject">
+
+Connected
+
+</strong>
+
+</div>
+
+<div class="buttonGroup">
+
+<button
+id="openVercelBtn"
+class="secondaryBtn">
+
+Open
+
+</button>
+
+<button
+id="redeployBtn"
+class="successBtn">
+
+Redeploy
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- Backup -->
+
+<div class="dashboardCard">
+
+<h3>
+
+<i class="fa-solid fa-database"></i>
+
+Backup
+
+</h3>
+
+<div class="statusRow">
+
+<span>Last Backup</span>
+
+<strong id="lastBackup">
+
+Never
+
+</strong>
+
+</div>
+
+<div class="buttonGroup">
+
+<button
+id="backupNowBtn"
+class="primaryBtn">
+
+Create Backup
+
+</button>
+
+<button
+id="restoreBackupBtn"
+class="secondaryBtn">
+
+Restore
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ===================================================== -->
+<!-- ANALYTICS -->
+<!-- ===================================================== -->
+
+<section id="analytics" class="dashboardSection">
+
+<div class="sectionTitle">
+
+<h2>
+
+Analytics
+
+</h2>
+
+</div>
+
+<div class="dashboardGrid">
+
+<div class="dashboardCard">
+
+<h3>Total Visitors</h3>
+
+<h1 id="analyticsVisitors">
+0
+</h1>
+
+</div>
+
+<div class="dashboardCard">
+
+<h3>Total Leads</h3>
+
+<h1 id="analyticsLeads">
+0
+</h1>
+
+</div>
+
+<div class="dashboardCard">
+
+<h3>Total Revenue</h3>
+
+<h1 id="analyticsRevenue">
+₹0
+</h1>
+
+</div>
+
+<div class="dashboardCard">
+
+<h3>Conversion Rate</h3>
+
+<h1 id="conversionRate">
+0%
+</h1>
+
+</div>
+
+</div>
+
+<div class="dashboardCard">
+
+<canvas id="trafficChart"></canvas>
+
+</div>
+
+</section>
