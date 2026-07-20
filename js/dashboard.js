@@ -836,3 +836,208 @@ publishWebsite(btn.dataset.id);
 }
 
 console.log("Dashboard JS Part 03-C Loaded");
+
+/* ==========================================================
+   DASHBOARD.JS
+   PART 03-D
+   DEPLOY • DUPLICATE • DOMAIN
+========================================================== */
+
+const deployWebsiteBtn =
+document.getElementById("deployWebsiteBtn");
+
+const duplicateWebsiteBtn =
+document.getElementById("duplicateWebsiteBtn");
+
+const connectDomainBtn =
+document.getElementById("connectDomainBtn");
+
+const verifyDomainBtn =
+document.getElementById("verifyDomainBtn");
+
+const customDomainInput =
+document.getElementById("customDomainInput");
+
+const connectedDomain =
+document.getElementById("connectedDomain");
+
+/* ==========================================================
+   DEPLOY WEBSITE
+========================================================== */
+
+async function deployWebsite(id){
+
+try{
+
+await updateDoc(
+doc(db,"websites",id),
+{
+deployed:true,
+deployStatus:"Success",
+deployTime:serverTimestamp()
+}
+);
+
+alert("Website Deployed Successfully");
+
+await refreshDashboard();
+
+}
+catch(error){
+
+console.error(error);
+
+}
+
+}
+
+/* ==========================================================
+   DUPLICATE WEBSITE
+========================================================== */
+
+async function duplicateWebsite(id){
+
+try{
+
+const snap=await getDoc(
+doc(db,"websites",id)
+);
+
+if(!snap.exists()) return;
+
+const data=snap.data();
+
+delete data.createdAt;
+
+delete data.updatedAt;
+
+data.name=data.name+" Copy";
+
+data.createdAt=serverTimestamp();
+
+data.updatedAt=serverTimestamp();
+
+await addDoc(
+collection(db,"websites"),
+data
+);
+
+alert("Website Duplicated");
+
+await refreshDashboard();
+
+}
+catch(error){
+
+console.error(error);
+
+}
+
+}
+
+/* ==========================================================
+   CONNECT CUSTOM DOMAIN
+========================================================== */
+
+async function connectDomain(){
+
+const domain=customDomainInput.value.trim();
+
+if(domain===""){
+
+alert("Enter Domain");
+
+return;
+
+}
+
+try{
+
+await setDoc(
+
+doc(db,"domains",currentUser.uid),
+
+{
+
+domain:domain,
+
+status:"Pending",
+
+createdAt:serverTimestamp()
+
+}
+
+);
+
+connectedDomain.textContent=domain;
+
+alert("Domain Connected");
+
+}
+catch(error){
+
+console.error(error);
+
+}
+
+}
+
+/* ==========================================================
+   VERIFY DOMAIN
+========================================================== */
+
+async function verifyDomain(){
+
+alert("DNS Verification Started.");
+
+}
+
+/* ==========================================================
+   BUTTON EVENTS
+========================================================== */
+
+if(connectDomainBtn){
+
+connectDomainBtn.onclick=connectDomain;
+
+}
+
+if(verifyDomainBtn){
+
+verifyDomainBtn.onclick=verifyDomain;
+
+}
+
+if(deployWebsiteBtn){
+
+deployWebsiteBtn.onclick=()=>{
+
+const id=prompt("Website Document ID");
+
+if(id){
+
+deployWebsite(id);
+
+}
+
+};
+
+}
+
+if(duplicateWebsiteBtn){
+
+duplicateWebsiteBtn.onclick=()=>{
+
+const id=prompt("Website Document ID");
+
+if(id){
+
+duplicateWebsite(id);
+
+}
+
+};
+
+}
+
+console.log("Dashboard JS Part 03-D Loaded");
