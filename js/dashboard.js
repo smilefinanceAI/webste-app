@@ -6,18 +6,21 @@
 ========================================================== */
 
 import {
-    auth,
-    db,
-    onAuthStateChanged,
-    signOut,
-    doc,
-    getDoc,
-    updateDoc,
-    collection,
-    query,
-    where,
-    getDocs,
-    serverTimestamp
+auth,
+db,
+onAuthStateChanged,
+signOut,
+doc,
+getDoc,
+setDoc,
+updateDoc,
+deleteDoc,
+collection,
+query,
+where,
+getDocs,
+addDoc,
+serverTimestamp
 } from "./firebase-service.js";
 
 /* ==========================================================
