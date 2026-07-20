@@ -642,3 +642,285 @@ Withdraw
 </div>
 
 </section>
+
+<!-- ===================================================== -->
+<!-- MY WEBSITES -->
+<!-- ===================================================== -->
+
+<section id="myWebsitesSection">
+
+    <div class="sectionHeader">
+
+        <div>
+
+            <h2>
+                <i class="fa-solid fa-globe"></i>
+                My Websites
+            </h2>
+
+            <p>
+                Manage all your AI websites from one place.
+            </p>
+
+        </div>
+
+        <button id="newWebsiteBtn" class="primaryBtn">
+            <i class="fa-solid fa-plus"></i>
+            Create Website
+        </button>
+
+    </div>
+
+
+    <!-- Search + Filter -->
+
+    <div class="websiteToolbar">
+
+        <input
+            type="text"
+            id="websiteSearch"
+            placeholder="Search website..."
+        >
+
+        <select id="websiteFilter">
+
+            <option value="all">
+                All Websites
+            </option>
+
+            <option value="published">
+                Published
+            </option>
+
+            <option value="draft">
+                Draft
+            </option>
+
+            <option value="hosting">
+                Hosting Active
+            </option>
+
+            <option value="expired">
+                Expired
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- Website Table -->
+
+    <div class="tableWrapper">
+
+        <table id="websiteTable">
+
+            <thead>
+
+            <tr>
+
+                <th>Website</th>
+
+                <th>Domain</th>
+
+                <th>Status</th>
+
+                <th>Plan</th>
+
+                <th>Created</th>
+
+                <th>Visitors</th>
+
+                <th>Actions</th>
+
+            </tr>
+
+            </thead>
+
+
+            <tbody id="websiteTableBody">
+
+                <tr>
+
+                    <td colspan="7" style="text-align:center;padding:40px;">
+
+                        <i class="fa-solid fa-earth-americas"
+                           style="font-size:55px;color:#ccc;"></i>
+
+                        <br><br>
+
+                        No website found.
+
+                        <br><br>
+
+                        <button
+                        id="emptyCreateWebsiteBtn"
+                        class="primaryBtn">
+
+                            Create Your First Website
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- ===================================================== -->
+<!-- WEBSITE DETAILS MODAL -->
+<!-- ===================================================== -->
+
+<div
+id="websiteModal"
+class="dashboardModal">
+
+<div class="modalContent">
+
+<div class="modalHeader">
+
+<h2>
+
+Website Details
+
+</h2>
+
+<button id="closeWebsiteModal">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+<div class="modalBody">
+
+<div class="detailRow">
+
+<strong>Name</strong>
+
+<span id="modalWebsiteName">
+
+--
+
+</span>
+
+</div>
+
+<div class="detailRow">
+
+<strong>Domain</strong>
+
+<span id="modalWebsiteDomain">
+
+--
+
+</span>
+
+</div>
+
+<div class="detailRow">
+
+<strong>Status</strong>
+
+<span id="modalWebsiteStatus">
+
+--
+
+</span>
+
+</div>
+
+<div class="detailRow">
+
+<strong>Hosting</strong>
+
+<span id="modalWebsiteHosting">
+
+--
+
+</span>
+
+</div>
+
+<div class="detailRow">
+
+<strong>SSL</strong>
+
+<span id="modalWebsiteSSL">
+
+--
+
+</span>
+
+</div>
+
+<div class="detailRow">
+
+<strong>Visitors</strong>
+
+<span id="modalWebsiteVisitors">
+
+0
+
+</span>
+
+</div>
+
+<div class="detailRow">
+
+<strong>Created</strong>
+
+<span id="modalWebsiteCreated">
+
+--
+
+</span>
+
+</div>
+
+</div>
+
+<div class="modalFooter">
+
+<button
+id="previewWebsiteBtn">
+
+Preview
+
+</button>
+
+<button
+id="editWebsiteBtn">
+
+Edit
+
+</button>
+
+<button
+id="publishWebsiteBtn">
+
+Publish
+
+</button>
+
+<button
+id="deleteWebsiteBtn">
+
+Delete
+
+</button>
+
+</div>
+
+</div>
+
+</div>
