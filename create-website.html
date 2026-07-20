@@ -2,744 +2,196 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-  <title>Smile Financial · AI Dashboard</title>
-  <meta name="description" content="Premium financial AI dashboard for Smile Financial Solution. Manage orders, websites, memberships and more.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smile AI Web Studio · Customer Dashboard</title>
+  <meta name="description" content="Real SaaS dashboard for Smile AI Web Studio – manage websites, orders, invoices, and more.">
+  <!-- External CSS (production) -->
+  <link rel="stylesheet" href="css/customer-dashboard.css">
+  <!-- Google Fonts & Font Awesome for premium icons (loaded via CSS) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14..32,400..700&display=swap" rel="stylesheet">
-  <!-- Font Awesome 6 (free) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- External CSS (linked as required) -->
-  <link rel="stylesheet" href="css/dashboard.css">
-  <!-- Inline critical styles for fast rendering (glass + reset) -->
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f5f5f7;
-      color: #1e1e2a;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-    .app-wrapper {
-      display: flex;
-      min-height: 100vh;
-    }
-    /* Sidebar styles (mobile first) */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 280px;
-      height: 100vh;
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-right: 1px solid rgba(255,215,0,0.2);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
-      padding: 1.5rem 1rem;
-      overflow-y: auto;
-      z-index: 1000;
-      transform: translateX(-100%);
-      transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1);
-      display: flex;
-      flex-direction: column;
-    }
-    .sidebar.open {
-      transform: translateX(0);
-    }
-    .sidebar-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 700;
-      font-size: 1.2rem;
-      letter-spacing: -0.02em;
-      color: #1e1e2a;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-    }
-    .sidebar-brand i {
-      color: #d4af37;
-      font-size: 1.6rem;
-    }
-    .sidebar-nav {
-      flex: 1;
-      list-style: none;
-    }
-    .sidebar-nav li {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.65rem 1rem;
-      margin: 0.2rem 0;
-      border-radius: 12px;
-      color: #2c2c3a;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: all 0.15s;
-      cursor: default;
-    }
-    .sidebar-nav li i {
-      width: 1.4rem;
-      color: #5a5a6e;
-      font-size: 1rem;
-    }
-    .sidebar-nav li.active {
-      background: rgba(212, 175, 55, 0.12);
-      color: #1e1e2a;
-      box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.2);
-    }
-    .sidebar-nav li.active i {
-      color: #d4af37;
-    }
-    .sidebar-nav li:hover:not(.active) {
-      background: rgba(0,0,0,0.02);
-    }
-    .sidebar-footer {
-      margin-top: auto;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(0,0,0,0.04);
-      font-size: 0.8rem;
-      color: #6b6b7a;
-    }
-    /* main */
-    .main-content {
-      flex: 1;
-      padding: 1.5rem 1rem 2rem;
-      max-width: 1440px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    /* header */
-    .header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.75rem 1rem;
-      margin-bottom: 2rem;
-      background: rgba(255,255,255,0.5);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      padding: 0.75rem 1.25rem;
-      border-radius: 40px;
-      border: 1px solid rgba(255,215,0,0.15);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-      position: sticky;
-      top: 0.5rem;
-      z-index: 100;
-    }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .menu-toggle {
-      background: none;
-      border: none;
-      font-size: 1.25rem;
-      color: #1e1e2a;
-      cursor: pointer;
-      padding: 0.25rem 0.5rem;
-    }
-    .logo {
-      font-weight: 700;
-      font-size: 1.2rem;
-      letter-spacing: -0.02em;
-      color: #1e1e2a;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .logo i {
-      color: #d4af37;
-    }
-    .header-search {
-      flex: 1;
-      min-width: 140px;
-      background: rgba(255,255,255,0.6);
-      border-radius: 40px;
-      padding: 0.35rem 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      border: 1px solid rgba(0,0,0,0.04);
-    }
-    .header-search input {
-      border: none;
-      background: transparent;
-      width: 100%;
-      padding: 0.4rem 0;
-      font-size: 0.9rem;
-      outline: none;
-    }
-    .header-search i {
-      color: #8a8a9a;
-    }
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-left: auto;
-    }
-    .header-actions button {
-      background: transparent;
-      border: none;
-      font-size: 1.1rem;
-      color: #2c2c3a;
-      cursor: pointer;
-      width: 36px;
-      height: 36px;
-      border-radius: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.1s;
-    }
-    .header-actions button:hover {
-      background: rgba(0,0,0,0.03);
-    }
-    .profile-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(255,255,255,0.5);
-      padding: 0.2rem 0.6rem 0.2rem 0.3rem;
-      border-radius: 40px;
-      border: 1px solid rgba(255,215,0,0.1);
-    }
-    .profile-badge img {
-      width: 28px;
-      height: 28px;
-      border-radius: 40px;
-      object-fit: cover;
-      background: #eaeaea;
-    }
-    .profile-badge span {
-      font-weight: 500;
-      font-size: 0.85rem;
-    }
-    .logout-btn {
-      background: rgba(0,0,0,0.02);
-      border: 1px solid rgba(0,0,0,0.04);
-      padding: 0.25rem 0.8rem;
-      border-radius: 40px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #4a4a5a;
-      cursor: pointer;
-      transition: 0.1s;
-    }
-    .logout-btn:hover {
-      background: rgba(212, 175, 55, 0.08);
-      border-color: #d4af37;
-    }
-    /* welcome */
-    .welcome {
-      background: linear-gradient(145deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      padding: 1.5rem 1.8rem;
-      border-radius: 32px;
-      border: 1px solid rgba(255,215,0,0.1);
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
-    }
-    .welcome h1 {
-      font-size: 1.6rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-    .welcome h1 span {
-      color: #d4af37;
-    }
-    .welcome .greeting {
-      font-size: 0.95rem;
-      color: #3e3e4e;
-      margin-top: 0.25rem;
-    }
-    /* cards grid */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .stat-card {
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border-radius: 24px;
-      padding: 1.25rem 1rem;
-      border: 1px solid rgba(255,215,0,0.08);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-      transition: 0.15s;
-    }
-    .stat-card .label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      color: #6b6b7a;
-    }
-    .stat-card .value {
-      font-size: 1.8rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin: 0.25rem 0 0.1rem;
-    }
-    .stat-card .sub {
-      font-size: 0.75rem;
-      color: #4a4a5a;
-    }
-    .stat-card .icon {
-      float: right;
-      color: #d4af37;
-      opacity: 0.5;
-      font-size: 1.6rem;
-    }
-    /* quick actions */
-    .quick-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 0.75rem;
-      margin-bottom: 2rem;
-      background: rgba(255,255,255,0.3);
-      backdrop-filter: blur(4px);
-      padding: 1rem 1.2rem;
-      border-radius: 40px;
-      border: 1px solid rgba(255,215,0,0.05);
-    }
-    .quick-actions .action {
-      background: rgba(255,255,255,0.6);
-      padding: 0.4rem 1.2rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      border: 1px solid rgba(0,0,0,0.02);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      cursor: default;
-      transition: 0.1s;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-    }
-    .quick-actions .action i {
-      color: #d4af37;
-      font-size: 0.8rem;
-    }
-    .quick-actions .action:hover {
-      background: white;
-      border-color: #d4af37;
-    }
-    /* two col */
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .card-panel {
-      background: rgba(255,255,255,0.5);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border-radius: 28px;
-      padding: 1.25rem 1.5rem 1.5rem;
-      border: 1px solid rgba(255,215,0,0.06);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.02);
-    }
-    .card-panel h3 {
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .card-panel h3 i {
-      color: #d4af37;
-      font-size: 0.9rem;
-    }
-    .order-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
-    .order-table th {
-      text-align: left;
-      font-weight: 500;
-      color: #5a5a6e;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid rgba(0,0,0,0.04);
-    }
-    .order-table td {
-      padding: 0.5rem 0.2rem 0.5rem 0;
-      border-bottom: 1px solid rgba(0,0,0,0.02);
-    }
-    .order-table .status {
-      display: inline-block;
-      padding: 0.15rem 0.6rem;
-      border-radius: 40px;
-      font-size: 0.7rem;
-      font-weight: 500;
-      background: rgba(212, 175, 55, 0.08);
-      color: #1e1e2a;
-    }
-    .activity-item {
-      display: flex;
-      gap: 0.75rem;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid rgba(0,0,0,0.02);
-      font-size: 0.9rem;
-    }
-    .activity-item i {
-      width: 1.4rem;
-      color: #d4af37;
-    }
-    .activity-item .time {
-      margin-left: auto;
-      color: #7a7a8a;
-      font-size: 0.75rem;
-    }
-    .notif-card {
-      display: flex;
-      gap: 0.75rem;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid rgba(0,0,0,0.02);
-      align-items: center;
-    }
-    .notif-card .badge {
-      background: #d4af37;
-      width: 8px;
-      height: 8px;
-      border-radius: 10px;
-      flex-shrink: 0;
-    }
-    .notif-card .notif-text {
-      font-size: 0.85rem;
-    }
-    /* profile card */
-    .profile-card {
-      background: rgba(255,255,255,0.5);
-      backdrop-filter: blur(8px);
-      border-radius: 32px;
-      padding: 1.8rem 1.5rem;
-      border: 1px solid rgba(255,215,0,0.06);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .profile-avatar img {
-      width: 72px;
-      height: 72px;
-      border-radius: 80px;
-      background: #ddd;
-      object-fit: cover;
-      border: 2px solid #d4af37;
-    }
-    .profile-info {
-      flex: 1;
-    }
-    .profile-info .name {
-      font-weight: 600;
-      font-size: 1.2rem;
-    }
-    .profile-info .detail {
-      font-size: 0.85rem;
-      color: #4a4a5a;
-      margin: 0.1rem 0;
-    }
-    .profile-info .detail i {
-      width: 1.2rem;
-      color: #d4af37;
-    }
-    .edit-btn {
-      background: rgba(212, 175, 55, 0.08);
-      border: 1px solid #d4af37;
-      padding: 0.4rem 1.4rem;
-      border-radius: 40px;
-      font-weight: 500;
-      font-size: 0.8rem;
-      cursor: default;
-      color: #1e1e2a;
-    }
-    /* footer */
-    .footer {
-      margin-top: 2.5rem;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(0,0,0,0.04);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 1rem;
-      font-size: 0.8rem;
-      color: #5a5a6e;
-    }
-    .footer a {
-      color: #2c2c3a;
-      text-decoration: none;
-      margin-right: 1rem;
-    }
-    .footer a:hover {
-      color: #d4af37;
-    }
-    /* mobile overrides */
-    @media (max-width: 700px) {
-      .two-col {
-        grid-template-columns: 1fr;
-      }
-      .header-search {
-        order: 10;
-        flex-basis: 100%;
-        margin-top: 0.2rem;
-      }
-      .profile-badge span {
-        display: none;
-      }
-      .welcome h1 {
-        font-size: 1.3rem;
-      }
-      .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (min-width: 701px) {
-      .menu-toggle {
-        display: none;
-      }
-      .sidebar {
-        transform: translateX(0);
-        position: relative;
-        width: 260px;
-        height: auto;
-        border-radius: 0;
-        background: rgba(255,255,255,0.5);
-        backdrop-filter: blur(12px);
-        border-right: 1px solid rgba(255,215,0,0.1);
-        padding: 1.5rem 0.8rem;
-        flex-shrink: 0;
-      }
-      .app-wrapper {
-        flex-direction: row;
-      }
-    }
-    @media (max-width: 700px) {
-      .sidebar {
-        width: 280px;
-      }
-    }
-    /* scroll */
-    .sidebar::-webkit-scrollbar { width: 4px; }
-    .sidebar::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 10px; }
-  </style>
 </head>
 <body>
-  <div class="app-wrapper">
-
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-brand">
-        <i class="fas fa-sparkles"></i> Smile<span style="color:#d4af37;">AI</span>
+  <!-- ========== HEADER / TOP NAVIGATION ========== -->
+  <header id="app-header" class="glass-header" role="banner">
+    <div class="header-left">
+      <button id="sidebarToggle" class="icon-btn" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
+      <div class="brand">
+        <i class="fas fa-robot" aria-hidden="true"></i>
+        <span>Smile AI Web Studio</span>
       </div>
-      <ul class="sidebar-nav">
-        <li class="active"><i class="fas fa-th-large"></i> Dashboard</li>
-        <li><i class="fas fa-user-circle"></i> My Profile</li>
-        <li><i class="fas fa-globe"></i> My Websites</li>
-        <li><i class="fas fa-shopping-bag"></i> My Orders</li>
-        <li><i class="fas fa-crown"></i> Membership</li>
-        <li><i class="fas fa-wallet"></i> Wallet</li>
-        <li><i class="fas fa-share-alt"></i> Refer & Earn</li>
-        <li><i class="fas fa-file-alt"></i> Documents</li>
-        <li><i class="fas fa-headset"></i> Support Tickets</li>
-        <li><i class="fas fa-bell"></i> Notifications</li>
-        <li><i class="fas fa-sliders-h"></i> Settings</li>
-        <li><i class="fas fa-sign-out-alt"></i> Logout</li>
+    </div>
+
+    <nav class="top-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="#dashboard" class="active" data-nav>Dashboard</a></li>
+        <li><a href="#websites" data-nav>My Websites</a></li>
+        <li><a href="#orders" data-nav>Orders</a></li>
+        <li><a href="#invoices" data-nav>Invoices</a></li>
+        <li><a href="#support" data-nav>Support</a></li>
       </ul>
-      <div class="sidebar-footer">v2.4 · premium</div>
-    </aside>
+    </nav>
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
-
-      <!-- HEADER (sticky) -->
-      <header class="header" id="mainHeader">
-        <div class="header-left">
-          <button class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
-          <div class="logo"><i class="fas fa-brain"></i> Smile<span style="color:#d4af37;">AI</span></div>
-        </div>
-        <div class="header-search">
-          <i class="fas fa-search"></i>
-          <input type="search" placeholder="Search anything..." aria-label="Search">
-        </div>
-        <div class="header-actions">
-          <button aria-label="Notifications"><i class="fas fa-bell"></i></button>
-          <button aria-label="Dark mode"><i class="fas fa-moon"></i></button>
-          <div class="profile-badge">
-            <img src="https://ui-avatars.com/api/?name=Alex+Rivera&background=d4af37&color=fff&size=32" alt="Profile" id="profileImage">
-            <span id="userName">Alex Rivera</span>
-          </div>
-          <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Exit</button>
-        </div>
-      </header>
-
-      <!-- WELCOME -->
-      <section class="welcome">
-        <h1>Welcome back, <span id="userNameGreeting">Alex</span> 👋</h1>
-        <div class="greeting">
-          <i class="far fa-calendar-alt"></i> <span id="currentDate">Monday, 19 July 2026</span> · 
-          <span id="timeGreeting">Good afternoon</span>
-        </div>
-      </section>
-
-      <!-- DASHBOARD CARDS (animated counters) -->
-      <div class="cards-grid">
-        <div class="stat-card"><i class="fas fa-shopping-cart icon"></i><div class="label">Total Orders</div><div class="value" id="orderCount">142</div></div>
-        <div class="stat-card"><i class="fas fa-check-circle icon"></i><div class="label">Completed</div><div class="value">98</div></div>
-        <div class="stat-card"><i class="fas fa-clock icon"></i><div class="label">Pending</div><div class="value">27</div></div>
-        <div class="stat-card"><i class="fas fa-wallet icon"></i><div class="label">Wallet</div><div class="value" id="walletBalance">$4,250</div></div>
-        <div class="stat-card"><i class="fas fa-crown icon"></i><div class="label">Membership</div><div class="value" id="membershipPlan">Gold</div></div>
-        <div class="stat-card"><i class="fas fa-code icon"></i><div class="label">Websites</div><div class="value" id="websiteCount">12</div></div>
-        <div class="stat-card"><i class="fas fa-ticket-alt icon"></i><div class="label">Support</div><div class="value">3</div></div>
-        <div class="stat-card"><i class="fas fa-gift icon"></i><div class="label">Referral</div><div class="value">$870</div></div>
-      </div>
-
-      <!-- QUICK ACTIONS -->
-      <div class="quick-actions">
-        <span class="action"><i class="fas fa-hand-holding-usd"></i> Apply Loan</span>
-        <span class="action"><i class="fas fa-laptop-code"></i> Create Website</span>
-        <span class="action"><i class="fas fa-building"></i> Business Reg.</span>
-        <span class="action"><i class="fas fa-file-invoice"></i> GST Reg.</span>
-        <span class="action"><i class="fas fa-industry"></i> MSME Reg.</span>
-        <span class="action"><i class="fas fa-file-alt"></i> ITR Filing</span>
-        <span class="action"><i class="fas fa-credit-card"></i> Credit Card</span>
-        <span class="action"><i class="fas fa-shield-alt"></i> Insurance</span>
-        <span class="action"><i class="fas fa-life-ring"></i> Support Ticket</span>
-      </div>
-
-      <!-- TWO COLUMN: Recent Orders + Activity -->
-      <div class="two-col">
-        <!-- Recent Orders Table -->
-        <div class="card-panel">
-          <h3>📋 Recent Orders <i class="fas fa-arrow-right"></i></h3>
-          <table class="order-table" id="recentOrders">
-            <thead><tr><th>Order ID</th><th>Service</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead>
-            <tbody>
-              <tr><td>#SMI-204</td><td>Website Pro</td><td>$299</td><td><span class="status">Completed</span></td><td>Jul 18</td></tr>
-              <tr><td>#SMI-203</td><td>ITR Filing</td><td>$89</td><td><span class="status">Pending</span></td><td>Jul 17</td></tr>
-              <tr><td>#SMI-202</td><td>GST Registration</td><td>$149</td><td><span class="status">In progress</span></td><td>Jul 16</td></tr>
-              <tr><td>#SMI-201</td><td>Business Reg.</td><td>$199</td><td><span class="status">Completed</span></td><td>Jul 15</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- Recent Activity -->
-        <div class="card-panel">
-          <h3>🕒 Recent Activity <i class="fas fa-arrow-right"></i></h3>
-          <div id="recentActivity">
-            <div class="activity-item"><i class="fas fa-sign-in-alt"></i> Login from new device <span class="time">2h ago</span></div>
-            <div class="activity-item"><i class="fas fa-credit-card"></i> Payment received $299 <span class="time">4h ago</span></div>
-            <div class="activity-item"><i class="fas fa-shopping-bag"></i> New order #SMI-204 <span class="time">6h ago</span></div>
-            <div class="activity-item"><i class="fas fa-user-edit"></i> Profile updated <span class="time">1d ago</span></div>
-          </div>
+    <div class="header-right">
+      <!-- Notifications -->
+      <button id="notifBell" class="icon-btn" aria-label="Notifications">
+        <i class="fas fa-bell"></i>
+        <span id="notifBadge" class="badge" data-unread="0">0</span>
+      </button>
+      <!-- Dark mode toggle -->
+      <button id="darkModeToggle" class="icon-btn" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <!-- Profile dropdown -->
+      <div class="profile-dropdown">
+        <button id="profileToggle" class="profile-btn" aria-expanded="false">
+          <img id="userAvatar" src="https://ui-avatars.com/api/?name=User&background=random" alt="User profile" loading="lazy">
+          <span id="userNameDisplay" class="profile-name">Loading…</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu" role="menu">
+          <a href="#profile" data-nav><i class="fas fa-user"></i> Profile</a>
+          <a href="#settings" data-nav><i class="fas fa-cog"></i> Settings</a>
+          <hr>
+          <button id="logoutBtn" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</button>
         </div>
       </div>
+    </div>
+  </header>
 
-      <!-- NOTIFICATIONS + PROFILE CARD row -->
-      <div class="two-col" style="margin-bottom:1rem;">
-        <div class="card-panel">
-          <h3>🔔 Notifications <i class="fas fa-arrow-right"></i></h3>
-          <div id="notificationList">
-            <div class="notif-card"><span class="badge"></span><span class="notif-text">Your website 'Finlytics' is ready</span></div>
-            <div class="notif-card"><span class="badge"></span><span class="notif-text">New membership benefit: AI assistant</span></div>
-            <div class="notif-card"><span class="badge" style="background:transparent;"></span><span class="notif-text">Invoice #INV-1023 generated</span></div>
-          </div>
-        </div>
-        <!-- PROFILE CARD -->
-        <div class="profile-card" id="profileCard">
-          <div class="profile-avatar">
-            <img src="https://ui-avatars.com/api/?name=Alex+Rivera&background=d4af37&color=fff&size=72" alt="avatar" id="profilePhoto">
-          </div>
-          <div class="profile-info">
-            <div class="name" id="userNameDisplay">Alex Rivera</div>
-            <div class="detail"><i class="fas fa-envelope"></i> <span id="userEmail">alex@smilefinancial.ai</span></div>
-            <div class="detail"><i class="fas fa-phone-alt"></i> <span id="userPhone">+1 (555) 123-4567</span></div>
-            <div class="detail"><i class="fas fa-id-card"></i> UID: SMI-7892 · <span id="userRole">Admin</span> · Provider: <span id="userProvider">Stripe</span></div>
-            <div class="detail"><i class="fas fa-calendar-plus"></i> Joined: <span id="userJoining">Jan 2024</span></div>
-          </div>
-          <div><span class="edit-btn"><i class="fas fa-edit"></i> Edit Profile</span></div>
-        </div>
-      </div>
+  <!-- ========== SIDEBAR ========== -->
+  <aside id="sidebar" class="glass-sidebar" aria-label="Sidebar navigation">
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#dashboard" class="active" data-sidebar><i class="fas fa-th-large"></i> Dashboard</a></li>
+        <li><a href="#create-website" data-sidebar><i class="fas fa-plus-circle"></i> Create Website</a></li>
+        <li><a href="#websites" data-sidebar><i class="fas fa-globe"></i> My Websites</a></li>
+        <li><a href="#templates" data-sidebar><i class="fas fa-palette"></i> Templates</a></li>
+        <li><a href="#hosting" data-sidebar><i class="fas fa-server"></i> Hosting</a></li>
+        <li><a href="#domains" data-sidebar><i class="fas fa-tag"></i> Domains</a></li>
+        <li><a href="#orders" data-sidebar><i class="fas fa-shopping-cart"></i> Orders</a></li>
+        <li><a href="#invoices" data-sidebar><i class="fas fa-file-invoice"></i> Invoices</a></li>
+        <li><a href="#payments" data-sidebar><i class="fas fa-credit-card"></i> Payments</a></li>
+        <li><a href="#support" data-sidebar><i class="fas fa-headset"></i> Support Tickets</a></li>
+        <li><a href="#profile" data-sidebar><i class="fas fa-id-card"></i> Profile</a></li>
+        <li><a href="#settings" data-sidebar><i class="fas fa-sliders-h"></i> Settings</a></li>
+        <li><button id="logoutSidebar" class="sidebar-logout"><i class="fas fa-sign-out-alt"></i> Logout</button></li>
+      </ul>
+    </nav>
+  </aside>
 
-      <!-- FOOTER -->
-      <footer class="footer">
+  <!-- ========== MAIN DASHBOARD CONTENT ========== -->
+  <main id="mainContent" role="main">
+    <!-- ===== DASHBOARD SECTION ===== -->
+    <section id="dashboard" class="dashboard-section active-section">
+      <!-- Welcome & quick stats -->
+      <div class="welcome-card glass-card">
         <div>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms</a>
-          <a href="#">Contact</a>
+          <h1>Hello, <span id="welcomeName">…</span> 👋</h1>
+          <p class="plan-info">Current plan: <strong id="currentPlan">Starter</strong> · Remaining credits: <strong id="remainingCredits">120</strong></p>
         </div>
-        <div>© 2026 Smile Financial AI · All rights reserved.</div>
-      </footer>
+        <div class="profile-completion">
+          <span>Profile completion</span>
+          <div class="progress-bar"><div id="profileProgress" style="width:65%"></div></div>
+          <span id="profilePercent">65%</span>
+        </div>
+      </div>
 
-    </main>
+      <!-- Quick action cards -->
+      <div class="quick-actions">
+        <a href="#create-website" class="action-card glass-card" data-sidebar>
+          <i class="fas fa-plus-circle"></i> Create New Website
+        </a>
+        <a href="#domains" class="action-card glass-card" data-sidebar>
+          <i class="fas fa-shopping-cart"></i> Buy Domain
+        </a>
+        <a href="#domains" class="action-card glass-card" data-sidebar>
+          <i class="fas fa-link"></i> Connect Domain
+        </a>
+        <a href="#websites" class="action-card glass-card" data-sidebar>
+          <i class="fas fa-rocket"></i> Publish Website
+        </a>
+        <a href="#create-website" class="action-card glass-card" data-sidebar>
+          <i class="fas fa-magic"></i> AI Website Generator
+        </a>
+      </div>
+
+      <!-- Statistics cards -->
+      <div class="stats-grid">
+        <div class="stat-card glass-card"><i class="fas fa-globe"></i> <span class="stat-value" id="totalWebsites">0</span> <span class="stat-label">Total Websites</span></div>
+        <div class="stat-card glass-card"><i class="fas fa-check-circle"></i> <span class="stat-value" id="publishedWebsites">0</span> <span class="stat-label">Published</span></div>
+        <div class="stat-card glass-card"><i class="fas fa-shopping-bag"></i> <span class="stat-value" id="totalOrders">0</span> <span class="stat-label">Orders</span></div>
+        <div class="stat-card glass-card"><i class="fas fa-file-invoice"></i> <span class="stat-value" id="totalInvoices">0</span> <span class="stat-label">Invoices</span></div>
+        <div class="stat-card glass-card"><i class="fas fa-wallet"></i> <span class="stat-value" id="walletBalance">$0</span> <span class="stat-label">Wallet Balance</span></div>
+        <div class="stat-card glass-card"><i class="fas fa-hdd"></i> <span class="stat-value" id="storageUsed">0 GB</span> <span class="stat-label">Storage Used</span></div>
+        <div class="stat-card glass-card"><i class="fas fa-tachometer-alt"></i> <span class="stat-value" id="bandwidthUsed">0 GB</span> <span class="stat-label">Bandwidth</span></div>
+        <div class="stat-card glass-card"><i class="fas fa-crown"></i> <span class="stat-value" id="activeSubscription">Starter</span> <span class="stat-label">Subscription</span></div>
+      </div>
+
+      <!-- My Websites (Firestore) -->
+      <div id="websites" class="section-block">
+        <h2><i class="fas fa-globe"></i> My Websites</h2>
+        <div id="websitesList" class="card-grid">
+          <!-- dynamic cards with skeleton loading -->
+          <div class="skeleton-card glass-card"><div class="skeleton-line"></div><div class="skeleton-line"></div><div class="skeleton-line"></div></div>
+          <div class="skeleton-card glass-card"><div class="skeleton-line"></div><div class="skeleton-line"></div><div class="skeleton-line"></div></div>
+          <div class="skeleton-card glass-card"><div class="skeleton-line"></div><div class="skeleton-line"></div><div class="skeleton-line"></div></div>
+        </div>
+      </div>
+
+      <!-- Recent Orders & Invoices -->
+      <div class="two-column">
+        <div id="orders" class="section-block">
+          <h2><i class="fas fa-shopping-cart"></i> Recent Orders</h2>
+          <div id="ordersList" class="list-container"><div class="skeleton-line"></div><div class="skeleton-line"></div></div>
+        </div>
+        <div id="invoices" class="section-block">
+          <h2><i class="fas fa-file-invoice"></i> Invoices</h2>
+          <div id="invoicesList" class="list-container"><div class="skeleton-line"></div><div class="skeleton-line"></div></div>
+        </div>
+      </div>
+
+      <!-- Support -->
+      <div id="support" class="section-block">
+        <h2><i class="fas fa-headset"></i> Support</h2>
+        <button id="openTicketBtn" class="btn-primary"><i class="fas fa-plus"></i> Open Ticket</button>
+        <div id="ticketsList" class="list-container"><div class="skeleton-line"></div></div>
+      </div>
+    </section>
+
+    <!-- ===== PROFILE SECTION (hidden by default) ===== -->
+    <section id="profile" class="dashboard-section">
+      <h2>Profile</h2>
+      <div class="profile-card glass-card">
+        <img id="profileAvatar" src="https://ui-avatars.com/api/?name=User&background=random" alt="Profile" loading="lazy">
+        <div class="profile-details">
+          <p><strong>Name:</strong> <span id="profileName">…</span></p>
+          <p><strong>Email:</strong> <span id="profileEmail">…</span></p>
+          <p><strong>Phone:</strong> <span id="profilePhone">+1 234 567 890</span></p>
+          <p><strong>Business:</strong> <span id="profileBusiness">Smile AI Studio</span></p>
+          <p><strong>Business Type:</strong> <span id="profileBizType">Web Services</span></p>
+          <button id="editProfileBtn" class="btn-secondary"><i class="fas fa-edit"></i> Edit Profile</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SETTINGS (placeholder) ===== -->
+    <section id="settings" class="dashboard-section">
+      <h2>Settings</h2>
+      <div class="glass-card">Settings panel – coming soon.</div>
+    </section>
+  </main>
+
+  <!-- ========== NOTIFICATIONS PANEL ========== -->
+  <div id="notifPanel" class="notif-panel glass-card" aria-label="Notifications" hidden>
+    <header><span>Notifications</span> <button id="markReadBtn" class="text-btn">Mark all as read</button></header>
+    <ul id="notifList"><li class="skeleton-line"></li><li class="skeleton-line"></li></ul>
   </div>
 
-  <!-- External JS (linked) -->
-  <script src="js/dashboard.js"></script>
-  <!-- inline minimal for mobile toggle + date -->
-  <script>
-    (function() {
-      // sidebar toggle
-      const toggle = document.getElementById('menuToggle');
-      const sidebar = document.getElementById('sidebar');
-      if (toggle && sidebar) {
-        toggle.addEventListener('click', function(e) {
-          e.stopPropagation();
-          sidebar.classList.toggle('open');
-        });
-        // close on click outside (mobile)
-        document.addEventListener('click', function(e) {
-          if (window.innerWidth < 701) {
-            if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
-              sidebar.classList.remove('open');
-            }
-          }
-        });
-      }
-      // set current date & greeting
-      const dateEl = document.getElementById('currentDate');
-      const greetEl = document.getElementById('timeGreeting');
-      if (dateEl) {
-        const d = new Date();
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        dateEl.textContent = d.toLocaleDateString('en-US', options);
-      }
-      if (greetEl) {
-        const h = new Date().getHours();
-        if (h < 12) greetEl.textContent = 'Good morning ☀️';
-        else if (h < 17) greetEl.textContent = 'Good afternoon 🌤️';
-        else greetEl.textContent = 'Good evening 🌙';
-      }
-      // propagate userName to greeting and profile
-      const userName = document.getElementById('userName');
-      const greetName = document.getElementById('userNameGreeting');
-      const displayName = document.getElementById('userNameDisplay');
-      if (userName && greetName) {
-        const name = userName.textContent.trim() || 'Alex';
-        greetName.textContent = name;
-        if (displayName) displayName.textContent = name;
-      }
-      // demo logout
-      document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
-        e.preventDefault();
-        alert('Logout action (Firebase ready)');
-      });
-    })();
-  </script>
+  <!-- External JS modules (production) -->
+  <script type="module" src="js/customer-dashboard.js"></script>
+  <!-- Firestore and auth are imported inside the module -->
 </body>
 </html>
