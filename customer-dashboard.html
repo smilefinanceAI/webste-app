@@ -1190,3 +1190,282 @@ Analytics
 </div>
 
 </section>
+
+<!-- ===================================================== -->
+<!-- BILLING & PAYMENTS -->
+<!-- ===================================================== -->
+
+<section id="billing" class="dashboardSection">
+
+<div class="sectionTitle">
+<div>
+<h2>Billing & Payments</h2>
+<p>Manage invoices, subscriptions and payment history.</p>
+</div>
+</div>
+
+<div class="dashboardGrid">
+
+<!-- Current Plan -->
+
+<div class="dashboardCard">
+
+<h3>
+<i class="fa-solid fa-crown"></i>
+Current Plan
+</h3>
+
+<h2 id="currentPlan">
+Free Plan
+</h2>
+
+<div class="statusRow">
+<span>Status</span>
+<strong id="planStatus">
+Active
+</strong>
+</div>
+
+<div class="statusRow">
+<span>Renewal</span>
+<strong id="renewDate">
+Lifetime
+</strong>
+</div>
+
+<button
+id="upgradeMembershipBtn"
+class="primaryBtn">
+
+Upgrade Membership
+
+</button>
+
+</div>
+
+<!-- Billing Summary -->
+
+<div class="dashboardCard">
+
+<h3>
+
+<i class="fa-solid fa-wallet"></i>
+
+Billing Summary
+
+</h3>
+
+<div class="statusRow">
+<span>Total Paid</span>
+<strong id="totalPaid">
+₹0
+</strong>
+</div>
+
+<div class="statusRow">
+<span>Pending</span>
+<strong id="pendingAmount">
+₹0
+</strong>
+</div>
+
+<div class="statusRow">
+<span>Next Invoice</span>
+<strong id="nextInvoiceDate">
+--
+</strong>
+</div>
+
+</div>
+
+<!-- Wallet -->
+
+<div class="dashboardCard">
+
+<h3>
+
+<i class="fa-solid fa-money-bill-wave"></i>
+
+Wallet
+
+</h3>
+
+<h1 id="walletAmount">
+
+₹0
+
+</h1>
+
+<div class="buttonGroup">
+
+<button
+id="addMoneyBtn"
+class="successBtn">
+
+Add Money
+
+</button>
+
+<button
+id="withdrawMoneyBtn"
+class="secondaryBtn">
+
+Withdraw
+
+</button>
+
+</div>
+
+</div>
+
+<!-- GST -->
+
+<div class="dashboardCard">
+
+<h3>
+
+<i class="fa-solid fa-file-invoice-dollar"></i>
+
+GST Details
+
+</h3>
+
+<div class="statusRow">
+<span>GST Number</span>
+<strong id="gstNumber">
+Not Added
+</strong>
+</div>
+
+<button
+id="updateGSTBtn"
+class="primaryBtn">
+
+Update GST
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- PAYMENT HISTORY -->
+<!-- ===================================================== -->
+
+<section id="paymentHistory">
+
+<div class="sectionTitle">
+
+<h2>
+
+Payment History
+
+</h2>
+
+</div>
+
+<div class="dashboardCard">
+
+<table class="dashboardTable">
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Transaction ID</th>
+
+<th>Method</th>
+
+<th>Status</th>
+
+<th>Amount</th>
+
+</tr>
+
+</thead>
+
+<tbody id="paymentHistoryTable">
+
+<tr>
+
+<td colspan="5">
+
+No Payment Found
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- INVOICES -->
+<!-- ===================================================== -->
+
+<section id="invoiceHistory">
+
+<div class="sectionTitle">
+
+<h2>
+
+Invoices
+
+</h2>
+
+</div>
+
+<div class="dashboardCard">
+
+<table class="dashboardTable">
+
+<thead>
+
+<tr>
+
+<th>Invoice</th>
+
+<th>Date</th>
+
+<th>Amount</th>
+
+<th>Status</th>
+
+<th>Download</th>
+
+</tr>
+
+</thead>
+
+<tbody id="invoiceHistoryTable">
+
+<tr>
+
+<td colspan="5">
+
+No Invoice Available
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+  
