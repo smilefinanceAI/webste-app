@@ -392,3 +392,151 @@ await initializeDashboard();
 });
 
 console.log("Dashboard JS Part 02 Loaded");
+
+/* ==========================================================
+   DASHBOARD.JS
+   PART 03-A
+   WEBSITE LIST MODULE
+========================================================== */
+
+const websiteTable = document.getElementById("websiteTable");
+const websiteName = document.getElementById("websiteName");
+const websiteDomain = document.getElementById("websiteDomain");
+const websiteVisitors = document.getElementById("websiteVisitors");
+const websiteLeads = document.getElementById("websiteLeads");
+const websiteOrders = document.getElementById("websiteOrders");
+
+/* ==========================================================
+   LOAD USER WEBSITES
+========================================================== */
+
+async function loadUserWebsites(){
+
+    try{
+
+        const q = query(
+            collection(db,"websites"),
+            where("userId","==",currentUser.uid)
+        );
+
+        const snapshot = await getDocs(q);
+
+        if(!websiteTable) return;
+
+        websiteTable.innerHTML="";
+
+        if(snapshot.empty){
+
+            websiteTable.innerHTML=`
+            <tr>
+                <td colspan="5">No Website Found</td>
+            </tr>
+            `;
+
+            return;
+
+        }
+
+        snapshot.forEach((docItem)=>{
+
+            const data = docItem.data();
+
+            websiteTable.innerHTML += `
+
+            <tr>
+
+                <td>${data.name || "-"}</td>
+
+                <td>${data.domain || "-"}</td>
+
+                <td>${data.status || "Draft"}</td>
+
+                <td>${data.visitors || 0}</td>
+
+                <td>
+
+                    <button
+                        class="primaryBtn previewWebsite"
+                        data-id="${docItem.id}">
+                        Preview
+                    </button>
+
+                </td>
+
+            </tr>
+
+            `;
+
+        });
+
+        attachPreviewEvents();
+
+    }
+
+    catch(error){
+
+        console.error("Website Load Error:",error);
+
+    }
+
+}
+
+/* ==========================================================
+   WEBSITE PREVIEW
+========================================================== */
+
+function attachPreviewEvents(){
+
+    document.querySelectorAll(".previewWebsite").forEach(btn=>{
+
+        btn.addEventListener("click",()=>{
+
+            const id=btn.dataset.id;
+
+            previewWebsite(id);
+
+        });
+
+    });
+
+}
+
+async function previewWebsite(id){
+
+    try{
+
+        const ref=doc(db,"websites",id);
+
+        const snap=await getDoc(ref);
+
+        if(!snap.exists()){
+
+            alert("Website Not Found");
+
+            return;
+
+        }
+
+        const data=snap.data();
+
+        websiteName.textContent=data.name || "Website";
+
+        websiteDomain.textContent=data.domain || "-";
+
+        websiteVisitors.textContent=data.visitors || 0;
+
+        websiteLeads.textContent=data.leads || 0;
+
+        websiteOrders.textContent=data.orders || 0;
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+console.log("Dashboard JS Part 03-A Loaded");
