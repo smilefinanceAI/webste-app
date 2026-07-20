@@ -540,3 +540,126 @@ async function previewWebsite(id){
 }
 
 console.log("Dashboard JS Part 03-A Loaded");
+
+/* ==========================================================
+   DASHBOARD.JS
+   PART 03-B
+   CREATE WEBSITE MODULE
+========================================================== */
+
+const createWebsiteBtn =
+document.getElementById("createWebsiteBtn");
+
+const createNewWebsiteBtn =
+document.getElementById("createNewWebsiteBtn");
+
+/* ==========================================================
+   CREATE WEBSITE
+========================================================== */
+
+async function createWebsite(){
+
+try{
+
+const websiteName=prompt("Website Name");
+
+if(!websiteName) return;
+
+const websiteDomain=prompt("Subdomain");
+
+if(!websiteDomain) return;
+
+const websiteData={
+
+userId:currentUser.uid,
+
+name:websiteName,
+
+domain:websiteDomain+".smilefinancialsolution.com",
+
+status:"Draft",
+
+visitors:0,
+
+leads:0,
+
+orders:0,
+
+published:false,
+
+createdAt:serverTimestamp(),
+
+updatedAt:serverTimestamp()
+
+};
+
+await addDoc(
+
+collection(db,"websites"),
+
+websiteData
+
+);
+
+alert("Website Created Successfully");
+
+await loadUserWebsites();
+
+await loadWebsiteCount();
+
+}
+
+catch(error){
+
+console.error(error);
+
+alert(error.message);
+
+}
+
+}
+
+/* ==========================================================
+   BUTTON EVENTS
+========================================================== */
+
+if(createWebsiteBtn){
+
+createWebsiteBtn.addEventListener(
+
+"click",
+
+createWebsite
+
+);
+
+}
+
+if(createNewWebsiteBtn){
+
+createNewWebsiteBtn.addEventListener(
+
+"click",
+
+createWebsite
+
+);
+
+}
+
+/* ==========================================================
+   AUTO REFRESH
+========================================================== */
+
+async function refreshDashboard(){
+
+await loadWebsiteCount();
+
+await loadUserWebsites();
+
+await loadDashboardData();
+
+}
+
+console.log("Dashboard JS Part 03-B Loaded");
+
