@@ -1,1935 +1,2010 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>
+    <meta
+        name="description"
+        content="Smile AI Web Studio Customer Dashboard"
+    >
 
-Customer Dashboard | Smile AI Web Studio
+    <meta
+        name="robots"
+        content="noindex,nofollow"
+    >
 
-</title>
+    <title>
+        Customer Dashboard | Smile AI Web Studio
+    </title>
 
-<meta
-name="description"
-content="Smile AI Web Studio Customer Dashboard">
+    <!-- Favicon -->
+    <link
+        rel="icon"
+        href="./images/favicon.ico"
+    >
 
-<link
-rel="icon"
-href="images/favicon.png">
-
-<link
-rel="stylesheet"
-href="css/dashboard.css">
-
-<link
-rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link
-rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
-
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Dashboard CSS -->
+    <link
+        rel="stylesheet"
+        href="./css/dashboard.css"
+    >
 
 </head>
 
 <body>
 
-<!-- Loader -->
+<!-- =========================================================
+     APP LOADER
+========================================================= -->
 
-<div id="loader">
+<div
+    id="appLoader"
+    class="app-loader"
+    aria-hidden="true"
+>
 
-<div class="spinner"></div>
+    <div class="loader-spinner"></div>
 
-</div>
-
-<!-- Dashboard -->
-
-<div class="dashboardContainer">
-
-<!-- Sidebar -->
-
-<aside class="sidebar">
-
-<div class="logo">
-
-<img
-src="images/logo.png"
-alt="Logo">
-
-<h2>
-
-Smile AI
-
-</h2>
-
-</div>
-
-<ul class="sidebarMenu">
-
-<li class="active">
-
-<a href="#">
-
-<i class="fa-solid fa-house"></i>
-
-Dashboard
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#myWebsites">
-
-<i class="fa-solid fa-globe"></i>
-
-My Websites
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#builder">
-
-<i class="fa-solid fa-wand-magic-sparkles"></i>
-
-AI Builder
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#domains">
-
-<i class="fa-solid fa-earth-asia"></i>
-
-Domains
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#hosting">
-
-<i class="fa-solid fa-server"></i>
-
-Hosting
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#billing">
-
-<i class="fa-solid fa-file-invoice"></i>
-
-Billing
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#orders">
-
-<i class="fa-solid fa-cart-shopping"></i>
-
-Orders
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#wallet">
-
-<i class="fa-solid fa-wallet"></i>
-
-Wallet
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#support">
-
-<i class="fa-solid fa-headset"></i>
-
-Support
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#settings">
-
-<i class="fa-solid fa-gear"></i>
-
-Settings
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#" id="logoutBtn">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-Logout
-
-</a>
-
-</li>
-
-</ul>
-
-</aside>
-
-<!-- Main -->
-
-<main class="mainContent">
-
-<!-- Header -->
-
-<header class="topHeader">
-
-<div>
-
-<h1>
-
-Welcome Back 👋
-
-</h1>
-
-<p>
-
-Manage your business from one dashboard.
-
-</p>
-
-</div>
-
-<div class="headerRight">
-
-<button id="notificationBtn">
-
-<i class="fa-solid fa-bell"></i>
-
-</button>
-
-<div class="profileBox">
-
-<img
-
-id="userPhoto"
-
-src="images/default-user.png">
-
-<div>
-
-<h4 id="userName">
-
-Loading...
-
-</h4>
-
-<p id="userEmail">
-
-Loading...
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</header>
-
-<!-- Dashboard Content -->
-
-<div id="dashboardContent">
-
-  <!-- ====================================== -->
-<!-- OVERVIEW CARDS -->
-<!-- ====================================== -->
-
-<section class="dashboardOverview">
-
-<div class="overviewGrid">
-
-<div class="overviewCard">
-
-<div class="cardIcon blue">
-<i class="fa-solid fa-globe"></i>
-</div>
-
-<div class="cardInfo">
-
-<h5>Total Websites</h5>
-
-<h2 id="totalWebsites">
-0
-</h2>
-
-<p>
-Created Websites
-</p>
-
-</div>
-
-</div>
-
-
-<div class="overviewCard">
-
-<div class="cardIcon green">
-<i class="fa-solid fa-users"></i>
-</div>
-
-<div class="cardInfo">
-
-<h5>Total Visitors</h5>
-
-<h2 id="totalVisitors">
-0
-</h2>
-
-<p>
-All Websites
-</p>
-
-</div>
-
-</div>
-
-
-<div class="overviewCard">
-
-<div class="cardIcon orange">
-<i class="fa-solid fa-wallet"></i>
-</div>
+    <p>
+        Loading your dashboard...
+    </p>
 
-<div class="cardInfo">
-
-<h5>Wallet Balance</h5>
-
-<h2 id="walletBalance">
-₹0
-</h2>
-
-<p>
-Available Balance
-</p>
-
-</div>
-
-</div>
-
-
-<div class="overviewCard">
-
-<div class="cardIcon purple">
-<i class="fa-solid fa-crown"></i>
-</div>
-
-<div class="cardInfo">
-
-<h5>Membership</h5>
-
-<h2 id="membershipPlan">
-
-Free
-
-</h2>
-
-<p>
-
-Current Plan
-
-</p>
-
-</div>
-
 </div>
-
-</div>
-
-</section>
-
-
 
-<!-- ====================================== -->
-<!-- QUICK ACTIONS -->
-<!-- ====================================== -->
 
-<section class="quickActions">
+<!-- =========================================================
+     APP
+========================================================= -->
 
-<div class="sectionTitle">
+<div
+    id="dashboardApp"
+    class="dashboard-app"
+    hidden
+>
 
-<h2>
 
-Quick Actions
+    <!-- =====================================================
+         SIDEBAR OVERLAY
+    ====================================================== -->
 
-</h2>
+    <div
+        id="sidebarOverlay"
+        class="sidebar-overlay"
+    ></div>
 
-</div>
-
-<div class="actionGrid">
 
-<button
-id="createWebsiteBtn"
-class="actionCard">
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-<i class="fa-solid fa-plus"></i>
+    <aside
+        id="dashboardSidebar"
+        class="dashboard-sidebar"
+    >
 
-<span>
+        <!-- Brand -->
 
-Create Website
+        <div class="sidebar-brand">
 
-</span>
+            <a
+                href="./index.html"
+                class="brand-logo"
+            >
 
-</button>
+                <span class="brand-icon">
+                    ✦
+                </span>
 
+                <span class="brand-text">
 
-<button
-id="manageDomainBtn"
-class="actionCard">
+                    <strong>
+                        Smile AI
+                    </strong>
 
-<i class="fa-solid fa-earth-asia"></i>
+                    <small>
+                        Web Studio
+                    </small>
 
-<span>
+                </span>
 
-Manage Domain
+            </a>
 
-</span>
 
-</button>
+            <button
+                id="closeSidebarBtn"
+                class="sidebar-close-btn"
+                type="button"
+                aria-label="Close menu"
+            >
 
+                ×
 
-<button
-id="hostingBtn"
-class="actionCard">
+            </button>
 
-<i class="fa-solid fa-server"></i>
+        </div>
 
-<span>
 
-Hosting
+        <!-- User Mini Profile -->
 
-</span>
+        <div
+            id="sidebarUser"
+            class="sidebar-user"
+        >
 
-</button>
+            <div
+                id="sidebarUserAvatar"
+                class="user-avatar"
+            >
+                U
+            </div>
 
+            <div class="sidebar-user-info">
 
-<button
-id="analyticsBtn"
-class="actionCard">
+                <strong
+                    id="sidebarUserName"
+                >
+                    Loading...
+                </strong>
 
-<i class="fa-solid fa-chart-line"></i>
+                <span
+                    id="sidebarUserEmail"
+                >
+                    Loading...
+                </span>
 
-<span>
+            </div>
 
-Analytics
+        </div>
 
-</span>
 
-</button>
+        <!-- Navigation -->
 
+        <nav
+            class="dashboard-navigation"
+            aria-label="Customer Dashboard Navigation"
+        >
 
-<button
-id="billingBtn"
-class="actionCard">
+            <button
+                type="button"
+                class="nav-item active"
+                data-section="overview"
+            >
 
-<i class="fa-solid fa-file-invoice"></i>
+                <span class="nav-icon">
+                    ▦
+                </span>
 
-<span>
+                <span>
+                    Overview
+                </span>
 
-Billing
+            </button>
 
-</span>
 
-</button>
+            <button
+                type="button"
+                class="nav-item"
+                data-section="websites"
+            >
 
+                <span class="nav-icon">
+                    ◫
+                </span>
 
-<button
-id="supportBtn"
-class="actionCard">
+                <span>
+                    My Websites
+                </span>
 
-<i class="fa-solid fa-headset"></i>
+            </button>
 
-<span>
 
-Support
+            <button
+                type="button"
+                class="nav-item"
+                data-section="domains"
+            >
 
-</span>
+                <span class="nav-icon">
+                    ◎
+                </span>
 
-</button>
+                <span>
+                    Domains
+                </span>
 
-</div>
+            </button>
 
-</section>
 
+            <button
+                type="button"
+                class="nav-item"
+                data-section="orders"
+            >
 
+                <span class="nav-icon">
+                    ◈
+                </span>
 
-<!-- ====================================== -->
-<!-- RECENT ACTIVITY -->
-<!-- ====================================== -->
+                <span>
+                    Orders
+                </span>
 
-<section class="recentActivity">
+            </button>
 
-<div class="sectionTitle">
 
-<h2>
+            <button
+                type="button"
+                class="nav-item"
+                data-section="billing"
+            >
 
-Recent Activity
+                <span class="nav-icon">
+                    ₹
+                </span>
 
-</h2>
+                <span>
+                    Billing
+                </span>
 
-</div>
+            </button>
 
-<div class="activityCard">
 
-<ul id="activityList">
+            <button
+                type="button"
+                class="nav-item"
+                data-section="support"
+            >
 
-<li>
+                <span class="nav-icon">
+                    ?
+                </span>
 
-Loading...
+                <span>
+                    Support
+                </span>
 
-</li>
+            </button>
 
-</ul>
 
-</div>
+            <button
+                type="button"
+                class="nav-item"
+                data-section="notifications"
+            >
 
-</section>
+                <span class="nav-icon">
+                    ♢
+                </span>
 
-  <!-- ====================================== -->
-<!-- MY WEBSITES -->
-<!-- ====================================== -->
+                <span>
+                    Notifications
+                </span>
 
-<section id="myWebsites" class="dashboardSection">
+                <span
+                    id="notificationBadge"
+                    class="notification-badge"
+                    hidden
+                >
+                    0
+                </span>
 
-<div class="sectionTitle">
+            </button>
 
-<div>
-<h2>My Websites</h2>
-<p>Manage all your AI websites from one place.</p>
-</div>
 
-<button id="createNewWebsiteBtn" class="primaryBtn">
-<i class="fa-solid fa-plus"></i>
-Create Website
-</button>
+            <button
+                type="button"
+                class="nav-item"
+                data-section="profile"
+            >
 
-</div>
+                <span class="nav-icon">
+                    ◉
+                </span>
 
+                <span>
+                    Profile
+                </span>
 
-<div class="websiteGrid">
+            </button>
 
-<!-- Website Card -->
+        </nav>
 
-<div class="websiteCard">
 
-<div class="websiteImage">
+        <!-- Sidebar Bottom -->
 
-<img
-id="websiteThumbnail"
-src="images/default-website.jpg"
-alt="Website Preview">
+        <div class="sidebar-bottom">
 
-<span class="statusBadge live">
-LIVE
-</span>
+            <button
+                id="logoutBtn"
+                type="button"
+                class="logout-btn"
+            >
 
-</div>
+                <span>
+                    ⇥
+                </span>
 
-<div class="websiteContent">
+                <span>
+                    Logout
+                </span>
 
-<h3 id="websiteName">
-Smile Financial Solution
-</h3>
+            </button>
 
-<p id="websiteDomain">
-web.smilefinancialsolution.com
-</p>
+        </div>
 
-<div class="websiteStats">
+    </aside>
 
-<div>
-<strong id="websiteVisitors">
-0
-</strong>
-<span>Visitors</span>
-</div>
 
-<div>
-<strong id="websiteLeads">
-0
-</strong>
-<span>Leads</span>
-</div>
+    <!-- =====================================================
+         MAIN AREA
+    ====================================================== -->
 
-<div>
-<strong id="websiteOrders">
-0
-</strong>
-<span>Orders</span>
-</div>
+    <div class="dashboard-main">
 
-</div>
 
-<div class="websiteActions">
+        <!-- =================================================
+             HEADER
+        ================================================== -->
 
-<button
-id="previewWebsiteBtn"
-class="secondaryBtn">
+        <header
+            class="dashboard-header"
+        >
 
-<i class="fa-solid fa-eye"></i>
+            <div class="header-left">
 
-Preview
+                <button
+                    id="openSidebarBtn"
+                    type="button"
+                    class="menu-toggle"
+                    aria-label="Open menu"
+                >
 
-</button>
+                    ☰
 
-<button
-id="editWebsiteBtn"
-class="primaryBtn">
+                </button>
 
-<i class="fa-solid fa-pen"></i>
 
-Edit
+                <div class="page-heading">
 
-</button>
+                    <span
+                        id="currentSectionLabel"
+                    >
+                        Overview
+                    </span>
 
-</div>
+                    <h1
+                        id="pageTitle"
+                    >
+                        Welcome back
+                    </h1>
 
-<div class="websiteActions">
+                </div>
 
-<button
-id="publishWebsiteBtn"
-class="successBtn">
+            </div>
 
-<i class="fa-solid fa-upload"></i>
 
-Publish
+            <div class="header-right">
 
-</button>
+                <!-- Notification -->
 
-<button
-id="deployWebsiteBtn"
-class="primaryBtn">
+                <button
+                    id="headerNotificationBtn"
+                    type="button"
+                    class="header-icon-btn"
+                    aria-label="Notifications"
+                >
 
-<i class="fa-solid fa-rocket"></i>
+                    ♢
 
-Deploy
+                    <span
+                        id="headerNotificationBadge"
+                        class="header-notification-badge"
+                        hidden
+                    >
+                        0
+                    </span>
 
-</button>
+                </button>
 
-</div>
 
-<div class="websiteActions">
+                <!-- User Menu -->
 
-<button
-id="duplicateWebsiteBtn"
-class="secondaryBtn">
+                <button
+                    id="headerUserBtn"
+                    type="button"
+                    class="header-user-btn"
+                >
 
-<i class="fa-solid fa-copy"></i>
+                    <span
+                        id="headerUserAvatar"
+                        class="user-avatar small"
+                    >
+                        U
+                    </span>
 
-Duplicate
+                    <span
+                        id="headerUserName"
+                    >
+                        User
+                    </span>
 
-</button>
+                    <span>
+                        ▾
+                    </span>
 
-<button
-id="deleteWebsiteBtn"
-class="dangerBtn">
+                </button>
 
-<i class="fa-solid fa-trash"></i>
+            </div>
 
-Delete
+        </header>
 
-</button>
 
-</div>
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
 
-</div>
+        <main
+            id="dashboardContent"
+            class="dashboard-content"
+        >
 
-</div>
 
-</div>
+            <!-- =================================================
+                 OVERVIEW SECTION
+            ================================================== -->
 
-</section>
+            <section
+                id="section-overview"
+                class="dashboard-section active"
+                data-section-content="overview"
+            >
 
+                <div class="section-topbar">
 
+                    <div>
 
-<!-- ====================================== -->
-<!-- WEBSITE LIST -->
-<!-- ====================================== -->
+                        <span class="eyebrow">
+                            CUSTOMER DASHBOARD
+                        </span>
 
-<section id="websiteListSection">
+                        <h2>
+                            Your workspace
+                        </h2>
 
-<div class="sectionTitle">
+                        <p>
+                            Manage your websites, domains,
+                            orders and account from one place.
+                        </p>
 
-<h2>
+                    </div>
 
-All Websites
 
-</h2>
+                    <button
+                        id="overviewCreateWebsiteBtn"
+                        type="button"
+                        class="primary-btn"
+                    >
 
-</div>
+                        + Create Website
 
-<div class="dashboardCard">
+                    </button>
 
-<table class="dashboardTable">
+                </div>
 
-<thead>
 
-<tr>
+                <!-- Stats -->
 
-<th>Name</th>
+                <div
+                    id="overviewStats"
+                    class="stats-grid"
+                >
 
-<th>Domain</th>
+                    <article class="stat-card">
 
-<th>Status</th>
+                        <div class="stat-icon">
+                            ◫
+                        </div>
 
-<th>Visitors</th>
+                        <div>
 
-<th>Actions</th>
+                            <span>
+                                My Websites
+                            </span>
 
-</tr>
+                            <strong
+                                id="statWebsiteCount"
+                            >
+                                —
+                            </strong>
 
-</thead>
+                        </div>
 
-<tbody id="websiteTable">
+                    </article>
 
-<tr>
 
-<td colspan="5">
+                    <article class="stat-card">
 
-No Website Found
+                        <div class="stat-icon">
+                            ◉
+                        </div>
 
-</td>
+                        <div>
 
-</tr>
+                            <span>
+                                Published
+                            </span>
 
-</tbody>
+                            <strong
+                                id="statPublishedCount"
+                            >
+                                —
+                            </strong>
 
-</table>
+                        </div>
 
-</div>
+                    </article>
 
-</section>
 
+                    <article class="stat-card">
 
+                        <div class="stat-icon">
+                            ◈
+                        </div>
 
-<!-- ====================================== -->
-<!-- DOMAIN MANAGER -->
-<!-- ====================================== -->
+                        <div>
 
-<section id="domains">
+                            <span>
+                                Orders
+                            </span>
 
-<div class="sectionTitle">
+                            <strong
+                                id="statOrderCount"
+                            >
+                                —
+                            </strong>
 
-<h2>
+                        </div>
 
-Domain Manager
+                    </article>
 
-</h2>
 
-</div>
+                    <article class="stat-card">
 
-<div class="dashboardCard">
+                        <div class="stat-icon">
+                            ₹
+                        </div>
 
-<input
-id="customDomainInput"
-type="text"
-placeholder="Enter Domain Name">
+                        <div>
 
-<div class="websiteActions">
+                            <span>
+                                Wallet Balance
+                            </span>
 
-<button
-id="connectDomainBtn"
-class="primaryBtn">
+                            <strong
+                                id="statWalletBalance"
+                            >
+                                —
+                            </strong>
 
-Connect Domain
+                        </div>
 
-</button>
+                    </article>
 
-<button
-id="verifyDomainBtn"
-class="secondaryBtn">
+                </div>
 
-Verify DNS
 
-</button>
+                <!-- Current Plan -->
 
-</div>
+                <div
+                    id="currentPlanCard"
+                    class="dashboard-card plan-card"
+                >
 
-<div class="statusRow">
+                    <div class="card-content">
 
-<span>
+                        <span class="eyebrow">
+                            CURRENT PLAN
+                        </span>
 
-Connected Domain
+                        <h3
+                            id="currentPlanName"
+                        >
+                            Loading...
+                        </h3>
 
-</span>
+                        <p
+                            id="currentPlanDescription"
+                        >
+                            Your current membership
+                            information will appear here.
+                        </p>
 
-<strong id="connectedDomain">
+                    </div>
 
-Not Connected
 
-</strong>
+                    <button
+                        id="viewBillingBtn"
+                        type="button"
+                        class="secondary-btn"
+                    >
 
-</div>
+                        View Billing
 
-</div>
+                    </button>
 
-</section>
+                </div>
 
-  
-<!-- ===================================================== -->
-<!-- HOSTING & DEPLOYMENT -->
-<!-- ===================================================== -->
 
-<section id="hosting" class="dashboardSection">
+                <!-- Recent Websites -->
 
-<div class="sectionTitle">
-<div>
-<h2>Hosting & Deployment</h2>
-<p>Manage hosting, SSL, deployment and backups.</p>
-</div>
-</div>
+                <div class="dashboard-card">
 
-<div class="dashboardGrid">
+                    <div class="card-header">
 
-<!-- Hosting -->
+                        <div>
 
-<div class="dashboardCard">
+                            <h3>
+                                Recent Websites
+                            </h3>
 
-<h3>
-<i class="fa-solid fa-server"></i>
-Hosting
-</h3>
+                            <p>
+                                Your latest website projects.
+                            </p>
 
-<div class="statusRow">
-<span>Hosting Status</span>
-<strong id="hostingStatus">
-Active
-</strong>
-</div>
+                        </div>
 
-<div class="statusRow">
-<span>Storage</span>
-<strong id="hostingStorage">
-0 GB / 10 GB
-</strong>
-</div>
 
-<div class="statusRow">
-<span>Bandwidth</span>
-<strong id="hostingBandwidth">
-0 GB
-</strong>
-</div>
+                        <button
+                            type="button"
+                            class="text-btn"
+                            data-section-link="websites"
+                        >
 
-<div class="buttonGroup">
+                            View All
 
-<button
-id="upgradeHostingBtn"
-class="primaryBtn">
+                        </button>
 
-Upgrade
+                    </div>
 
-</button>
 
-<button
-id="hostingDetailsBtn"
-class="secondaryBtn">
+                    <div
+                        id="recentWebsitesList"
+                        class="data-list"
+                    >
 
-Details
+                        <div class="empty-state">
 
-</button>
+                            <div class="empty-icon">
+                                ◫
+                            </div>
 
-</div>
+                            <h4>
+                                No websites yet
+                            </h4>
 
-</div>
+                            <p>
+                                Create your first website
+                                to get started.
+                            </p>
 
+                            <button
+                                id="emptyCreateWebsiteBtn"
+                                type="button"
+                                class="primary-btn"
+                            >
 
-<!-- SSL -->
+                                Create Website
 
-<div class="dashboardCard">
+                            </button>
 
-<h3>
+                        </div>
 
-<i class="fa-solid fa-lock"></i>
+                    </div>
 
-SSL Certificate
+                </div>
 
-</h3>
 
-<div class="statusRow">
+                <!-- Recent Orders -->
 
-<span>Status</span>
+                <div class="dashboard-card">
 
-<strong id="sslStatus">
+                    <div class="card-header">
 
-Active
+                        <div>
 
-</strong>
+                            <h3>
+                                Recent Orders
+                            </h3>
 
-</div>
+                            <p>
+                                Your recent orders and services.
+                            </p>
 
-<div class="statusRow">
+                        </div>
 
-<span>Expiry</span>
 
-<strong id="sslExpiry">
+                        <button
+                            type="button"
+                            class="text-btn"
+                            data-section-link="orders"
+                        >
 
-Loading...
+                            View All
 
-</strong>
+                        </button>
 
-</div>
+                    </div>
 
-<button
-id="renewSSLBtn"
-class="primaryBtn">
 
-Renew SSL
+                    <div
+                        id="recentOrdersList"
+                        class="data-list"
+                    >
 
-</button>
+                        <div class="empty-state compact">
 
-</div>
+                            <div class="empty-icon">
+                                ◈
+                            </div>
 
+                            <h4>
+                                No orders yet
+                            </h4>
 
-<!-- Deployment -->
+                            <p>
+                                Your orders will appear here.
+                            </p>
 
-<div class="dashboardCard">
+                        </div>
 
-<h3>
+                    </div>
 
-<i class="fa-solid fa-rocket"></i>
+                </div>
 
-Deployment
+            </section>
 
-</h3>
 
-<div class="statusRow">
+            <!-- =================================================
+                 WEBSITES SECTION
+            ================================================== -->
 
-<span>Last Deploy</span>
+            <section
+                id="section-websites"
+                class="dashboard-section"
+                data-section-content="websites"
+                hidden
+            >
 
-<strong id="lastDeploy">
+                <div class="section-topbar">
 
-Never
+                    <div>
 
-</strong>
+                        <span class="eyebrow">
+                            WEBSITE MANAGEMENT
+                        </span>
 
-</div>
+                        <h2>
+                            My Websites
+                        </h2>
 
-<div class="statusRow">
+                        <p>
+                            Create and manage your websites.
+                        </p>
 
-<span>Status</span>
+                    </div>
 
-<strong id="deployStatus">
 
-Ready
+                    <button
+                        id="createWebsiteBtn"
+                        type="button"
+                        class="primary-btn"
+                    >
 
-</strong>
+                        + Create Website
 
-</div>
+                    </button>
 
-<div class="buttonGroup">
+                </div>
 
-<button
-id="deployNowBtn"
-class="successBtn">
 
-Deploy Now
+                <div
+                    id="websitesList"
+                    class="website-grid"
+                >
 
-</button>
+                    <div class="empty-state">
 
-<button
-id="deploymentLogsBtn"
-class="secondaryBtn">
+                        <div class="empty-icon">
+                            ◫
+                        </div>
 
-Logs
+                        <h4>
+                            No websites found
+                        </h4>
 
-</button>
+                        <p>
+                            Your website projects will
+                            appear here.
+                        </p>
 
-</div>
+                        <button
+                            id="createFirstWebsiteBtn"
+                            type="button"
+                            class="primary-btn"
+                        >
 
-</div>
+                            Create Your First Website
 
+                        </button>
 
-<!-- GitHub -->
+                    </div>
 
-<div class="dashboardCard">
+                </div>
 
-<h3>
+            </section>
 
-<i class="fa-brands fa-github"></i>
 
-GitHub
+            <!-- =================================================
+                 DOMAINS SECTION
+            ================================================== -->
 
-</h3>
+            <section
+                id="section-domains"
+                class="dashboard-section"
+                data-section-content="domains"
+                hidden
+            >
 
-<div class="statusRow">
+                <div class="section-topbar">
 
-<span>Repository</span>
+                    <div>
 
-<strong id="githubRepo">
+                        <span class="eyebrow">
+                            DOMAIN MANAGEMENT
+                        </span>
 
-Not Connected
+                        <h2>
+                            Domains
+                        </h2>
 
-</strong>
+                        <p>
+                            Manage your website domains.
+                        </p>
 
-</div>
+                    </div>
 
-<button
-id="connectGithubBtn"
-class="primaryBtn">
 
-Connect GitHub
+                    <button
+                        id="requestDomainBtn"
+                        type="button"
+                        class="primary-btn"
+                    >
 
-</button>
+                        + Add Domain
 
-</div>
+                    </button>
 
+                </div>
 
-<!-- Vercel -->
 
-<div class="dashboardCard">
+                <div
+                    id="domainsList"
+                    class="data-list"
+                >
 
-<h3>
+                    <div class="empty-state">
 
-<i class="fa-solid fa-cloud"></i>
+                        <div class="empty-icon">
+                            ◎
+                        </div>
 
-Vercel
+                        <h4>
+                            No domains connected
+                        </h4>
 
-</h3>
+                        <p>
+                            Your connected domains
+                            will appear here.
+                        </p>
 
-<div class="statusRow">
+                        <button
+                            id="emptyAddDomainBtn"
+                            type="button"
+                            class="primary-btn"
+                        >
 
-<span>Project</span>
+                            Add Domain
 
-<strong id="vercelProject">
+                        </button>
 
-Connected
+                    </div>
 
-</strong>
+                </div>
 
-</div>
+            </section>
 
-<div class="buttonGroup">
 
-<button
-id="openVercelBtn"
-class="secondaryBtn">
+            <!-- =================================================
+                 ORDERS SECTION
+            ================================================== -->
 
-Open
+            <section
+                id="section-orders"
+                class="dashboard-section"
+                data-section-content="orders"
+                hidden
+            >
 
-</button>
+                <div class="section-topbar">
 
-<button
-id="redeployBtn"
-class="successBtn">
+                    <div>
 
-Redeploy
+                        <span class="eyebrow">
+                            ORDER MANAGEMENT
+                        </span>
 
-</button>
+                        <h2>
+                            My Orders
+                        </h2>
 
-</div>
+                        <p>
+                            Track your services and orders.
+                        </p>
 
-</div>
+                    </div>
 
+                </div>
 
-<!-- Backup -->
 
-<div class="dashboardCard">
+                <div
+                    id="ordersList"
+                    class="data-list"
+                >
 
-<h3>
+                    <div class="empty-state">
 
-<i class="fa-solid fa-database"></i>
+                        <div class="empty-icon">
+                            ◈
+                        </div>
 
-Backup
+                        <h4>
+                            No orders yet
+                        </h4>
 
-</h3>
+                        <p>
+                            Your orders will appear here
+                            once you purchase a service.
+                        </p>
 
-<div class="statusRow">
+                    </div>
 
-<span>Last Backup</span>
+                </div>
 
-<strong id="lastBackup">
+            </section>
 
-Never
 
-</strong>
+            <!-- =================================================
+                 BILLING SECTION
+            ================================================== -->
 
-</div>
+            <section
+                id="section-billing"
+                class="dashboard-section"
+                data-section-content="billing"
+                hidden
+            >
 
-<div class="buttonGroup">
+                <div class="section-topbar">
 
-<button
-id="backupNowBtn"
-class="primaryBtn">
+                    <div>
 
-Create Backup
+                        <span class="eyebrow">
+                            BILLING & PAYMENTS
+                        </span>
 
-</button>
+                        <h2>
+                            Billing
+                        </h2>
 
-<button
-id="restoreBackupBtn"
-class="secondaryBtn">
+                        <p>
+                            Manage your plan, payments
+                            and invoices.
+                        </p>
 
-Restore
+                    </div>
 
-</button>
 
-</div>
+                    <button
+                        id="upgradePlanBtn"
+                        type="button"
+                        class="primary-btn"
+                    >
 
-</div>
+                        Upgrade Plan
 
-</div>
+                    </button>
 
-</section>
+                </div>
 
 
+                <div
+                    id="billingSummary"
+                    class="billing-grid"
+                >
 
-<!-- ===================================================== -->
-<!-- ANALYTICS -->
-<!-- ===================================================== -->
+                    <div class="dashboard-card">
 
-<section id="analytics" class="dashboardSection">
+                        <span class="eyebrow">
+                            CURRENT PLAN
+                        </span>
 
-<div class="sectionTitle">
+                        <h3
+                            id="billingPlanName"
+                        >
+                            Loading...
+                        </h3>
 
-<h2>
+                        <p
+                            id="billingPlanStatus"
+                        >
+                            Loading...
+                        </p>
 
-Analytics
+                    </div>
 
-</h2>
 
-</div>
+                    <div class="dashboard-card">
 
-<div class="dashboardGrid">
+                        <span class="eyebrow">
+                            WALLET
+                        </span>
 
-<div class="dashboardCard">
+                        <h3
+                            id="billingWalletBalance"
+                        >
+                            —
+                        </h3>
 
-<h3>Total Visitors</h3>
+                        <p>
+                            Available balance
+                        </p>
 
-<h1 id="analyticsVisitors">
-0
-</h1>
+                    </div>
 
-</div>
+                </div>
 
-<div class="dashboardCard">
 
-<h3>Total Leads</h3>
+                <div class="dashboard-card">
 
-<h1 id="analyticsLeads">
-0
-</h1>
+                    <div class="card-header">
 
-</div>
+                        <div>
 
-<div class="dashboardCard">
+                            <h3>
+                                Payment History
+                            </h3>
 
-<h3>Total Revenue</h3>
+                            <p>
+                                Your payment records.
+                            </p>
 
-<h1 id="analyticsRevenue">
-₹0
-</h1>
+                        </div>
 
-</div>
+                    </div>
 
-<div class="dashboardCard">
 
-<h3>Conversion Rate</h3>
+                    <div
+                        id="paymentsList"
+                        class="data-list"
+                    >
 
-<h1 id="conversionRate">
-0%
-</h1>
+                        <div class="empty-state compact">
 
-</div>
+                            <h4>
+                                No payment records
+                            </h4>
 
-</div>
+                            <p>
+                                Payment history will appear here.
+                            </p>
 
-<div class="dashboardCard">
+                        </div>
 
-<canvas id="trafficChart"></canvas>
+                    </div>
 
-</div>
+                </div>
 
-</section>
 
-<!-- ===================================================== -->
-<!-- BILLING & PAYMENTS -->
-<!-- ===================================================== -->
+                <div class="dashboard-card">
 
-<section id="billing" class="dashboardSection">
+                    <div class="card-header">
 
-<div class="sectionTitle">
-<div>
-<h2>Billing & Payments</h2>
-<p>Manage invoices, subscriptions and payment history.</p>
-</div>
-</div>
+                        <div>
 
-<div class="dashboardGrid">
+                            <h3>
+                                Invoices
+                            </h3>
 
-<!-- Current Plan -->
+                            <p>
+                                Your generated invoices.
+                            </p>
 
-<div class="dashboardCard">
+                        </div>
 
-<h3>
-<i class="fa-solid fa-crown"></i>
-Current Plan
-</h3>
+                    </div>
 
-<h2 id="currentPlan">
-Free Plan
-</h2>
 
-<div class="statusRow">
-<span>Status</span>
-<strong id="planStatus">
-Active
-</strong>
-</div>
+                    <div
+                        id="invoicesList"
+                        class="data-list"
+                    >
 
-<div class="statusRow">
-<span>Renewal</span>
-<strong id="renewDate">
-Lifetime
-</strong>
-</div>
+                        <div class="empty-state compact">
 
-<button
-id="upgradeMembershipBtn"
-class="primaryBtn">
+                            <h4>
+                                No invoices
+                            </h4>
 
-Upgrade Membership
+                            <p>
+                                Your invoices will appear here.
+                            </p>
 
-</button>
+                        </div>
 
-</div>
+                    </div>
 
-<!-- Billing Summary -->
+                </div>
 
-<div class="dashboardCard">
+            </section>
 
-<h3>
 
-<i class="fa-solid fa-wallet"></i>
+            <!-- =================================================
+                 SUPPORT SECTION
+            ================================================== -->
 
-Billing Summary
+            <section
+                id="section-support"
+                class="dashboard-section"
+                data-section-content="support"
+                hidden
+            >
 
-</h3>
+                <div class="section-topbar">
 
-<div class="statusRow">
-<span>Total Paid</span>
-<strong id="totalPaid">
-₹0
-</strong>
-</div>
+                    <div>
 
-<div class="statusRow">
-<span>Pending</span>
-<strong id="pendingAmount">
-₹0
-</strong>
-</div>
+                        <span class="eyebrow">
+                            CUSTOMER SUPPORT
+                        </span>
 
-<div class="statusRow">
-<span>Next Invoice</span>
-<strong id="nextInvoiceDate">
---
-</strong>
-</div>
+                        <h2>
+                            Support
+                        </h2>
 
-</div>
+                        <p>
+                            Get help from our support team.
+                        </p>
 
-<!-- Wallet -->
+                    </div>
 
-<div class="dashboardCard">
 
-<h3>
+                    <button
+                        id="createSupportTicketBtn"
+                        type="button"
+                        class="primary-btn"
+                    >
 
-<i class="fa-solid fa-money-bill-wave"></i>
+                        + New Ticket
 
-Wallet
+                    </button>
 
-</h3>
+                </div>
 
-<h1 id="walletAmount">
 
-₹0
+                <div
+                    id="supportTicketsList"
+                    class="data-list"
+                >
 
-</h1>
+                    <div class="empty-state">
 
-<div class="buttonGroup">
+                        <div class="empty-icon">
+                            ?
+                        </div>
 
-<button
-id="addMoneyBtn"
-class="successBtn">
+                        <h4>
+                            No support tickets
+                        </h4>
 
-Add Money
+                        <p>
+                            You haven't created any support
+                            tickets yet.
+                        </p>
 
-</button>
+                        <button
+                            id="emptyCreateTicketBtn"
+                            type="button"
+                            class="primary-btn"
+                        >
 
-<button
-id="withdrawMoneyBtn"
-class="secondaryBtn">
+                            Create Support Ticket
 
-Withdraw
+                        </button>
 
-</button>
+                    </div>
 
-</div>
+                </div>
 
-</div>
+            </section>
 
-<!-- GST -->
 
-<div class="dashboardCard">
+            <!-- =================================================
+                 NOTIFICATIONS SECTION
+            ================================================== -->
 
-<h3>
+            <section
+                id="section-notifications"
+                class="dashboard-section"
+                data-section-content="notifications"
+                hidden
+            >
 
-<i class="fa-solid fa-file-invoice-dollar"></i>
+                <div class="section-topbar">
 
-GST Details
+                    <div>
 
-</h3>
+                        <span class="eyebrow">
+                            ACCOUNT UPDATES
+                        </span>
 
-<div class="statusRow">
-<span>GST Number</span>
-<strong id="gstNumber">
-Not Added
-</strong>
-</div>
+                        <h2>
+                            Notifications
+                        </h2>
 
-<button
-id="updateGSTBtn"
-class="primaryBtn">
+                        <p>
+                            Important updates about your account.
+                        </p>
 
-Update GST
+                    </div>
 
-</button>
 
-</div>
+                    <button
+                        id="markAllNotificationsReadBtn"
+                        type="button"
+                        class="secondary-btn"
+                    >
 
-</div>
+                        Mark All Read
 
-</section>
+                    </button>
 
+                </div>
 
-<!-- ===================================================== -->
-<!-- PAYMENT HISTORY -->
-<!-- ===================================================== -->
 
-<section id="paymentHistory">
+                <div
+                    id="notificationsList"
+                    class="data-list"
+                >
 
-<div class="sectionTitle">
+                    <div class="empty-state">
 
-<h2>
+                        <div class="empty-icon">
+                            ♢
+                        </div>
 
-Payment History
+                        <h4>
+                            No notifications
+                        </h4>
 
-</h2>
+                        <p>
+                            You're all caught up.
+                        </p>
 
-</div>
+                    </div>
 
-<div class="dashboardCard">
+                </div>
 
-<table class="dashboardTable">
+            </section>
 
-<thead>
 
-<tr>
+            <!-- =================================================
+                 PROFILE SECTION
+            ================================================== -->
 
-<th>Date</th>
+            <section
+                id="section-profile"
+                class="dashboard-section"
+                data-section-content="profile"
+                hidden
+            >
 
-<th>Transaction ID</th>
+                <div class="section-topbar">
 
-<th>Method</th>
+                    <div>
 
-<th>Status</th>
+                        <span class="eyebrow">
+                            ACCOUNT SETTINGS
+                        </span>
 
-<th>Amount</th>
+                        <h2>
+                            My Profile
+                        </h2>
 
-</tr>
+                        <p>
+                            Manage your personal and business information.
+                        </p>
 
-</thead>
+                    </div>
 
-<tbody id="paymentHistoryTable">
+                </div>
 
-<tr>
 
-<td colspan="5">
+                <div class="dashboard-card">
 
-No Payment Found
+                    <form
+                        id="profileForm"
+                        class="profile-form"
+                    >
 
-</td>
+                        <div class="profile-header">
 
-</tr>
+                            <div
+                                id="profileAvatar"
+                                class="profile-avatar"
+                            >
+                                U
+                            </div>
 
-</tbody>
+                            <div>
 
-</table>
+                                <h3>
+                                    Account Information
+                                </h3>
 
-</div>
+                                <p>
+                                    Keep your information up to date.
+                                </p>
 
-</section>
+                            </div>
 
+                        </div>
 
-<!-- ===================================================== -->
-<!-- INVOICES -->
-<!-- ===================================================== -->
 
-<section id="invoiceHistory">
+                        <div
+                            id="profileMessage"
+                            class="form-message"
+                            role="status"
+                        ></div>
 
-<div class="sectionTitle">
 
-<h2>
+                        <div class="form-grid">
 
-Invoices
+                            <div class="form-group">
 
-</h2>
+                                <label
+                                    for="profileName"
+                                >
+                                    Full Name
+                                </label>
 
-</div>
+                                <input
+                                    id="profileName"
+                                    type="text"
+                                    autocomplete="name"
+                                    required
+                                >
 
-<div class="dashboardCard">
+                            </div>
 
-<table class="dashboardTable">
 
-<thead>
+                            <div class="form-group">
 
-<tr>
+                                <label
+                                    for="profileEmail"
+                                >
+                                    Email
+                                </label>
 
-<th>Invoice</th>
+                                <input
+                                    id="profileEmail"
+                                    type="email"
+                                    autocomplete="email"
+                                    readonly
+                                >
 
-<th>Date</th>
+                            </div>
 
-<th>Amount</th>
 
-<th>Status</th>
+                            <div class="form-group">
 
-<th>Download</th>
+                                <label
+                                    for="profilePhone"
+                                >
+                                    Phone Number
+                                </label>
 
-</tr>
+                                <input
+                                    id="profilePhone"
+                                    type="tel"
+                                    autocomplete="tel"
+                                >
 
-</thead>
+                            </div>
 
-<tbody id="invoiceHistoryTable">
 
-<tr>
+                            <div class="form-group">
 
-<td colspan="5">
+                                <label
+                                    for="profileBusinessName"
+                                >
+                                    Business Name
+                                </label>
 
-No Invoice Available
+                                <input
+                                    id="profileBusinessName"
+                                    type="text"
+                                >
 
-</td>
+                            </div>
 
-</tr>
 
-</tbody>
+                            <div class="form-group">
 
-</table>
+                                <label
+                                    for="profileBusinessType"
+                                >
+                                    Business Type
+                                </label>
 
-</div>
+                                <input
+                                    id="profileBusinessType"
+                                    type="text"
+                                >
 
-</section>
-  
-<!-- ===================================================== -->
-<!-- SUPPORT CENTER -->
-<!-- ===================================================== -->
-
-<section id="support" class="dashboardSection">
-
-<div class="sectionTitle">
-<div>
-<h2>Support Center</h2>
-<p>Need help? Contact our support team.</p>
-</div>
-</div>
+                            </div>
 
-<div class="dashboardGrid">
 
-<div class="dashboardCard">
+                            <div class="form-group full-width">
 
-<h3>
-<i class="fa-solid fa-headset"></i>
-Customer Support
-</h3>
+                                <label
+                                    for="profileWebsiteGoal"
+                                >
+                                    Website Goal
+                                </label>
 
-<p>Our team is available 24×7.</p>
+                                <textarea
+                                    id="profileWebsiteGoal"
+                                    rows="4"
+                                ></textarea>
 
-<div class="buttonGroup">
+                            </div>
 
-<button id="liveChatBtn" class="primaryBtn">
-Live Chat
-</button>
+                        </div>
 
-<button id="createTicketBtn" class="secondaryBtn">
-Create Ticket
-</button>
 
-</div>
+                        <div class="form-actions">
 
-</div>
+                            <button
+                                id="saveProfileBtn"
+                                type="submit"
+                                class="primary-btn"
+                            >
 
-<div class="dashboardCard">
+                                Save Changes
 
-<h3>
-<i class="fa-solid fa-phone"></i>
-Contact
-</h3>
+                            </button>
 
-<p id="supportPhone">
-+91 7290977231
-</p>
+                        </div>
 
-<p id="supportEmail">
-support@smilefinancialsolution.com
-</p>
+                    </form>
 
-</div>
+                </div>
 
-<div class="dashboardCard">
+            </section>
 
-<h3>
-<i class="fa-brands fa-whatsapp"></i>
-WhatsApp Support
-</h3>
 
-<button id="whatsappSupportBtn" class="successBtn">
-Open WhatsApp
-</button>
+        </main>
 
-</div>
+    </div>
 
 </div>
-
-</section>
-
-
-
-<!-- ===================================================== -->
-<!-- NOTIFICATIONS -->
-<!-- ===================================================== -->
-
-<section id="notifications" class="dashboardSection">
-
-<div class="sectionTitle">
 
-<h2>
 
-Notifications
+<!-- =========================================================
+     CREATE WEBSITE MODAL
+========================================================= -->
 
-</h2>
+<div
+    id="websiteModal"
+    class="modal"
+    hidden
+    aria-hidden="true"
+>
 
-</div>
+    <div
+        class="modal-backdrop"
+        data-close-modal="websiteModal"
+    ></div>
 
-<div class="dashboardCard">
 
-<ul id="notificationList">
+    <div
+        class="modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="websiteModalTitle"
+    >
 
-<li>No Notifications</li>
+        <div class="modal-header">
 
-</ul>
+            <div>
 
-</div>
+                <span class="eyebrow">
+                    NEW PROJECT
+                </span>
 
-</section>
+                <h2 id="websiteModalTitle">
+                    Create Website
+                </h2>
 
+            </div>
 
 
-<!-- ===================================================== -->
-<!-- REFERRAL -->
-<!-- ===================================================== -->
+            <button
+                type="button"
+                class="modal-close"
+                data-close-modal="websiteModal"
+                aria-label="Close"
+            >
 
-<section id="referral" class="dashboardSection">
+                ×
 
-<div class="sectionTitle">
+            </button>
 
-<h2>
+        </div>
 
-Referral Program
 
-</h2>
+        <form
+            id="createWebsiteForm"
+        >
 
-</div>
+            <div
+                id="websiteFormMessage"
+                class="form-message"
+                role="status"
+            ></div>
 
-<div class="dashboardCard">
 
-<h3>Your Referral Code</h3>
+            <div class="form-group">
 
-<input
-id="referralCode"
-readonly
-value="Loading...">
+                <label
+                    for="websiteBusinessName"
+                >
+                    Business Name
+                </label>
 
-<div class="buttonGroup">
+                <input
+                    id="websiteBusinessName"
+                    type="text"
+                    placeholder="Enter your business name"
+                    required
+                >
 
-<button
-id="copyReferralCodeBtn"
-class="primaryBtn">
+            </div>
 
-Copy Code
 
-</button>
+            <div class="form-group">
 
-<button
-id="shareReferralBtn"
-class="successBtn">
+                <label
+                    for="websiteBusinessType"
+                >
+                    Business Type
+                </label>
 
-Share
+                <input
+                    id="websiteBusinessType"
+                    type="text"
+                    placeholder="e.g. Restaurant, Shop, Agency"
+                    required
+                >
 
-</button>
+            </div>
 
-</div>
 
-<div class="statusRow">
+            <div class="form-group">
 
-<span>Total Earnings</span>
+                <label
+                    for="websiteGoal"
+                >
+                    What do you want your website for?
+                </label>
 
-<strong id="referralIncome">
+                <textarea
+                    id="websiteGoal"
+                    rows="4"
+                    placeholder="Describe your website requirements..."
+                    required
+                ></textarea>
 
-₹0
+            </div>
 
-</strong>
 
-</div>
+            <div class="form-actions">
 
-</div>
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    data-close-modal="websiteModal"
+                >
 
-</section>
+                    Cancel
 
+                </button>
 
 
-<!-- ===================================================== -->
-<!-- AI ASSISTANT -->
-<!-- ===================================================== -->
+                <button
+                    id="submitWebsiteBtn"
+                    type="submit"
+                    class="primary-btn"
+                >
 
-<section id="assistant" class="dashboardSection">
+                    Create Website
 
-<div class="sectionTitle">
+                </button>
 
-<h2>
+            </div>
 
-Smile AI Assistant
+        </form>
 
-</h2>
+    </div>
 
 </div>
-
-<div class="dashboardCard">
-
-<textarea
-id="aiPrompt"
-rows="5"
-placeholder="Ask anything..."></textarea>
-
-<button
-id="askAiBtn"
-class="primaryBtn">
 
-Ask Smile AI
 
-</button>
+<!-- =========================================================
+     DOMAIN MODAL
+========================================================= -->
 
-<div id="aiResponse">
+<div
+    id="domainModal"
+    class="modal"
+    hidden
+    aria-hidden="true"
+>
 
-</div>
+    <div
+        class="modal-backdrop"
+        data-close-modal="domainModal"
+    ></div>
 
-</div>
 
-</section>
+    <div
+        class="modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="domainModalTitle"
+    >
 
+        <div class="modal-header">
 
+            <div>
 
-<!-- ===================================================== -->
-<!-- PROFILE -->
-<!-- ===================================================== -->
+                <span class="eyebrow">
+                    DOMAIN REQUEST
+                </span>
 
-<section id="profile" class="dashboardSection">
+                <h2 id="domainModalTitle">
+                    Add Domain
+                </h2>
 
-<div class="sectionTitle">
+            </div>
 
-<h2>
 
-Profile Settings
+            <button
+                type="button"
+                class="modal-close"
+                data-close-modal="domainModal"
+                aria-label="Close"
+            >
 
-</h2>
+                ×
 
-</div>
+            </button>
 
-<div class="dashboardCard">
+        </div>
 
-<div class="formGroup">
 
-<label>Full Name</label>
+        <form
+            id="domainForm"
+        >
 
-<input
-id="profileName"
-type="text">
+            <div
+                id="domainFormMessage"
+                class="form-message"
+                role="status"
+            ></div>
 
-</div>
 
-<div class="formGroup">
+            <div class="form-group">
 
-<label>Email</label>
+                <label
+                    for="domainName"
+                >
+                    Domain Name
+                </label>
 
-<input
-id="profileEmail"
-type="email">
+                <input
+                    id="domainName"
+                    type="text"
+                    placeholder="example.com"
+                    required
+                >
 
-</div>
+            </div>
 
-<div class="formGroup">
 
-<label>Phone</label>
+            <div class="form-group">
 
-<input
-id="profilePhone"
-type="tel">
+                <label
+                    for="domainWebsiteId"
+                >
+                    Website
+                </label>
 
-</div>
+                <select
+                    id="domainWebsiteId"
+                    required
+                >
 
-<div class="buttonGroup">
+                    <option value="">
+                        Select Website
+                    </option>
 
-<button
-id="saveProfileBtn"
-class="successBtn">
+                </select>
 
-Save Profile
+            </div>
 
-</button>
 
-</div>
+            <div class="form-actions">
 
-</div>
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    data-close-modal="domainModal"
+                >
 
-</section>
+                    Cancel
 
+                </button>
 
 
-<!-- ===================================================== -->
-<!-- SECURITY -->
-<!-- ===================================================== -->
+                <button
+                    id="submitDomainBtn"
+                    type="submit"
+                    class="primary-btn"
+                >
 
-<section id="security" class="dashboardSection">
+                    Submit Request
 
-<div class="sectionTitle">
+                </button>
 
-<h2>
+            </div>
 
-Security
+        </form>
 
-</h2>
+    </div>
 
 </div>
-
-<div class="dashboardCard">
 
-<div class="buttonGroup">
 
-<button
-id="changePasswordBtn"
-class="primaryBtn">
+<!-- =========================================================
+     SUPPORT TICKET MODAL
+========================================================= -->
 
-Change Password
+<div
+    id="supportModal"
+    class="modal"
+    hidden
+    aria-hidden="true"
+>
 
-</button>
+    <div
+        class="modal-backdrop"
+        data-close-modal="supportModal"
+    ></div>
 
-<button
-id="enable2FABtn"
-class="secondaryBtn">
 
-Enable 2FA
+    <div
+        class="modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="supportModalTitle"
+    >
 
-</button>
+        <div class="modal-header">
 
-<button
-id="logoutAllBtn"
-class="dangerBtn">
+            <div>
 
-Logout All Devices
+                <span class="eyebrow">
+                    CUSTOMER SUPPORT
+                </span>
 
-</button>
+                <h2 id="supportModalTitle">
+                    Create Support Ticket
+                </h2>
 
-</div>
-
-</div>
-
-</section>
-
-  <!-- ===================================================== -->
-<!-- FOOTER -->
-<!-- ===================================================== -->
-
-<footer class="dashboardFooter">
-
-<div class="footerLeft">
-<p>
-© 2026 Smile AI Web Studio. All Rights Reserved.
-</p>
-</div>
-
-<div class="footerRight">
+            </div>
 
-<a href="privacy-policy.html">
-Privacy Policy
-</a>
 
-<a href="terms-and-conditions.html">
-Terms
-</a>
+            <button
+                type="button"
+                class="modal-close"
+                data-close-modal="supportModal"
+                aria-label="Close"
+            >
 
-<a href="contact.html">
-Support
-</a>
+                ×
 
-</div>
+            </button>
 
-</footer>
+        </div>
 
-</div>
-<!-- dashboardContent END -->
 
+        <form
+            id="supportTicketForm"
+        >
 
-</main>
-<!-- Main END -->
+            <div
+                id="supportFormMessage"
+                class="form-message"
+                role="status"
+            ></div>
 
-</div>
-<!-- dashboardContainer END -->
 
+            <div class="form-group">
 
-<!-- ===================================================== -->
-<!-- LOADING OVERLAY -->
-<!-- ===================================================== -->
+                <label
+                    for="supportSubject"
+                >
+                    Subject
+                </label>
 
-<div id="loadingOverlay" class="loadingOverlay hidden">
+                <input
+                    id="supportSubject"
+                    type="text"
+                    placeholder="What do you need help with?"
+                    required
+                >
 
-<div class="loadingBox">
+            </div>
 
-<div class="loadingSpinner"></div>
 
-<h3>
-Please Wait...
-</h3>
+            <div class="form-group">
 
-<p id="loadingText">
-Loading...
-</p>
+                <label
+                    for="supportCategory"
+                >
+                    Category
+                </label>
 
-</div>
+                <select
+                    id="supportCategory"
+                    required
+                >
 
-</div>
+                    <option value="">
+                        Select Category
+                    </option>
 
+                    <option value="website">
+                        Website
+                    </option>
 
+                    <option value="domain">
+                        Domain
+                    </option>
 
-<!-- ===================================================== -->
-<!-- GLOBAL MODAL -->
-<!-- ===================================================== -->
+                    <option value="billing">
+                        Billing
+                    </option>
 
-<div id="globalModal" class="modal hidden">
+                    <option value="technical">
+                        Technical
+                    </option>
 
-<div class="modalContent">
+                    <option value="other">
+                        Other
+                    </option>
 
-<div class="modalHeader">
+                </select>
 
-<h2 id="modalTitle">
+            </div>
 
-Smile AI
 
-</h2>
+            <div class="form-group">
 
-<button id="closeModalBtn">
+                <label
+                    for="supportMessage"
+                >
+                    Message
+                </label>
 
-<i class="fa-solid fa-xmark"></i>
+                <textarea
+                    id="supportMessage"
+                    rows="5"
+                    placeholder="Describe your issue..."
+                    required
+                ></textarea>
 
-</button>
+            </div>
 
-</div>
 
-<div id="modalBody">
+            <div class="form-actions">
 
-</div>
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    data-close-modal="supportModal"
+                >
 
-<div class="modalFooter">
+                    Cancel
 
-<button
-id="modalCancelBtn"
-class="secondaryBtn">
+                </button>
 
-Cancel
 
-</button>
+                <button
+                    id="submitSupportBtn"
+                    type="submit"
+                    class="primary-btn"
+                >
 
-<button
-id="modalOkBtn"
-class="primaryBtn">
+                    Create Ticket
 
-OK
+                </button>
 
-</button>
+            </div>
 
-</div>
+        </form>
 
-</div>
+    </div>
 
 </div>
-
 
 
-<!-- ===================================================== -->
-<!-- TOAST -->
-<!-- ===================================================== -->
+<!-- =========================================================
+     TOAST
+========================================================= -->
 
-<div id="toastContainer"></div>
+<div
+    id="toastContainer"
+    class="toast-container"
+    aria-live="polite"
+    aria-atomic="true"
+></div>
 
 
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
-<!-- ===================================================== -->
-<!-- FIREBASE -->
-<!-- ===================================================== -->
+<!-- Authentication -->
+<script
+    type="module"
+    src="./js/auth.js"
+></script>
 
-<script type="module" src="js/firebase-service.js"></script>
 
-<script type="module" src="js/auth.js"></script>
+<!-- Customer Dashboard Logic -->
+<script
+    type="module"
+    src="./js/customer-dashboard.js"
+></script>
 
-<script type="module" src="js/dashboard.js"></script>
 
 </body>
-
 </html>
