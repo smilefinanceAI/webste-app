@@ -1,69 +1,85 @@
-// ======================================================
+// ============================================================
 // Smile AI Web Studio
-// Firebase Service
-// Firebase SDK v12+
-// ======================================================
+// Firebase Service Layer
+// Firebase JS SDK v12+
+// ============================================================
 
-// Firebase Core
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+// ==============================
+// Firebase App
+// ==============================
 
-// Authentication
 import {
-getAuth,
-setPersistence,
-browserLocalPersistence,
-browserSessionPersistence,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword,
-signInWithPopup,
-GoogleAuthProvider,
-FacebookAuthProvider,
-GithubAuthProvider,
-OAuthProvider,
-sendPasswordResetEmail,
-onAuthStateChanged,
-signOut,
-updateProfile
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+
+// ==============================
+// Firebase Auth
+// ==============================
+
+import {
+    getAuth,
+    setPersistence,
+    browserLocalPersistence,
+    browserSessionPersistence,
+
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+
+    GoogleAuthProvider,
+    FacebookAuthProvider,
+    GithubAuthProvider,
+    OAuthProvider,
+
+    sendPasswordResetEmail,
+    onAuthStateChanged,
+    signOut,
+    updateProfile
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-// Firestore
+
+// ==============================
+// Firebase Firestore
+// ==============================
+
 import {
-getFirestore,
-doc,
-setDoc,
-getDoc,
-updateDoc,
-deleteDoc,
-collection,
-getDocs,
-query,
-where,
-orderBy,
-limit,
-addDoc,
-serverTimestamp
+    getFirestore,
+
+    doc,
+    setDoc,
+    getDoc,
+    updateDoc,
+    deleteDoc,
+
+    collection,
+    getDocs,
+
+    query,
+    where,
+    orderBy,
+    limit,
+
+    addDoc,
+
+    serverTimestamp,
+
+    onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 
-// ======================================================
+// ==============================
 // Firebase Config
-// ======================================================
+// ==============================
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyArcvyvNAOKipPZB0YEfSeoeN9_k-8JznQ",
-  authDomain: "smile-business-os.firebaseapp.com",
-  projectId: "smile-business-os",
-  storageBucket: "smile-business-os.firebasestorage.app",
-  messagingSenderId: "114356400630",
-  appId: "1:114356400630:web:96fc9d07baaf3a504c17d7",
-  measurementId: "G-73WD9V05ZZ"
-};
+import {
+    firebaseConfig
+} from "./firebase-config.js";
 
 
-// ======================================================
-// Initialize
-// ======================================================
+// ==============================
+// Initialize Firebase
+// ==============================
 
 const app = initializeApp(firebaseConfig);
 
@@ -72,79 +88,112 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-// Remember Me Default
+// ==============================
+// Default Persistence
+// ==============================
 
-setPersistence(auth,browserLocalPersistence);
+const setDefaultPersistence = async () => {
+
+    try {
+
+        await setPersistence(
+            auth,
+            browserLocalPersistence
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Firebase persistence error:",
+            error
+        );
+
+    }
+
+};
 
 
-// ======================================================
-// Export
-// ======================================================
+// Start default persistence
+
+setDefaultPersistence();
+
+
+// ============================================================
+// EXPORT
+// ============================================================
 
 export {
 
-app,
+    // Firebase Core
 
-auth,
+    app,
 
-db,
+    auth,
 
-// Auth
+    db,
 
-createUserWithEmailAndPassword,
 
-signInWithEmailAndPassword,
+    // Auth
 
-signInWithPopup,
+    getAuth,
 
-GoogleAuthProvider,
+    setPersistence,
 
-FacebookAuthProvider,
+    browserLocalPersistence,
 
-GithubAuthProvider,
+    browserSessionPersistence,
 
-OAuthProvider,
+    createUserWithEmailAndPassword,
 
-sendPasswordResetEmail,
+    signInWithEmailAndPassword,
 
-onAuthStateChanged,
+    signInWithPopup,
 
-signOut,
+    GoogleAuthProvider,
 
-updateProfile,
+    FacebookAuthProvider,
 
-setPersistence,
+    GithubAuthProvider,
 
-browserLocalPersistence,
+    OAuthProvider,
 
-browserSessionPersistence,
+    sendPasswordResetEmail,
 
-// Firestore
+    onAuthStateChanged,
 
-doc,
+    signOut,
 
-setDoc,
+    updateProfile,
 
-getDoc,
 
-updateDoc,
+    // Firestore
 
-deleteDoc,
+    doc,
 
-collection,
+    setDoc,
 
-getDocs,
+    getDoc,
 
-query,
+    updateDoc,
 
-where,
+    deleteDoc,
 
-orderBy,
+    collection,
 
-limit,
+    getDocs,
 
-addDoc,
+    query,
 
-serverTimestamp
+    where,
+
+    orderBy,
+
+    limit,
+
+    addDoc,
+
+    serverTimestamp,
+
+    onSnapshot
 
 };
