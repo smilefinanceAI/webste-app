@@ -920,241 +920,241 @@ microsoftSignup.addEventListener(
 
 socialLogin(
 
-microsoftProvider,
-
-"microsoft"
-
-);
-
-}
-
-);
-
-}
-// ======================================================
-// PART 4
-// SESSION | LOGOUT | AUTH CHECK | ROLE REDIRECT
-// ======================================================
-
-
-// =======================================
-// LOGOUT
-// =======================================
-
-async function logout() {
-
-    try {
-
-        await signOut(auth);
-
-        window.location.href = "login.html";
-
+    microsoftProvider,
+    
+    "microsoft"
+    
+    );
+    
     }
-
-    catch (error) {
-
-        console.error(error);
-
+    
+    );
+    
     }
-
-}
-
-
-
-// =======================================
-// CURRENT USER
-// =======================================
-
-function getCurrentUser() {
-
-    return auth.currentUser;
-
-}
-
-
-
-// =======================================
-// CHECK AUTH
-// =======================================
-
-function checkAuth() {
-
-    return new Promise((resolve) => {
-
-        onAuthStateChanged(auth, (user) => {
-
-            resolve(user);
-
+    // ======================================================
+    // PART 4
+    // SESSION | LOGOUT | AUTH CHECK | ROLE REDIRECT
+    // ======================================================
+    
+    
+    // =======================================
+    // LOGOUT
+    // =======================================
+    
+    async function logout() {
+    
+        try {
+    
+            await signOut(auth);
+    
+            window.location.href = "login.html";
+    
+        }
+    
+        catch (error) {
+    
+            console.error(error);
+    
+        }
+    
+    }
+    
+    
+    
+    // =======================================
+    // CURRENT USER
+    // =======================================
+    
+    function getCurrentUser() {
+    
+        return auth.currentUser;
+    
+    }
+    
+    
+    
+    // =======================================
+    // CHECK AUTH
+    // =======================================
+    
+    function checkAuth() {
+    
+        return new Promise((resolve) => {
+    
+            onAuthStateChanged(auth, (user) => {
+    
+                resolve(user);
+    
+            });
+    
         });
-
-    });
-
-}
-
-
-
-// =======================================
-// ROLE BASED REDIRECT
-// =======================================
-
-async function redirectUser(user) {
-
-    if (!user) {
-
-        window.location.href = "login.html";
-
-        return;
-
+    
     }
-
-    try {
-
-        const userRef = doc(db, "users", user.uid);
-
-        const snapshot = await getDoc(userRef);
-
-        if (!snapshot.exists()) {
-
-            window.location.href = "customer-dashboard.html";
-
+    
+    
+    
+    // =======================================
+    // ROLE BASED REDIRECT
+    // =======================================
+    
+    async function redirectUser(user) {
+    
+        if (!user) {
+    
+            window.location.href = "login.html";
+    
             return;
-
+    
         }
-
-        const data = snapshot.data();
-
-        if (data.role === "admin") {
-
-            window.location.href = "admin-dashboard.html";
-
+    
+        try {
+    
+            const userRef = doc(db, "users", user.uid);
+    
+            const snapshot = await getDoc(userRef);
+    
+            if (!snapshot.exists()) {
+    
+                window.location.href = "customer-dashboard.html";
+    
+                return;
+    
+            }
+    
+            const data = snapshot.data();
+    
+            if (data.role === "admin") {
+    
+                window.location.href = "admin-dashboard.html";
+    
+            }
+    
+            else {
+    
+                window.location.href = "customer-dashboard.html";
+    
+            }
+    
         }
-
-        else {
-
+    
+        catch (error) {
+    
+            console.error(error);
+    
             window.location.href = "customer-dashboard.html";
-
+    
         }
-
+    
     }
-
-    catch (error) {
-
-        console.error(error);
-
-        window.location.href = "customer-dashboard.html";
-
+    
+    
+    
+    // =======================================
+    // AUTO SESSION
+    // =======================================
+    
+    const page = window.location.pathname;
+    
+    
+    
+    const isLoginPage =
+    
+    page.includes("login.html");
+    
+    
+    
+    const isSignupPage =
+    
+    page.includes("signup.html");
+    
+    
+    
+    if (isLoginPage || isSignupPage) {
+    
+        onAuthStateChanged(
+    
+            auth,
+    
+            async (user) => {
+    
+                if (user) {
+    
+                    await redirectUser(user);
+    
+                }
+    
+            }
+    
+        );
+    
     }
-
-}
-
-
-
-// =======================================
-// AUTO SESSION
-// =======================================
-
-const page = window.location.pathname;
-
-
-
-const isLoginPage =
-
-page.includes("login.html");
-
-
-
-const isSignupPage =
-
-page.includes("signup.html");
-
-
-
-if (isLoginPage || isSignupPage) {
-
-    onAuthStateChanged(
-
-        auth,
-
-        async (user) => {
-
-            if (user) {
-
-                await redirectUser(user);
-
+    
+    
+    
+    // =======================================
+    // PROTECT DASHBOARD
+    // =======================================
+    
+    const protectedPages = [
+    
+    "customer-dashboard.html",
+    
+    "admin-dashboard.html"
+    
+    ];
+    
+    
+    
+    const currentPage =
+    
+    page.split("/").pop();
+    
+    
+    
+    if (protectedPages.includes(currentPage)) {
+    
+        onAuthStateChanged(
+    
+            auth,
+    
+            async (user) => {
+    
+                if (!user) {
+    
+                    window.location.href =
+    
+                    "login.html";
+    
+                }
+    
             }
-
-        }
-
-    );
-
-}
-
-
-
-// =======================================
-// PROTECT DASHBOARD
-// =======================================
-
-const protectedPages = [
-
-"customer-dashboard.html",
-
-"admin-dashboard.html"
-
-];
-
-
-
-const currentPage =
-
-page.split("/").pop();
-
-
-
-if (protectedPages.includes(currentPage)) {
-
-    onAuthStateChanged(
-
-        auth,
-
-        async (user) => {
-
-            if (!user) {
-
-                window.location.href =
-
-                "login.html";
-
-            }
-
-        }
-
-    );
-
-}
-
-
-
-// =======================================
-// GLOBAL EXPORT
-// =======================================
-
-window.auth = {
-
-logout,
-
-getCurrentUser,
-
-checkAuth,
-
-loginWithEmail,
-
-signupWithEmail,
-
-resetPassword
-
-};
-
-
-
-console.log("✅ auth.js loaded successfully");
+    
+        );
+    
+    }
+    
+    
+    
+    // =======================================
+    // GLOBAL EXPORT
+    // =======================================
+    
+    window.auth = {
+    
+    logout,
+    
+    getCurrentUser,
+    
+    checkAuth,
+    
+    loginWithEmail,
+    
+    signupWithEmail,
+    
+    resetPassword
+    
+    };
+    
+    
+    
+    console.log("✅ auth.js loaded successfully");
