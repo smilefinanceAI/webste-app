@@ -134,8 +134,11 @@ const microsoftSignup =
 // PROVIDERS
 // ============================================================
 
-const googleProvider =
-    new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
+
+googleProvider.setCustomParameters({
+    prompt: "select_account"
+});
 
 const facebookProvider =
     new FacebookAuthProvider();
