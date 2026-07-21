@@ -1,17 +1,12 @@
 // ============================================================
 // Smile AI Web Studio
-// Authentication System
-// Production Foundation
+// auth.js
+// FINAL AUTHENTICATION SYSTEM
 // ============================================================
 
 import {
-
     auth,
     db,
-
-    setPersistence,
-    browserLocalPersistence,
-    browserSessionPersistence,
 
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -31,8 +26,16 @@ import {
     getDoc,
     updateDoc,
     serverTimestamp
-
 } from "./firebase-service.js";
+
+
+// ============================================================
+// CONFIGURATION
+// ============================================================
+
+const CUSTOMER_DASHBOARD = "customer-dashboard.html";
+const ADMIN_DASHBOARD = "admin-dashboard.html";
+const LOGIN_PAGE = "login.html";
 
 
 // ============================================================
@@ -40,125 +43,76 @@ import {
 // ============================================================
 
 // Login
-
-const loginForm =
-    document.getElementById("loginForm");
-
-const loginEmail =
-    document.getElementById("loginEmail");
-
-const loginPassword =
-    document.getElementById("loginPassword");
-
-const loginBtn =
-    document.getElementById("loginBtn");
-
-const loginMessage =
-    document.getElementById("loginMessage");
-
-const rememberMe =
-    document.getElementById("rememberMe");
-
+const loginForm = document.getElementById("loginForm");
+const loginEmail = document.getElementById("loginEmail");
+const loginPassword = document.getElementById("loginPassword");
+const loginBtn = document.getElementById("loginBtn");
+const loginMessage = document.getElementById("loginMessage");
 
 // Signup
+const signupForm = document.getElementById("signupForm");
 
-const signupForm =
-    document.getElementById("signupForm");
+const signupName = document.getElementById("signupName");
+const signupEmail = document.getElementById("signupEmail");
+const signupPhone = document.getElementById("signupPhone");
 
-const signupName =
-    document.getElementById("signupName");
+const businessName = document.getElementById("businessName");
+const businessType = document.getElementById("businessType");
+const websiteGoal = document.getElementById("websiteGoal");
 
-const signupEmail =
-    document.getElementById("signupEmail");
+const signupPassword = document.getElementById("signupPassword");
+const confirmPassword = document.getElementById("confirmPassword");
 
-const signupPhone =
-    document.getElementById("signupPhone");
+const referralCode = document.getElementById("referralCode");
+const acceptTerms = document.getElementById("acceptTerms");
 
-const businessName =
-    document.getElementById("businessName");
+const signupBtn = document.getElementById("signupBtn");
+const signupMessage = document.getElementById("signupMessage");
 
-const businessType =
-    document.getElementById("businessType");
+// Google
+const googleLogin = document.getElementById("googleLogin");
+const googleSignup = document.getElementById("googleSignup");
 
-const websiteGoal =
-    document.getElementById("websiteGoal");
+// Facebook
+const facebookLogin = document.getElementById("facebookLogin");
+const facebookSignup = document.getElementById("facebookSignup");
 
-const signupPassword =
-    document.getElementById("signupPassword");
+// GitHub
+const githubLogin = document.getElementById("githubLogin");
+const githubSignup = document.getElementById("githubSignup");
 
-const confirmPassword =
-    document.getElementById("confirmPassword");
-
-const referralCode =
-    document.getElementById("referralCode");
-
-const acceptTerms =
-    document.getElementById("acceptTerms");
-
-const signupBtn =
-    document.getElementById("signupBtn");
-
-const signupMessage =
-    document.getElementById("signupMessage");
-
-
-// Social Login
-
-const googleLogin =
-    document.getElementById("googleLogin");
-
-const facebookLogin =
-    document.getElementById("facebookLogin");
-
-const githubLogin =
-    document.getElementById("githubLogin");
-
-const microsoftLogin =
-    document.getElementById("microsoftLogin");
-
-
-const googleSignup =
-    document.getElementById("googleSignup");
-
-const facebookSignup =
-    document.getElementById("facebookSignup");
-
-const githubSignup =
-    document.getElementById("githubSignup");
-
-const microsoftSignup =
-    document.getElementById("microsoftSignup");
+// Microsoft
+const microsoftLogin = document.getElementById("microsoftLogin");
+const microsoftSignup = document.getElementById("microsoftSignup");
 
 
 // ============================================================
-// PROVIDERS
+// FIREBASE PROVIDERS
 // ============================================================
 
 const googleProvider = new GoogleAuthProvider();
 
+// IMPORTANT:
+// Always show Google account selection
 googleProvider.setCustomParameters({
     prompt: "select_account"
 });
 
-const facebookProvider =
-    new FacebookAuthProvider();
 
-const githubProvider =
-    new GithubAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
-const microsoftProvider =
-    new OAuthProvider("microsoft.com");
+const githubProvider = new GithubAuthProvider();
+
+const microsoftProvider = new OAuthProvider(
+    "microsoft.com"
+);
 
 
 // ============================================================
-// HELPERS
+// UI HELPERS
 // ============================================================
 
-function showMessage(
-    element,
-    message,
-    type = "error"
-) {
+function showMessage(element, message, type = "error") {
 
     if (!element) return;
 
@@ -170,7 +124,6 @@ function showMessage(
     );
 
     element.classList.add(type);
-
 }
 
 
@@ -184,23 +137,23 @@ function clearMessage(element) {
         "success",
         "error"
     );
-
 }
 
 
-function setLoading(
-    button,
-    loading
-) {
+function setLoading(button, status) {
 
     if (!button) return;
 
-    if (loading) {
+    if (status) {
 
         button.disabled = true;
 
-        button.dataset.oldText =
-            button.innerHTML;
+        if (!button.dataset.originalText) {
+
+            button.dataset.originalText =
+                button.innerHTML;
+
+        }
 
         button.innerHTML =
             "Please Wait...";
@@ -209,22 +162,24 @@ function setLoading(
 
         button.disabled = false;
 
-        if (button.dataset.oldText) {
+        if (button.dataset.originalText) {
 
             button.innerHTML =
-                button.dataset.oldText;
+                button.dataset.originalText;
 
         }
 
     }
-
 }
 
 
+// ============================================================
+// VALIDATION
+// ============================================================
+
 function validateEmail(email) {
 
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        .test(email);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 }
 
@@ -232,105 +187,103 @@ function validateEmail(email) {
 function validatePassword(password) {
 
     return (
-
         password.length >= 8 &&
-
         /[A-Z]/.test(password) &&
-
         /[a-z]/.test(password) &&
-
         /[0-9]/.test(password) &&
-
         /[^A-Za-z0-9]/.test(password)
-
     );
 
 }
 
 
 // ============================================================
-// FIREBASE ERROR
+// FIREBASE ERROR HANDLER
 // ============================================================
 
-function getFirebaseError(error) {
+function firebaseError(error) {
 
-    const errors = {
-
-        "auth/user-not-found":
-            "No account found with this email.",
-
-        "auth/wrong-password":
-            "Incorrect password.",
-
-        "auth/invalid-credential":
-            "Email or password is incorrect.",
-
-        "auth/email-already-in-use":
-            "This email is already registered.",
-
-        "auth/invalid-email":
-            "Please enter a valid email.",
-
-        "auth/weak-password":
-            "Password is too weak.",
-
-        "auth/network-request-failed":
-            "Network error. Please check your internet.",
-
-        "auth/too-many-requests":
-            "Too many attempts. Please try again later.",
-
-        "auth/popup-closed-by-user":
-            "Login popup was closed.",
-
-        "auth/popup-blocked":
-            "Popup was blocked by your browser.",
-
-        "auth/account-exists-with-different-credential":
-            "An account already exists with another login method."
-
-    };
-
-    return (
-
-        errors[error.code] ||
-
-        error.message ||
-
-        "Something went wrong."
-
+    console.error(
+        "Firebase Auth Error:",
+        error
     );
+
+    switch (error.code) {
+
+        case "auth/user-not-found":
+            return "Account not found.";
+
+        case "auth/wrong-password":
+        case "auth/invalid-credential":
+            return "Email or password is incorrect.";
+
+        case "auth/email-already-in-use":
+            return "This email is already registered.";
+
+        case "auth/invalid-email":
+            return "Please enter a valid email address.";
+
+        case "auth/weak-password":
+            return "Password is too weak.";
+
+        case "auth/network-request-failed":
+            return "Internet connection problem.";
+
+        case "auth/too-many-requests":
+            return "Too many attempts. Please try again later.";
+
+        case "auth/popup-closed-by-user":
+            return "Login cancelled.";
+
+        case "auth/popup-blocked":
+            return "Please allow popups for this website.";
+
+        case "auth/operation-not-allowed":
+            return "This login method is not enabled in Firebase.";
+
+        case "auth/account-exists-with-different-credential":
+            return "This email is already registered with another login method.";
+
+        default:
+            return error.message ||
+                "Authentication failed.";
+    }
 
 }
 
 
 // ============================================================
-// USER PROFILE
+// CREATE / UPDATE FIRESTORE USER
 // ============================================================
 
-async function createUserProfile(
+async function createOrUpdateUser(
     user,
-    extraData = {},
-    provider = "email"
+    providerName = "email",
+    extraData = {}
 ) {
 
-    const userRef =
-        doc(
-            db,
-            "users",
-            user.uid
+    if (!user) {
+        throw new Error(
+            "Firebase user not found."
         );
+    }
 
-    const snapshot =
+
+    const userRef = doc(
+        db,
+        "users",
+        user.uid
+    );
+
+
+    const userSnapshot =
         await getDoc(userRef);
 
 
-    if (!snapshot.exists()) {
+    if (!userSnapshot.exists()) {
 
         await setDoc(
-
             userRef,
-
             {
 
                 uid: user.uid,
@@ -365,19 +318,18 @@ async function createUserProfile(
                     extraData.referralCode ||
                     "",
 
-                role: "customer",
-
-                provider: provider,
-
                 photoURL:
                     user.photoURL ||
                     "",
 
-                status: "active",
+                role:
+                    "customer",
 
-                membership: "free",
+                provider:
+                    providerName,
 
-                walletBalance: 0,
+                status:
+                    "active",
 
                 createdAt:
                     serverTimestamp(),
@@ -386,29 +338,32 @@ async function createUserProfile(
                     serverTimestamp()
 
             }
-
         );
 
     } else {
 
         await updateDoc(
-
             userRef,
-
             {
+
+                email:
+                    user.email ||
+                    "",
+
+                photoURL:
+                    user.photoURL ||
+                    "",
+
+                provider:
+                    providerName,
 
                 lastLogin:
                     serverTimestamp(),
 
-                photoURL:
-                    user.photoURL ||
-                    snapshot.data().photoURL ||
-                    "",
-
-                provider: provider
+                status:
+                    "active"
 
             }
-
         );
 
     }
@@ -422,42 +377,59 @@ async function createUserProfile(
 
 async function getUserRole(user) {
 
-    if (!user) return null;
+    try {
 
-    const userRef =
-        doc(
+        const userRef = doc(
             db,
             "users",
             user.uid
         );
 
-    const snapshot =
-        await getDoc(userRef);
+        const snapshot =
+            await getDoc(userRef);
 
 
-    if (!snapshot.exists()) {
+        if (!snapshot.exists()) {
 
-        return null;
+            return "customer";
+
+        }
+
+
+        const data =
+            snapshot.data();
+
+
+        return data.role ||
+            "customer";
 
     }
 
+    catch (error) {
 
-    return snapshot.data().role ||
-        "customer";
+        console.error(
+            "Role Error:",
+            error
+        );
+
+        return "customer";
+
+    }
 
 }
 
 
 // ============================================================
-// ROLE REDIRECT
+// REDIRECT AFTER SUCCESSFUL LOGIN
 // ============================================================
 
-async function redirectUser(user) {
+async function redirectAfterLogin(user) {
 
     if (!user) {
 
-        window.location.href =
-            "login.html";
+        window.location.replace(
+            LOGIN_PAGE
+        );
 
         return;
 
@@ -472,13 +444,15 @@ async function redirectUser(user) {
 
         if (role === "admin") {
 
-            window.location.href =
-                "admin-dashboard.html";
+            window.location.replace(
+                ADMIN_DASHBOARD
+            );
 
         } else {
 
-            window.location.href =
-                "customer-dashboard.html";
+            window.location.replace(
+                CUSTOMER_DASHBOARD
+            );
 
         }
 
@@ -487,12 +461,13 @@ async function redirectUser(user) {
     catch (error) {
 
         console.error(
-            "Role redirect error:",
+            "Redirect Error:",
             error
         );
 
-        window.location.href =
-            "login.html";
+        window.location.replace(
+            CUSTOMER_DASHBOARD
+        );
 
     }
 
@@ -505,8 +480,7 @@ async function redirectUser(user) {
 
 async function loginWithEmail(
     email,
-    password,
-    remember = true
+    password
 ) {
 
     try {
@@ -521,29 +495,11 @@ async function loginWithEmail(
         );
 
 
-        await setPersistence(
-
-            auth,
-
-            remember
-
-                ? browserLocalPersistence
-
-                : browserSessionPersistence
-
-        );
-
-
         const credential =
-
             await signInWithEmailAndPassword(
-
                 auth,
-
                 email,
-
                 password
-
             );
 
 
@@ -551,19 +507,21 @@ async function loginWithEmail(
             credential.user;
 
 
-        await createUserProfile(
-            user
+        await createOrUpdateUser(
+            user,
+            "email"
         );
 
 
         showMessage(
-
             loginMessage,
-
             "Login successful.",
-
             "success"
+        );
 
+
+        await redirectAfterLogin(
+            user
         );
 
 
@@ -574,11 +532,9 @@ async function loginWithEmail(
     catch (error) {
 
         showMessage(
-
             loginMessage,
-
-            getFirebaseError(error)
-
+            firebaseError(error),
+            "error"
         );
 
         return null;
@@ -601,9 +557,7 @@ async function loginWithEmail(
 // EMAIL SIGNUP
 // ============================================================
 
-async function signupWithEmail(
-    data
-) {
+async function signupWithEmail(data) {
 
     try {
 
@@ -618,15 +572,10 @@ async function signupWithEmail(
 
 
         const credential =
-
             await createUserWithEmailAndPassword(
-
                 auth,
-
                 data.email,
-
                 data.password
-
             );
 
 
@@ -634,25 +583,22 @@ async function signupWithEmail(
             credential.user;
 
 
-        await createUserProfile(
-
+        await createOrUpdateUser(
             user,
-
-            data,
-
-            "email"
-
+            "email",
+            data
         );
 
 
         showMessage(
-
             signupMessage,
-
             "Account created successfully.",
-
             "success"
+        );
 
+
+        await redirectAfterLogin(
+            user
         );
 
 
@@ -663,11 +609,9 @@ async function signupWithEmail(
     catch (error) {
 
         showMessage(
-
             signupMessage,
-
-            getFirebaseError(error)
-
+            firebaseError(error),
+            "error"
         );
 
         return null;
@@ -677,11 +621,8 @@ async function signupWithEmail(
     finally {
 
         setLoading(
-
             signupBtn,
-
             false
-
         );
 
     }
@@ -690,73 +631,30 @@ async function signupWithEmail(
 
 
 // ============================================================
-// PASSWORD RESET
-// ============================================================
-
-async function resetPassword(
-    email
-) {
-
-    try {
-
-        await sendPasswordResetEmail(
-
-            auth,
-
-            email
-
-        );
-
-
-        return {
-
-            success: true,
-
-            message:
-                "Password reset email sent."
-
-        };
-
-    }
-
-    catch (error) {
-
-        return {
-
-            success: false,
-
-            message:
-                getFirebaseError(error)
-
-        };
-
-    }
-
-}
-
-
-// ============================================================
-// SOCIAL LOGIN
+// GOOGLE / SOCIAL LOGIN
 // ============================================================
 
 async function socialLogin(
-
     provider,
-
-    providerName
-
+    providerName,
+    messageElement
 ) {
 
     try {
 
+        if (messageElement) {
+
+            clearMessage(
+                messageElement
+            );
+
+        }
+
+
         const result =
-
             await signInWithPopup(
-
                 auth,
-
                 provider
-
             );
 
 
@@ -764,38 +662,51 @@ async function socialLogin(
             result.user;
 
 
-        await createUserProfile(
-
+        await createOrUpdateUser(
             user,
-
-            {},
-
             providerName
-
         );
 
 
-        await redirectUser(
+        if (messageElement) {
+
+            showMessage(
+                messageElement,
+                "Login successful.",
+                "success"
+            );
+
+        }
+
+
+        await redirectAfterLogin(
             user
         );
+
+
+        return user;
 
     }
 
     catch (error) {
 
-        const message =
-            getFirebaseError(error);
-
-
-        showMessage(
-            loginMessage,
-            message
+        console.error(
+            "Social Login Error:",
+            error
         );
 
-        showMessage(
-            signupMessage,
-            message
-        );
+
+        if (messageElement) {
+
+            showMessage(
+                messageElement,
+                firebaseError(error),
+                "error"
+            );
+
+        }
+
+        return null;
 
     }
 
@@ -809,36 +720,28 @@ async function socialLogin(
 if (loginForm) {
 
     loginForm.addEventListener(
-
         "submit",
-
-        async (event) => {
+        async function (event) {
 
             event.preventDefault();
 
 
             const email =
-                loginEmail.value.trim();
+                loginEmail?.value
+                    ?.trim() ||
+                "";
 
 
             const password =
-                loginPassword.value;
-
-
-            const remember =
-                rememberMe
-                    ? rememberMe.checked
-                    : true;
+                loginPassword?.value ||
+                "";
 
 
             if (!validateEmail(email)) {
 
                 showMessage(
-
                     loginMessage,
-
-                    "Please enter a valid email."
-
+                    "Enter a valid email address."
                 );
 
                 return;
@@ -849,11 +752,8 @@ if (loginForm) {
             if (!password) {
 
                 showMessage(
-
                     loginMessage,
-
-                    "Please enter your password."
-
+                    "Enter your password."
                 );
 
                 return;
@@ -861,29 +761,12 @@ if (loginForm) {
             }
 
 
-            const user =
-
-                await loginWithEmail(
-
-                    email,
-
-                    password,
-
-                    remember
-
-                );
-
-
-            if (user) {
-
-                await redirectUser(
-                    user
-                );
-
-            }
+            await loginWithEmail(
+                email,
+                password
+            );
 
         }
-
     );
 
 }
@@ -896,10 +779,8 @@ if (loginForm) {
 if (signupForm) {
 
     signupForm.addEventListener(
-
         "submit",
-
-        async (event) => {
+        async function (event) {
 
             event.preventDefault();
 
@@ -907,19 +788,23 @@ if (signupForm) {
             const data = {
 
                 name:
-                    signupName?.value.trim() ||
+                    signupName?.value
+                        ?.trim() ||
                     "",
 
                 email:
-                    signupEmail?.value.trim() ||
+                    signupEmail?.value
+                        ?.trim() ||
                     "",
 
                 phone:
-                    signupPhone?.value.trim() ||
+                    signupPhone?.value
+                        ?.trim() ||
                     "",
 
                 businessName:
-                    businessName?.value.trim() ||
+                    businessName?.value
+                        ?.trim() ||
                     "",
 
                 businessType:
@@ -939,7 +824,8 @@ if (signupForm) {
                     "",
 
                 referralCode:
-                    referralCode?.value.trim() ||
+                    referralCode?.value
+                        ?.trim() ||
                     ""
 
             };
@@ -948,11 +834,8 @@ if (signupForm) {
             if (!data.name) {
 
                 showMessage(
-
                     signupMessage,
-
-                    "Please enter your name."
-
+                    "Enter your name."
                 );
 
                 return;
@@ -965,11 +848,8 @@ if (signupForm) {
             )) {
 
                 showMessage(
-
                     signupMessage,
-
-                    "Please enter a valid email."
-
+                    "Enter a valid email."
                 );
 
                 return;
@@ -982,11 +862,8 @@ if (signupForm) {
             )) {
 
                 showMessage(
-
                     signupMessage,
-
-                    "Password must contain 8 characters, uppercase, lowercase, number and special character."
-
+                    "Password must contain 8+ characters, uppercase, lowercase, number and special character."
                 );
 
                 return;
@@ -995,19 +872,13 @@ if (signupForm) {
 
 
             if (
-
                 data.password !==
-
                 data.confirmPassword
-
             ) {
 
                 showMessage(
-
                     signupMessage,
-
                     "Passwords do not match."
-
                 );
 
                 return;
@@ -1016,19 +887,13 @@ if (signupForm) {
 
 
             if (
-
                 acceptTerms &&
-
                 !acceptTerms.checked
-
             ) {
 
                 showMessage(
-
                     signupMessage,
-
                     "Please accept Terms & Conditions."
-
                 );
 
                 return;
@@ -1036,111 +901,235 @@ if (signupForm) {
             }
 
 
-            const user =
-
-                await signupWithEmail(
-                    data
-                );
-
-
-            if (user) {
-
-                await redirectUser(
-                    user
-                );
-
-            }
+            await signupWithEmail(
+                data
+            );
 
         }
-
     );
 
 }
 
 
 // ============================================================
-// SOCIAL BUTTONS
+// GOOGLE LOGIN
 // ============================================================
 
-function bindSocialButton(
-    element,
-    provider,
-    providerName
-) {
+if (googleLogin) {
 
-    if (!element) return;
-
-    element.addEventListener(
-
+    googleLogin.addEventListener(
         "click",
+        async function (event) {
 
-        () => {
+            event.preventDefault();
 
-            socialLogin(
+            await socialLogin(
+                googleProvider,
+                "google",
+                loginMessage
+            );
 
-                provider,
+        }
+    );
 
-                providerName
+}
 
+
+if (googleSignup) {
+
+    googleSignup.addEventListener(
+        "click",
+        async function (event) {
+
+            event.preventDefault();
+
+            await socialLogin(
+                googleProvider,
+                "google",
+                signupMessage
+            );
+
+        }
+    );
+
+}
+
+
+// ============================================================
+// FACEBOOK
+// ============================================================
+
+if (facebookLogin) {
+
+    facebookLogin.addEventListener(
+        "click",
+        async function (event) {
+
+            event.preventDefault();
+
+            await socialLogin(
+                facebookProvider,
+                "facebook",
+                loginMessage
+            );
+
+        }
+    );
+
+}
+
+
+if (facebookSignup) {
+
+    facebookSignup.addEventListener(
+        "click",
+        async function (event) {
+
+            event.preventDefault();
+
+            await socialLogin(
+                facebookProvider,
+                "facebook",
+                signupMessage
+            );
+
+        }
+    );
+
+}
+
+
+// ============================================================
+// GITHUB
+// ============================================================
+
+if (githubLogin) {
+
+    githubLogin.addEventListener(
+        "click",
+        async function (event) {
+
+            event.preventDefault();
+
+            await socialLogin(
+                githubProvider,
+                "github",
+                loginMessage
+            );
+
+        }
+    );
+
+}
+
+
+if (githubSignup) {
+
+    githubSignup.addEventListener(
+        "click",
+        async function (event) {
+
+            event.preventDefault();
+
+            await socialLogin(
+                githubProvider,
+                "github",
+                signupMessage
+            );
+
+        }
+    );
+
+}
+
+
+// ============================================================
+// MICROSOFT
+// ============================================================
+
+if (microsoftLogin) {
+
+    microsoftLogin.addEventListener(
+        "click",
+        async function (event) {
+
+            event.preventDefault();
+
+            await socialLogin(
+                microsoftProvider,
+                "microsoft",
+                loginMessage
+            );
+
+        }
+    );
+
+}
+
+
+if (microsoftSignup) {
+
+    microsoftSignup.addEventListener(
+        "click",
+        async function (event) {
+
+            event.preventDefault();
+
+            await socialLogin(
+                microsoftProvider,
+                "microsoft",
+                signupMessage
+            );
+
+        }
+    );
+
+}
+
+
+// ============================================================
+// PASSWORD RESET
+// ============================================================
+
+async function resetPassword(email) {
+
+    try {
+
+        if (!validateEmail(email)) {
+
+            throw new Error(
+                "Enter a valid email address."
             );
 
         }
 
-    );
+
+        await sendPasswordResetEmail(
+            auth,
+            email
+        );
+
+
+        alert(
+            "Password reset email sent. Please check your inbox."
+        );
+
+
+        return true;
+
+    }
+
+    catch (error) {
+
+        alert(
+            firebaseError(error)
+        );
+
+        return false;
+
+    }
 
 }
-
-
-bindSocialButton(
-    googleLogin,
-    googleProvider,
-    "google"
-);
-
-bindSocialButton(
-    googleSignup,
-    googleProvider,
-    "google"
-);
-
-
-bindSocialButton(
-    facebookLogin,
-    facebookProvider,
-    "facebook"
-);
-
-bindSocialButton(
-    facebookSignup,
-    facebookProvider,
-    "facebook"
-);
-
-
-bindSocialButton(
-    githubLogin,
-    githubProvider,
-    "github"
-);
-
-bindSocialButton(
-    githubSignup,
-    githubProvider,
-    "github"
-);
-
-
-bindSocialButton(
-    microsoftLogin,
-    microsoftProvider,
-    "microsoft"
-);
-
-bindSocialButton(
-    microsoftSignup,
-    microsoftProvider,
-    "microsoft"
-);
 
 
 // ============================================================
@@ -1153,15 +1142,16 @@ async function logout() {
 
         await signOut(auth);
 
-        window.location.href =
-            "login.html";
+        window.location.replace(
+            LOGIN_PAGE
+        );
 
     }
 
     catch (error) {
 
         console.error(
-            "Logout error:",
+            "Logout Error:",
             error
         );
 
@@ -1171,144 +1161,91 @@ async function logout() {
 
 
 // ============================================================
-// PAGE PROTECTION
+// PROTECTED DASHBOARD CHECK
 // ============================================================
 
-const currentPage =
+function protectDashboard() {
 
-    window.location.pathname
-        .split("/")
-        .pop();
-
-
-const isLoginPage =
-
-    currentPage ===
-    "login.html";
+    const currentPage =
+        window.location.pathname
+            .split("/")
+            .pop();
 
 
-const isSignupPage =
+    const protectedPages = [
 
-    currentPage ===
-    "signup.html";
+        CUSTOMER_DASHBOARD,
 
+        ADMIN_DASHBOARD
 
-const isCustomerDashboard =
-
-    currentPage ===
-    "customer-dashboard.html";
+    ];
 
 
-const isAdminDashboard =
+    if (
+        !protectedPages.includes(
+            currentPage
+        )
+    ) {
 
-    currentPage ===
-    "admin-dashboard.html";
+        return;
+
+    }
 
 
-onAuthStateChanged(
-
-    auth,
-
-    async (user) => {
-
-        // ------------------------------
-        // Dashboard Protection
-        // ------------------------------
-
-        if (
-            isCustomerDashboard ||
-            isAdminDashboard
-        ) {
+    onAuthStateChanged(
+        auth,
+        function (user) {
 
             if (!user) {
 
-                window.location.href =
-                    "login.html";
-
-                return;
-
-            }
-
-
-            const role =
-                await getUserRole(user);
-
-
-            if (
-                isCustomerDashboard &&
-                role === "admin"
-            ) {
-
-                window.location.href =
-                    "admin-dashboard.html";
-
-                return;
-
-            }
-
-
-            if (
-                isAdminDashboard &&
-                role !== "admin"
-            ) {
-
-                window.location.href =
-                    "customer-dashboard.html";
-
-                return;
-
-            }
-
-        }
-
-
-        // ------------------------------
-        // Login / Signup Page
-        // ------------------------------
-
-        if (
-            isLoginPage ||
-            isSignupPage
-        ) {
-
-            if (user) {
-
-                await redirectUser(
-                    user
+                window.location.replace(
+                    LOGIN_PAGE
                 );
 
             }
 
         }
+    );
 
-    }
+}
 
-);
+
+// ============================================================
+// AUTH STATE
+// IMPORTANT:
+// Do NOT redirect automatically from login page.
+// This prevents existing Firebase session from
+// automatically opening dashboard.
+// User must click Login / Google Login.
+// ============================================================
+
+protectDashboard();
 
 
 // ============================================================
 // GLOBAL API
 // ============================================================
 
-window.SmileAuth = {
+window.smileAuth = {
 
     logout,
 
-    getUserRole,
-
-    redirectUser,
+    getCurrentUser:
+        () => auth.currentUser,
 
     loginWithEmail,
 
     signupWithEmail,
 
+    resetPassword,
+
     socialLogin,
 
-    resetPassword
+    redirectAfterLogin
 
 };
 
 
 console.log(
-    "✅ Smile AI Authentication System Ready"
+    "✅ Smile AI Auth System Loaded"
 );
