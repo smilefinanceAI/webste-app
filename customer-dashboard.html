@@ -1,20 +1,15 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
     <title>Smile AI Web Studio · Dashboard</title>
-    <!-- Font & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: #f6f8fc;
@@ -22,7 +17,6 @@
             display: flex;
             min-height: 100vh;
         }
-        /* SIDEBAR */
         .sidebar {
             width: 280px;
             background: #ffffff;
@@ -36,6 +30,7 @@
             overflow-y: auto;
             flex-shrink: 0;
             transition: transform 0.2s ease;
+            z-index: 100;
         }
         .sidebar-brand {
             font-size: 22px;
@@ -47,13 +42,8 @@
             gap: 10px;
             margin-bottom: 40px;
         }
-        .sidebar-brand i {
-            color: #3b82f6;
-            font-size: 28px;
-        }
-        .sidebar-nav {
-            flex: 1;
-        }
+        .sidebar-brand i { color: #3b82f6; font-size: 28px; }
+        .sidebar-nav { flex: 1; }
         .sidebar-nav a {
             display: flex;
             align-items: center;
@@ -66,22 +56,12 @@
             text-decoration: none;
             margin-bottom: 4px;
             transition: 0.15s;
+            cursor: pointer;
         }
-        .sidebar-nav a i {
-            width: 22px;
-            font-size: 18px;
-            color: #64748b;
-        }
-        .sidebar-nav a.active {
-            background: #f1f5f9;
-            color: #0f172a;
-        }
-        .sidebar-nav a.active i {
-            color: #2563eb;
-        }
-        .sidebar-nav a:hover {
-            background: #f8fafc;
-        }
+        .sidebar-nav a i { width: 22px; font-size: 18px; color: #64748b; }
+        .sidebar-nav a.active { background: #f1f5f9; color: #0f172a; }
+        .sidebar-nav a.active i { color: #2563eb; }
+        .sidebar-nav a:hover { background: #f8fafc; }
         .sidebar-footer {
             margin-top: 32px;
             border-top: 1px solid #eef2f6;
@@ -104,17 +84,9 @@
             color: #1e293b;
             font-size: 18px;
         }
-        .user-info {
-            flex: 1;
-        }
-        .user-info .name {
-            font-weight: 600;
-            font-size: 14px;
-        }
-        .user-info .email {
-            font-size: 13px;
-            color: #64748b;
-        }
+        .user-info { flex: 1; }
+        .user-info .name { font-weight: 600; font-size: 14px; }
+        .user-info .email { font-size: 13px; color: #64748b; }
         .logout-btn {
             background: none;
             border: none;
@@ -131,11 +103,7 @@
             margin-top: 12px;
             width: 100%;
         }
-        .logout-btn:hover {
-            background: #fee2e2;
-        }
-
-        /* MAIN */
+        .logout-btn:hover { background: #fee2e2; }
         .main {
             flex: 1;
             padding: 28px 36px;
@@ -143,8 +111,6 @@
             margin: 0 auto;
             width: 100%;
         }
-
-        /* HEADER */
         .page-header {
             display: flex;
             justify-content: space-between;
@@ -153,15 +119,8 @@
             gap: 16px;
             margin-bottom: 32px;
         }
-        .page-header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -0.4px;
-        }
-        .page-header .sub {
-            color: #64748b;
-            font-size: 15px;
-        }
+        .page-header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.4px; }
+        .page-header .sub { color: #64748b; font-size: 15px; }
         .header-actions {
             display: flex;
             gap: 14px;
@@ -200,8 +159,18 @@
         }
         .btn-primary i { font-size: 16px; }
         .btn-primary:hover { background: #1e293b; }
-
-        /* CARDS GRID */
+        .btn-secondary {
+            background: #eef2f6;
+            color: #1e293b;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .btn-secondary:hover { background: #e2e8f0; }
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -215,19 +184,8 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.02);
             border: 1px solid #edf2f7;
         }
-        .stat-card .label {
-            font-size: 14px;
-            font-weight: 500;
-            color: #64748b;
-            margin-bottom: 6px;
-        }
-        .stat-card .value {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        /* SECTION */
+        .stat-card .label { font-size: 14px; font-weight: 500; color: #64748b; margin-bottom: 6px; }
+        .stat-card .value { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
         .section-title {
             font-size: 20px;
             font-weight: 600;
@@ -245,7 +203,6 @@
             font-weight: 500;
             cursor: pointer;
         }
-
         .table-wrap {
             background: white;
             border-radius: 20px;
@@ -253,11 +210,7 @@
             overflow-x: auto;
             padding: 4px 0;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
         th {
             text-align: left;
             padding: 16px 20px;
@@ -280,6 +233,7 @@
         .badge.success { background: #dcfce7; color: #166534; }
         .badge.warning { background: #fef9c3; color: #854d0e; }
         .badge.info { background: #dbeafe; color: #1e40af; }
+        .badge.error { background: #fee2e2; color: #991b1b; }
         .action-icon {
             color: #64748b;
             cursor: pointer;
@@ -287,8 +241,6 @@
             transition: 0.1s;
         }
         .action-icon:hover { color: #0f172a; }
-
-        /* MODAL */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -311,18 +263,8 @@
             max-height: 90vh;
             overflow-y: auto;
         }
-        .modal h2 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        .modal label {
-            font-weight: 500;
-            font-size: 14px;
-            display: block;
-            margin-top: 16px;
-            margin-bottom: 4px;
-        }
+        .modal h2 { font-size: 22px; font-weight: 700; margin-bottom: 20px; }
+        .modal label { font-weight: 500; font-size: 14px; display: block; margin-top: 16px; margin-bottom: 4px; }
         .modal input, .modal select, .modal textarea {
             width: 100%;
             padding: 12px 14px;
@@ -346,10 +288,6 @@
             border: none;
             cursor: pointer;
         }
-        .modal-actions .btn-secondary { background: #eef2f6; }
-        .modal-actions .btn-primary { background: #0f172a; color: white; }
-
-        /* TOAST */
         .toast-container {
             position: fixed;
             bottom: 30px;
@@ -375,8 +313,6 @@
         .toast.error { background: #b91c1c; }
         .toast.success { background: #065f46; }
         @keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-
-        /* MOBILE RESPONSIVE */
         .hamburger {
             display: none;
             font-size: 28px;
@@ -384,6 +320,7 @@
             border: none;
             color: #0f172a;
             cursor: pointer;
+            margin-bottom: 16px;
         }
         @media (max-width: 900px) {
             .sidebar {
@@ -402,8 +339,6 @@
             .stats-grid { grid-template-columns: 1fr; }
             .page-header h1 { font-size: 22px; }
         }
-
-        /* profile mini */
         .profile-detail {
             background: white;
             border-radius: 20px;
@@ -416,38 +351,74 @@
             grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
             gap: 16px;
         }
-        .profile-item {
-            display: flex;
-            flex-direction: column;
-        }
+        .profile-item { display: flex; flex-direction: column; }
         .profile-item .label { font-size: 13px; color: #64748b; }
         .profile-item .value { font-weight: 500; }
-
-        .empty-state {
-            padding: 32px 20px;
-            text-align: center;
+        .empty-state { padding: 32px 20px; text-align: center; color: #64748b; }
+        .section-content { display: block; }
+        .section-content.hidden { display: none; }
+        .notification-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+            padding: 24px;
+            transition: right 0.3s ease;
+            z-index: 1001;
+            overflow-y: auto;
+        }
+        .notification-panel.open { right: 0; }
+        .notification-panel h3 { font-size: 20px; margin-bottom: 20px; }
+        .notification-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+        .notification-item.unread { background: #f8fafc; padding-left: 8px; border-left: 3px solid #3b82f6; }
+        .notification-item .time { font-size: 12px; color: #94a3b8; }
+        .notif-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
             color: #64748b;
         }
-        .hidden { display: none; }
+        .notif-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+        }
+        .notif-overlay.open { display: block; }
     </style>
 </head>
 <body>
-    <!-- SIDEBAR -->
+    <div class="notif-overlay" id="notifOverlay"></div>
+    <div class="notification-panel" id="notifPanel">
+        <span class="notif-close" id="notifClose">&times;</span>
+        <h3><i class="fas fa-bell"></i> Notifications</h3>
+        <div id="notifList"><div class="empty-state">No notifications</div></div>
+    </div>
+
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-brand">
             <i class="fas fa-wand-magic-sparkles"></i> Smile AI
         </div>
         <nav class="sidebar-nav">
-            <a href="#" class="active"><i class="fas fa-chart-pie"></i> Dashboard</a>
-            <a href="#" data-section="websites"><i class="fas fa-globe"></i> Websites</a>
-            <a href="#" data-section="domains"><i class="fas fa-link"></i> Domains</a>
-            <a href="#" data-section="orders"><i class="fas fa-shopping-bag"></i> Orders</a>
-            <a href="#" data-section="payments"><i class="fas fa-credit-card"></i> Payments</a>
-            <a href="#" data-section="support"><i class="fas fa-headset"></i> Support</a>
-            <a href="#" data-section="profile"><i class="fas fa-user"></i> Profile</a>
+            <a class="active" data-section="dashboard"><i class="fas fa-chart-pie"></i> Dashboard</a>
+            <a data-section="websites"><i class="fas fa-globe"></i> Websites</a>
+            <a data-section="domains"><i class="fas fa-link"></i> Domains</a>
+            <a data-section="orders"><i class="fas fa-shopping-bag"></i> Orders</a>
+            <a data-section="payments"><i class="fas fa-credit-card"></i> Payments</a>
+            <a data-section="support"><i class="fas fa-headset"></i> Support</a>
+            <a data-section="profile"><i class="fas fa-user"></i> Profile</a>
         </nav>
         <div class="sidebar-footer">
-            <div class="user-mini" id="userMini">
+            <div class="user-mini">
                 <div class="user-avatar" id="avatarLetter">S</div>
                 <div class="user-info">
                     <div class="name" id="miniName">User</div>
@@ -458,12 +429,11 @@
         </div>
     </aside>
 
-    <!-- MAIN -->
     <div class="main">
         <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
         <div class="page-header">
             <div>
-                <h1>Dashboard</h1>
+                <h1 id="pageTitle">Dashboard</h1>
                 <div class="sub" id="greeting">Welcome back, User</div>
             </div>
             <div class="header-actions">
@@ -472,68 +442,82 @@
             </div>
         </div>
 
-        <!-- STATS -->
-        <div class="stats-grid" id="statsGrid">
-            <div class="stat-card"><div class="label">My Websites</div><div class="value" id="statWebsites">0</div></div>
-            <div class="stat-card"><div class="label">Published</div><div class="value" id="statPublished">0</div></div>
-            <div class="stat-card"><div class="label">Orders</div><div class="value" id="statOrders">0</div></div>
-            <div class="stat-card"><div class="label">Wallet</div><div class="value" id="statWallet">$0</div></div>
-            <div class="stat-card"><div class="label">Membership</div><div class="value" id="statMembership">—</div></div>
-            <div class="stat-card"><div class="label">Last Login</div><div class="value" id="statLastLogin">—</div></div>
-        </div>
-
-        <!-- PROFILE (editable) -->
-        <div id="profileSection" class="profile-detail">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                <h3 style="font-weight:600;">Profile</h3>
-                <button class="btn-sm" id="editProfileBtn" style="background:#eef2f6; border:none; padding:6px 16px; border-radius:30px; font-weight:500;">Edit</button>
-            </div>
-            <div class="profile-grid" id="profileDisplay">
-                <div class="profile-item"><span class="label">Name</span><span class="value" id="pName">—</span></div>
-                <div class="profile-item"><span class="label">Email</span><span class="value" id="pEmail">—</span></div>
-                <div class="profile-item"><span class="label">Phone</span><span class="value" id="pPhone">—</span></div>
-                <div class="profile-item"><span class="label">Business</span><span class="value" id="pBusiness">—</span></div>
-                <div class="profile-item"><span class="label">Business Type</span><span class="value" id="pType">—</span></div>
-                <div class="profile-item"><span class="label">Website Goal</span><span class="value" id="pGoal">—</span></div>
-                <div class="profile-item"><span class="label">Plan</span><span class="value" id="pPlan">—</span></div>
-                <div class="profile-item"><span class="label">Role</span><span class="value" id="pRole">—</span></div>
+        <div id="dashboardSection" class="section-content">
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card"><div class="label">My Websites</div><div class="value" id="statWebsites">0</div></div>
+                <div class="stat-card"><div class="label">Published</div><div class="value" id="statPublished">0</div></div>
+                <div class="stat-card"><div class="label">Orders</div><div class="value" id="statOrders">0</div></div>
+                <div class="stat-card"><div class="label">Wallet</div><div class="value" id="statWallet">$0</div></div>
+                <div class="stat-card"><div class="label">Membership</div><div class="value" id="statMembership">—</div></div>
+                <div class="stat-card"><div class="label">Last Login</div><div class="value" id="statLastLogin">—</div></div>
             </div>
         </div>
 
-        <!-- WEBSITES TABLE -->
-        <div class="section-title">Your Websites <button class="btn-sm" id="newWebsiteBtn2"><i class="fas fa-plus"></i> New</button></div>
-        <div class="table-wrap" id="websitesTableWrap">
-            <table><thead><tr><th>Business</th><th>Type</th><th>Goal</th><th>Status</th><th>Created</th><th>Actions</th></tr></thead>
-                <tbody id="websitesTbody"><tr><td colspan="6" class="empty-state">No websites yet.</td></tr></tbody>
-            </table>
+        <div id="profileSection" class="section-content hidden">
+            <div class="profile-detail">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                    <h3 style="font-weight:600;">Profile</h3>
+                    <button class="btn-sm" id="editProfileBtn" style="background:#eef2f6; border:none; padding:6px 16px; border-radius:30px; font-weight:500; cursor:pointer;">Edit</button>
+                </div>
+                <div class="profile-grid" id="profileDisplay">
+                    <div class="profile-item"><span class="label">Name</span><span class="value" id="pName">—</span></div>
+                    <div class="profile-item"><span class="label">Email</span><span class="value" id="pEmail">—</span></div>
+                    <div class="profile-item"><span class="label">Phone</span><span class="value" id="pPhone">—</span></div>
+                    <div class="profile-item"><span class="label">Business</span><span class="value" id="pBusiness">—</span></div>
+                    <div class="profile-item"><span class="label">Business Type</span><span class="value" id="pType">—</span></div>
+                    <div class="profile-item"><span class="label">Website Goal</span><span class="value" id="pGoal">—</span></div>
+                    <div class="profile-item"><span class="label">Plan</span><span class="value" id="pPlan">—</span></div>
+                    <div class="profile-item"><span class="label">Role</span><span class="value" id="pRole">—</span></div>
+                </div>
+            </div>
         </div>
 
-        <!-- DOMAINS -->
-        <div class="section-title">Domains <button class="btn-sm" id="newDomainBtn"><i class="fas fa-plus"></i> Add</button></div>
-        <div class="table-wrap"><table><thead><tr><th>Domain</th><th>Status</th><th>Actions</th></tr></thead>
-            <tbody id="domainsTbody"><tr><td colspan="3" class="empty-state">No domains.</td></tr></tbody>
-        </table></div>
+        <div id="websitesSection" class="section-content hidden">
+            <div class="section-title">Your Websites <button class="btn-sm" id="newWebsiteBtn2"><i class="fas fa-plus"></i> New</button></div>
+            <div class="table-wrap">
+                <table><thead><tr><th>Business</th><th>Type</th><th>Goal</th><th>Status</th><th>Created</th><th>Actions</th></tr></thead>
+                    <tbody id="websitesTbody"><tr><td colspan="6" class="empty-state">No websites yet.</td></tr></tbody>
+                </table>
+            </div>
+        </div>
 
-        <!-- ORDERS -->
-        <div class="section-title">Orders</div>
-        <div class="table-wrap"><table><thead><tr><th>Order ID</th><th>Amount</th><th>Status</th><th>Timeline</th></tr></thead>
-            <tbody id="ordersTbody"><tr><td colspan="4" class="empty-state">No orders.</td></tr></tbody>
-        </table></div>
+        <div id="domainsSection" class="section-content hidden">
+            <div class="section-title">Domains <button class="btn-sm" id="newDomainBtn"><i class="fas fa-plus"></i> Add</button></div>
+            <div class="table-wrap">
+                <table><thead><tr><th>Domain</th><th>Status</th><th>Actions</th></tr></thead>
+                    <tbody id="domainsTbody"><tr><td colspan="3" class="empty-state">No domains.</td></tr></tbody>
+                </table>
+            </div>
+        </div>
 
-        <!-- PAYMENTS -->
-        <div class="section-title">Payments</div>
-        <div class="table-wrap"><table><thead><tr><th>Transaction</th><th>Amount</th><th>Status</th><th>Invoice</th></tr></thead>
-            <tbody id="paymentsTbody"><tr><td colspan="4" class="empty-state">No payments.</td></tr></tbody>
-        </table></div>
+        <div id="ordersSection" class="section-content hidden">
+            <div class="section-title">Orders</div>
+            <div class="table-wrap">
+                <table><thead><tr><th>Order ID</th><th>Amount</th><th>Status</th><th>Timeline</th></tr></thead>
+                    <tbody id="ordersTbody"><tr><td colspan="4" class="empty-state">No orders.</td></tr></tbody>
+                </table>
+            </div>
+        </div>
 
-        <!-- SUPPORT TICKETS -->
-        <div class="section-title">Support Tickets <button class="btn-sm" id="newTicketBtn"><i class="fas fa-plus"></i> New Ticket</button></div>
-        <div class="table-wrap"><table><thead><tr><th>Subject</th><th>Status</th><th>Priority</th><th>Actions</th></tr></thead>
-            <tbody id="supportTbody"><tr><td colspan="4" class="empty-state">No tickets.</td></tr></tbody>
-        </table></div>
+        <div id="paymentsSection" class="section-content hidden">
+            <div class="section-title">Payments</div>
+            <div class="table-wrap">
+                <table><thead><tr><th>Transaction</th><th>Amount</th><th>Status</th><th>Invoice</th></tr></thead>
+                    <tbody id="paymentsTbody"><tr><td colspan="4" class="empty-state">No payments.</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="supportSection" class="section-content hidden">
+            <div class="section-title">Support Tickets <button class="btn-sm" id="newTicketBtn"><i class="fas fa-plus"></i> New Ticket</button></div>
+            <div class="table-wrap">
+                <table><thead><tr><th>Subject</th><th>Status</th><th>Priority</th><th>Actions</th></tr></thead>
+                    <tbody id="supportTbody"><tr><td colspan="4" class="empty-state">No tickets.</td></tr></tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <!-- MODAL (reusable) -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal" id="modalContent">
             <h2 id="modalTitle">Modal</h2>
@@ -545,10 +529,8 @@
         </div>
     </div>
 
-    <!-- TOAST CONTAINER -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- FIREBASE MODULAR IMPORTS -->
     <script type="importmap">
         {
             "imports": {
@@ -558,10 +540,6 @@
     </script>
 
     <script type="module">
-        // ============================================================
-        // CUSTOMER DASHBOARD · Smile AI Web Studio · PRODUCTION
-        // Firebase Modular SDK v12  ·  no compat  ·  full CRUD
-        // ============================================================
         import {
             auth,
             db,
@@ -574,14 +552,13 @@
             query,
             where,
             orderBy,
-            limit,
             getDocs,
             addDoc,
             serverTimestamp,
             deleteDoc
         } from "./firebase-service.js";
 
-        // ---------- DOM refs ----------
+        // DOM refs
         const $ = (s) => document.querySelector(s);
         const $$ = (s) => document.querySelectorAll(s);
 
@@ -590,6 +567,10 @@
         const logoutBtn = $('#logoutBtn');
         const notifBell = $('#notifBell');
         const notifCount = $('#notifCount');
+        const notifPanel = $('#notifPanel');
+        const notifOverlay = $('#notifOverlay');
+        const notifClose = $('#notifClose');
+        const notifList = $('#notifList');
         const newWebsiteBtn = $('#newWebsiteBtn');
         const newWebsiteBtn2 = $('#newWebsiteBtn2');
         const newDomainBtn = $('#newDomainBtn');
@@ -602,31 +583,28 @@
         const modalConfirm = $('#modalConfirm');
         const toastContainer = $('#toastContainer');
 
-        // profile display
         const pName = $('#pName'), pEmail = $('#pEmail'), pPhone = $('#pPhone');
         const pBusiness = $('#pBusiness'), pType = $('#pType'), pGoal = $('#pGoal');
         const pPlan = $('#pPlan'), pRole = $('#pRole');
         const miniName = $('#miniName'), miniEmail = $('#miniEmail'), avatarLetter = $('#avatarLetter');
         const greeting = $('#greeting');
+        const pageTitle = $('#pageTitle');
 
-        // stats
         const statWebsites = $('#statWebsites'), statPublished = $('#statPublished');
         const statOrders = $('#statOrders'), statWallet = $('#statWallet');
         const statMembership = $('#statMembership'), statLastLogin = $('#statLastLogin');
 
-        // tbody
         const websitesTbody = $('#websitesTbody');
         const domainsTbody = $('#domainsTbody');
         const ordersTbody = $('#ordersTbody');
         const paymentsTbody = $('#paymentsTbody');
         const supportTbody = $('#supportTbody');
 
-        // ---------- state ----------
         let currentUser = null;
         let currentUid = null;
         let userProfile = {};
 
-        // ---------- toast ----------
+        // Toast
         function showToast(msg, type = '') {
             const t = document.createElement('div');
             t.className = `toast ${type}`;
@@ -635,7 +613,7 @@
             setTimeout(() => t.remove(), 3500);
         }
 
-        // ---------- modal helpers ----------
+        // Modal
         function openModal(title, html, onConfirm) {
             modalTitle.textContent = title;
             modalBody.innerHTML = html;
@@ -646,14 +624,37 @@
         }
         function closeModal() { modalOverlay.classList.remove('open'); }
 
-        // ---------- load profile ----------
+        // Navigation
+        function navigateTo(section) {
+            $$('.section-content').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById(section + 'Section');
+            if (target) target.classList.remove('hidden');
+            
+            $$('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+            const navLink = document.querySelector(`.sidebar-nav a[data-section="${section}"]`);
+            if (navLink) navLink.classList.add('active');
+            
+            const titles = {
+                dashboard: 'Dashboard',
+                websites: 'Websites',
+                domains: 'Domains',
+                orders: 'Orders',
+                payments: 'Payments',
+                support: 'Support',
+                profile: 'Profile'
+            };
+            pageTitle.textContent = titles[section] || 'Dashboard';
+            
+            if (window.innerWidth <= 900) sidebar.classList.remove('open');
+        }
+
+        // Load Profile
         async function loadProfile(uid) {
             try {
                 const ref = doc(db, 'users', uid);
                 const snap = await getDoc(ref);
                 if (snap.exists()) {
                     userProfile = snap.data();
-                    // fill display
                     pName.textContent = userProfile.name || '—';
                     pEmail.textContent = userProfile.email || '—';
                     pPhone.textContent = userProfile.phone || '—';
@@ -671,7 +672,6 @@
                         const d = new Date(userProfile.lastLogin.seconds * 1000);
                         statLastLogin.textContent = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
                     }
-                    // wallet dummy (from profile or default)
                     statWallet.textContent = `$${userProfile.wallet || 0}`;
                 } else {
                     showToast('Profile not found.', 'error');
@@ -679,17 +679,15 @@
             } catch (e) { showToast('Error loading profile', 'error'); }
         }
 
-        // ---------- update profile ----------
         async function updateProfile(uid, data) {
             try {
                 await updateDoc(doc(db, 'users', uid), data);
                 showToast('Profile updated');
                 await loadProfile(uid);
-                loadAllData(uid);
             } catch (e) { showToast('Update failed: ' + e.message, 'error'); }
         }
 
-        // ---------- load stats & tables ----------
+        // Load Websites
         async function loadWebsites(uid) {
             try {
                 const q = query(collection(db, 'websites'), where('userId', '==', uid), orderBy('createdAt', 'desc'));
@@ -715,7 +713,7 @@
                 websitesTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="6" class="empty-state">No websites yet.</td></tr>`;
                 statWebsites.textContent = count;
                 statPublished.textContent = published;
-                // attach actions
+                
                 websitesTbody.querySelectorAll('[data-action="editWebsite"]').forEach(el => {
                     el.onclick = () => editWebsite(el.dataset.id);
                 });
@@ -725,132 +723,17 @@
             } catch (e) { showToast('Error loading websites', 'error'); }
         }
 
-        async function loadDomains(uid) {
+        async function createWebsite(data) {
             try {
-                const q = query(collection(db, 'domains'), where('userId', '==', uid));
-                const snap = await getDocs(q);
-                const rows = [];
-                snap.forEach(doc => {
-                    const d = doc.data();
-                    rows.push(`<tr>
-                        <td>${d.domain || '—'}</td>
-                        <td><span class="badge ${d.status==='active'?'success':'warning'}">${d.status || 'pending'}</span></td>
-                        <td><i class="fas fa-trash action-icon" data-id="${doc.id}" data-action="deleteDomain"></i></td>
-                    </tr>`);
+                await addDoc(collection(db, 'websites'), {
+                    userId: currentUid,
+                    ...data,
+                    createdAt: serverTimestamp(),
+                    updatedAt: serverTimestamp()
                 });
-                domainsTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="3" class="empty-state">No domains.</td></tr>`;
-                domainsTbody.querySelectorAll('[data-action="deleteDomain"]').forEach(el => {
-                    el.onclick = () => deleteDomain(el.dataset.id);
-                });
-            } catch (e) { showToast('Error loading domains', 'error'); }
-        }
-
-        async function loadOrders(uid) {
-            try {
-                const q = query(collection(db, 'orders'), where('userId', '==', uid), orderBy('createdAt', 'desc'));
-                const snap = await getDocs(q);
-                const rows = [];
-                snap.forEach(doc => {
-                    const d = doc.data();
-                    rows.push(`<tr>
-                        <td>${d.orderId || doc.id.slice(0,8)}</td>
-                        <td>$${d.amount || 0}</td>
-                        <td><span class="badge ${d.status==='completed'?'success':d.status==='pending'?'warning':'info'}">${d.status || 'pending'}</span></td>
-                        <td>${d.timeline || '—'}</td>
-                    </tr>`);
-                });
-                ordersTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="4" class="empty-state">No orders.</td></tr>`;
-                statOrders.textContent = snap.size;
-            } catch (e) { showToast('Error loading orders', 'error'); }
-        }
-
-        async function loadPayments(uid) {
-            try {
-                const q = query(collection(db, 'payments'), where('userId', '==', uid), orderBy('createdAt', 'desc'));
-                const snap = await getDocs(q);
-                const rows = [];
-                snap.forEach(doc => {
-                    const d = doc.data();
-                    rows.push(`<tr>
-                        <td>${d.transactionId || '—'}</td>
-                        <td>$${d.amount || 0}</td>
-                        <td><span class="badge ${d.status==='paid'?'success':'warning'}">${d.status || 'pending'}</span></td>
-                        <td>${d.invoice || '—'}</td>
-                    </tr>`);
-                });
-                paymentsTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="4" class="empty-state">No payments.</td></tr>`;
-            } catch (e) { showToast('Error loading payments', 'error'); }
-        }
-
-        async function loadSupport(uid) {
-            try {
-                const q = query(collection(db, 'supportTickets'), where('userId', '==', uid), orderBy('createdAt', 'desc'));
-                const snap = await getDocs(q);
-                const rows = [];
-                snap.forEach(doc => {
-                    const d = doc.data();
-                    rows.push(`<tr>
-                        <td>${d.subject || '—'}</td>
-                        <td><span class="badge ${d.status==='closed'?'success':d.status==='open'?'warning':'info'}">${d.status || 'open'}</span></td>
-                        <td>${d.priority || 'medium'}</td>
-                        <td><i class="fas fa-eye action-icon" data-id="${doc.id}" data-action="viewTicket"></i></td>
-                    </tr>`);
-                });
-                supportTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="4" class="empty-state">No tickets.</td></tr>`;
-            } catch (e) { showToast('Error loading support', 'error'); }
-        }
-
-        async function loadNotifications(uid) {
-            try {
-                const q = query(collection(db, 'notifications'), where('userId', '==', uid), where('read', '==', false));
-                const snap = await getDocs(q);
-                notifCount.textContent = snap.size;
-            } catch (e) { /* ignore */ }
-        }
-
-        async function loadAllData(uid) {
-            await Promise.all([
-                loadProfile(uid),
-                loadWebsites(uid),
-                loadDomains(uid),
-                loadOrders(uid),
-                loadPayments(uid),
-                loadSupport(uid),
-                loadNotifications(uid)
-            ]);
-        }
-
-        // ---------- CRUD operations ----------
-        // Website
-        function showNewWebsiteModal() {
-            const html = `
-                <label>Business Name</label><input id="webBusiness" placeholder="My Brand">
-                <label>Business Type</label><input id="webType" placeholder="e.g. E-commerce">
-                <label>Website Goal</label><textarea id="webGoal" placeholder="Describe your goal"></textarea>
-                <label>Status</label>
-                <select id="webStatus"><option value="draft">Draft</option><option value="published">Published</option></select>
-            `;
-            openModal('New Website', html, async () => {
-                const businessName = $('#webBusiness').value.trim();
-                const businessType = $('#webType').value.trim();
-                const websiteGoal = $('#webGoal').value.trim();
-                const status = $('#webStatus').value;
-                if (!businessName) { showToast('Business name required', 'error'); return; }
-                try {
-                    await addDoc(collection(db, 'websites'), {
-                        userId: currentUid,
-                        businessName,
-                        businessType,
-                        websiteGoal,
-                        status,
-                        createdAt: serverTimestamp(),
-                        updatedAt: serverTimestamp()
-                    });
-                    showToast('Website created');
-                    closeModal();
-                    loadWebsites(currentUid);
-                } catch (e) { showToast('Error: '+e.message, 'error'); }
-            });
+                showToast('Website created');
+                await loadWebsites(currentUid);
+            } catch (e) { showToast('Error: '+e.message, 'error'); }
         }
 
         async function editWebsite(id) {
@@ -876,7 +759,7 @@
                         await updateDoc(ref, { businessName, businessType, websiteGoal, status, updatedAt: serverTimestamp() });
                         showToast('Website updated');
                         closeModal();
-                        loadWebsites(currentUid);
+                        await loadWebsites(currentUid);
                     } catch (e) { showToast('Error: '+e.message, 'error'); }
                 });
             } catch (e) { showToast('Error', 'error'); }
@@ -887,11 +770,191 @@
             try {
                 await deleteDoc(doc(db, 'websites', id));
                 showToast('Deleted');
-                loadWebsites(currentUid);
+                await loadWebsites(currentUid);
             } catch (e) { showToast('Error deleting', 'error'); }
         }
 
-        // Domain
+        // Load Domains
+        async function loadDomains(uid) {
+            try {
+                const q = query(collection(db, 'domains'), where('userId', '==', uid));
+                const snap = await getDocs(q);
+                const rows = [];
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    rows.push(`<tr>
+                        <td>${d.domain || '—'}</td>
+                        <td><span class="badge ${d.status==='active'?'success':'warning'}">${d.status || 'pending'}</span></td>
+                        <td><i class="fas fa-trash action-icon" data-id="${doc.id}" data-action="deleteDomain"></i></td>
+                    </tr>`);
+                });
+                domainsTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="3" class="empty-state">No domains.</td></tr>`;
+                domainsTbody.querySelectorAll('[data-action="deleteDomain"]').forEach(el => {
+                    el.onclick = () => deleteDomain(el.dataset.id);
+                });
+            } catch (e) { showToast('Error loading domains', 'error'); }
+        }
+
+        async function createDomain(domain, status) {
+            try {
+                await addDoc(collection(db, 'domains'), {
+                    userId: currentUid,
+                    domain,
+                    status,
+                    createdAt: serverTimestamp()
+                });
+                showToast('Domain added');
+                await loadDomains(currentUid);
+            } catch (e) { showToast('Error: '+e.message, 'error'); }
+        }
+
+        async function deleteDomain(id) {
+            if (!confirm('Delete domain?')) return;
+            try { 
+                await deleteDoc(doc(db, 'domains', id)); 
+                showToast('Deleted'); 
+                await loadDomains(currentUid); 
+            } catch(e) { showToast('Error', 'error'); }
+        }
+
+        // Load Orders
+        async function loadOrders(uid) {
+            try {
+                const q = query(collection(db, 'orders'), where('userId', '==', uid), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+                const rows = [];
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    rows.push(`<tr>
+                        <td>${d.orderId || doc.id.slice(0,8)}</td>
+                        <td>$${d.amount || 0}</td>
+                        <td><span class="badge ${d.status==='completed'?'success':d.status==='pending'?'warning':'info'}">${d.status || 'pending'}</span></td>
+                        <td>${d.timeline || '—'}</td>
+                    </tr>`);
+                });
+                ordersTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="4" class="empty-state">No orders.</td></tr>`;
+                statOrders.textContent = snap.size;
+            } catch (e) { showToast('Error loading orders', 'error'); }
+        }
+
+        // Load Payments
+        async function loadPayments(uid) {
+            try {
+                const q = query(collection(db, 'payments'), where('userId', '==', uid), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+                const rows = [];
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    rows.push(`<tr>
+                        <td>${d.transactionId || '—'}</td>
+                        <td>$${d.amount || 0}</td>
+                        <td><span class="badge ${d.status==='paid'?'success':'warning'}">${d.status || 'pending'}</span></td>
+                        <td>${d.invoice || '—'}</td>
+                    </tr>`);
+                });
+                paymentsTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="4" class="empty-state">No payments.</td></tr>`;
+            } catch (e) { showToast('Error loading payments', 'error'); }
+        }
+
+        // Load Support Tickets
+        async function loadSupport(uid) {
+            try {
+                const q = query(collection(db, 'supportTickets'), where('userId', '==', uid), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+                const rows = [];
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    rows.push(`<tr>
+                        <td>${d.subject || '—'}</td>
+                        <td><span class="badge ${d.status==='closed'?'success':d.status==='open'?'warning':'info'}">${d.status || 'open'}</span></td>
+                        <td>${d.priority || 'medium'}</td>
+                        <td><i class="fas fa-eye action-icon" data-id="${doc.id}" data-action="viewTicket"></i></td>
+                    </tr>`);
+                });
+                supportTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="4" class="empty-state">No tickets.</td></tr>`;
+            } catch (e) { showToast('Error loading support', 'error'); }
+        }
+
+        async function createTicket(data) {
+            try {
+                await addDoc(collection(db, 'supportTickets'), {
+                    userId: currentUid,
+                    ...data,
+                    status: 'open',
+                    createdAt: serverTimestamp()
+                });
+                showToast('Ticket created');
+                await loadSupport(currentUid);
+            } catch (e) { showToast('Error: '+e.message, 'error'); }
+        }
+
+        // Load Notifications
+        async function loadNotifications(uid) {
+            try {
+                const q = query(collection(db, 'notifications'), where('userId', '==', uid), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+                const unread = snap.docs.filter(d => !d.data().read).length;
+                notifCount.textContent = unread;
+                
+                const items = [];
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    const isUnread = !d.read;
+                    items.push(`<div class="notification-item ${isUnread ? 'unread' : ''}">
+                        <div>${d.message || 'Notification'}</div>
+                        <div class="time">${d.createdAt?.toDate?.()?.toLocaleString() || '—'}</div>
+                    </div>`);
+                });
+                notifList.innerHTML = items.length ? items.join('') : '<div class="empty-state">No notifications</div>';
+            } catch (e) { /* ignore */ }
+        }
+
+        async function markNotificationsRead(uid) {
+            try {
+                const q = query(collection(db, 'notifications'), where('userId', '==', uid), where('read', '==', false));
+                const snap = await getDocs(q);
+                const batch = [];
+                snap.forEach(doc => batch.push(updateDoc(doc.ref, { read: true })));
+                await Promise.all(batch);
+                notifCount.textContent = '0';
+                showToast('All notifications marked read');
+                await loadNotifications(uid);
+            } catch (e) { showToast('Error', 'error'); }
+        }
+
+        // Load all data
+        async function loadAllData(uid) {
+            await Promise.all([
+                loadProfile(uid),
+                loadWebsites(uid),
+                loadDomains(uid),
+                loadOrders(uid),
+                loadPayments(uid),
+                loadSupport(uid),
+                loadNotifications(uid)
+            ]);
+        }
+
+        // Modals
+        function showNewWebsiteModal() {
+            const html = `
+                <label>Business Name</label><input id="webBusiness" placeholder="My Brand">
+                <label>Business Type</label><input id="webType" placeholder="e.g. E-commerce">
+                <label>Website Goal</label><textarea id="webGoal" placeholder="Describe your goal"></textarea>
+                <label>Status</label>
+                <select id="webStatus"><option value="draft">Draft</option><option value="published">Published</option></select>
+            `;
+            openModal('New Website', html, async () => {
+                const businessName = $('#webBusiness').value.trim();
+                const businessType = $('#webType').value.trim();
+                const websiteGoal = $('#webGoal').value.trim();
+                const status = $('#webStatus').value;
+                if (!businessName) { showToast('Business name required', 'error'); return; }
+                await createWebsite({ businessName, businessType, websiteGoal, status });
+                closeModal();
+            });
+        }
+
         function showNewDomainModal() {
             const html = `
                 <label>Domain</label><input id="domainName" placeholder="example.com">
@@ -902,20 +965,11 @@
                 const domain = $('#domainName').value.trim();
                 const status = $('#domainStatus').value;
                 if (!domain) { showToast('Domain required', 'error'); return; }
-                try {
-                    await addDoc(collection(db, 'domains'), { userId: currentUid, domain, status, createdAt: serverTimestamp() });
-                    showToast('Domain added');
-                    closeModal();
-                    loadDomains(currentUid);
-                } catch (e) { showToast('Error: '+e.message, 'error'); }
+                await createDomain(domain, status);
+                closeModal();
             });
         }
-        async function deleteDomain(id) {
-            if (!confirm('Delete domain?')) return;
-            try { await deleteDoc(doc(db, 'domains', id)); showToast('Deleted'); loadDomains(currentUid); } catch(e) { showToast('Error', 'error'); }
-        }
 
-        // Support ticket
         function showNewTicketModal() {
             const html = `
                 <label>Subject</label><input id="ticketSubject" placeholder="Issue with...">
@@ -928,23 +982,11 @@
                 const priority = $('#ticketPriority').value;
                 const message = $('#ticketMessage').value.trim();
                 if (!subject) { showToast('Subject required', 'error'); return; }
-                try {
-                    await addDoc(collection(db, 'supportTickets'), {
-                        userId: currentUid,
-                        subject,
-                        priority,
-                        message,
-                        status: 'open',
-                        createdAt: serverTimestamp()
-                    });
-                    showToast('Ticket created');
-                    closeModal();
-                    loadSupport(currentUid);
-                } catch (e) { showToast('Error: '+e.message, 'error'); }
+                await createTicket({ subject, priority, message });
+                closeModal();
             });
         }
 
-        // Edit Profile
         function showEditProfileModal() {
             const html = `
                 <label>Name</label><input id="editName" value="${userProfile.name || ''}">
@@ -965,20 +1007,7 @@
             });
         }
 
-        // Mark notifications read
-        async function markNotificationsRead() {
-            try {
-                const q = query(collection(db, 'notifications'), where('userId', '==', currentUid), where('read', '==', false));
-                const snap = await getDocs(q);
-                const batch = [];
-                snap.forEach(doc => batch.push(updateDoc(doc.ref, { read: true })));
-                await Promise.all(batch);
-                notifCount.textContent = '0';
-                showToast('All notifications marked read');
-            } catch (e) { showToast('Error', 'error'); }
-        }
-
-        // ---------- AUTH ----------
+        // Auth
         onAuthStateChanged(auth, async (user) => {
             if (!user) {
                 window.location.replace('login.html');
@@ -989,7 +1018,7 @@
             await loadAllData(currentUid);
         });
 
-        // ---------- EVENT BINDINGS ----------
+        // Event Listeners
         hamburger.onclick = () => sidebar.classList.toggle('open');
 
         logoutBtn.onclick = async () => {
@@ -997,34 +1026,58 @@
             window.location.replace('login.html');
         };
 
-        newWebsiteBtn.onclick = newWebsiteBtn2.onclick = showNewWebsiteModal;
+        // Sidebar navigation
+        document.querySelectorAll('.sidebar-nav a').forEach(a => {
+            a.onclick = (e) => {
+                e.preventDefault();
+                const section = a.dataset.section;
+                if (section) {
+                    navigateTo(section);
+                    // Re-load data when switching sections
+                    if (section === 'websites') loadWebsites(currentUid);
+                    else if (section === 'domains') loadDomains(currentUid);
+                    else if (section === 'orders') loadOrders(currentUid);
+                    else if (section === 'payments') loadPayments(currentUid);
+                    else if (section === 'support') loadSupport(currentUid);
+                    else if (section === 'profile') loadProfile(currentUid);
+                }
+            };
+        });
+
+        newWebsiteBtn.onclick = showNewWebsiteModal;
+        newWebsiteBtn2.onclick = showNewWebsiteModal;
         newDomainBtn.onclick = showNewDomainModal;
         newTicketBtn.onclick = showNewTicketModal;
         editProfileBtn.onclick = showEditProfileModal;
 
-        notifBell.onclick = markNotificationsRead;
+        // Notification panel
+        notifBell.onclick = () => {
+            notifPanel.classList.toggle('open');
+            notifOverlay.classList.toggle('open');
+            if (notifPanel.classList.contains('open')) {
+                markNotificationsRead(currentUid);
+            }
+        };
+        notifClose.onclick = () => {
+            notifPanel.classList.remove('open');
+            notifOverlay.classList.remove('open');
+        };
+        notifOverlay.onclick = () => {
+            notifPanel.classList.remove('open');
+            notifOverlay.classList.remove('open');
+        };
 
-        // sidebar nav (smooth scroll)
-        document.querySelectorAll('.sidebar-nav a').forEach(a => {
-            a.onclick = (e) => {
-                e.preventDefault();
-                const sec = a.dataset.section;
-                if (sec) {
-                    const el = document.getElementById(sec + 'Section') || document.querySelector(`.section-title:has(~ .table-wrap #${sec}Tbody)`)?.parentElement;
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }
-                if (window.innerWidth <= 900) sidebar.classList.remove('open');
-            };
-        });
-
-        // Click outside sidebar close
+        // Click outside sidebar close on mobile
         document.addEventListener('click', (e) => {
             if (window.innerWidth <= 900 && !sidebar.contains(e.target) && e.target !== hamburger && !hamburger.contains(e.target)) {
                 sidebar.classList.remove('open');
             }
         });
 
-        console.log('✅ Smile AI Dashboard · Modular SDK v12 · Production ready');
+        // Default navigate to dashboard
+        navigateTo('dashboard');
+
+        console.log('✅ Smile AI Dashboard · Fully Functional · Production Ready');
     </script>
 </body>
 </html>
