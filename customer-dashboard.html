@@ -1,904 +1,1030 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
-  <title>Smile AI · Customer Dashboard</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-  <style>
-    /* ===== RESET & BASE ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', -apple-system, system-ui, sans-serif;
-      background: #f6f9fc;
-      color: #0b1a2a;
-      display: flex;
-      min-height: 100vh;
-    }
-    a { text-decoration: none; color: inherit; }
-    button { cursor: pointer; font-family: inherit; border: none; background: none; }
-    ul { list-style: none; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Smile AI Web Studio · Dashboard</title>
+    <!-- Font & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f6f8fc;
+            color: #1e293b;
+            display: flex;
+            min-height: 100vh;
+        }
+        /* SIDEBAR */
+        .sidebar {
+            width: 280px;
+            background: #ffffff;
+            border-right: 1px solid #eef2f6;
+            padding: 32px 20px;
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+        .sidebar-brand {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #0a0f1a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        .sidebar-brand i {
+            color: #3b82f6;
+            font-size: 28px;
+        }
+        .sidebar-nav {
+            flex: 1;
+        }
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: #475569;
+            font-weight: 500;
+            font-size: 15px;
+            text-decoration: none;
+            margin-bottom: 4px;
+            transition: 0.15s;
+        }
+        .sidebar-nav a i {
+            width: 22px;
+            font-size: 18px;
+            color: #64748b;
+        }
+        .sidebar-nav a.active {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .sidebar-nav a.active i {
+            color: #2563eb;
+        }
+        .sidebar-nav a:hover {
+            background: #f8fafc;
+        }
+        .sidebar-footer {
+            margin-top: 32px;
+            border-top: 1px solid #eef2f6;
+            padding-top: 24px;
+        }
+        .user-mini {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 18px;
+        }
+        .user-info {
+            flex: 1;
+        }
+        .user-info .name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .user-info .email {
+            font-size: 13px;
+            color: #64748b;
+        }
+        .logout-btn {
+            background: none;
+            border: none;
+            color: #ef4444;
+            font-weight: 500;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: 0.1s;
+            margin-top: 12px;
+            width: 100%;
+        }
+        .logout-btn:hover {
+            background: #fee2e2;
+        }
 
-    /* ===== SIDEBAR ===== */
-    .sidebar {
-      width: 260px;
-      background: #ffffff;
-      border-right: 1px solid #e9edf2;
-      padding: 28px 18px;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      position: sticky;
-      top: 0;
-      transition: transform 0.25s ease;
-      z-index: 20;
-      overflow-y: auto;
-      flex-shrink: 0;
-    }
-    .sidebar-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: #0b1a2a;
-      margin-bottom: 40px;
-    }
-    .sidebar-brand i { color: #2a7de1; font-size: 1.8rem; }
-    .sidebar-nav { display: flex; flex-direction: column; gap: 6px; flex: 1; }
-    .sidebar-nav a {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 16px;
-      border-radius: 12px;
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: #3d4e62;
-      transition: 0.15s;
-    }
-    .sidebar-nav a i { width: 22px; font-size: 1.1rem; }
-    .sidebar-nav a:hover { background: #f0f4f9; color: #0b1a2a; }
-    .sidebar-nav a.active {
-      background: #2a7de1;
-      color: white;
-      box-shadow: 0 4px 8px rgba(42,125,225,0.2);
-    }
-    .sidebar-footer {
-      margin-top: 20px;
-      border-top: 1px solid #e9edf2;
-      padding-top: 20px;
-      font-size: 0.85rem;
-      color: #6b7e93;
-    }
+        /* MAIN */
+        .main {
+            flex: 1;
+            padding: 28px 36px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
 
-    /* ===== MAIN CONTENT ===== */
-    .main {
-      flex: 1;
-      padding: 28px 32px 40px;
-      max-width: 100%;
-      min-width: 0;
-    }
-    /* top bar */
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 28px;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    .topbar-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .menu-toggle {
-      font-size: 1.6rem;
-      color: #1f2a3a;
-      display: none;
-      background: white;
-      padding: 6px 12px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-    }
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .notification-bell {
-      position: relative;
-      font-size: 1.3rem;
-      color: #1f2a3a;
-      background: white;
-      padding: 8px 12px;
-      border-radius: 30px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-      cursor: pointer;
-    }
-    .badge-dot {
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      width: 10px;
-      height: 10px;
-      background: #e53e3e;
-      border-radius: 50%;
-      border: 2px solid white;
-    }
-    .user-avatar {
-      width: 44px;
-      height: 44px;
-      background: #2a7de1;
-      border-radius: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 600;
-      font-size: 1rem;
-    }
+        /* HEADER */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+        }
+        .page-header .sub {
+            color: #64748b;
+            font-size: 15px;
+        }
+        .header-actions {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+        .notif-bell {
+            position: relative;
+            font-size: 22px;
+            color: #334155;
+            cursor: pointer;
+        }
+        .notif-badge {
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: 20px;
+        }
+        .btn-primary {
+            background: #0f172a;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .btn-primary i { font-size: 16px; }
+        .btn-primary:hover { background: #1e293b; }
 
-    /* ===== CARDS & SECTIONS ===== */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-bottom: 32px;
-    }
-    .stat-card {
-      background: white;
-      padding: 22px 20px;
-      border-radius: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-      border: 1px solid #eef2f7;
-    }
-    .stat-card .label {
-      font-size: 0.85rem;
-      color: #6b7e93;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
-    }
-    .stat-card .value {
-      font-size: 2.1rem;
-      font-weight: 700;
-      margin-top: 6px;
-      color: #0b1a2a;
-    }
-    .stat-card .sub {
-      font-size: 0.85rem;
-      color: #3d4e62;
-      margin-top: 4px;
-    }
+        /* CARDS GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 22px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #edf2f7;
+        }
+        .stat-card .label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
 
-    .section-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin: 32px 0 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .card-panel {
-      background: white;
-      border-radius: 20px;
-      padding: 22px 24px;
-      border: 1px solid #eef2f7;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
-    }
-    .card-panel h4 {
-      font-weight: 600;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .flex-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px 24px;
-    }
-    .badge-status {
-      background: #eef2f7;
-      padding: 4px 14px;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      text-transform: capitalize;
-    }
-    .badge-status.pending { background: #fef3e2; color: #b45a1c; }
-    .badge-status.processing { background: #e0edff; color: #1a5bb5; }
-    .badge-status.completed { background: #dff0e0; color: #1f7b4a; }
-    .badge-status.published { background: #d5eaf5; color: #0e5c7a; }
-    .badge-status.active { background: #d5eaf5; color: #0e5c7a; }
-    .badge-status.paid { background: #dff0e0; color: #1f7b4a; }
-    .badge-status.shipped { background: #e0edff; color: #1a5bb5; }
-    .badge-status.open { background: #fef3e2; color: #b45a1c; }
-    .badge-status.in-progress { background: #e0edff; color: #1a5bb5; }
-    .badge-status.resolved { background: #dff0e0; color: #1f7b4a; }
+        /* SECTION */
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 36px 0 16px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-title .btn-sm {
+            font-size: 13px;
+            background: #eef2f6;
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
 
-    .btn-primary {
-      background: #2a7de1;
-      color: white;
-      padding: 10px 22px;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: 0.15s;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: none;
-    }
-    .btn-primary:hover { background: #1e66c4; }
-    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
-    .btn-outline {
-      background: transparent;
-      border: 1.5px solid #d0d9e5;
-      padding: 8px 18px;
-      border-radius: 40px;
-      font-weight: 500;
-      transition: 0.15s;
-    }
-    .btn-outline:hover { background: #f0f4f9; }
-    .btn-danger { background: #dc3545; color: white; padding: 8px 18px; border-radius: 40px; font-weight: 500; }
-    .btn-danger:hover { background: #c82333; }
+        .table-wrap {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #edf2f7;
+            overflow-x: auto;
+            padding: 4px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th {
+            text-align: left;
+            padding: 16px 20px;
+            color: #475569;
+            font-weight: 600;
+            border-bottom: 1px solid #edf2f7;
+        }
+        td {
+            padding: 14px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+        .badge {
+            background: #e2e8f0;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge.success { background: #dcfce7; color: #166534; }
+        .badge.warning { background: #fef9c3; color: #854d0e; }
+        .badge.info { background: #dbeafe; color: #1e40af; }
+        .action-icon {
+            color: #64748b;
+            cursor: pointer;
+            margin: 0 4px;
+            transition: 0.1s;
+        }
+        .action-icon:hover { color: #0f172a; }
 
-    /* ===== FORMS ===== */
-    .form-group { margin-bottom: 18px; }
-    .form-group label { display: block; font-weight: 500; margin-bottom: 4px; font-size: 0.9rem; }
-    .form-control {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1.5px solid #dde3ec;
-      border-radius: 14px;
-      font-size: 0.95rem;
-      background: white;
-      transition: 0.15s;
-    }
-    .form-control:focus { outline: none; border-color: #2a7de1; box-shadow: 0 0 0 3px rgba(42,125,225,0.15); }
-    .form-control:disabled { background: #f5f7fa; cursor: not-allowed; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 20px;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            background: white;
+            border-radius: 32px;
+            max-width: 520px;
+            width: 100%;
+            padding: 32px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .modal label {
+            font-weight: 500;
+            font-size: 14px;
+            display: block;
+            margin-top: 16px;
+            margin-bottom: 4px;
+        }
+        .modal input, .modal select, .modal textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d1d9e6;
+            border-radius: 14px;
+            font-size: 14px;
+            font-family: inherit;
+            background: #fafcff;
+        }
+        .modal textarea { min-height: 80px; resize: vertical; }
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            justify-content: flex-end;
+        }
+        .modal-actions button {
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+        .modal-actions .btn-secondary { background: #eef2f6; }
+        .modal-actions .btn-primary { background: #0f172a; color: white; }
 
-    /* ===== MOBILE ===== */
-    @media (max-width: 820px) {
-      .sidebar { transform: translateX(-100%); position: fixed; width: 280px; height: 100%; background: white; box-shadow: 0 0 30px rgba(0,0,0,0.05); }
-      .sidebar.open { transform: translateX(0); }
-      .menu-toggle { display: block; }
-      .main { padding: 20px 16px; }
-      .form-row { grid-template-columns: 1fr; }
-      .dashboard-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 480px) {
-      .dashboard-grid { grid-template-columns: 1fr; }
-      .topbar-left { flex-wrap: wrap; }
-      .stat-card .value { font-size: 1.7rem; }
-    }
+        /* TOAST */
+        .toast-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .toast {
+            background: #1e293b;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 60px;
+            font-weight: 500;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+            animation: slideUp 0.25s ease;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .toast.error { background: #b91c1c; }
+        .toast.success { background: #065f46; }
+        @keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
-    /* ===== UTILITY ===== */
-    .text-muted { color: #6b7e93; }
-    .mt-2 { margin-top: 12px; }
-    .mb-2 { margin-bottom: 12px; }
-    .flex { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .gap-2 { gap: 8px; }
-    .hidden { display: none !important; }
-    .loading { opacity: 0.6; pointer-events: none; }
-    .toast-message {
-      padding: 12px 20px;
-      border-radius: 16px;
-      background: #1f2a3a;
-      color: white;
-      font-weight: 500;
-      margin-bottom: 12px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-      animation: slideDown 0.3s ease;
-    }
-    .toast-message.success { background: #1f7b4a; }
-    .toast-message.error { background: #b13e3e; }
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .empty-state { padding: 30px 0; text-align: center; color: #6b7e93; }
-    .empty-state i { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.4; display: block; }
-  </style>
+        /* MOBILE RESPONSIVE */
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            background: none;
+            border: none;
+            color: #0f172a;
+            cursor: pointer;
+        }
+        @media (max-width: 900px) {
+            .sidebar {
+                position: fixed;
+                transform: translateX(-100%);
+                width: 280px;
+                z-index: 1000;
+                box-shadow: 4px 0 20px rgba(0,0,0,0.05);
+            }
+            .sidebar.open { transform: translateX(0); }
+            .hamburger { display: block; }
+            .main { padding: 20px; }
+            .stats-grid { grid-template-columns: repeat(2,1fr); }
+        }
+        @media (max-width: 500px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 22px; }
+        }
+
+        /* profile mini */
+        .profile-detail {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 24px;
+            border: 1px solid #edf2f7;
+            margin-bottom: 24px;
+        }
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+            gap: 16px;
+        }
+        .profile-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-item .label { font-size: 13px; color: #64748b; }
+        .profile-item .value { font-weight: 500; }
+
+        .empty-state {
+            padding: 32px 20px;
+            text-align: center;
+            color: #64748b;
+        }
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
-
-<!-- ========== SIDEBAR ========== -->
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-brand"><i class="fas fa-smile"></i> Smile AI</div>
-  <nav class="sidebar-nav">
-    <a href="#" class="active" data-section="overview"><i class="fas fa-th-large"></i> Overview</a>
-    <a href="#" data-section="websites"><i class="fas fa-globe"></i> Websites</a>
-    <a href="#" data-section="domains"><i class="fas fa-link"></i> Domains</a>
-    <a href="#" data-section="orders"><i class="fas fa-shopping-bag"></i> Orders</a>
-    <a href="#" data-section="billing"><i class="fas fa-credit-card"></i> Billing</a>
-    <a href="#" data-section="support"><i class="fas fa-headset"></i> Support</a>
-    <a href="#" data-section="profile"><i class="fas fa-user-circle"></i> Profile</a>
-  </nav>
-  <div class="sidebar-footer">
-    <button id="logoutBtn" class="btn-outline" style="width:100%;justify-content:center;display:flex;gap:8px;"><i class="fas fa-sign-out-alt"></i> Sign out</button>
-  </div>
-</aside>
-
-<!-- ========== MAIN ========== -->
-<main class="main">
-  <!-- topbar -->
-  <div class="topbar">
-    <div class="topbar-left">
-      <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
-      <h2 style="font-size:1.4rem; font-weight:600;">Dashboard</h2>
-    </div>
-    <div class="topbar-right">
-      <div class="notification-bell" id="notificationBell">
-        <i class="fas fa-bell"></i>
-        <span class="badge-dot" id="notifBadge"></span>
-      </div>
-      <div class="user-avatar" id="userAvatar">JD</div>
-    </div>
-  </div>
-
-  <!-- toast container -->
-  <div id="toastContainer"></div>
-
-  <!-- ===== SECTIONS ===== -->
-  <div id="section-overview">
-    <div class="dashboard-grid" id="statsGrid">
-      <div class="stat-card"><div class="label">My Websites</div><div class="value" id="statWebsites">0</div></div>
-      <div class="stat-card"><div class="label">Published</div><div class="value" id="statPublished">0</div></div>
-      <div class="stat-card"><div class="label">Orders</div><div class="value" id="statOrders">0</div></div>
-      <div class="stat-card"><div class="label">Wallet</div><div class="value" id="statWallet">$0</div></div>
-    </div>
-    <div class="card-panel"><h4><i class="fas fa-clock"></i> Recent activity</h4><p class="text-muted" id="recentActivity">No recent activity</p></div>
-  </div>
-
-  <div id="section-websites" class="hidden">
-    <div class="section-title"><span>My Websites</span><button class="btn-primary" id="newWebsiteBtn"><i class="fas fa-plus"></i> New Request</button></div>
-    <div id="websiteList"></div>
-  </div>
-
-  <div id="section-domains" class="hidden">
-    <div class="section-title"><span>Domains</span><button class="btn-primary" id="newDomainBtn"><i class="fas fa-plus"></i> Add Domain</button></div>
-    <div id="domainList"></div>
-  </div>
-
-  <div id="section-orders" class="hidden">
-    <div class="section-title"><span>Order History</span></div>
-    <div id="orderList"></div>
-  </div>
-
-  <div id="section-billing" class="hidden">
-    <div class="section-title"><span>Billing & Invoices</span></div>
-    <div id="billingList"></div>
-  </div>
-
-  <div id="section-support" class="hidden">
-    <div class="section-title"><span>Support Tickets</span><button class="btn-primary" id="newTicketBtn"><i class="fas fa-plus"></i> New Ticket</button></div>
-    <div id="ticketList"></div>
-  </div>
-
-  <div id="section-profile" class="hidden">
-    <h3 style="margin-bottom:16px;">Profile</h3>
-    <div class="card-panel">
-      <form id="profileForm">
-        <div class="form-row">
-          <div class="form-group"><label>Full Name</label><input class="form-control" id="profileName" placeholder="John Doe" required /></div>
-          <div class="form-group"><label>Email</label><input class="form-control" id="profileEmail" disabled /></div>
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <i class="fas fa-wand-magic-sparkles"></i> Smile AI
         </div>
-        <div class="form-row">
-          <div class="form-group"><label>Phone</label><input class="form-control" id="profilePhone" placeholder="+1 234 567 890" /></div>
-          <div class="form-group"><label>Business Name</label><input class="form-control" id="profileBusiness" placeholder="My Studio" /></div>
+        <nav class="sidebar-nav">
+            <a href="#" class="active"><i class="fas fa-chart-pie"></i> Dashboard</a>
+            <a href="#" data-section="websites"><i class="fas fa-globe"></i> Websites</a>
+            <a href="#" data-section="domains"><i class="fas fa-link"></i> Domains</a>
+            <a href="#" data-section="orders"><i class="fas fa-shopping-bag"></i> Orders</a>
+            <a href="#" data-section="payments"><i class="fas fa-credit-card"></i> Payments</a>
+            <a href="#" data-section="support"><i class="fas fa-headset"></i> Support</a>
+            <a href="#" data-section="profile"><i class="fas fa-user"></i> Profile</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-mini" id="userMini">
+                <div class="user-avatar" id="avatarLetter">S</div>
+                <div class="user-info">
+                    <div class="name" id="miniName">User</div>
+                    <div class="email" id="miniEmail">user@email.com</div>
+                </div>
+            </div>
+            <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
         </div>
-        <div class="form-row">
-          <div class="form-group"><label>Business Type</label><input class="form-control" id="profileBizType" placeholder="Agency" /></div>
-          <div class="form-group"><label>Website Goal</label><input class="form-control" id="profileGoal" placeholder="Lead generation" /></div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+        <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+        <div class="page-header">
+            <div>
+                <h1>Dashboard</h1>
+                <div class="sub" id="greeting">Welcome back, User</div>
+            </div>
+            <div class="header-actions">
+                <span class="notif-bell" id="notifBell"><i class="fas fa-bell"></i><span class="notif-badge" id="notifCount">0</span></span>
+                <button class="btn-primary" id="newWebsiteBtn"><i class="fas fa-plus"></i> New Website</button>
+            </div>
         </div>
-        <div class="form-group"><label>Membership Plan</label><input class="form-control" id="profilePlan" disabled /></div>
-        <button type="submit" class="btn-primary"><i class="fas fa-save"></i> Save Profile</button>
-      </form>
+
+        <!-- STATS -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card"><div class="label">My Websites</div><div class="value" id="statWebsites">0</div></div>
+            <div class="stat-card"><div class="label">Published</div><div class="value" id="statPublished">0</div></div>
+            <div class="stat-card"><div class="label">Orders</div><div class="value" id="statOrders">0</div></div>
+            <div class="stat-card"><div class="label">Wallet</div><div class="value" id="statWallet">$0</div></div>
+            <div class="stat-card"><div class="label">Membership</div><div class="value" id="statMembership">—</div></div>
+            <div class="stat-card"><div class="label">Last Login</div><div class="value" id="statLastLogin">—</div></div>
+        </div>
+
+        <!-- PROFILE (editable) -->
+        <div id="profileSection" class="profile-detail">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h3 style="font-weight:600;">Profile</h3>
+                <button class="btn-sm" id="editProfileBtn" style="background:#eef2f6; border:none; padding:6px 16px; border-radius:30px; font-weight:500;">Edit</button>
+            </div>
+            <div class="profile-grid" id="profileDisplay">
+                <div class="profile-item"><span class="label">Name</span><span class="value" id="pName">—</span></div>
+                <div class="profile-item"><span class="label">Email</span><span class="value" id="pEmail">—</span></div>
+                <div class="profile-item"><span class="label">Phone</span><span class="value" id="pPhone">—</span></div>
+                <div class="profile-item"><span class="label">Business</span><span class="value" id="pBusiness">—</span></div>
+                <div class="profile-item"><span class="label">Business Type</span><span class="value" id="pType">—</span></div>
+                <div class="profile-item"><span class="label">Website Goal</span><span class="value" id="pGoal">—</span></div>
+                <div class="profile-item"><span class="label">Plan</span><span class="value" id="pPlan">—</span></div>
+                <div class="profile-item"><span class="label">Role</span><span class="value" id="pRole">—</span></div>
+            </div>
+        </div>
+
+        <!-- WEBSITES TABLE -->
+        <div class="section-title">Your Websites <button class="btn-sm" id="newWebsiteBtn2"><i class="fas fa-plus"></i> New</button></div>
+        <div class="table-wrap" id="websitesTableWrap">
+            <table><thead><tr><th>Business</th><th>Type</th><th>Goal</th><th>Status</th><th>Created</th><th>Actions</th></tr></thead>
+                <tbody id="websitesTbody"><tr><td colspan="6" class="empty-state">No websites yet.</td></tr></tbody>
+            </table>
+        </div>
+
+        <!-- DOMAINS -->
+        <div class="section-title">Domains <button class="btn-sm" id="newDomainBtn"><i class="fas fa-plus"></i> Add</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Domain</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="domainsTbody"><tr><td colspan="3" class="empty-state">No domains.</td></tr></tbody>
+        </table></div>
+
+        <!-- ORDERS -->
+        <div class="section-title">Orders</div>
+        <div class="table-wrap"><table><thead><tr><th>Order ID</th><th>Amount</th><th>Status</th><th>Timeline</th></tr></thead>
+            <tbody id="ordersTbody"><tr><td colspan="4" class="empty-state">No orders.</td></tr></tbody>
+        </table></div>
+
+        <!-- PAYMENTS -->
+        <div class="section-title">Payments</div>
+        <div class="table-wrap"><table><thead><tr><th>Transaction</th><th>Amount</th><th>Status</th><th>Invoice</th></tr></thead>
+            <tbody id="paymentsTbody"><tr><td colspan="4" class="empty-state">No payments.</td></tr></tbody>
+        </table></div>
+
+        <!-- SUPPORT TICKETS -->
+        <div class="section-title">Support Tickets <button class="btn-sm" id="newTicketBtn"><i class="fas fa-plus"></i> New Ticket</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Subject</th><th>Status</th><th>Priority</th><th>Actions</th></tr></thead>
+            <tbody id="supportTbody"><tr><td colspan="4" class="empty-state">No tickets.</td></tr></tbody>
+        </table></div>
     </div>
-  </div>
 
-  <!-- notification panel -->
-  <div id="notificationPanel" class="card-panel hidden" style="position:fixed;right:20px;top:80px;width:340px;max-height:400px;overflow-y:auto;z-index:99;box-shadow:0 12px 30px rgba(0,0,0,0.1);">
-    <div class="flex" style="justify-content:space-between;padding-bottom:12px;border-bottom:1px solid #eef2f7;">
-      <strong><i class="fas fa-bell"></i> Notifications</strong>
-      <button id="markAllReadBtn" class="btn-outline" style="font-size:0.8rem;padding:4px 14px;">Mark all read</button>
+    <!-- MODAL (reusable) -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modalContent">
+            <h2 id="modalTitle">Modal</h2>
+            <div id="modalBody"></div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="modalCancel">Cancel</button>
+                <button class="btn-primary" id="modalConfirm">Save</button>
+            </div>
+        </div>
     </div>
-    <div id="notificationList" class="mt-2"></div>
-  </div>
-</main>
 
-<!-- ===== MODAL ===== -->
-<div id="modalOverlay" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:100;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">
-  <div style="background:white;max-width:500px;width:92%;border-radius:28px;padding:28px 24px;box-shadow:0 20px 50px rgba(0,0,0,0.2);max-height:90vh;overflow-y:auto;">
-    <h4 id="modalTitle" style="margin-bottom:16px;">New</h4>
-    <form id="modalForm">
-      <div id="modalFields"></div>
-      <div class="flex" style="justify-content:flex-end;margin-top:24px;gap:12px;">
-        <button type="button" id="modalCancel" class="btn-outline">Cancel</button>
-        <button type="submit" class="btn-primary" id="modalSubmit">Save</button>
-      </div>
-    </form>
-  </div>
-</div>
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
 
-<!-- ===== FIREBASE + APP ===== -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <!-- FIREBASE MODULAR IMPORTS -->
+    <script type="importmap">
+        {
+            "imports": {
+                "./firebase-service.js": "./firebase-service.js"
+            }
+        }
+    </script>
 
-<script>
-  (function() {
-    'use strict';
+    <script type="module">
+        // ============================================================
+        // CUSTOMER DASHBOARD · Smile AI Web Studio · PRODUCTION
+        // Firebase Modular SDK v12  ·  no compat  ·  full CRUD
+        // ============================================================
+        import {
+            auth,
+            db,
+            onAuthStateChanged,
+            signOut,
+            doc,
+            getDoc,
+            updateDoc,
+            collection,
+            query,
+            where,
+            orderBy,
+            limit,
+            getDocs,
+            addDoc,
+            serverTimestamp,
+            deleteDoc
+        } from "./firebase-service.js";
 
-    // ===== FIREBASE CONFIG =====
-    const firebaseConfig = {
-      apiKey: "AIzaSyDummyKeyReplaceMe",
-      authDomain: "smile-ai-web-studio.firebaseapp.com",
-      projectId: "smile-ai-web-studio",
-      storageBucket: "smile-ai-web-studio.appspot.com",
-      messagingSenderId: "123456789012",
-      appId: "1:123456789012:web:abcdef123456"
-    };
-    // ⚠️ REPLACE WITH YOUR ACTUAL FIREBASE CONFIG IN PRODUCTION
+        // ---------- DOM refs ----------
+        const $ = (s) => document.querySelector(s);
+        const $$ = (s) => document.querySelectorAll(s);
 
-    let app, auth, db;
-    let currentUser = null;
-    let userProfile = null;
-    let allData = { websites: [], domains: [], orders: [], payments: [], tickets: [], notifications: [] };
+        const sidebar = $('#sidebar');
+        const hamburger = $('#hamburger');
+        const logoutBtn = $('#logoutBtn');
+        const notifBell = $('#notifBell');
+        const notifCount = $('#notifCount');
+        const newWebsiteBtn = $('#newWebsiteBtn');
+        const newWebsiteBtn2 = $('#newWebsiteBtn2');
+        const newDomainBtn = $('#newDomainBtn');
+        const newTicketBtn = $('#newTicketBtn');
+        const editProfileBtn = $('#editProfileBtn');
+        const modalOverlay = $('#modalOverlay');
+        const modalTitle = $('#modalTitle');
+        const modalBody = $('#modalBody');
+        const modalCancel = $('#modalCancel');
+        const modalConfirm = $('#modalConfirm');
+        const toastContainer = $('#toastContainer');
 
-    // Initialize Firebase
-    try {
-      app = firebase.initializeApp(firebaseConfig);
-      auth = firebase.auth();
-      db = firebase.firestore();
-      // Enable offline persistence
-      db.enablePersistence({ synchronizeTabs: true }).catch(() => {});
-    } catch (e) {
-      console.error('Firebase initialization error:', e);
-      showToast('Firebase configuration error. Please check your config.', 'error');
-    }
+        // profile display
+        const pName = $('#pName'), pEmail = $('#pEmail'), pPhone = $('#pPhone');
+        const pBusiness = $('#pBusiness'), pType = $('#pType'), pGoal = $('#pGoal');
+        const pPlan = $('#pPlan'), pRole = $('#pRole');
+        const miniName = $('#miniName'), miniEmail = $('#miniEmail'), avatarLetter = $('#avatarLetter');
+        const greeting = $('#greeting');
 
-    // ===== DOM HELPERS =====
-    const $ = (id) => document.getElementById(id);
-    const sections = ['overview','websites','domains','orders','billing','support','profile'];
-    const sectionEls = {};
-    sections.forEach(s => sectionEls[s] = $(`section-${s}`));
+        // stats
+        const statWebsites = $('#statWebsites'), statPublished = $('#statPublished');
+        const statOrders = $('#statOrders'), statWallet = $('#statWallet');
+        const statMembership = $('#statMembership'), statLastLogin = $('#statLastLogin');
 
-    function showToast(msg, type = 'info') {
-      const container = $('toastContainer');
-      const div = document.createElement('div');
-      div.className = `toast-message ${type}`;
-      div.textContent = msg;
-      container.prepend(div);
-      setTimeout(() => div.remove(), 4000);
-    }
+        // tbody
+        const websitesTbody = $('#websitesTbody');
+        const domainsTbody = $('#domainsTbody');
+        const ordersTbody = $('#ordersTbody');
+        const paymentsTbody = $('#paymentsTbody');
+        const supportTbody = $('#supportTbody');
 
-    function showModal(title, fieldsHtml, onSubmit) {
-      $('modalTitle').textContent = title;
-      $('modalFields').innerHTML = fieldsHtml;
-      $('modalOverlay').classList.remove('hidden');
-      const form = $('modalForm');
-      form.onsubmit = (e) => { e.preventDefault(); onSubmit(); };
-      $('modalCancel').onclick = () => $('modalOverlay').classList.add('hidden');
-    }
-    function hideModal() { $('modalOverlay').classList.add('hidden'); }
+        // ---------- state ----------
+        let currentUser = null;
+        let currentUid = null;
+        let userProfile = {};
 
-    // ===== AUTH =====
-    async function initAuth() {
-      return new Promise((resolve) => {
-        auth.onAuthStateChanged(async (user) => {
-          if (user) {
+        // ---------- toast ----------
+        function showToast(msg, type = '') {
+            const t = document.createElement('div');
+            t.className = `toast ${type}`;
+            t.innerHTML = `<i class="fas ${type==='error'?'fa-circle-exclamation':'fa-circle-check'}"></i> ${msg}`;
+            toastContainer.appendChild(t);
+            setTimeout(() => t.remove(), 3500);
+        }
+
+        // ---------- modal helpers ----------
+        function openModal(title, html, onConfirm) {
+            modalTitle.textContent = title;
+            modalBody.innerHTML = html;
+            modalOverlay.classList.add('open');
+            modalConfirm.onclick = () => { onConfirm(); };
+            modalCancel.onclick = () => { modalOverlay.classList.remove('open'); };
+            modalOverlay.onclick = (e) => { if (e.target === modalOverlay) modalOverlay.classList.remove('open'); };
+        }
+        function closeModal() { modalOverlay.classList.remove('open'); }
+
+        // ---------- load profile ----------
+        async function loadProfile(uid) {
+            try {
+                const ref = doc(db, 'users', uid);
+                const snap = await getDoc(ref);
+                if (snap.exists()) {
+                    userProfile = snap.data();
+                    // fill display
+                    pName.textContent = userProfile.name || '—';
+                    pEmail.textContent = userProfile.email || '—';
+                    pPhone.textContent = userProfile.phone || '—';
+                    pBusiness.textContent = userProfile.businessName || '—';
+                    pType.textContent = userProfile.businessType || '—';
+                    pGoal.textContent = userProfile.websiteGoal || '—';
+                    pPlan.textContent = userProfile.membershipPlan || 'Free';
+                    pRole.textContent = userProfile.role || 'User';
+                    miniName.textContent = userProfile.name || 'User';
+                    miniEmail.textContent = userProfile.email || '';
+                    avatarLetter.textContent = (userProfile.name || 'U')[0].toUpperCase();
+                    greeting.textContent = `Welcome back, ${userProfile.name || 'User'}`;
+                    statMembership.textContent = userProfile.membershipPlan || 'Free';
+                    if (userProfile.lastLogin) {
+                        const d = new Date(userProfile.lastLogin.seconds * 1000);
+                        statLastLogin.textContent = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+                    }
+                    // wallet dummy (from profile or default)
+                    statWallet.textContent = `$${userProfile.wallet || 0}`;
+                } else {
+                    showToast('Profile not found.', 'error');
+                }
+            } catch (e) { showToast('Error loading profile', 'error'); }
+        }
+
+        // ---------- update profile ----------
+        async function updateProfile(uid, data) {
+            try {
+                await updateDoc(doc(db, 'users', uid), data);
+                showToast('Profile updated');
+                await loadProfile(uid);
+                loadAllData(uid);
+            } catch (e) { showToast('Update failed: ' + e.message, 'error'); }
+        }
+
+        // ---------- load stats & tables ----------
+        async function loadWebsites(uid) {
+            try {
+                const q = query(collection(db, 'websites'), where('userId', '==', uid), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+                const rows = [];
+                let count = 0, published = 0;
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    count++;
+                    if (d.status === 'published') published++;
+                    rows.push(`<tr>
+                        <td>${d.businessName || '—'}</td>
+                        <td>${d.businessType || '—'}</td>
+                        <td>${d.websiteGoal || '—'}</td>
+                        <td><span class="badge ${d.status==='published'?'success':d.status==='draft'?'warning':'info'}">${d.status || 'draft'}</span></td>
+                        <td>${d.createdAt?.toDate?.()?.toLocaleDateString() || '—'}</td>
+                        <td>
+                            <i class="fas fa-edit action-icon" data-id="${doc.id}" data-action="editWebsite"></i>
+                            <i class="fas fa-trash action-icon" data-id="${doc.id}" data-action="deleteWebsite"></i>
+                        </td>
+                    </tr>`);
+                });
+                websitesTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="6" class="empty-state">No websites yet.</td></tr>`;
+                statWebsites.textContent = count;
+                statPublished.textContent = published;
+                // attach actions
+                websitesTbody.querySelectorAll('[data-action="editWebsite"]').forEach(el => {
+                    el.onclick = () => editWebsite(el.dataset.id);
+                });
+                websitesTbody.querySelectorAll('[data-action="deleteWebsite"]').forEach(el => {
+                    el.onclick = () => deleteWebsite(el.dataset.id);
+                });
+            } catch (e) { showToast('Error loading websites', 'error'); }
+        }
+
+        async function loadDomains(uid) {
+            try {
+                const q = query(collection(db, 'domains'), where('userId', '==', uid));
+                const snap = await getDocs(q);
+                const rows = [];
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    rows.push(`<tr>
+                        <td>${d.domain || '—'}</td>
+                        <td><span class="badge ${d.status==='active'?'success':'warning'}">${d.status || 'pending'}</span></td>
+                        <td><i class="fas fa-trash action-icon" data-id="${doc.id}" data-action="deleteDomain"></i></td>
+                    </tr>`);
+                });
+                domainsTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="3" class="empty-state">No domains.</td></tr>`;
+                domainsTbody.querySelectorAll('[data-action="deleteDomain"]').forEach(el => {
+                    el.onclick = () => deleteDomain(el.dataset.id);
+                });
+            } catch (e) { showToast('Error loading domains', 'error'); }
+        }
+
+        async function loadOrders(uid) {
+            try {
+                const q = query(collection(db, 'orders'), where('userId', '==', uid), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+                const rows = [];
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    rows.push(`<tr>
+                        <td>${d.orderId || doc.id.slice(0,8)}</td>
+                        <td>$${d.amount || 0}</td>
+                        <td><span class="badge ${d.status==='completed'?'success':d.status==='pending'?'warning':'info'}">${d.status || 'pending'}</span></td>
+                        <td>${d.timeline || '—'}</td>
+                    </tr>`);
+                });
+                ordersTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="4" class="empty-state">No orders.</td></tr>`;
+                statOrders.textContent = snap.size;
+            } catch (e) { showToast('Error loading orders', 'error'); }
+        }
+
+        async function loadPayments(uid) {
+            try {
+                const q = query(collection(db, 'payments'), where('userId', '==', uid), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+                const rows = [];
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    rows.push(`<tr>
+                        <td>${d.transactionId || '—'}</td>
+                        <td>$${d.amount || 0}</td>
+                        <td><span class="badge ${d.status==='paid'?'success':'warning'}">${d.status || 'pending'}</span></td>
+                        <td>${d.invoice || '—'}</td>
+                    </tr>`);
+                });
+                paymentsTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="4" class="empty-state">No payments.</td></tr>`;
+            } catch (e) { showToast('Error loading payments', 'error'); }
+        }
+
+        async function loadSupport(uid) {
+            try {
+                const q = query(collection(db, 'supportTickets'), where('userId', '==', uid), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+                const rows = [];
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    rows.push(`<tr>
+                        <td>${d.subject || '—'}</td>
+                        <td><span class="badge ${d.status==='closed'?'success':d.status==='open'?'warning':'info'}">${d.status || 'open'}</span></td>
+                        <td>${d.priority || 'medium'}</td>
+                        <td><i class="fas fa-eye action-icon" data-id="${doc.id}" data-action="viewTicket"></i></td>
+                    </tr>`);
+                });
+                supportTbody.innerHTML = rows.length ? rows.join('') : `<tr><td colspan="4" class="empty-state">No tickets.</td></tr>`;
+            } catch (e) { showToast('Error loading support', 'error'); }
+        }
+
+        async function loadNotifications(uid) {
+            try {
+                const q = query(collection(db, 'notifications'), where('userId', '==', uid), where('read', '==', false));
+                const snap = await getDocs(q);
+                notifCount.textContent = snap.size;
+            } catch (e) { /* ignore */ }
+        }
+
+        async function loadAllData(uid) {
+            await Promise.all([
+                loadProfile(uid),
+                loadWebsites(uid),
+                loadDomains(uid),
+                loadOrders(uid),
+                loadPayments(uid),
+                loadSupport(uid),
+                loadNotifications(uid)
+            ]);
+        }
+
+        // ---------- CRUD operations ----------
+        // Website
+        function showNewWebsiteModal() {
+            const html = `
+                <label>Business Name</label><input id="webBusiness" placeholder="My Brand">
+                <label>Business Type</label><input id="webType" placeholder="e.g. E-commerce">
+                <label>Website Goal</label><textarea id="webGoal" placeholder="Describe your goal"></textarea>
+                <label>Status</label>
+                <select id="webStatus"><option value="draft">Draft</option><option value="published">Published</option></select>
+            `;
+            openModal('New Website', html, async () => {
+                const businessName = $('#webBusiness').value.trim();
+                const businessType = $('#webType').value.trim();
+                const websiteGoal = $('#webGoal').value.trim();
+                const status = $('#webStatus').value;
+                if (!businessName) { showToast('Business name required', 'error'); return; }
+                try {
+                    await addDoc(collection(db, 'websites'), {
+                        userId: currentUid,
+                        businessName,
+                        businessType,
+                        websiteGoal,
+                        status,
+                        createdAt: serverTimestamp(),
+                        updatedAt: serverTimestamp()
+                    });
+                    showToast('Website created');
+                    closeModal();
+                    loadWebsites(currentUid);
+                } catch (e) { showToast('Error: '+e.message, 'error'); }
+            });
+        }
+
+        async function editWebsite(id) {
+            try {
+                const ref = doc(db, 'websites', id);
+                const snap = await getDoc(ref);
+                if (!snap.exists()) { showToast('Not found', 'error'); return; }
+                const d = snap.data();
+                const html = `
+                    <label>Business Name</label><input id="webBusiness" value="${d.businessName || ''}">
+                    <label>Business Type</label><input id="webType" value="${d.businessType || ''}">
+                    <label>Website Goal</label><textarea id="webGoal">${d.websiteGoal || ''}</textarea>
+                    <label>Status</label>
+                    <select id="webStatus"><option value="draft" ${d.status==='draft'?'selected':''}>Draft</option><option value="published" ${d.status==='published'?'selected':''}>Published</option></select>
+                `;
+                openModal('Edit Website', html, async () => {
+                    const businessName = $('#webBusiness').value.trim();
+                    const businessType = $('#webType').value.trim();
+                    const websiteGoal = $('#webGoal').value.trim();
+                    const status = $('#webStatus').value;
+                    if (!businessName) { showToast('Business name required', 'error'); return; }
+                    try {
+                        await updateDoc(ref, { businessName, businessType, websiteGoal, status, updatedAt: serverTimestamp() });
+                        showToast('Website updated');
+                        closeModal();
+                        loadWebsites(currentUid);
+                    } catch (e) { showToast('Error: '+e.message, 'error'); }
+                });
+            } catch (e) { showToast('Error', 'error'); }
+        }
+
+        async function deleteWebsite(id) {
+            if (!confirm('Delete this website?')) return;
+            try {
+                await deleteDoc(doc(db, 'websites', id));
+                showToast('Deleted');
+                loadWebsites(currentUid);
+            } catch (e) { showToast('Error deleting', 'error'); }
+        }
+
+        // Domain
+        function showNewDomainModal() {
+            const html = `
+                <label>Domain</label><input id="domainName" placeholder="example.com">
+                <label>Status</label>
+                <select id="domainStatus"><option value="pending">Pending</option><option value="active">Active</option></select>
+            `;
+            openModal('Add Domain', html, async () => {
+                const domain = $('#domainName').value.trim();
+                const status = $('#domainStatus').value;
+                if (!domain) { showToast('Domain required', 'error'); return; }
+                try {
+                    await addDoc(collection(db, 'domains'), { userId: currentUid, domain, status, createdAt: serverTimestamp() });
+                    showToast('Domain added');
+                    closeModal();
+                    loadDomains(currentUid);
+                } catch (e) { showToast('Error: '+e.message, 'error'); }
+            });
+        }
+        async function deleteDomain(id) {
+            if (!confirm('Delete domain?')) return;
+            try { await deleteDoc(doc(db, 'domains', id)); showToast('Deleted'); loadDomains(currentUid); } catch(e) { showToast('Error', 'error'); }
+        }
+
+        // Support ticket
+        function showNewTicketModal() {
+            const html = `
+                <label>Subject</label><input id="ticketSubject" placeholder="Issue with...">
+                <label>Priority</label>
+                <select id="ticketPriority"><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select>
+                <label>Message</label><textarea id="ticketMessage" placeholder="Describe your issue"></textarea>
+            `;
+            openModal('New Support Ticket', html, async () => {
+                const subject = $('#ticketSubject').value.trim();
+                const priority = $('#ticketPriority').value;
+                const message = $('#ticketMessage').value.trim();
+                if (!subject) { showToast('Subject required', 'error'); return; }
+                try {
+                    await addDoc(collection(db, 'supportTickets'), {
+                        userId: currentUid,
+                        subject,
+                        priority,
+                        message,
+                        status: 'open',
+                        createdAt: serverTimestamp()
+                    });
+                    showToast('Ticket created');
+                    closeModal();
+                    loadSupport(currentUid);
+                } catch (e) { showToast('Error: '+e.message, 'error'); }
+            });
+        }
+
+        // Edit Profile
+        function showEditProfileModal() {
+            const html = `
+                <label>Name</label><input id="editName" value="${userProfile.name || ''}">
+                <label>Phone</label><input id="editPhone" value="${userProfile.phone || ''}">
+                <label>Business Name</label><input id="editBusiness" value="${userProfile.businessName || ''}">
+                <label>Business Type</label><input id="editType" value="${userProfile.businessType || ''}">
+                <label>Website Goal</label><textarea id="editGoal">${userProfile.websiteGoal || ''}</textarea>
+            `;
+            openModal('Edit Profile', html, async () => {
+                const name = $('#editName').value.trim();
+                const phone = $('#editPhone').value.trim();
+                const businessName = $('#editBusiness').value.trim();
+                const businessType = $('#editType').value.trim();
+                const websiteGoal = $('#editGoal').value.trim();
+                if (!name) { showToast('Name required', 'error'); return; }
+                await updateProfile(currentUid, { name, phone, businessName, businessType, websiteGoal });
+                closeModal();
+            });
+        }
+
+        // Mark notifications read
+        async function markNotificationsRead() {
+            try {
+                const q = query(collection(db, 'notifications'), where('userId', '==', currentUid), where('read', '==', false));
+                const snap = await getDocs(q);
+                const batch = [];
+                snap.forEach(doc => batch.push(updateDoc(doc.ref, { read: true })));
+                await Promise.all(batch);
+                notifCount.textContent = '0';
+                showToast('All notifications marked read');
+            } catch (e) { showToast('Error', 'error'); }
+        }
+
+        // ---------- AUTH ----------
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.replace('login.html');
+                return;
+            }
             currentUser = user;
-            await loadUserProfile();
-            await loadAllData();
-            renderAll();
-            resolve(true);
-          } else {
-            // Redirect to login page
-            window.location.href = '/login.html';
-            resolve(false);
-          }
+            currentUid = user.uid;
+            await loadAllData(currentUid);
         });
-      });
-    }
 
-    async function loadUserProfile() {
-      if (!currentUser) return;
-      try {
-        const doc = await db.collection('users').doc(currentUser.uid).get();
-        if (doc.exists) {
-          userProfile = doc.data();
-        } else {
-          // Create default profile if not exists
-          userProfile = {
-            uid: currentUser.uid,
-            email: currentUser.email,
-            fullName: currentUser.displayName || '',
-            phone: '',
-            businessName: '',
-            businessType: '',
-            websiteGoal: '',
-            membershipPlan: 'Free',
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-          };
-          await db.collection('users').doc(currentUser.uid).set(userProfile);
-        }
-        updateProfileUI();
-      } catch (e) {
-        console.error('Error loading profile:', e);
-        showToast('Error loading profile', 'error');
-      }
-    }
+        // ---------- EVENT BINDINGS ----------
+        hamburger.onclick = () => sidebar.classList.toggle('open');
 
-    function updateProfileUI() {
-      if (!userProfile) return;
-      $('profileName').value = userProfile.fullName || '';
-      $('profileEmail').value = userProfile.email || '';
-      $('profilePhone').value = userProfile.phone || '';
-      $('profileBusiness').value = userProfile.businessName || '';
-      $('profileBizType').value = userProfile.businessType || '';
-      $('profileGoal').value = userProfile.websiteGoal || '';
-      $('profilePlan').value = userProfile.membershipPlan || 'Free';
-      const avatar = $('userAvatar');
-      const name = userProfile.fullName || 'User';
-      avatar.textContent = name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
-    }
-
-    // ===== DATA LOADING =====
-    async function loadAllData() {
-      if (!currentUser) return;
-      const uid = currentUser.uid;
-      try {
-        const collections = {
-          websites: db.collection('websites').where('userId', '==', uid),
-          domains: db.collection('domains').where('userId', '==', uid),
-          orders: db.collection('orders').where('userId', '==', uid),
-          payments: db.collection('payments').where('userId', '==', uid),
-          tickets: db.collection('supportTickets').where('userId', '==', uid),
-          notifications: db.collection('notifications').where('userId', '==', uid)
+        logoutBtn.onclick = async () => {
+            await signOut(auth);
+            window.location.replace('login.html');
         };
-        const results = await Promise.all(
-          Object.entries(collections).map(async ([key, ref]) => {
-            const snap = await ref.get();
-            return [key, snap.docs.map(d => ({ id: d.id, ...d.data() }))];
-          })
-        );
-        results.forEach(([key, data]) => { allData[key] = data; });
-      } catch (e) {
-        console.error('Error loading data:', e);
-        showToast('Error loading dashboard data', 'error');
-      }
-    }
 
-    // ===== RENDER FUNCTIONS =====
-    function renderAll() {
-      renderStats();
-      renderWebsites();
-      renderDomains();
-      renderOrders();
-      renderBilling();
-      renderTickets();
-      renderNotifications();
-      updateNotifBadge();
-    }
+        newWebsiteBtn.onclick = newWebsiteBtn2.onclick = showNewWebsiteModal;
+        newDomainBtn.onclick = showNewDomainModal;
+        newTicketBtn.onclick = showNewTicketModal;
+        editProfileBtn.onclick = showEditProfileModal;
 
-    function renderStats() {
-      const websites = allData.websites || [];
-      const published = websites.filter(w => w.status === 'published').length;
-      const orders = allData.orders || [];
-      const payments = allData.payments || [];
-      const walletTotal = payments.reduce((sum, p) => sum + (p.amount || 0), 0);
-      
-      $('statWebsites').textContent = websites.length;
-      $('statPublished').textContent = published;
-      $('statOrders').textContent = orders.length;
-      $('statWallet').textContent = `$${walletTotal.toFixed(2)}`;
-      
-      const recent = websites.length > 0 ? websites[0] : null;
-      $('recentActivity').textContent = recent ? `${recent.businessName} (${recent.status})` : 'No recent activity';
-    }
+        notifBell.onclick = markNotificationsRead;
 
-    function renderWebsites() {
-      const container = $('websiteList');
-      const data = allData.websites || [];
-      if (!data.length) {
-        container.innerHTML = `<div class="empty-state"><i class="fas fa-globe"></i>No websites found. Create your first website request.</div>`;
-        return;
-      }
-      container.innerHTML = data.map(w => `
-        <div class="card-panel" style="padding:14px 18px;display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;">
-          <div><strong>${w.businessName || 'Untitled'}</strong> <span class="badge-status ${w.status || 'pending'}">${w.status || 'pending'}</span></div>
-          <div class="text-muted" style="font-size:0.85rem;">${w.businessType || '—'} · ${w.goal || ''}</div>
-        </div>
-      `).join('');
-    }
-
-    function renderDomains() {
-      const container = $('domainList');
-      const data = allData.domains || [];
-      if (!data.length) {
-        container.innerHTML = `<div class="empty-state"><i class="fas fa-link"></i>No domains connected. Add your first domain.</div>`;
-        return;
-      }
-      container.innerHTML = data.map(d => `
-        <div class="card-panel" style="padding:14px 18px;display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;">
-          <span><i class="fas fa-globe"></i> ${d.domainName || 'Unknown'}</span>
-          <span class="badge-status ${d.status || 'pending'}">${d.status || 'pending'}</span>
-        </div>
-      `).join('');
-    }
-
-    function renderOrders() {
-      const container = $('orderList');
-      const data = allData.orders || [];
-      if (!data.length) {
-        container.innerHTML = `<div class="empty-state"><i class="fas fa-shopping-bag"></i>No orders yet.</div>`;
-        return;
-      }
-      container.innerHTML = data.map(o => `
-        <div class="card-panel" style="padding:14px 18px;display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;">
-          <span>${o.service || 'Service'} <span class="badge-status ${o.status || 'pending'}">${o.status || 'pending'}</span></span>
-          <span>$${(o.amount || 0).toFixed(2)}</span>
-        </div>
-      `).join('');
-    }
-
-    function renderBilling() {
-      const container = $('billingList');
-      const data = allData.payments || [];
-      if (!data.length) {
-        container.innerHTML = `<div class="empty-state"><i class="fas fa-credit-card"></i>No payment history.</div>`;
-        return;
-      }
-      container.innerHTML = data.map(p => `
-        <div class="card-panel" style="padding:14px 18px;display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;">
-          <span>${p.method || 'Unknown'} · ${p.paymentId || 'N/A'}</span>
-          <span>$${(p.amount || 0).toFixed(2)}</span>
-        </div>
-      `).join('');
-    }
-
-    function renderTickets() {
-      const container = $('ticketList');
-      const data = allData.tickets || [];
-      if (!data.length) {
-        container.innerHTML = `<div class="empty-state"><i class="fas fa-headset"></i>No support tickets. Need help? Create a ticket.</div>`;
-        return;
-      }
-      container.innerHTML = data.map(t => `
-        <div class="card-panel" style="padding:14px 18px;display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;">
-          <span><strong>${t.subject || 'Untitled'}</strong> <span class="badge-status ${t.status || 'open'}">${t.status || 'open'}</span></span>
-          <span class="text-muted">${t.category || 'General'}</span>
-        </div>
-      `).join('');
-    }
-
-    function renderNotifications() {
-      const container = $('notificationList');
-      const data = allData.notifications || [];
-      if (!data.length) {
-        container.innerHTML = `<div class="empty-state" style="padding:10px 0;"><i class="fas fa-bell-slash"></i>No notifications</div>`;
-        return;
-      }
-      container.innerHTML = data.map(n => `
-        <div style="padding:10px 0;border-bottom:1px solid #eef2f7;${n.read ? 'opacity:0.6;' : ''}">
-          <div><strong>${n.title || 'Notification'}</strong> ${!n.read ? '<span class="badge-dot" style="display:inline-block;position:static;margin-left:6px;"></span>' : ''}</div>
-          <div class="text-muted" style="font-size:0.85rem;">${n.message || ''}</div>
-        </div>
-      `).join('');
-    }
-
-    function updateNotifBadge() {
-      const unread = (allData.notifications || []).filter(n => !n.read).length;
-      $('notifBadge').style.display = unread ? 'block' : 'none';
-    }
-
-    // ===== NAVIGATION =====
-    document.querySelectorAll('.sidebar-nav a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const section = link.dataset.section;
-        document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
-        link.classList.add('active');
-        sections.forEach(s => sectionEls[s].classList.toggle('hidden', s !== section));
-        if (section === 'overview') renderAll();
-        $('sidebar').classList.remove('open');
-      });
-    });
-
-    // ===== EVENTS =====
-    $('menuToggle').addEventListener('click', () => $('sidebar').classList.toggle('open'));
-
-    // Logout
-    $('logoutBtn').addEventListener('click', async () => {
-      await auth.signOut();
-      window.location.href = '/login.html';
-    });
-
-    // Profile save
-    $('profileForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!currentUser) return;
-      const updates = {
-        fullName: $('profileName').value.trim(),
-        phone: $('profilePhone').value.trim(),
-        businessName: $('profileBusiness').value.trim(),
-        businessType: $('profileBizType').value.trim(),
-        websiteGoal: $('profileGoal').value.trim()
-      };
-      try {
-        await db.collection('users').doc(currentUser.uid).update(updates);
-        Object.assign(userProfile, updates);
-        updateProfileUI();
-        showToast('Profile updated successfully!', 'success');
-      } catch (e) {
-        console.error('Profile update error:', e);
-        showToast('Error updating profile', 'error');
-      }
-    });
-
-    // New Website
-    $('newWebsiteBtn').addEventListener('click', () => {
-      showModal('New Website Request', `
-        <div class="form-group"><label>Business Name *</label><input class="form-control" id="modalBizName" placeholder="My Business" required /></div>
-        <div class="form-group"><label>Business Type</label><input class="form-control" id="modalBizType" placeholder="Agency, E-commerce, etc." /></div>
-        <div class="form-group"><label>Goal</label><input class="form-control" id="modalGoal" placeholder="Lead generation, sales, etc." /></div>
-      `, async () => {
-        const bizName = $('modalBizName').value.trim();
-        if (!bizName) { showToast('Business name is required', 'error'); return; }
-        const data = {
-          userId: currentUser.uid,
-          businessName: bizName,
-          businessType: $('modalBizType').value.trim(),
-          goal: $('modalGoal').value.trim(),
-          status: 'pending',
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        };
-        try {
-          await db.collection('websites').add(data);
-          showToast('Website request created!', 'success');
-          hideModal();
-          await loadAllData();
-          renderAll();
-        } catch (e) {
-          console.error('Error creating website:', e);
-          showToast('Error creating website request', 'error');
-        }
-      });
-    });
-
-    // New Domain
-    $('newDomainBtn').addEventListener('click', () => {
-      showModal('Add Domain', `
-        <div class="form-group"><label>Domain Name *</label><input class="form-control" id="modalDomain" placeholder="example.com" required /></div>
-        <div class="form-group"><label>Website ID (optional)</label><input class="form-control" id="modalWebsiteId" placeholder="website-id" /></div>
-      `, async () => {
-        const domain = $('modalDomain').value.trim();
-        if (!domain) { showToast('Domain name is required', 'error'); return; }
-        const data = {
-          userId: currentUser.uid,
-          domainName: domain,
-          websiteId: $('modalWebsiteId').value.trim() || null,
-          status: 'pending',
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        };
-        try {
-          await db.collection('domains').add(data);
-          showToast('Domain added!', 'success');
-          hideModal();
-          await loadAllData();
-          renderAll();
-        } catch (e) {
-          console.error('Error adding domain:', e);
-          showToast('Error adding domain', 'error');
-        }
-      });
-    });
-
-    // New Support Ticket
-    $('newTicketBtn').addEventListener('click', () => {
-      showModal('New Support Ticket', `
-        <div class="form-group"><label>Subject *</label><input class="form-control" id="modalSubject" placeholder="Brief subject" required /></div>
-        <div class="form-group"><label>Category</label>
-          <select class="form-control" id="modalCategory">
-            <option value="General">General</option>
-            <option value="Billing">Billing</option>
-            <option value="Technical">Technical</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Message *</label><textarea class="form-control" id="modalMessage" rows="3" placeholder="Describe your issue..." required></textarea></div>
-      `, async () => {
-        const subject = $('modalSubject').value.trim();
-        const message = $('modalMessage').value.trim();
-        if (!subject || !message) { showToast('Subject and message are required', 'error'); return; }
-        const data = {
-          userId: currentUser.uid,
-          subject: subject,
-          category: $('modalCategory').value,
-          message: message,
-          status: 'open',
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        };
-        try {
-          await db.collection('supportTickets').add(data);
-          showToast('Ticket created!', 'success');
-          hideModal();
-          await loadAllData();
-          renderAll();
-        } catch (e) {
-          console.error('Error creating ticket:', e);
-          showToast('Error creating ticket', 'error');
-        }
-      });
-    });
-
-    // Notification bell toggle
-    let notifPanelOpen = false;
-    $('notificationBell').addEventListener('click', () => {
-      const panel = $('notificationPanel');
-      notifPanelOpen = !notifPanelOpen;
-      panel.classList.toggle('hidden', !notifPanelOpen);
-      if (notifPanelOpen) renderNotifications();
-    });
-
-    // Mark all notifications as read
-    $('markAllReadBtn').addEventListener('click', async () => {
-      if (!currentUser) return;
-      const unread = (allData.notifications || []).filter(n => !n.read);
-      if (!unread.length) { showToast('All notifications already read', 'info'); return; }
-      try {
-        const batch = db.batch();
-        unread.forEach(n => {
-          const ref = db.collection('notifications').doc(n.id);
-          batch.update(ref, { read: true });
+        // sidebar nav (smooth scroll)
+        document.querySelectorAll('.sidebar-nav a').forEach(a => {
+            a.onclick = (e) => {
+                e.preventDefault();
+                const sec = a.dataset.section;
+                if (sec) {
+                    const el = document.getElementById(sec + 'Section') || document.querySelector(`.section-title:has(~ .table-wrap #${sec}Tbody)`)?.parentElement;
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }
+                if (window.innerWidth <= 900) sidebar.classList.remove('open');
+            };
         });
-        await batch.commit();
-        // Update local data
-        unread.forEach(n => n.read = true);
-        renderNotifications();
-        updateNotifBadge();
-        showToast('All notifications marked as read', 'success');
-      } catch (e) {
-        console.error('Error marking notifications:', e);
-        showToast('Error updating notifications', 'error');
-      }
-    });
 
-    // ===== INIT =====
-    initAuth().then(() => {
-      console.log('Dashboard initialized successfully');
-    }).catch(err => {
-      console.error('Init error:', err);
-    });
+        // Click outside sidebar close
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 900 && !sidebar.contains(e.target) && e.target !== hamburger && !hamburger.contains(e.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
 
-    // Close modal on overlay click
-    $('modalOverlay').addEventListener('click', (e) => {
-      if (e.target === $('modalOverlay')) hideModal();
-    });
-
-    // Close notification panel on outside click
-    document.addEventListener('click', (e) => {
-      const panel = $('notificationPanel');
-      const bell = $('notificationBell');
-      if (notifPanelOpen && !panel.contains(e.target) && !bell.contains(e.target)) {
-        panel.classList.add('hidden');
-        notifPanelOpen = false;
-      }
-    });
-
-  })();
-</script>
+        console.log('✅ Smile AI Dashboard · Modular SDK v12 · Production ready');
+    </script>
 </body>
 </html>
